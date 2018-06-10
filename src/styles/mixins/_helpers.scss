@@ -1,0 +1,38 @@
+//
+// Helper Mixins
+//
+// sass-lint:disable-all
+@mixin clearfix {
+    &::after {
+        clear: both;
+        content: '';
+        display: block;
+    }
+}
+
+@mixin img-responsive {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+@mixin sprite($x, $y) {
+    background-image: url('#{$path-img}/sprite.png');
+    background-position: $x $y;
+    background-repeat: no-repeat;
+}
+
+@mixin purple-gradient {
+    background: linear-gradient(to right, rgba(147, 154, 206, 1) 0%, rgba(57, 95, 158, 1) 67%, rgba(57, 95, 158, 1) 67%, rgba(57, 95, 158, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#939ace', endColorstr='#395f9e', GradientType=1);
+}
+
+@mixin white-gradient {
+    background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.50) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#c2ffffff', GradientType=1);
+}
+
+@mixin white-gradient-flip-x {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#c2ffffff', GradientType=1);
+}

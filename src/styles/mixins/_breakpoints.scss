@@ -1,0 +1,57 @@
+// sass-lint:disable-all
+@mixin min-screen($size) {
+    @media( min-width: map-get($grid-breakpoints, $size)) {
+        @content;
+    }
+}
+
+@mixin max-screen($size) {
+    @media( max-width: map-get($grid-breakpoints, $size)) {
+        @content;
+    }
+}
+
+// These functions and mixins are for the grid build
+@function breakpoint-next($name) {
+    $breakpoint-names: map-keys($grid-breakpoints);
+    $n: index($breakpoint-names, $name);
+    @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}
+
+@function breakpoint-min($name) {
+    $min: map-get($grid-breakpoints, $name);
+    @return if($min !=0, $min, null);
+}
+
+@function breakpoint-max($name) {
+    $next: breakpoint-next($name);
+    @return if($next, breakpoint-min($next) - 1px, null);
+}
+
+@function breakpoint-infix($name) {
+    @return if(breakpoint-min($name)==null, '', '-#{$name}');
+}
+
+@mixin media-breakpoint-up($name) {
+    $min: breakpoint-min($name);
+    @if $min {
+        @media (min-width: $min) {
+            @content;
+        }
+    }
+    @else {
+        @content;
+    }
+}
+
+@mixin media-breakpoint-down($name) {
+    $max: breakpoint-max($name);
+    @if $max {
+        @media (max-width: $max) {
+            @content;
+        }
+    }
+    @else {
+        @content;
+    }
+}

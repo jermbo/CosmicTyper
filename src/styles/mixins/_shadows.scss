@@ -1,0 +1,24 @@
+// sass-lint:disable-all
+@mixin base-filter-shadow {
+    filter: drop-shadow(0 3px 3px rgba($off-black, .5));
+}
+
+@mixin hover-filter-shadow {
+    filter: drop-shadow(0 3px 6px rgba($off-black, .5));
+}
+
+@mixin base-box-shadow {
+    box-shadow: 0 3px 3px 0 rgba($off-black, .5);
+}
+
+@mixin hover-box-shadow {
+    box-shadow: 0 3px 15px 0 rgba($off-black, .5);
+}
+
+@mixin box-shadow($h-shadow: 0, $v-shadow: 0, $blur: 5px, $spread: 0, $color: #333, $alpha: .35) {
+    box-shadow: $h-shadow $v-shadow $blur $spread rgba($color, $alpha);
+}
+
+@mixin text-shadow($x-shadow: 0, $y-shadow: 2px, $blur: 4px, $color: $black) {
+    text-shadow: $x-shadow $y-shadow $blur $color;
+}

@@ -1,0 +1,27 @@
+// sass-lint:disable-all
+@mixin fluid-type($properties, $min-vw, $max-vw, $min-value, $max-value) {
+    @each $property in $properties {
+        #{$property}: $min-value;
+    }
+
+    @media (min-width: $min-vw) {
+        @each $property in $properties {
+            #{$property}: calc(#{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
+        }
+    }
+
+    @media (min-width: $max-vw) {
+        @each $property in $properties {
+            #{$property}: $max-value;
+        }
+    }
+}
+
+@function strip-unit($value) {
+    @return $value / ($value * 0 + 1);
+}
+
+// Single property //
+html {
+    @include fluid-type(font-size, map-get($grid-breakpoints, sm), map-get($grid-breakpoints, xxl), 14px, 18px);
+}

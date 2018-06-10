@@ -1,0 +1,204 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto|Source+Code+Pro");
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+$white: #e5e5e5;
+$black: #323232;
+
+body {
+  height: 100vh;
+  margin: auto;
+  margin: 0;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 100vw;
+}
+
+%defaults {
+  font-family: "Roboto";
+  width: 75%;
+  margin: 0 auto 0.625rem;
+  padding: 5px 0;
+  color: $white;
+}
+
+.welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $white;
+  position: relative;
+  text-align: center;
+  padding: 1.25rem 0.625rem 0;
+  height: 100vh;
+  background: linear-gradient(15deg, #2c3e50, #2980b9) fixed;
+  border: 1rem solid $white;
+
+  nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+
+    a {
+      color: $white;
+      display: inline-block;
+      padding: 10px 10px 10px 0;
+
+      &:last-child {
+        padding-right: 0;
+      }
+      &:hover {
+        color: #f0ae12;
+      }
+    }
+  }
+}
+
+.instructions {
+  color: $white;
+  position: relative;
+  text-align: center;
+  padding: 1.25rem 0.625rem 0;
+  height: 30vh;
+  background: linear-gradient(15deg, #2c3e50, #2980b9) fixed;
+  border: {
+    top: 5px solid $white;
+    left: 5px solid $white;
+    right: 5px solid $white;
+  }
+  &:after {
+    content: "~Results~";
+    font-size: 18px;
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: $black;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}
+
+.title {
+  @extend %defaults;
+  font-size: 25px;
+}
+
+.description {
+  @extend %defaults;
+  font-size: 16px;
+}
+
+.score {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+}
+
+.back,
+.nextBtn {
+  display: none;
+  border-radius: 5px;
+  padding: 5px 25px;
+  font-size: 22px;
+  text-decoration: none;
+  margin: 20px;
+  top: 0;
+  right: 0;
+  position: fixed;
+  color: $white;
+  transition: all 0.25s ease;
+  background-color: #e67e22;
+  box-shadow: 0 5px 0 0 darken(#e67e22, 20%);
+
+  &:hover {
+    background-color: lighten(#e67e22, 20%);
+    box-shadow: 0 0 0 0 darken(#e67e22, 20%);
+  }
+}
+
+.back {
+  right: auto;
+  left: 0;
+  display: block;
+}
+
+.htmlOutput {
+  overflow-y: auto;
+  margin: 0 auto;
+  padding: 2rem;
+  height: 70vh;
+  background: #e5e5e5;
+  border: 5px solid $black;
+  position: relative;
+}
+
+.charactersWrap {
+  padding: 0.625rem 0;
+  font-family: "Source Code Pro", monospace;
+}
+
+.characters {
+  padding: 0.625rem 0;
+}
+
+.character {
+  font-size: 30px;
+  padding: 10px 0px;
+  user-select: none;
+  position: relative;
+}
+
+.correct {
+  background-color: #10ef66;
+  color: $black;
+}
+
+.error {
+  animation: flashError 0.15s ease 1;
+}
+
+.current {
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    top: 0;
+    left: -2px;
+    background: $black;
+    z-index: 100;
+    animation: blink 1s ease infinite;
+  }
+}
+
+//////////////////////////////////////////////////
+// Animations
+@keyframes flashError {
+  0% {
+    background: rgba(red, 1);
+  }
+  100% {
+    background: rgba(red, 0);
+  }
+}
+
+@keyframes blink {
+  0% {
+    background: rgba($black, 1);
+  }
+  50% {
+    background: rgba($black, 0);
+  }
+  100% {
+    background: rgba($black, 1);
+  }
+}

@@ -1,0 +1,57 @@
+// sass-lint:disable-all
+@mixin make-col-modifier($type, $size, $columns) {
+    @if $type==push {
+        left: if($size > 0, percentage($size / $columns), auto);
+    }
+    @else if $type==pull {
+        right: if($size > 0, percentage($size / $columns), auto);
+    }
+    @else if $type==offset {
+        margin-left: percentage($size / $columns);
+    }
+}
+
+@mixin make-container {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    @each $breakpoint in map-keys($grid-breakpoints) {
+        @include media-breakpoint-up($breakpoint) {
+            $width: map-get($container-max-widths, $breakpoint);
+            width: $width;
+        }
+    }
+}
+
+@mixin make-grid-columns {
+    %grid-column {
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        float: left;
+        padding-left: $grid-gutter-width-base;
+        padding-right: $grid-gutter-width-base;
+    }
+    @each $breakpoint in map-keys($grid-breakpoints) {
+        $infix: breakpoint-infix($breakpoint);
+        @for $i from 1 through $grid-columns {
+            .col#{$infix}-#{$i} {
+                @extend %grid-column;
+            }
+        }
+        @include media-breakpoint-up($breakpoint) {
+            @for $i from 1 through $grid-columns {
+                .col#{$infix}-#{$i} {
+                    width: percentage($i / $grid-columns);
+                }
+            }
+            @each $modifier in (push, pull, offset) {
+                @for $i from 0 through $grid-columns {
+                    .#{$modifier}#{$infix}-#{$i} {
+                        @include make-col-modifier($modifier, $i, $grid-columns)
+                    }
+                }
+            }
+        }
+    }
+}

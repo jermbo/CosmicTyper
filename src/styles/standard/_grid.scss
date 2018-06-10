@@ -1,0 +1,25 @@
+// sass-lint:disable-all
+.container {
+    @include clearfix;
+    @include make-container;
+}
+
+.alpha {
+    padding-left: 0 !important;
+}
+
+.omega {
+    padding-right: 0 !important;
+}
+
+.row {
+    margin-left: -$grid-gutter-width-base;
+    margin-right: -$grid-gutter-width-base;
+    @include clearfix;
+}
+
+[class*="col-"]>[class*="col-"] {
+    padding: 0 !important;
+}
+
+@include make-grid-columns;
