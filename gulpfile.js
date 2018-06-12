@@ -15,22 +15,17 @@ gulp.task("help", $.taskListing);
 gulp.task("__start-local__", [
   "task:compile-styles",
   "task:compile-scripts",
-  "task:move-json",
   "task:compile-html",
   "task:compile-images",
   "task:start-watch"
 ]);
+
 gulp.task("__compile-assets__", [
   "task:compile-styles",
   "task:compile-scripts",
   "task:move-json",
   "task:compile-html",
   "task:compile-images"
-]);
-gulp.task("__lint-everything__", [
-  "_lint-styles_",
-  "_lint-feature-styles_",
-  "_lint-scripts_"
 ]);
 
 ////////////////
@@ -57,13 +52,6 @@ gulp.task("task:compile-scripts", () => {
     .pipe(browserSync.stream());
 });
 
-gulp.task("task:move-json", () => {
-  return gulp
-    .src(config.json.source)
-    .pipe(gulp.dest(config.json.build))
-    .pipe(browserSync.stream());
-});
-
 gulp.task("task:compile-html", () => {
   return gulp
     .src(config.html.source)
@@ -82,15 +70,15 @@ gulp.task("task:start-watch", ["task:start-server"], () => {
   gulp.watch(config.styles.source, () => {
     runSequence("task:compile-styles");
   });
+
   gulp.watch(config.html.source, () => {
     runSequence("task:compile-html", "task:page-reload");
   });
+
   gulp.watch(config.scripts.source, () => {
     runSequence("task:compile-scripts", "task:page-reload");
   });
-  gulp.watch(config.json.source, () => {
-    runSequence("task:move-json", "task:page-reload");
-  });
+
   gulp.watch(config.images.source, () => {
     runSequence("task:compile-images", "task:page-reload");
   });
@@ -109,42 +97,6 @@ gulp.task("task:start-server", () => {
 
 gulp.task("task:page-reload", () => {
   browserSync.reload();
-});
-
-///////////////////
-// Linting Tasks
-
-gulp.task("clean:sass", () => {
-  return gulp
-    .src(config.styles.source)
-    .pipe($.changed(config.styles.source[0]))
-    .pipe($.jsbeautifier(config.options.formatting))
-    .pipe($.jsbeautifier.reporter())
-    .pipe(gulp.dest(`${env.basePath}/Styles`));
-});
-
-gulp.task("lint:sass", () => {
-  return gulp
-    .src(config.styles.source)
-    .pipe($.sassLint(config.options.lint.sass))
-    .pipe($.sassLint.format());
-});
-
-gulp.task("clean:js", () => {
-  return gulp
-    .src(config.scripts.source)
-    .pipe($.changed(config.scripts.source))
-    .pipe($.jsbeautifier(config.options.formatting))
-    .pipe($.jsbeautifier.reporter())
-    .pipe(gulp.dest(env.srcPath + "/scripts"));
-});
-
-gulp.task("lint:js", () => {
-  return gulp
-    .src(config.scripts.source)
-    .pipe($.eslint(config.options.lint.js))
-    .pipe($.eslint.format())
-    .pipe($.eslint.failAfterError());
 });
 
 ///////////////////////////

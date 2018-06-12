@@ -5,7 +5,7 @@
  * @author: Jeremy "Jermbo" Lawson
  */
 
-const Typer = function(items) {
+const Typer = function (items) {
   console.clear();
   const modifiers = ["CapsLock", "Shift", "Control", "Alt"];
   const descDisplay = document.querySelector(".description");
