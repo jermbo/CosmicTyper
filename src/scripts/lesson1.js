@@ -81,5 +81,5 @@ const items = [
     render: true
   }
 ];
-const typer = new Typer();
-typer.init(items);
+
+new Typer(items);

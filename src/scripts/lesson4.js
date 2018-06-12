@@ -58,7 +58,6 @@ const items = [
       'The "<span>" tag is used in addition to other tags and sometimes alone.',
     final: '<p><span class="yellow">inbetween tag</span></p>',
     render: true
-  },
+  }
 ];
-const typer = new Typer();
-typer.init(items);
+new Typer(items);
