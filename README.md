@@ -4,7 +4,8 @@ This tool is designed to help teach students to type the syntax of HTML and CSS.
 
 ### Project Setup
 
-This project has a dev process automated by Gulp. Everything is built in the `./src/` folder and the Gulp process takes care of the steps necessary for the build. Gulp compiles and places everything in the `./build/` folder from which deploy is based from.
+This project has a dev process automated by Gulp. Everything is built in the `./src/` folder, and the Gulp process enables the steps necessary for the build. Gulp compiles and places everything in the `./build/` folder from which `deploy` is based.
+
 
 Run `npm i` to get the dependencies required. Then run `npm run dev` and watch the magic happen.
 
