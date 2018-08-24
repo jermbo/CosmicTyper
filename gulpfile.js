@@ -56,6 +56,12 @@ gulp.task("task:compile-html", () => {
   return gulp
     .src(config.html.source)
     .pipe($.changed(config.html.build))
+    .pipe(
+      $.fileInclude({
+        prefix: "@@",
+        basepath: "@file"
+      })
+    )
     .pipe(gulp.dest(config.html.build));
 });
 
