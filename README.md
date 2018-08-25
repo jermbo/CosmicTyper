@@ -83,6 +83,8 @@ After the browser opens up, click the desired lesson and give it a whirl.
 
 [Reggs](https://github.com/reggs)
 
+[Chelsea Pontbriand](https://github.com/ChelseaPontbriand)
+
 ## License
 
 MIT © [Jeremy "Jermbo" Lawson](https://github.com/jermbo)
