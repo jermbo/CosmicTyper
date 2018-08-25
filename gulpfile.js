@@ -4,6 +4,7 @@ const env = require("./gulp-env")();
 const browserSync = require("browser-sync").create();
 const runSequence = require("run-sequence").use(gulp);
 const $ = require("gulp-load-plugins")({ lazy: true });
+const del = require("del");
 
 ////////////////
 // Default Tasks
@@ -12,31 +13,42 @@ gulp.task("help", $.taskListing);
 
 ///////////////
 // Global Jobs
-gulp.task("__start-local__", [
-  "task:compile-styles",
-  "task:compile-scripts",
-  "task:compile-html",
-  "task:compile-images",
-  "task:start-watch"
-]);
-
-gulp.task("__compile-assets__", [
-  "task:compile-styles",
-  "task:compile-scripts",
-  "task:move-json",
-  "task:compile-html",
-  "task:compile-images"
-]);
+gulp.task("__start-local__", () => {
+  runSequence(
+    "clean:build",
+    "task:compile-styles",
+    "task:compile-scripts",
+    "task:compile-html",
+    "task:compile-images",
+    "task:start-watch"
+  );
+});
+gulp.task("__compile-assets__", () => {
+  runSequence(
+    "clean:build",
+    "task:compile-styles",
+    "task:compile-scripts",
+    "task:compile-html",
+    "task:compile-images"
+  );
+});
+gulp.task("__lint-everything__", () => {
+  runSequence("_lint-styles_", "_lint-scripts_");
+});
 
 ////////////////
 // Local Tasks
+gulp.task("clean:build", () => {
+  return del([env.buildPath]);
+});
+
 gulp.task("task:compile-styles", () => {
   return gulp
     .src(config.styles.source)
     .pipe(errorHandler())
     .pipe($.sourcemaps.init())
     .pipe($.sass(config.options.sass))
-    .pipe($.autoprefixer(config.autoPrefixerOptions))
+    .pipe($.autoprefixer(config.options.autoPrefixerOptions))
     .pipe($.sourcemaps.write("./"))
     .pipe(gulp.dest(config.styles.build))
     .pipe(browserSync.stream());
@@ -76,15 +88,12 @@ gulp.task("task:start-watch", ["task:start-server"], () => {
   gulp.watch(config.styles.source, () => {
     runSequence("task:compile-styles");
   });
-
   gulp.watch(config.html.source, () => {
     runSequence("task:compile-html", "task:page-reload");
   });
-
   gulp.watch(config.scripts.source, () => {
     runSequence("task:compile-scripts", "task:page-reload");
   });
-
   gulp.watch(config.images.source, () => {
     runSequence("task:compile-images", "task:page-reload");
   });
@@ -103,6 +112,50 @@ gulp.task("task:start-server", () => {
 
 gulp.task("task:page-reload", () => {
   browserSync.reload();
+});
+
+///////////////////
+// Linting Tasks
+
+gulp.task("_lint-styles", () => {
+  runSequence("clean:sass", "lint:sass");
+});
+
+gulp.task("clean:sass", () => {
+  return gulp
+    .src(config.styles.source)
+    .pipe($.changed(config.styles.source[0]))
+    .pipe($.jsbeautifier(config.options.formatting))
+    .pipe($.jsbeautifier.reporter())
+    .pipe(gulp.dest(`${env.basePath}/Styles`));
+});
+
+gulp.task("lint:sass", () => {
+  return gulp
+    .src(config.styles.source)
+    .pipe($.sassLint(config.options.lint.sass))
+    .pipe($.sassLint.format());
+});
+
+gulp.task("_lint-scripts_", () => {
+  runSequence("clean:js", "lint:js");
+});
+
+gulp.task("clean:js", () => {
+  return gulp
+    .src(config.scripts.source)
+    .pipe($.changed(config.scripts.source))
+    .pipe($.jsbeautifier(config.options.formatting))
+    .pipe($.jsbeautifier.reporter())
+    .pipe(gulp.dest(`${env.srcPath}/scripts`));
+});
+
+gulp.task("lint:js", () => {
+  return gulp
+    .src(config.scripts.source)
+    .pipe($.eslint(config.options.lint.js))
+    .pipe($.eslint.format())
+    .pipe($.eslint.failAfterError());
 });
 
 ///////////////////////////
