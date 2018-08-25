@@ -67,7 +67,6 @@ gulp.task("task:compile-scripts", () => {
 gulp.task("task:compile-html", () => {
   return gulp
     .src(config.html.source)
-    .pipe($.changed(config.html.build))
     .pipe(
       $.fileInclude({
         prefix: "@@",
