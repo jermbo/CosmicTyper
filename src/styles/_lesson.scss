@@ -1,0 +1,13 @@
+.lessons {
+  display: flex;
+  flex-wrap: wrap;
+}
+.lesson {
+  flex: 1 0 auto;
+  max-width: calc(25% - #{$padding});
+  box-shadow: 0 4px 8px rgba($black, 0.5);
+
+  &:not(:last-child) {
+    margin-right: $padding;
+  }
+}

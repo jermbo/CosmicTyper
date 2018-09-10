@@ -4,23 +4,23 @@ module.exports = () => {
   const config = {
     html: {
       source: `${env.srcPath}/**/*.{html, htm, php}`,
-      build: `${env.buildPath}/`
+      build: `${env.buildPath}/`,
     },
     styles: {
       source: `${env.srcPath}/**/styles/**/*.{scss, sass, css}`,
-      build: `${env.buildPath}/`
+      build: `${env.buildPath}/`,
     },
     scripts: {
       source: `${env.srcPath}/**/scripts/**/*.js`,
-      build: `${env.buildPath}/`
+      build: `${env.buildPath}/`,
     },
     json: {
       source: `${env.srcPath}/json/**/*.json`,
-      build: `${env.buildPath}/`
+      build: `${env.buildPath}/`,
     },
     images: {
       source: `${env.srcPath}/**/images/**/*.*`,
-      build: `${env.buildPath}/`
+      build: `${env.buildPath}/`,
     },
     browserSync: {
       port: env.port,
@@ -28,11 +28,11 @@ module.exports = () => {
         clicks: true,
         location: true,
         forms: true,
-        scroll: true
+        scroll: true,
       },
       injectChanges: true,
       notify: true,
-      reloadDelay: 0
+      reloadDelay: 0,
     },
     options: {
       autoPrefixerOptions: ["last 4 versions", "> 9%"],
@@ -42,19 +42,15 @@ module.exports = () => {
             "env",
             {
               targets: {
-                browsers: [
-                  "last 2 Chrome versions",
-                  "last 2 Edge versions",
-                  "last 2 Firefox versions"
-                ]
-              }
-            }
-          ]
+                browsers: ["last 2 Chrome versions", "last 2 Edge versions", "last 2 Firefox versions"],
+              },
+            },
+          ],
         ],
-        plugins: ["transform-object-rest-spread"]
+        plugins: ["transform-object-rest-spread"],
       },
       sass: {
-        outputStyle: "expanded" // ''
+        outputStyle: "expanded", // ''
       },
       formatting: {
         indent_size: 2,
@@ -72,8 +68,8 @@ module.exports = () => {
         indent_scripts: "normal",
         wrap_line_length: 0,
         css: {
-          selector_separator_newline: false
-        }
+          selector_separator_newline: false,
+        },
       },
       lint: {
         js: {
@@ -175,35 +171,28 @@ module.exports = () => {
             "padded-blocks": 0,
             "quote-props": 0,
             "sort-vars": 0,
-            "space-before-function-paren": 0
+            "space-before-function-paren": 0,
           },
-          globals: [
-            "jQuery",
-            "$",
-            "TweenLite",
-            "TweenMax",
-            "TimelineLite",
-            "TimelineMax"
-          ],
-          envs: ["browser", "es6"]
+          globals: ["jQuery", "$", "TweenLite", "TweenMax", "TimelineLite", "TimelineMax"],
+          envs: ["browser", "es6"],
         },
         sass: {
           options: {
             formatter: "stylish",
-            "merge-default-rules": true
+            "merge-default-rules": true,
           },
           rules: {
             indentation: [
               1,
               {
-                size: 4
-              }
+                size: 4,
+              },
             ],
             "nesting-depth": [
               1,
               {
-                "max-depth": 4
-              }
+                "max-depth": 4,
+              },
             ], // this would be something i want to flag, i like three deep
             "no-transition-all": 0,
             "no-color-literals": 0,
@@ -211,19 +200,14 @@ module.exports = () => {
             "class-name-format": [
               1,
               {
-                convention: "hyphenatedbem"
-              }
+                convention: "hyphenatedbem",
+              },
             ],
             "no-duplicate-properties": [
               1,
               {
-                exclude: [
-                  "display",
-                  "font-size",
-                  "line-height",
-                  "text-decoration"
-                ]
-              }
+                exclude: ["display", "font-size", "line-height", "text-decoration"],
+              },
             ],
             "mixins-before-declarations": 0,
             "empty-line-between-blocks": 0,
@@ -236,65 +220,15 @@ module.exports = () => {
             "leading-zero": [
               1,
               {
-                include: true
-              }
+                include: true,
+              },
             ],
             "single-line-per-selector": 0,
-            "force-pseudo-nesting": 0
-          }
+            "force-pseudo-nesting": 0,
+          },
         },
-        html: {
-          rules: {
-            "attr-bans": 0,
-            "attr-name-ignore-regex": 0,
-            "attr-name-style": 0,
-            "attr-new-line": 0,
-            "attr-no-dup": 0,
-            "attr-no-unsafe-char": 0,
-            "attr-order": 0,
-            "attr-quote-style": 0,
-            "attr-req-value": 0,
-            "class-no-dup": 0,
-            "class-style": 0,
-            "doctype-first": 0,
-            "doctype-html5": 0,
-            "fig-req-figcaption": 0,
-            "focusable-tabindex-style": 0,
-            "head-req-title": 0,
-            "head-valid-content-model": 0,
-            "href-style": 0,
-            "html-req-lang": 0,
-            "html-valid-content-model": 0,
-            "id-class-ignore-regex": 0,
-            "id-class-no-ad": 0,
-            "id-class-style": 0,
-            "id-no-dup": 0,
-            "img-req-alt": 0,
-            "img-req-src": 0,
-            "indent-style": 0,
-            "indent-width": 0,
-            "indent-width-cont": 0,
-            "input-radio-req-name": 0,
-            "input-req-label": 0,
-            "label-req-for": 0,
-            "lang-style": 0,
-            "line-end-style": 0,
-            "line-max-len": 0,
-            "line-max-len-ignore-regex": 0,
-            "spec-char-escape": 0,
-            "table-req-caption": 0,
-            "table-req-header": 0,
-            "tag-bans": 0,
-            "tag-close": 0,
-            "tag-name-lowercase": 0,
-            "tag-name-match": 0,
-            "tag-self-close": 0,
-            "title-max-len": 0,
-            "title-no-dup": 0
-          }
-        }
-      }
-    }
+      },
+    },
   };
 
   return config;
