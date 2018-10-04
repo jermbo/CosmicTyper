@@ -2,6 +2,7 @@
 // General Settings
 // ---------------
 //
+@import url("https://fonts.googleapis.com/css?family=BioRhyme:400,800|Cabin:300,400,700");
 // ------------------------------------------------------ //
 // Padding
 //
@@ -24,7 +25,7 @@ $container-max-widths: (
   md: 688px,
   lg: 944px,
   xl: 1194px,
-  xxl: 1468px,
+  xxl: 1468px
 );
 $grid-breakpoints: (
   xs: 0,
@@ -32,7 +33,7 @@ $grid-breakpoints: (
   md: 768px,
   lg: 1024px,
   xl: 1274px,
-  xxl: 1548px,
+  xxl: 1548px
 );
 // ------------------------------------------------------ //
 // Columns
@@ -44,19 +45,31 @@ $grid-gutter-width-base: 1vw;
 // ------
 // Grays
 $white: #fff;
-$off-white: #e5e5e5;
-$gray: #7c8a9a;
-$gray-dark: darken($gray, 20%);
-$off-black: darken($gray, 30%);
-$black: darken($gray, 40%);
+$off-white: #f4f4f4;
+$light-gray: #eaeaea;
+$gray: #cacaca;
+$gray-dark: #76767c;
+$black: #212121;
 // ------------------------------------------------------ //
 // Design Colors
 $sanjuan: #2d4c68;
 $sanjuan-light: lighten($sanjuan, 15%);
 $limeade: #29a200;
 $limeade-dark: darken($limeade, 15%);
-$electric-lime: #d2f000;
+$electric-lime: #bada55;
 $electric-lime-dark: darken($electric-lime, 15%);
+$persimmon: #ff6048;
+$persimmon-light: rgba($persimmon, 50%);
+$sea-buckthorn: #f59a3a;
+$sea-buckthorn-light: rgba($sea-buckthorn, 50%);
+$dodger-blue: #14b4f9;
+$dodger-blue-light: rgba($dodger-blue, 50%);
+$medium-purple: #925aec;
+$medium-purple-light: rgba($medium-purple, 50%);
+$tradewind: #57bba3;
+$tradewind-light: rgba($tradewind, 50%);
+$bittersweet: #fd6a6a;
+$bittersweet-light: rgba($bittersweet, 50%);
 // ------------------------------------------------------ //
 // Brand Definitions
 $brand-primary: $limeade;
@@ -64,9 +77,12 @@ $brand-primary-alt: $limeade-dark;
 $brand-secondary: $electric-lime;
 $brand-secondary-alt: $electric-lime-dark;
 // ------------------------------------------------------ //
+// stuff
+$bg-gray: $off-white;
+// ------------------------------------------------------ //
 // Text Colors
 $text-color-light: $white;
-$text-color-medium: $gray;
+$text-color-medium: $gray-dark;
 $text-color-dark: $sanjuan;
 // ------------------------------------------------------ //
 // Link Colors
@@ -74,9 +90,10 @@ $link-color-primary: $sanjuan;
 $link-color-secondary: $limeade;
 // ------------------------------------------------------ //
 // Typography
-$font-code: "Cabin", sans-serif;
-$font-title: "BioRhyme", serif;
+$font-title: "Cabin", sans-serif;
+$font-code: "BioRhyme", serif;
 $line-height: 1.5em;
+$font-weight-light: 300;
 $font-weight-base: 400;
 $font-weight-bold: 700;
 // ------------------------------------------------------ //
@@ -95,3 +112,6 @@ $title-size-lg: $font-size-xxl;
 $text-size-base: $font-size-md;
 $text-size-sm: $font-size-sm;
 $text-size-lg: $font-size-lg;
+// ------------------------------------------------------ //
+// Brand Maps
+$lesson-color-map: $medium-purple $dodger-blue $tradewind $persimmon;
