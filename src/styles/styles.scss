@@ -1,8 +1,9 @@
-@import 'base';
+@import "vars";
+@import "mixins/mixins";
 
-.green{
-    color:green;
-}
-.yellow{
-    color:yellow;
-}
+@import "base";
+@import "header";
+@import "footer";
+@import "page";
+@import "lesson";
+@import "code-display";

@@ -1,0 +1,52 @@
+.lessons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.lesson {
+  flex: 1 0 auto;
+  width: calc(25% - #{$padding});
+  @include base-box-shadow;
+  @include transition;
+  position: relative;
+
+  &:not(:last-child) {
+    margin-right: $padding;
+  }
+
+  @for $i from 1 through length($lesson-color-map) {
+    $color: nth($lesson-color-map, $i);
+    &:nth-child(#{$i}n) {
+      background-color: $color;
+    }
+  }
+
+  &:hover {
+    @include hover-box-shadow;
+
+    @for $i from 1 through length($lesson-color-map) {
+      $color: nth($lesson-color-map, $i);
+      &:nth-child(#{$i}n) {
+        background-color: darken($color, 20%);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.lesson__link {
+  text-decoration: none;
+}
+
+.lesson__img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.lesson__title {
+  text-align: center;
+  margin: $padding 0;
+  font-family: $font-title;
+  font-weight: $font-weight-light;
+  color: $text-color-light;
+}

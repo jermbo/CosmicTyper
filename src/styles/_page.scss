@@ -1,0 +1,29 @@
+.page {
+}
+
+.page-header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-header__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: $padding * 4 0;
+  width: 50%;
+}
+
+.page-header__title {
+  color: $brand-primary;
+  margin: 0;
+  font: {
+    family: $font-code;
+    weight: $font-weight-light;
+    size: $title-size-base;
+  }
+}
