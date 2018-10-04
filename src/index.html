@@ -1,18 +1,48 @@
-@@include('./partials/header.html')
+{% set title = "HOME MANG" %}
+{% extends "./partials/_layout.html" %}
 
-<div class="wrapper">
-    <div class="welcome">
-        <div class="welcome-inner">
-            <h1 class="title">Welcome to Typer</h1>
-            <p class="description">Typer is a tool to help you get better at typing HTML and CSS. There are a lot of rules
-                and syntax you need to get used to and here you can practice.</p>
-            <p>Select a path below to get started.</p>
-            <nav>
-                <a href="html-css/">HTML & CSS</a>
-                <a href="#">Typing</a>
-            </nav>
-        </div><!-- /welcome-inner -->
-    </div><!-- /welcome -->
-</div><!-- /wrapper -->
+{% block content %}
+  <main class="wrapper wrapper--body">
 
-@@include('./partials/footer.html')
+    <div class="container">
+
+      <section class="page-header">
+        <div class="page-header__inner">
+          <h1 class="page-header__title">Welcome to Typer!</h1>
+          <p class="page-header__text">Typer is a tool to help you get better at typing HTML and CSS. There are a lot of rules and syntax you need to get used to, and here you can practice.</p>
+        </div>
+      </section>
+
+      <section class="lessons">
+
+        <article class="lesson">
+          <img src="http://unsplash.it/300" alt="Lesson 1" class="lesson__img">
+          <h2 class="lesson__title">Lesson 1</h2>
+          <a href="#" class="lesson__link"></a>
+        </article>
+
+        <article class="lesson">
+          <img src="http://unsplash.it/300" alt="Lesson 2" class="lesson__img">
+          <h2 class="lesson__title">Lesson 2</h2>
+          <a href="#" class="lesson__link"></a>
+        </article>
+
+        <article class="lesson">
+          <img src="http://unsplash.it/300" alt="Lesson 3" class="lesson__img">
+          <h2 class="lesson__title">Lesson 3</h2>
+          <a href="#" class="lesson__link"></a>
+        </article>
+
+        <article class="lesson">
+          <img src="http://unsplash.it/300" alt="Lesson 4" class="lesson__img">
+          <h2 class="lesson__title">Lesson 4</h2>
+          <a href="#" class="lesson__link"></a>
+        </article>
+
+      </section>
+
+    </div>
+
+  </main>
+  <!-- /-body -->
+{% endblock content %}

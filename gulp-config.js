@@ -3,15 +3,15 @@ const env = require("./gulp-env")();
 module.exports = () => {
   const config = {
     html: {
-      source: `${env.srcPath}/**/*.{html, htm, php}`,
+      source: `${env.srcPath}/**/*.{html,htm,php,njk}`,
       build: `${env.buildPath}/`
     },
     styles: {
-      source: `${env.srcPath}/**/styles/**/*.{scss, sass, css}`,
+      source: `${env.srcPath}/**/styles/**/*.{scss,sass,css}`,
       build: `${env.buildPath}/`
     },
     scripts: {
-      source: `${env.srcPath}/**/scripts/**/*.js`,
+      source: `${env.srcPath}/**/scripts/**/*.{js,ts}`,
       build: `${env.buildPath}/`
     },
     json: {
@@ -36,25 +36,25 @@ module.exports = () => {
     },
     options: {
       autoPrefixerOptions: ["last 4 versions", "> 9%"],
-      babelEnvOptions: {
-        presets: [
-          [
-            "env",
-            {
-              targets: {
-                browsers: [
-                  "last 2 Chrome versions",
-                  "last 2 Edge versions",
-                  "last 2 Firefox versions"
-                ]
-              }
-            }
-          ]
-        ],
-        plugins: ["transform-object-rest-spread"]
-      },
+      // babelEnvOptions: {
+      //   presets: [
+      //     [
+      //       "@babel/preset-env",
+      //       {
+      //         targets: {
+      //           browserslist: [
+      //             "last 2 Chrome versions",
+      //             "last 2 Edge versions",
+      //             "last 2 Firefox versions"
+      //           ]
+      //         }
+      //       }
+      //     ]
+      //   ],
+      //   plugins: ["@babel/plugin-proposal-object-rest-spread"]
+      // },
       sass: {
-        outputStyle: "expanded" // ''
+        outputStyle: "compressed" //"expanded"
       },
       formatting: {
         indent_size: 2,
@@ -241,56 +241,6 @@ module.exports = () => {
             ],
             "single-line-per-selector": 0,
             "force-pseudo-nesting": 0
-          }
-        },
-        html: {
-          rules: {
-            "attr-bans": 0,
-            "attr-name-ignore-regex": 0,
-            "attr-name-style": 0,
-            "attr-new-line": 0,
-            "attr-no-dup": 0,
-            "attr-no-unsafe-char": 0,
-            "attr-order": 0,
-            "attr-quote-style": 0,
-            "attr-req-value": 0,
-            "class-no-dup": 0,
-            "class-style": 0,
-            "doctype-first": 0,
-            "doctype-html5": 0,
-            "fig-req-figcaption": 0,
-            "focusable-tabindex-style": 0,
-            "head-req-title": 0,
-            "head-valid-content-model": 0,
-            "href-style": 0,
-            "html-req-lang": 0,
-            "html-valid-content-model": 0,
-            "id-class-ignore-regex": 0,
-            "id-class-no-ad": 0,
-            "id-class-style": 0,
-            "id-no-dup": 0,
-            "img-req-alt": 0,
-            "img-req-src": 0,
-            "indent-style": 0,
-            "indent-width": 0,
-            "indent-width-cont": 0,
-            "input-radio-req-name": 0,
-            "input-req-label": 0,
-            "label-req-for": 0,
-            "lang-style": 0,
-            "line-end-style": 0,
-            "line-max-len": 0,
-            "line-max-len-ignore-regex": 0,
-            "spec-char-escape": 0,
-            "table-req-caption": 0,
-            "table-req-header": 0,
-            "tag-bans": 0,
-            "tag-close": 0,
-            "tag-name-lowercase": 0,
-            "tag-name-match": 0,
-            "tag-self-close": 0,
-            "title-max-len": 0,
-            "title-no-dup": 0
           }
         }
       }
