@@ -1,22 +1,29 @@
-@@include('../partials/header.html')
+{% set title = "HTML CSS Lesson 1" %}
+{% extends "partials/_layout.html" %}
+
+{% block content %}
 
 <div class="wrapper">
-    <div class="instructions">
-        <a href="/html-css" class="back">Back</a>
-        <h1 class="title">Typing Warmup</h1>
-        <p class="description">Follow along below. If you type correctly, the character will highlight in green!</p>
-        <div class="charactersWrap">
-            <div class="characters"></div>
-            <a href="#" class="nextBtn">Next</a>
-        </div>
+  <div class="instructions">
+    <a href="/html-css" class="back">Back</a>
+    <h1 class="title">Typing Warmup</h1>
+    <p class="description">Follow along below. If you type correctly, the character will highlight in green!</p>
+    <div class="charactersWrap">
+      <div class="characters"></div>
+      <a href="#" class="nextBtn">Next</a>
     </div>
-    <!-- /instructions -->
-    <style class="htmlStyle"></style>
-    <!-- /styles for htmlOutput -->
-    <div class="htmlOutput"></div>
-    <!-- /htmlOutput -->
+  </div>
+  <!-- /instructions -->
+  <style class="htmlStyle"></style>
+  <!-- /styles for htmlOutput -->
+  <div class="htmlOutput"></div>
+  <!-- /htmlOutput -->
 
-    <script src="/scripts/html-css/lesson4.js"></script>
 </div>
 
-@@include('../partials/footer.html')
+{% endblock content %}
+
+{% block scripts %}
+<script src="/scripts/Typer.js"></script>
+<script src="/scripts/html-css/lesson4.js"></script>
+{% endblock scripts %}
