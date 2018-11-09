@@ -3,7 +3,6 @@
   position: relative;
   text-align: center;
   padding: 1.25rem 0.625rem 0;
-  height: 30vh;
   background: linear-gradient(15deg, #2c3e50, #2980b9) fixed;
   border-top: 5px solid #e5e5e5;
   border-left: 5px solid #e5e5e5;
@@ -73,7 +72,7 @@
   overflow-y: auto;
   margin: 0 auto;
   padding: 2rem;
-  height: 70vh;
+  min-height: 20vh;
   background: #e5e5e5;
   border: 5px solid #323232;
   position: relative;
