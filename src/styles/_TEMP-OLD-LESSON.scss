@@ -1,0 +1,182 @@
+.instructions {
+  color: #e5e5e5;
+  position: relative;
+  text-align: center;
+  padding: 1.25rem 0.625rem 0;
+  height: 30vh;
+  background: linear-gradient(15deg, #2c3e50, #2980b9) fixed;
+  border-top: 5px solid #e5e5e5;
+  border-left: 5px solid #e5e5e5;
+  border-right: 5px solid #e5e5e5;
+}
+
+.instructions:after {
+  content: "~Results~";
+  font-size: 18px;
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  color: #323232;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.title {
+  font-size: 25px;
+}
+
+.description {
+  font-size: 16px;
+}
+
+.score {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+}
+
+.back,
+.nextBtn {
+  display: none;
+  border-radius: 5px;
+  padding: 5px 25px;
+  font-size: 22px;
+  text-decoration: none;
+  margin: 20px;
+  top: 0;
+  right: 0;
+  position: fixed;
+  color: #e5e5e5;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  background-color: #e67e22;
+  -webkit-box-shadow: 0 5px 0 0 #924d10;
+  box-shadow: 0 5px 0 0 #924d10;
+}
+
+.back:hover,
+.nextBtn:hover {
+  background-color: #f0b37e;
+  -webkit-box-shadow: 0 0 0 0 #924d10;
+  box-shadow: 0 0 0 0 #924d10;
+}
+
+.back {
+  right: auto;
+  left: 0;
+  display: block;
+}
+
+.htmlOutput {
+  overflow-y: auto;
+  margin: 0 auto;
+  padding: 2rem;
+  height: 70vh;
+  background: #e5e5e5;
+  border: 5px solid #323232;
+  position: relative;
+}
+
+.charactersWrap {
+  padding: 0.625rem 0;
+  font-family: "Source Code Pro", monospace;
+}
+
+.characters {
+  padding: 0.625rem 0;
+}
+
+.character {
+  font-size: 30px;
+  padding: 10px 0px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+}
+
+.correct {
+  background-color: #10ef66;
+  color: #323232;
+}
+
+.error {
+  -webkit-animation: flashError 0.15s ease 1;
+  animation: flashError 0.15s ease 1;
+}
+
+.current {
+  position: relative;
+}
+
+.current:after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  top: 0;
+  left: -2px;
+  background: #323232;
+  z-index: 100;
+  -webkit-animation: blink 1s ease infinite;
+  animation: blink 1s ease infinite;
+}
+
+@-webkit-keyframes flashError {
+  0% {
+    background: red;
+  }
+
+  100% {
+    background: rgba(255, 0, 0, 0);
+  }
+}
+
+@keyframes flashError {
+  0% {
+    background: red;
+  }
+
+  100% {
+    background: rgba(255, 0, 0, 0);
+  }
+}
+
+@-webkit-keyframes blink {
+  0% {
+    background: #323232;
+  }
+
+  50% {
+    background: rgba(50, 50, 50, 0);
+  }
+
+  100% {
+    background: #323232;
+  }
+}
+
+@keyframes blink {
+  0% {
+    background: #323232;
+  }
+
+  50% {
+    background: rgba(50, 50, 50, 0);
+  }
+
+  100% {
+    background: #323232;
+  }
+}
+
+.green {
+  color: green;
+}
+
+.yellow {
+  color: yellow;
+}
