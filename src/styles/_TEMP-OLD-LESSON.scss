@@ -1,12 +1,18 @@
+.wrapper {
+  overflow-y: auto;
+  margin: 0 auto;
+  background: #e5e5e5;
+  border: 5px solid #323232;
+  position: relative;
+  height: 100vh;
+}
+
 .instructions {
   color: #e5e5e5;
   position: relative;
   text-align: center;
   padding: 1.25rem 0.625rem 0;
   background: linear-gradient(15deg, #2c3e50, #2980b9) fixed;
-  border-top: 5px solid #e5e5e5;
-  border-left: 5px solid #e5e5e5;
-  border-right: 5px solid #e5e5e5;
 }
 
 .instructions:after {
@@ -69,13 +75,7 @@
 }
 
 .htmlOutput {
-  overflow-y: auto;
-  margin: 0 auto;
   padding: 2rem;
-  min-height: 20vh;
-  background: #e5e5e5;
-  border: 5px solid #323232;
-  position: relative;
 }
 
 .charactersWrap {
@@ -84,15 +84,11 @@
 }
 
 .characters {
-  padding: 0.625rem 0;
+  padding: 1.25rem 0;
 }
 
 .character {
   font-size: 30px;
-  padding: 10px 0px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   position: relative;
 }
