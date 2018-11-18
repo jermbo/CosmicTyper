@@ -5,7 +5,7 @@
 
 .lesson {
   flex: 1 0 auto;
-  width: calc(25% - #{$padding});
+  width: calc(20% - #{$padding});
   @include base-box-shadow;
   @include transition;
   position: relative;
