@@ -27,7 +27,7 @@ const items = [
   {
     type: "style",
     desc:
-      "Flexbox is a to position items inside of a container (.item-container in this case). We have to enable flex on the container. Watch closely to see how each new line of CSS manipulates our items.",
+      "Flexbox is used to position items inside of a container (.item-container in this case). We have to enable flex on the container. Watch closely to see how each new line of CSS manipulates our items.",
     final: ".item-container{ display: flex; }",
     render: true
   },
@@ -41,7 +41,7 @@ const items = [
   {
     type: "style",
     desc:
-      "It... Kind of worked. So why aren't they completely in the center? Don't worry! We'll get there. Now that we've aligned the items horizontally let's do vertical.",
+      "It... Kind of worked. So why aren't they completely in the center? Don't worry! We'll get there. Now that we've centered the items horizontally let's do vertical.",
     final: ".item-container{ align-items: center; }",
     render: true
   },
