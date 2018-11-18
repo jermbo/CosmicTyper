@@ -7,36 +7,31 @@ const items = [
   },
   {
     type: "dom",
-    desc:
-      "The html tag is important as it tells the browser what to start doing.",
+    desc: "The html tag is important as it tells the browser what to start doing.",
     final: "<html></html>",
     render: false
   },
   {
     type: "dom",
-    desc:
-      "To link external styles, you need to connect it in the head tags of the document.",
+    desc: "To link external styles, you need to connect it in the head tags of the document.",
     final: '<link rel="stylesheet" href="styles/styles.css">',
     render: true
   },
   {
     type: "dom",
-    desc:
-      "The body tag is the last piece of boiler plate. This is what you users are actually going to see.",
+    desc: "The body tag is the last piece of boiler plate. This is what you users are actually going to see.",
     final: "<body></body>",
     render: false
   },
   {
     type: "dom",
-    desc:
-      "HTML needs to be open and closed in the correct order. That means nested elements need to be closed first.",
+    desc: "HTML needs to be open and closed in the correct order. That means nested elements need to be closed first.",
     final: "<h1>Hello <small>World</small></h1>",
     render: true
   },
   {
     type: "dom",
-    desc:
-      "Anchor tags go some where. You can tell it where to go by filling out the href attribute.",
+    desc: "Anchor tags go some where. You can tell it where to go by filling out the href attribute.",
     final: '<a href="/aang.html">Aang</a>',
     render: true
   },
