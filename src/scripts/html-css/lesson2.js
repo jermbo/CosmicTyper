@@ -13,8 +13,7 @@ const items = [
   },
   {
     type: "dom",
-    desc:
-      "Paragraphs are used to block out text used to provide information to your users.",
+    desc: "Paragraphs are used to block out text used to provide information to your users.",
     final: "<p>I have something to share with you.</p>",
     render: true
   },
@@ -26,8 +25,7 @@ const items = [
   },
   {
     type: "dom",
-    desc:
-      "You want this paragraph to stand out, give it a class so we can style it with css.",
+    desc: "You want this paragraph to stand out, give it a class so we can style it with css.",
     final: '<p id="different">I am different than the rest.</p>',
     render: true
   },

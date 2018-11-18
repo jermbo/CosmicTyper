@@ -2,48 +2,49 @@
 {% extends "partials/_layout.html" %}
 
 {% block content %}
-<main class="wrapper wrapper--body">
+  <main class="wrapper wrapper--body">
+    <div class="container">
+      <section class="page-header">
+        <div class="page-header__inner">
+          <h1 class="page-header__title">Welcome to Typer!</h1>
+          <p class="page-header__text">
+            Typer is a tool to help you get better at typing HTML and CSS. There are a lot of rules and syntax you need to get used to, and here you can practice.
+          </p>
+        </div>
+      </section>
 
-  <div class="container">
+      <section class="lessons">
+        <article class="lesson">
+          <img src="http://unsplash.it/300" alt="Lesson 1" class="lesson__img"/>
+          <h2 class="lesson__title">Lesson 1</h2>
+          <a href="html-css/lesson1.html" class="lesson__link"></a>
+        </article>
 
-    <section class="page-header">
-      <div class="page-header__inner">
-        <h1 class="page-header__title">Welcome to Typer!</h1>
-        <p class="page-header__text">Typer is a tool to help you get better at typing HTML and CSS. There are a lot of
-          rules and syntax you need to get used to, and here you can practice.</p>
-      </div>
-    </section>
+        <article class="lesson">
+          <img src="http://unsplash.it/300" alt="Lesson 2" class="lesson__img"/>
+          <h2 class="lesson__title">Lesson 2</h2>
+          <a href="html-css/lesson2.html" class="lesson__link"></a>
+        </article>
 
-    <section class="lessons">
+        <article class="lesson">
+          <img src="http://unsplash.it/300" alt="Lesson 3" class="lesson__img"/>
+          <h2 class="lesson__title">Lesson 3</h2>
+          <a href="html-css/lesson3.html" class="lesson__link"></a>
+        </article>
 
-      <article class="lesson">
-        <img src="http://unsplash.it/300" alt="Lesson 1" class="lesson__img">
-        <h2 class="lesson__title">Lesson 1</h2>
-        <a href="html-css/lesson1.html" class="lesson__link"></a>
-      </article>
+        <article class="lesson">
+          <img src="http://unsplash.it/300" alt="Lesson 4" class="lesson__img"/>
+          <h2 class="lesson__title">Lesson 4</h2>
+          <a href="html-css/lesson4.html" class="lesson__link"></a>
+        </article>
 
-      <article class="lesson">
-        <img src="http://unsplash.it/300" alt="Lesson 2" class="lesson__img">
-        <h2 class="lesson__title">Lesson 2</h2>
-        <a href="html-css/lesson2.html" class="lesson__link"></a>
-      </article>
-
-      <article class="lesson">
-        <img src="http://unsplash.it/300" alt="Lesson 3" class="lesson__img">
-        <h2 class="lesson__title">Lesson 3</h2>
-        <a href="html-css/lesson3.html" class="lesson__link"></a>
-      </article>
-
-      <article class="lesson">
-        <img src="http://unsplash.it/300" alt="Lesson 4" class="lesson__img">
-        <h2 class="lesson__title">Lesson 4</h2>
-        <a href="html-css/lesson4.html" class="lesson__link"></a>
-      </article>
-
-    </section>
-
-  </div>
-
-</main>
-<!-- /-body -->
+        <article class="lesson">
+          <img src="http://unsplash.it/300" alt="Lesson 5" class="lesson__img"/>
+          <h2 class="lesson__title">Lesson 5</h2>
+          <a href="html-css/lesson5.html" class="lesson__link"></a>
+        </article>
+      </section>
+    </div>
+  </main>
+  <!-- /-body -->
 {% endblock content %}

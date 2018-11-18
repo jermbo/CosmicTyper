@@ -8,8 +8,7 @@ const items = [
   },
   {
     type: "style",
-    desc:
-      "You can change the size and color of the paragraph by using the font-size and color properties.",
+    desc: "You can change the size and color of the paragraph by using the font-size and color properties.",
     final: "p{ color: #11ccdd; font-size: 25px; font-weight: bold; }",
     render: true
   },
@@ -35,8 +34,7 @@ const items = [
   },
   {
     type: "style",
-    desc:
-      "You can change the size and color of the paragraph by using the font-size and color properties.",
+    desc: "You can change the size and color of the paragraph by using the font-size and color properties.",
     final: ".fancy{ color: #11ccdd; font-family: cursive; }",
     render: true
   },
@@ -54,8 +52,7 @@ const items = [
   },
   {
     type: "dom",
-    desc:
-      'The "<span>" tag is used in addition to other tags and sometimes alone.',
+    desc: 'The "<span>" tag is used in addition to other tags and sometimes alone.',
     final: '<p><span class="yellow">inbetween tag</span></p>',
     render: true
   }
