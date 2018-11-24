@@ -177,14 +177,7 @@ module.exports = () => {
             "sort-vars": 0,
             "space-before-function-paren": 0
           },
-          globals: [
-            "jQuery",
-            "$",
-            "TweenLite",
-            "TweenMax",
-            "TimelineLite",
-            "TimelineMax"
-          ],
+          globals: ["jQuery", "$", "TweenLite", "TweenMax", "TimelineLite", "TimelineMax"],
           envs: ["browser", "es6"]
         },
         sass: {
@@ -217,12 +210,7 @@ module.exports = () => {
             "no-duplicate-properties": [
               1,
               {
-                exclude: [
-                  "display",
-                  "font-size",
-                  "line-height",
-                  "text-decoration"
-                ]
+                exclude: ["display", "font-size", "line-height", "text-decoration"]
               }
             ],
             "mixins-before-declarations": 0,
