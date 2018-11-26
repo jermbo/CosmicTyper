@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "name": "typer-docs",
+  "type": "static",
+  "static": {
+    "public": "docs/.vuepress/dist"
+  },
+  "alias": "typer-docs",
+  "files": ["docs/.vuepress/dist"]
+}

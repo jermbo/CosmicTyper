@@ -1,6 +1,6 @@
 module.exports = {
-  base: "/CosmicTyper/",
-  title: "Cosmic Typer",
+  base: "/",
+  title: "Cosmic Typer Documentation",
   description: "Practice typing and learn by doing.",
   themeConfig: {
     sidebar: {
