@@ -7,8 +7,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "node ./node_modules/.bin/gulp __start-local__",
-    "docs": "./node_modules/.bin/vuepress build docs",
-    "start": "./node_modules/.bin/vuepress dev docs"
+    "docs:build": "./node_modules/.bin/vuepress build docs",
+    "docs:dev": "./node_modules/.bin/vuepress dev docs",
+    "docs:deploy": "npm run docs:build && now --public --local-config docs.now.json && now alias --local-config docs.now.json"
   },
   "devDependencies": {
     "@babel/core": "^7.0.1",
