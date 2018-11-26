@@ -31,8 +31,9 @@ const Tasks = (function() {
   function compileHTML() {
     return gulp
       .src(config.html.source)
-      .pipe($.changed(config.html.build))
       .pipe($.nunjucks.compile())
+      .pipe($.htmlBeautify({ indent_size: 2, preserve_newlines: false }))
+      .pipe($.rename({ extname: ".html" }))
       .pipe(gulp.dest(config.html.build));
   }
 
@@ -81,18 +82,9 @@ const Jobs = (function() {
 
   function watch() {
     gulp.watch(config.styles.source, gulp.series(Tasks.compileStyles));
-    gulp.watch(
-      config.scripts.source,
-      gulp.series(Tasks.compileScripts, Server.reload)
-    );
-    gulp.watch(
-      config.html.source,
-      gulp.series(Tasks.compileHTML, Server.reload)
-    );
-    gulp.watch(
-      config.images.source,
-      gulp.series(Tasks.compileImages, Server.reload)
-    );
+    gulp.watch(config.scripts.source, gulp.series(Tasks.compileScripts, Server.reload));
+    gulp.watch(config.html.source, gulp.series(Tasks.compileHTML, Server.reload));
+    gulp.watch(config.images.source, gulp.series(Tasks.compileImages, Server.reload));
   }
 
   function errorHandler() {
@@ -130,12 +122,7 @@ gulp.task(
   "__start-local__",
   gulp.series(
     Jobs.clean,
-    gulp.parallel(
-      Tasks.compileStyles,
-      Tasks.compileHTML,
-      Tasks.compileScripts,
-      Tasks.compileImages
-    ),
+    gulp.parallel(Tasks.compileStyles, Tasks.compileHTML, Tasks.compileScripts, Tasks.compileImages),
     Server.start,
     Jobs.watch
   )
