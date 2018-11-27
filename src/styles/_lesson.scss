@@ -5,7 +5,9 @@
 
 .lesson {
   flex: 1 0 auto;
-  width: calc(20% - #{$padding});
+  max-width: calc(25% - #{$padding});
+  margin-bottom: $padding;
+
   @include base-box-shadow;
   @include transition;
   position: relative;
@@ -14,10 +16,14 @@
     margin-right: $padding;
   }
 
+  @include max-screen("lg") {
+    max-width: calc(50% - #{$padding});
+  }
+
   @for $i from 1 through length($lesson-color-map) {
     $color: nth($lesson-color-map, $i);
 
-    &:nth-child(#{$i}n) {
+    &:nth-child(#{$i}n + 1) {
       background-color: $color;
     }
   }
@@ -28,8 +34,8 @@
     @for $i from 1 through length($lesson-color-map) {
       $color: nth($lesson-color-map, $i);
 
-      &:nth-child(#{$i}n) {
-        background-color: darken($color, 20%);
+      &:nth-child(#{$i}n + 1) {
+        background-color: darken($color, 10%);
         cursor: pointer;
       }
     }
