@@ -61,7 +61,9 @@ const Typer = function(items) {
       wordDisplay.appendChild(span);
     }
     spans = document.querySelectorAll(".character");
-    spans[currentCharacter].classList.add("current");
+    if (spans.length !== 0) {
+      spans[currentCharacter].classList.add("current");
+    }
     descDisplay.innerText = list[index].desc;
   }
 
