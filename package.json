@@ -12,6 +12,8 @@
     "docs:deploy": "npm run docs:build && now --public --local-config docs.now.json && now alias --local-config docs.now.json"
   },
   "devDependencies": {
+    "acorn": "^6.0.0",
+    "ajv": "^6.9.1",
     "@babel/core": "^7.1.5",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/plugin-proposal-optional-chaining": "^7.0.0",
