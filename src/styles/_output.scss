@@ -1,0 +1,11 @@
+.row {
+  @include make-container;
+  @include make-grid-columns;
+  border: 3px solid gold;
+}
+.htmlOutput {
+  border: 1px solid orange;
+}
+.codeOutput {
+  border: 1px solid orangered;
+}
