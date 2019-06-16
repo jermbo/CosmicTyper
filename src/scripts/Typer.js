@@ -67,6 +67,8 @@ const Typer = function(items) {
   }
 
   function typing(e) {
+    // prevent scrolling to page end when spacebar pressed
+    e.preventDefault();
     const key = e.key;
     if (isModifier(key)) {
       return;
@@ -107,6 +109,7 @@ const Typer = function(items) {
   }
   function renderCode() {
     // Create and append <div><code>Text</code></div>
+    // TODO? https://blog.codepen.io/documentation/prefill-embeds/
     const codeDiv = document.createElement("div");
     const codeNode = document.createElement("code");
     codeDiv.appendChild(codeNode);

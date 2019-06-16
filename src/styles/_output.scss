@@ -1,11 +1,15 @@
 .row {
-  @include make-container;
-  @include make-grid-columns;
-  border: 3px solid gold;
+  // @include make-container;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
 }
 .htmlOutput {
-  border: 1px solid orange;
+  grid-column-start: 1;
+  grid-column-end: 8;
 }
 .codeOutput {
-  border: 1px solid orangered;
+  background-color: black;
+  color: white;
+  grid-column-start: 8;
+  grid-column-end: 13;
 }
