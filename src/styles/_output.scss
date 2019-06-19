@@ -1,0 +1,23 @@
+.row {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.codeOutput {
+  background-color: black;
+  color: white;
+  grid-row: 1;
+} 
+
+@media all and (min-width: 600px) {
+  .row {
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .htmlOutput {
+    grid-column-start: 1;
+    grid-column-end: 8;
+  }
+  .codeOutput {
+    grid-column-start: 8;
+    grid-column-end: 13;
+  }
+}

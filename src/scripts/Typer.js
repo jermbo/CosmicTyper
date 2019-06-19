@@ -11,6 +11,7 @@ const Typer = function(items) {
   const descDisplay = document.querySelector(".description");
   const wordDisplay = document.querySelector(".characters");
   const htmlOutput = document.querySelector(".htmlOutput");
+  const codeOutput = document.querySelector(".codeOutput");
   const htmlStyle = document.querySelector(".htmlStyle");
   const nextBtn = document.querySelector(".nextBtn");
   const list = [];
@@ -68,6 +69,8 @@ const Typer = function(items) {
   }
 
   function typing(e) {
+    // prevent scrolling to page end when spacebar pressed
+    e.preventDefault();
     const key = e.key;
     if (isModifier(key)) {
       return;
@@ -99,11 +102,21 @@ const Typer = function(items) {
       } else {
         renderStyles();
       }
+      renderCode();
     }
   }
 
   function isModifier(key) {
     return modifiers.some(mod => mod == key);
+  }
+  function renderCode() {
+    // Create and append <div><code>Text</code></div>
+    // TODO? https://blog.codepen.io/documentation/prefill-embeds/
+    const codeDiv = document.createElement("div");
+    const codeNode = document.createElement("code");
+    codeDiv.appendChild(codeNode);
+    codeNode.innerText = list[index].final;
+    codeOutput.appendChild(codeDiv);
   }
 
   function renderHTML() {
