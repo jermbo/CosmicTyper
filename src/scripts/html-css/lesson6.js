@@ -1,7 +1,7 @@
 const items = [
   {
     type: "dom",
-    desc: "",
+    desc: "Lesson Six is not finished.  Use the back button to select a different lesson.",
     final: "",
     render: true,
   },
