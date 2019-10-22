@@ -120,7 +120,9 @@ const Typer = function(items) {
   }
 
   function renderHTML() {
-    htmlOutput.innerHTML += list[index].final;
+    let html = list[index].final;
+    html.replace('<a ', '<a target="_blank"');
+    htmlOutput.innerHTML += html;
   }
 
   function renderStyles() {
