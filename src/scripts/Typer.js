@@ -121,7 +121,7 @@ const Typer = function(items) {
 
   function renderHTML() {
     let html = list[index].final;
-    html.replace('<a ', '<a target="_blank"');
+    html.replace('<a ', '<a target="_blank" ');
     htmlOutput.innerHTML += html;
   }
 
