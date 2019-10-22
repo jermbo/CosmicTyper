@@ -2,7 +2,7 @@ const items = [
   {
     type: "dom",
     desc: "We use an H1 Tag to display the most important title on the page.",
-    final: "<h1>ello</h1>",
+    final: "<h1>hello</h1>",
     render: true,
   },
   {
