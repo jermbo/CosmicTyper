@@ -1,90 +1,93 @@
-# Cosmic Typer
+*Psst — looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
 
-This tool is designed to teach students to type the syntax of HTML and CSS.
+---
 
-### Project Setup
+# svelte app
 
-This project has a dev process automated by Gulp. Everything is built in the `./src/` folder, and the Gulp process enables the steps necessary for the build. Gulp compiles and places everything in the `./build/` folder from which `deploy` is based.
+This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
 
-Run `npm i` to get the dependencies required. Then, run `npm run dev` and watch the magic happen.
+To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
 
-### Typer APIs
-
-As of right now, `Typer` has no public methods. Everything is handled within the `Typer` module. You simply need to pass in an array of objects to a `new Typer()` instance.
-
-### Lesson Structure
-
-The object requires four properties: `type`, `desc`, `final`, and `render`. An object is an individual task the student must complete before moving onto the next task.
-
-```JavaScript
-{
-   type: "dom",
-   desc: "This is the H1 heading tag. Our most important tag. Type out the tag and the words in between.",
-   final: "<h1>largest heading</h1>",
-   render: true
-}
+```bash
+npx degit sveltejs/template svelte-app
+cd svelte-app
 ```
 
-#### type -string-
+*Note that you will need to have [Node.js](https://nodejs.org) installed.*
 
-There are two `types` an object can be: `dom` or `style`. The _dom_ tells `Typer` to load this task under specific methods to render properly. The same goes with _style_.
 
-#### desc -string-
+## Get started
 
-This should describe the item on screen as concisely as possible. In some cases, when dealing with small, vertical screen sizes, the length of text matters.
+Install the dependencies...
 
-#### final -string-
-
-`Typer` will take the _final_ property and present it on the screen for the student to type along. Once the student gets the section correct, _final_ will render itself in the results window.
-
-#### render -bool-
-
-There are some situations where the item being practiced does not need to be rendered on the page. If you would not like the item presented on the screen, then set this property to "false". ( The absence of this property defaults to "true" )
-
-## How to Use
-
-The number of tasks students should complete is entirely up to you. We suggest to keep the lesson full and engaging, while sticking to a particular topic.
-
-To begin a new lesson, create a lesson HTML file and a corresponding JavaScript file. Connect the newly created JavaScript file to the new lesson HTML. Be sure to load `Typer.js` before lesson JavaScript.
-
-In the new lesson JavaScript file, build your tasks as an array of objects.
-
-Instantiate a new instance of `Typer` and provide an array to the constructor.
-
-```JavaScript
-const items = [
-    {
-    type: "dom",
-    desc: "This is the H1 heading tag. Our most important tag. Type out the tag and the words in between.",
-    final: "<h1>largest heading</h1>",
-    render: true
-  },
-  {
-    type: "dom",
-    desc: "The H2 tag is the second most important tag. This is usually the most commonly used heading tag. Remember to always close your tags with a forward slash '/' ",
-    final: "<h2>large heading</h2>",
-    render: true
-  },
-  ...
-];
-
-new Typer( items );
+```bash
+cd svelte-app
+npm install
 ```
 
-Update the `index.html` file with the new lesson link.
+...then start [Rollup](https://rollupjs.org):
 
-Navigate to the project folder in your terminal of choice, make sure the `node_modules` folder is present, and run `npm run dev`.
+```bash
+npm run dev
+```
 
-After the browser opens, click the desired lesson and give it a whirl.
+Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
 
-## Contributors
+By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
 
-[Jeremy "Jermbo" Lawson](https://github.com/jermbo)
 
-[Reggs](https://github.com/reggs)
+## Building and running in production mode
 
-[Chelsea Pontbriand](https://github.com/ChelseaPontbriand)
+To create an optimised version of the app:
 
-## License
+```bash
+npm run build
+```
 
-MIT © [Jeremy "Jermbo" Lawson](https://github.com/jermbo)
+You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
+
+
+## Single-page app mode
+
+By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
+
+If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
+
+```js
+"start": "sirv public --single"
+```
+
+
+## Deploying to the web
+
+### With [now](https://zeit.co/now)
+
+Install `now` if you haven't already:
+
+```bash
+npm install -g now
+```
+
+Then, from within your project folder:
+
+```bash
+cd public
+now deploy --name my-project
+```
+
+As an alternative, use the [Now desktop client](https://zeit.co/download) and simply drag the unzipped project folder to the taskbar icon.
+
+### With [surge](https://surge.sh/)
+
+Install `surge` if you haven't already:
+
+```bash
+npm install -g surge
+```
+
+Then, from within your project folder:
+
+```bash
+npm run build
+surge public my-project.surge.sh
+```
