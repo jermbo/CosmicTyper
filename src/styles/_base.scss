@@ -1,4 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700&display=swap");
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
 }
@@ -6,34 +11,84 @@ body {
 p {
   margin: 0;
 }
-.current {
-  background: $current;
+.cursor {
+  background: #b4891d;
+  animation: blink 1.25s ease infinite;
 }
 .complete,
 .correct {
-  background: lightblue;
+  background: #2a5077;
 }
+.completeRow,
 .currentRow {
-  background: pink;
+  background: #459dd8;
 }
-$yellow: yellow;
-.parent {
-  background: $yellow;
+.lesson-area {
+  font-family: "Roboto Mono", monospace;
+  position: relative;
+  padding: 0;
+  background: linear-gradient(15deg, #2c3e50, #2980b9) fixed;
+  border: 5px solid #e5e5e5;
   width: 40vw;
   height: 100vh;
+  box-shadow: 4px 0 4px rgba(black, 0.3);
+}
 
-  .row {
-    min-height: 25px;
-    display: flex;
-    flex-wrap: wrap;
-    font-family: "Roboto Mono", monospace;
+.lesson {
+  background: #dadada;
+  padding: 1rem;
+  position: absolute;
+  bottom: 0;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.lesson__title {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.code {
+  color: #e5e5e5;
+}
+.row {
+  min-height: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 0.625rem;
+}
+
+.character {
+  padding: 0;
+  min-width: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-key {
+  padding: 0.625rem;
+  background: #0d243b;
+  color: #e5e5e5;
+}
+
+@keyframes flashError {
+  0% {
+    background: rgba(red, 1);
   }
+  100% {
+    background: rgba(red, 0);
+  }
+}
 
-  .character {
-    padding: 0;
-    min-width: 7px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@keyframes blink {
+  0% {
+    background: rgba(#b4891d, 1);
+  }
+  50% {
+    background: rgba(#b4891d, 0);
+  }
+  100% {
+    background: rgba(#b4891d, 1);
   }
 }

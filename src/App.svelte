@@ -1,7 +1,7 @@
 <script>
   import Typer from "./Typer.svelte";
-  let key;
-  let keyCode;
+  export let lessons;
+
   // let code = [
   //   "<div>",
   //   "  <h1>Hello World</h1>",
@@ -11,13 +11,15 @@
   //   "</div>"
   // ];
 
-  let code = [
-    ".parent {",
-    "  background: red;",
-    "  color: yellow;",
-    "  font-family: 'Roboto', serif;",
-    "}"
-  ];
+  // let code = [
+  //   ".parent {",
+  //   "  background: red;",
+  //   "  color: yellow;",
+  //   "  font-family: 'Roboto', serif;",
+  //   "}"
+  // ];
+
+  console.log(lessons);
 </script>
 
 <style lang="scss" global>
@@ -25,5 +27,5 @@
 </style>
 
 <main>
-  <Typer {code} />
+  <Typer {lessons} />
 </main>
