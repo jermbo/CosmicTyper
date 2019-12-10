@@ -2,7 +2,7 @@
   import Typer from "./Typer.svelte";
   let key;
   let keyCode;
-  let text = "<div><h1>Hello World</h1></div>";
+  let text = ["<div>", "  <h1>Hello World</h1>", "</div>"];
 </script>
 
 <style>
