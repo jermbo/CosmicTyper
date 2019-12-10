@@ -20,8 +20,8 @@
   ];
 </script>
 
-<style>
-
+<style lang="scss" global>
+  @import "./styles/styles.scss";
 </style>
 
 <main>

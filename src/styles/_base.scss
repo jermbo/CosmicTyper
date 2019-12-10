@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700&display=swap");
+body {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+.current {
+  background: $current;
+}
+.complete,
+.correct {
+  background: lightblue;
+}
+.currentRow {
+  background: pink;
+}
+$yellow: yellow;
+.parent {
+  background: $yellow;
+  width: 40vw;
+  height: 100vh;
+
+  .row {
+    min-height: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    font-family: "Roboto Mono", monospace;
+  }
+
+  .character {
+    padding: 0;
+    min-width: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
