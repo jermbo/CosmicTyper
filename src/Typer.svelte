@@ -1,10 +1,9 @@
 <script>
-  export let text = "";
+  export let code = "";
   let userKey = "";
   let currentRow = 0;
   let currentChar = 0;
-  let html = text.map(t => t.split(""));
-  // let html = text.split("");
+  let codeOutput = code.map(c => c.split(""));
 
   const modifiers = ["CapsLock", "Shift", "Control", "Alt"];
 
@@ -15,18 +14,15 @@
       return;
     }
     userKey = key;
-    console.log(
-      `current ${currentRow} / ${currentChar} =  ${html[currentRow][currentChar]}`
-    );
-    if (key == html[currentRow][currentChar]) {
-      if (currentChar >= html[currentRow].length - 1) {
+    if (key == codeOutput[currentRow][currentChar]) {
+      if (currentChar >= codeOutput[currentRow].length - 1) {
         currentRow++;
         currentChar = -1;
       }
 
       currentChar++;
 
-      if (currentRow > html.length - 1) {
+      if (currentRow > codeOutput.length - 1) {
         currentRow = 0;
         currentChar = 0;
       }
@@ -44,6 +40,10 @@
 
 <style>
   @import url("https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700&display=swap");
+  p {
+    margin: 0;
+    margin-bottom: 10px;
+  }
   .current {
     background: goldenrod;
   }
@@ -55,23 +55,32 @@
     background: pink;
   }
 
+  .parent {
+    background: yellow;
+    width: 40vw;
+    height: 100vh;
+  }
+
   .row {
-    height: 25px;
+    min-height: 25px;
     display: flex;
+    flex-wrap: wrap;
     font-family: "Roboto Mono", monospace;
   }
+
   .character {
     padding: 0;
     min-width: 7px;
-    height: 100%;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>
 
 <svelte:window on:keydown={handleKeydown} />
-<p>UserKey: {userKey}</p>
-<div>
-  {#each html as row, outer}
+<div class="parent">
+  <p>UserKey: {userKey}</p>
+  {#each codeOutput as row, outer}
     <div class="row" class:currentRow={currentRow == outer}>
       {#each row as char, inner}
         <span
