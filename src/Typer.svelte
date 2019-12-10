@@ -43,6 +43,7 @@
 </script>
 
 <style>
+  @import url("https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700&display=swap");
   .current {
     background: goldenrod;
   }
@@ -53,13 +54,25 @@
   .currentRow {
     background: pink;
   }
+
+  .row {
+    height: 25px;
+    display: flex;
+    font-family: "Roboto Mono", monospace;
+  }
+  .character {
+    padding: 0;
+    min-width: 7px;
+    height: 100%;
+    display: block;
+  }
 </style>
 
 <svelte:window on:keydown={handleKeydown} />
 <p>UserKey: {userKey}</p>
 <div>
   {#each html as row, outer}
-    <div class:currentRow={currentRow == outer}>
+    <div class="row" class:currentRow={currentRow == outer}>
       {#each row as char, inner}
         <span
           data-id={inner}
