@@ -1,5 +1,5 @@
 <script>
-  export let lessons;
+  export let lesson;
 
   let currentLesson = 0;
   let currentRow = 0;
@@ -9,7 +9,7 @@
   const modifiers = ["CapsLock", "Shift", "Control", "Alt"];
   getLesson();
   function getLesson() {
-    codeOutput = lessons[currentLesson].code.map(c => c.split(""));
+    codeOutput = lesson.steps[currentLesson].code.map(c => c.split(""));
   }
 
   function handleKeydown(e) {
@@ -17,7 +17,7 @@
     if (isModifier(key)) {
       return;
     }
-    userKey = key;
+
     if (key == codeOutput[currentRow][currentChar]) {
       if (currentChar >= codeOutput[currentRow].length - 1) {
         currentRow++;
@@ -43,8 +43,8 @@
       currentLesson = currentLesson <= 0 ? 0 : --currentLesson;
     } else if (direction == "next") {
       currentLesson =
-        currentLesson >= lessons.length - 1
-          ? lessons.length - 1
+        currentLesson >= lesson.length - 1
+          ? lesson.length - 1
           : ++currentLesson;
     }
 
@@ -57,14 +57,12 @@
 <div class="lesson-wrapper">
   <div class="lesson">
     <h1 class="lesson__title">Lesson:</h1>
-    <p class="lesson__desc">{lessons[currentLesson].desc}</p>
+    <p class="lesson__desc">{lesson.steps[currentLesson].desc}</p>
     {#if currentLesson > 0}
-      <button on:click={() => lessonNav('prev')}>Prev {currentLesson}</button>
+      <button on:click={() => lessonNav('prev')}>Prev Step</button>
     {/if}
-    {#if currentLesson < lessons.length - 1}
-      <button on:click={() => lessonNav('next')}>
-        Next {currentLesson + 2}
-      </button>
+    {#if currentLesson < lesson.steps.length - 1}
+      <button on:click={() => lessonNav('next')}>Next Step</button>
     {/if}
   </div>
 

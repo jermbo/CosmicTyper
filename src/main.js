@@ -1,11 +1,11 @@
 import App from "./App.svelte";
 
-import lesson from "./lessons/html-01";
+import lessons from "./lessons/lessons";
 
 const app = new App({
   target: document.body,
   props: {
-    lessons: lesson
+    lessons: lessons.lessons
   }
 });
 

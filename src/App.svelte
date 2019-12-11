@@ -1,25 +1,18 @@
 <script>
-  import Typer from "./Typer.svelte";
+  import LessonsList from "./LessonsList.svelte";
+  import Lesson from "./Lesson.svelte";
+
   export let lessons;
+  let lesson = lessons[0];
 
-  // let code = [
-  //   "<div>",
-  //   "  <h1>Hello World</h1>",
-  //   "  <div>",
-  //   "    <h2>Yes Yes Y'all</h2>",
-  //   "  </div>",
-  //   "</div>"
-  // ];
+  function handelLessonSelect({ detail }) {
+    const index = detail.index;
+    lesson = lessons[index];
+  }
 
-  // let code = [
-  //   ".parent {",
-  //   "  background: red;",
-  //   "  color: yellow;",
-  //   "  font-family: 'Roboto', serif;",
-  //   "}"
-  // ];
-
-  console.log(lessons);
+  function handelBackToLessonSelect() {
+    lesson = null;
+  }
 </script>
 
 <style lang="scss" global>
@@ -27,5 +20,11 @@
 </style>
 
 <main>
-  <Typer {lessons} />
+  {#if !lesson}
+    <LessonsList on:lessonSelect={handelLessonSelect} {lessons} />
+  {/if}
+
+  {#if lesson}
+    <Lesson on:backToLessonSelect={handelBackToLessonSelect} {lesson} />
+  {/if}
 </main>
