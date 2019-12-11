@@ -1,11 +1,7 @@
 <script>
-  // export let code = "";
-
   export let lessons;
 
-  let currentLesson = -1;
-
-  let userKey = "";
+  let currentLesson = 0;
   let currentRow = 0;
   let currentChar = 0;
   let codeOutput;
@@ -13,7 +9,6 @@
   const modifiers = ["CapsLock", "Shift", "Control", "Alt"];
   getLesson();
   function getLesson() {
-    currentLesson++;
     codeOutput = lessons[currentLesson].code.map(c => c.split(""));
   }
 
@@ -34,7 +29,7 @@
       if (currentRow > codeOutput.length - 1) {
         currentRow = 0;
         currentChar = 0;
-        getLesson();
+        lessonNav("next");
       }
     }
   }
@@ -42,14 +37,35 @@
   function isModifier(key) {
     return modifiers.some(mod => mod == key);
   }
+
+  function lessonNav(direction) {
+    if (direction == "prev") {
+      currentLesson = currentLesson <= 0 ? 0 : --currentLesson;
+    } else if (direction == "next") {
+      currentLesson =
+        currentLesson >= lessons.length - 1
+          ? lessons.length - 1
+          : ++currentLesson;
+    }
+
+    getLesson();
+  }
 </script>
 
 <svelte:window on:keydown|preventDefault={handleKeydown} />
 
-<div class="lesson-area">
+<div class="lesson-wrapper">
   <div class="lesson">
     <h1 class="lesson__title">Lesson:</h1>
     <p class="lesson__desc">{lessons[currentLesson].desc}</p>
+    {#if currentLesson > 0}
+      <button on:click={() => lessonNav('prev')}>Prev {currentLesson}</button>
+    {/if}
+    {#if currentLesson < lessons.length - 1}
+      <button on:click={() => lessonNav('next')}>
+        Next {currentLesson + 2}
+      </button>
+    {/if}
   </div>
 
   <div class="code">
@@ -60,7 +76,7 @@
         class:currentRow={currentRow == outer}>
         {#each row as char, inner}
           <span
-            data-id={inner}
+            data-id={`${outer}-${inner}`}
             data-char={char}
             class="character"
             class:complete={currentRow > outer}
