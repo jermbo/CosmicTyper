@@ -66,6 +66,8 @@
       currentLesson = 0;
       currentRow = 0;
       currentChar = 0;
+
+      resetRenderView();
     } else {
       getLesson();
     }
@@ -84,6 +86,11 @@
         return code;
       });
     }
+  }
+
+  function resetRenderView() {
+    HTML_CODE.update(code => []);
+    CSS_CODE.update(code => []);
   }
 </script>
 

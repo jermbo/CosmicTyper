@@ -1,5 +1,6 @@
 <script>
   import Typer from "./Typer.svelte";
+  import HTMLRender from "./HTMLRender.svelte";
   import CodeDisplay from "./CodeDisplay.svelte";
 
   export let lesson;
@@ -14,6 +15,5 @@
 </style>
 
 <Typer {lesson} />
-<!-- <HTMLRender /> -->
+<HTMLRender />
 <CodeDisplay />
-<!-- <button on:click={() => backToLessonSelect()}>Select New Lesson</button> -->

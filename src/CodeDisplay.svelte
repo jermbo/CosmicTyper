@@ -2,15 +2,10 @@
   import { HTML_CODE, CSS_CODE } from "./stores/CodeState.js";
 
   let cssCode;
-  CSS_CODE.subscribe(code => {
-    cssCode = code;
-  });
+  CSS_CODE.subscribe(code => (cssCode = code));
 
   let htmlCode;
-  HTML_CODE.subscribe(code => {
-    console.log(code);
-    htmlCode = code;
-  });
+  HTML_CODE.subscribe(code => (htmlCode = code));
 
   let toggle = false;
 
