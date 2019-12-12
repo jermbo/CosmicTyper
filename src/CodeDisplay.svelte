@@ -1,13 +1,20 @@
 <script>
-  export let type = "html";
-  export let newCode;
+  import { HTML_CODE, CSS_CODE } from "./stores/CodeState.js";
+
+  let cssCode;
+  CSS_CODE.subscribe(code => {
+    cssCode = code;
+  });
+
+  let htmlCode;
+  HTML_CODE.subscribe(code => {
+    console.log(code);
+    htmlCode = code;
+  });
 
   let toggle = false;
 
   let tabFocus = "html";
-
-  let html = ["<h1>Hello</h1>"];
-  let css = [".h1{color:red;}"];
 
   function focusTab(tab) {
     tabFocus = tab;
@@ -34,7 +41,15 @@
     <button on:click={() => (toggle = !toggle)} class="tab">Toggle</button>
   </div>
   <div class="displays">
-    <div class="display html" class:focus={tabFocus == 'html'}>{html}</div>
-    <div class="display css" class:focus={tabFocus == 'css'}>{css}</div>
+    <pre class="display html" class:focus={tabFocus == 'html'}>
+      {#each htmlCode as code, index}
+        <div class="display-line">{index + 1}: {code}</div>
+      {/each}
+    </pre>
+    <pre class="display css" class:focus={tabFocus == 'css'}>
+      {#each cssCode as code, index}
+        <div class="display-line">{index + 1}: {code}</div>
+      {/each}
+    </pre>
   </div>
 </div>

@@ -1,5 +1,6 @@
 <script>
   import { STATE, CURRENT_LESSON_INDEX } from "./stores/AppState.js";
+  import { HTML_CODE, CSS_CODE } from "./stores/CodeState.js";
 
   export let lesson;
 
@@ -53,14 +54,10 @@
   }
 
   function lessonNav(direction) {
-    if (direction == "prev") {
-      currentLesson = currentLesson <= 0 ? 0 : --currentLesson;
-    } else if (direction == "next") {
-      currentLesson =
-        currentLesson >= lesson.length - 1
-          ? lesson.length - 1
-          : ++currentLesson;
-    }
+    updateRenderView();
+
+    const len = lesson.length - 1;
+    currentLesson = currentLesson >= len ? len : ++currentLesson;
 
     if (endOfLesson()) {
       CURRENT_LESSON_INDEX.update(() => 0);
@@ -73,20 +70,30 @@
       getLesson();
     }
   }
+
+  function updateRenderView() {
+    const type = lesson.steps[currentLesson].type;
+    if (type == "dom") {
+      HTML_CODE.update(code => {
+        code.push(...lesson.steps[currentLesson].code);
+        return code;
+      });
+    } else if (type == "style") {
+      CSS_CODE.update(code => {
+        code.push(...lesson.steps[currentLesson].code);
+        return code;
+      });
+    }
+  }
 </script>
 
 <svelte:window on:keydown|preventDefault={handleKeydown} />
 
 <div class="lesson-wrapper">
+
   <div class="lesson">
     <h1 class="lesson__title">Lesson:</h1>
     <p class="lesson__desc">{lesson.steps[currentLesson].desc}</p>
-    {#if currentLesson > 0}
-      <button on:click={() => lessonNav('prev')}>Prev Step</button>
-    {/if}
-    {#if currentLesson < lesson.steps.length - 1}
-      <button on:click={() => lessonNav('next')}>Next Step</button>
-    {/if}
   </div>
 
   <div class="code">

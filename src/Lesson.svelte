@@ -3,7 +3,6 @@
   import CodeDisplay from "./CodeDisplay.svelte";
 
   export let lesson;
-  console.log(lesson);
 </script>
 
 <style>
