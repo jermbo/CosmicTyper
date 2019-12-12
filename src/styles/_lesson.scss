@@ -1,65 +1,63 @@
-.lessons {
+.lesson-wrapper {
+  font-family: "Roboto Mono", monospace;
+  position: relative;
+  padding: 0;
+  background: linear-gradient(15deg, #2c3e50, #2980b9) fixed;
+  border: 5px solid $white;
+  width: 40vw;
+  height: 100vh;
+  box-shadow: 4px 0 4px rgba($black, 0.3);
+  z-index: 1;
+}
+
+// Code - Block
+.code {
+  color: $text-color-light;
+}
+
+.row {
+  min-height: 25px;
   display: flex;
   flex-wrap: wrap;
+  padding: 0 $padding/2;
 }
 
+.character {
+  padding: 0;
+  min-width: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Code - User Interface
+.cursor {
+  background: $accent;
+  animation: blink 1.25s ease infinite;
+}
+
+.complete,
+.correct {
+  color: $correct;
+  border-bottom: 1px solid $correct;
+  font-weight: bold;
+}
+.completeRow,
+.currentRow {
+  background: $complete;
+}
+
+// Lesson Description
 .lesson {
-  flex: 1 0 auto;
-  max-width: calc(25% - #{$padding});
-  margin-bottom: $padding;
-
-  @include base-box-shadow;
-  @include transition;
-  position: relative;
-
-  &:not(:last-child) {
-    margin-right: $padding;
-  }
-
-  @include max-screen("lg") {
-    max-width: calc(50% - #{$padding});
-  }
-
-  @for $i from 1 through length($lesson-color-map) {
-    $color: nth($lesson-color-map, $i);
-
-    &:nth-child(#{$i}n + 1) {
-      background-color: $color;
-    }
-  }
-
-  &:hover {
-    @include hover-box-shadow;
-
-    @for $i from 1 through length($lesson-color-map) {
-      $color: nth($lesson-color-map, $i);
-
-      &:nth-child(#{$i}n + 1) {
-        background-color: darken($color, 10%);
-        cursor: pointer;
-      }
-    }
-  }
-}
-
-.lesson__link {
-  text-decoration: none;
+  background: #dadada;
+  padding: 1rem;
   position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-
-.lesson__img {
-  width: 100%;
-  object-fit: cover;
+  bottom: 0;
+  max-height: 50vh;
+  overflow-y: auto;
 }
 
 .lesson__title {
-  text-align: center;
-  margin: $padding 0;
-  font-family: $font-title;
-  font-weight: $font-weight-light;
-  color: $text-color-light;
+  margin: 0;
+  font-size: 1.25rem;
 }
