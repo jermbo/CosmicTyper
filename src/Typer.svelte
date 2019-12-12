@@ -1,5 +1,9 @@
 <script>
+  import { createEventDispatcher } from "svelte";
+
   export let lesson;
+
+  const dispatch = createEventDispatcher();
 
   let currentLesson = 0;
   let currentRow = 0;
@@ -19,19 +23,31 @@
     }
 
     if (key == codeOutput[currentRow][currentChar]) {
-      if (currentChar >= codeOutput[currentRow].length - 1) {
+      if (endOfRow()) {
         currentRow++;
         currentChar = -1;
       }
 
       currentChar++;
 
-      if (currentRow > codeOutput.length - 1) {
+      if (endOfStep()) {
         currentRow = 0;
         currentChar = 0;
         lessonNav("next");
       }
     }
+  }
+
+  function endOfRow() {
+    return currentChar >= codeOutput[currentRow].length - 1;
+  }
+
+  function endOfStep() {
+    return currentRow > codeOutput.length - 1;
+  }
+
+  function endOfLesson() {
+    return currentLesson > lesson.steps.length - 1;
   }
 
   function isModifier(key) {
@@ -48,7 +64,11 @@
           : ++currentLesson;
     }
 
-    getLesson();
+    if (endOfLesson()) {
+      dispatch("endOfLesson");
+    } else {
+      getLesson();
+    }
   }
 </script>
 

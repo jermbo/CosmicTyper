@@ -1,12 +1,16 @@
 <script>
-  import { createEventDispatcher } from "svelte";
+  import { STATE, CURRENT_LESSON_INDEX } from "./stores/AppState.js";
 
   export let lessons;
 
-  const dispatch = createEventDispatcher();
+  let lesson;
+  CURRENT_LESSON_INDEX.subscribe(lessonIndex => {
+    lesson = lessonIndex;
+  });
 
   function selectLesson(index) {
-    dispatch("lessonSelect", { index });
+    CURRENT_LESSON_INDEX.update(() => index);
+    STATE.update(() => "LESSON_STARTED");
   }
 </script>
 

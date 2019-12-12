@@ -4,12 +4,16 @@
   import CodeDisplay from "./CodeDisplay.svelte";
 
   export let lesson;
-  const dispatch = createEventDispatcher();
-
-  function backToLessonSelect() {
-    dispatch("backToLessonSelect");
-  }
+  console.log(lesson);
 </script>
+
+<style>
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+</style>
 
 <Typer {lesson} />
 <!-- <HTMLRender /> -->

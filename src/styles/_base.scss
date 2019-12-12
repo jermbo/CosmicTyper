@@ -21,3 +21,14 @@ main {
   height: 100vh;
   width: 100vw;
 }
+
+.app-state {
+  padding: $padding/2;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background: $accent;
+  text-align: right;
+  z-index: 100;
+}
