@@ -1,9 +1,7 @@
 <script>
-  import { createEventDispatcher } from "svelte";
+  import { STATE, CURRENT_LESSON_INDEX } from "./stores/AppState.js";
 
   export let lesson;
-
-  const dispatch = createEventDispatcher();
 
   let currentLesson = 0;
   let currentRow = 0;
@@ -65,7 +63,12 @@
     }
 
     if (endOfLesson()) {
-      dispatch("endOfLesson");
+      CURRENT_LESSON_INDEX.update(() => 0);
+      STATE.update(() => "LESSON_SELECT");
+
+      currentLesson = 0;
+      currentRow = 0;
+      currentChar = 0;
     } else {
       getLesson();
     }

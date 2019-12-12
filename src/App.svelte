@@ -3,8 +3,6 @@
   import Lesson from "./Lesson.svelte";
   import { STATE, CURRENT_LESSON_INDEX, LESSONS } from "./stores/AppState.js";
   import AllLessons from "./lessons/lessons.js";
-  // export let lessons;
-  // let lesson;
 
   let mainState;
   STATE.subscribe(newState => {

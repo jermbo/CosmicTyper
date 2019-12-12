@@ -1,5 +1,4 @@
 <script>
-  import { createEventDispatcher } from "svelte";
   import Typer from "./Typer.svelte";
   import CodeDisplay from "./CodeDisplay.svelte";
 

@@ -3,11 +3,6 @@
 
   export let lessons;
 
-  let lesson;
-  CURRENT_LESSON_INDEX.subscribe(lessonIndex => {
-    lesson = lessonIndex;
-  });
-
   function selectLesson(index) {
     CURRENT_LESSON_INDEX.update(() => index);
     STATE.update(() => "LESSON_STARTED");
