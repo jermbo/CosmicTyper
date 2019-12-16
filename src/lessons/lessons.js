@@ -8,7 +8,14 @@ export default {
           type: "dom",
           desc:
             "This is the H1 heading tag. Our most important tag. Type out the tag and the words in between.",
-          code: ["<h1>", "  hello", "</h1>"],
+          code: ["<h1>hello</h1>"],
+          render: true
+        },
+        {
+          type: "dom",
+          desc:
+            "This is the H1 heading tag. Our most important tag. Type out the tag and the words in between.",
+          code: ["<h2>", "  world", "</h2>"],
           render: true
         },
         {
@@ -17,13 +24,7 @@ export default {
           code: ["h1 {", "  font-size: 12px;", "  color: #444;", "}"],
           render: true
         },
-        {
-          type: "dom",
-          desc:
-            "This is the H1 heading tag. Our most important tag. Type out the tag and the words in between.",
-          code: ["<h1>hello</h1>"],
-          render: true
-        },
+
         {
           type: "dom",
           desc:

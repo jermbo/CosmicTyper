@@ -11,6 +11,7 @@
 
   const modifiers = ["CapsLock", "Shift", "Control", "Alt"];
   getLesson();
+
   function getLesson() {
     codeOutput = lesson.steps[currentLesson].code.map(c => c.split(""));
   }
@@ -74,6 +75,10 @@
   }
 
   function updateRenderView() {
+    if (!lesson.steps[currentLesson].render) {
+      return;
+    }
+
     const type = lesson.steps[currentLesson].type;
     if (type == "dom") {
       HTML_CODE.update(code => {

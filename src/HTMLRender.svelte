@@ -1,19 +1,17 @@
 <script>
   import { HTML_CODE, CSS_CODE } from "./stores/CodeState.js";
 
+  // HACK - but necessary to avoid formatting issues in VSCode
+  const openStyle = "<style>";
+  const closeStyle = "</style>";
   let cssCode;
   CSS_CODE.subscribe(code => {
-    // -disable-next-line
-    cssCode = `<style>${code.join("")}</style>`;
+    cssCode = `${openStyle} ${code.join('')} ${closeStyle}`;
   });
 
   let htmlCode;
   HTML_CODE.subscribe(code => (htmlCode = code.join("")));
 </script>
-
-<style html="cssCode" class="localStyle">
-
-</style>
 
 <div class="render">
   {@html cssCode}
