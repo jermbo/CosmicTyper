@@ -1,6 +1,7 @@
 <script>
   import LessonsList from "./LessonsList.svelte";
   import Lesson from "./Lesson.svelte";
+  import UserInput from "./UserInput.svelte";
   import { STATE, CURRENT_LESSON_INDEX, LESSONS } from "./stores/AppState.js";
   import AllLessons from "./lessons/lessons.js";
 
@@ -57,6 +58,10 @@
     <p>Loading Application</p>
   {/if}
 
+  {#if mainState == 'USER_INPUT'}
+    <UserInput />
+  {/if}
+
   {#if mainState == 'LESSON_SELECT'}
     {#await lessons}
       <p>Building Lesson List</p>
@@ -65,7 +70,7 @@
     {/await}
   {/if}
 
-  {#if mainState == 'LESSON_STARTED'}
+  {#if mainState == 'LESSON_STARTED' || mainState == 'LESSON_ENDED'}
     <Lesson lesson={allLessons[lessonIndex]} />
   {/if}
 </main>

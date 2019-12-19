@@ -7,13 +7,13 @@
   let currentLesson = 0;
   let currentRow = 0;
   let currentChar = 0;
-  let codeOutput;
+  let actionOutput;
 
   const modifiers = ["CapsLock", "Shift", "Control", "Alt"];
   getLesson();
 
   function getLesson() {
-    codeOutput = lesson.steps[currentLesson].code.map(c => c.split(""));
+    actionOutput = lesson.steps[currentLesson].action.map(c => c.split(""));
   }
 
   function handleKeydown(e) {
@@ -22,7 +22,7 @@
       return;
     }
 
-    if (key == codeOutput[currentRow][currentChar]) {
+    if (key == actionOutput[currentRow][currentChar]) {
       if (endOfRow()) {
         currentRow++;
         currentChar = -1;
@@ -39,11 +39,11 @@
   }
 
   function endOfRow() {
-    return currentChar >= codeOutput[currentRow].length - 1;
+    return currentChar >= actionOutput[currentRow].length - 1;
   }
 
   function endOfStep() {
-    return currentRow > codeOutput.length - 1;
+    return currentRow > actionOutput.length - 1;
   }
 
   function endOfLesson() {
@@ -62,7 +62,7 @@
 
     if (endOfLesson()) {
       CURRENT_LESSON_INDEX.update(() => 0);
-      STATE.update(() => "LESSON_SELECT");
+      STATE.update(() => "LESSON_ENDED");
 
       currentLesson = 0;
       currentRow = 0;
@@ -82,12 +82,12 @@
     const type = lesson.steps[currentLesson].type;
     if (type == "dom") {
       HTML_CODE.update(code => {
-        code.push(...lesson.steps[currentLesson].code);
+        code.push(...lesson.steps[currentLesson].action);
         return code;
       });
     } else if (type == "style") {
       CSS_CODE.update(code => {
-        code.push(...lesson.steps[currentLesson].code);
+        code.push(...lesson.steps[currentLesson].action);
         return code;
       });
     }
@@ -109,7 +109,7 @@
   </div>
 
   <div class="code">
-    {#each codeOutput as row, outer}
+    {#each actionOutput as row, outer}
       <div
         class="row"
         class:completeRow={currentRow > outer}
