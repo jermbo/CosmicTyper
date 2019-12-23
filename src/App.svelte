@@ -1,4 +1,5 @@
 <script>
+  import Loading from "./Loading.svelte";
   import LessonsList from "./LessonsList.svelte";
   import Lesson from "./Lesson.svelte";
   import UserInput from "./UserInput.svelte";
@@ -43,7 +44,7 @@
       setTimeout(() => {
         STATE.update(() => "LESSON_SELECT");
         resolve(data);
-      }, 250);
+      }, 2500);
     });
   }
 </script>
@@ -55,7 +56,7 @@
 <main>
   <p class="app-state">App State: {mainState} | Lesson Index: {lessonIndex}</p>
   {#if mainState == 'LOADING'}
-    <p>Loading Application</p>
+    <Loading />
   {/if}
 
   {#if mainState == 'USER_INPUT'}
