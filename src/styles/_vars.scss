@@ -1,10 +1,24 @@
-$accent: #b4891d;
-$correct: #182e42;
-$complete: #48b2f8;
+$mandalay: #b4891d;
+$bigStone: #182e42;
+$blueWood: #2c3e50;
+$pictonBlue: #48b2f8;
+$mariner: #2980b9;
+$thunderBird: #d51515;
 
-$white: #e5e5e5;
+$accent: $mandalay;
+$correct: $bigStone;
+$complete: $pictonBlue;
+$danger: $thunderBird;
+
+$white: #fff;
+$offWhite: #e5e5e5;
 $black: #1c2738;
 
-$text-color-light: $white;
+$text-color-light: $offWhite;
+
+$border-color-light: $offWhite;
+
+$bg-light: $offWhite;
+$bg-dark: $black;
 
 $padding: 1.15rem;

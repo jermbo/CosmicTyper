@@ -23,10 +23,10 @@
 
 .tab {
   cursor: pointer;
-  background: #ffffff;
+  background: $white;
   padding: $padding/2;
-  border: 1px solid #e5e5e5;
-  border-top: 4px solid #e5e5e5;
+  border: 1px solid $border-color-light;
+  border-top: 4px solid $border-color-light;
 
   &.focus {
     border-top: 4px solid orangered;
@@ -38,7 +38,7 @@
 }
 
 .displays {
-  background: #e5e5e5;
+  background: $bg-light;
   padding: $padding/2;
   height: calc(100% - 37px);
   position: relative;
@@ -62,7 +62,8 @@
 
 .display-line {
   padding: 4px $padding/2;
+
   &:nth-child(even) {
-    background: #d3d3d3;
+    background: $white;
   }
 }

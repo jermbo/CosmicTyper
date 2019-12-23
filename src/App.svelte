@@ -44,7 +44,7 @@
       setTimeout(() => {
         STATE.update(() => "LESSON_SELECT");
         resolve(data);
-      }, 2500);
+      }, 5000);
     });
   }
 </script>
