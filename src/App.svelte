@@ -2,7 +2,7 @@
   import Loading from "./Loading.svelte";
   import LessonsList from "./LessonsList.svelte";
   import Lesson from "./Lesson.svelte";
-  import UserInput from "./UserInput.svelte";
+  import WelcomeScreen from "./WelcomeScreen.svelte";
   import { STATE, CURRENT_LESSON_INDEX, LESSONS } from "./stores/AppState.js";
   import AllLessons from "./lessons/lessons.js";
 
@@ -42,9 +42,9 @@
   function simulateDataLoad(data) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        STATE.update(() => "LESSON_SELECT");
+        STATE.update(() => "WELCOME_SCREEN");
         resolve(data);
-      }, 5000);
+      }, 250);
     });
   }
 </script>
@@ -55,12 +55,13 @@
 
 <main>
   <p class="app-state">App State: {mainState} | Lesson Index: {lessonIndex}</p>
+
   {#if mainState == 'LOADING'}
     <Loading />
   {/if}
 
-  {#if mainState == 'USER_INPUT'}
-    <UserInput />
+  {#if mainState == 'WELCOME_SCREEN'}
+    <WelcomeScreen />
   {/if}
 
   {#if mainState == 'LESSON_SELECT'}
