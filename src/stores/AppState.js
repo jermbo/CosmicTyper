@@ -8,9 +8,9 @@ import { writable } from "svelte/store";
 /**
  * Possible States
  *
- * LOADING | LESSON_SELECT | LESSON_STARTED | LESSON_ENDED
+ * WELCOME_SCREEN | LESSON_SELECT | LESSON_STARTED | LESSON_ENDED
  */
-export const STATE = writable("LOADING");
+export const STATE = writable("WELCOME_SCREEN");
 
 /**
  * This should reflect an index of lessons
