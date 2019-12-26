@@ -46,3 +46,12 @@ main {
   align-items: center;
   @include gradientBG;
 }
+
+.inner {
+  width: 75%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

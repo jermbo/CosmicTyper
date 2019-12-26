@@ -1,0 +1,40 @@
+.btns {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  margin: $padding 0;
+}
+
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  background: transparent;
+  color: $brand-primary;
+  border: 1px solid $brand-primary;
+  padding: $padding/2 $padding;
+  transition: all 0.25s ease;
+
+  &:focus {
+    background: $brand-primary-light;
+    color: $text-color-dark;
+    outline: none;
+  }
+
+  &:hover {
+    background: $brand-primary;
+    color: $text-color-dark;
+  }
+
+  &:not(:last-child) {
+    margin-right: $padding/2;
+  }
+
+  &.-secondary {
+    border: 1px solid transparent;
+  }
+
+  &.selected {
+    background: $brand-primary;
+    color: $text-color-dark;
+  }
+}

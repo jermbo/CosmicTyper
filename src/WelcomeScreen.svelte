@@ -5,12 +5,8 @@
   $: qIndex = 0;
   const rightNow = Date.now();
   // Setting Threshold to 18 hours.
-  const resetThreshold = 5000; // 1000 * 60 * 60 * 18;
-
-  let userObj = JSON.parse(localStorage.getItem("userObj")) || {
-    lesson: "html-css",
-    level: "easy"
-  };
+  const resetThreshold = 1000 * 60 * 60 * 18;
+  let userObj = JSON.parse(localStorage.getItem("userObj")) || {};
 
   if (rightNow - userObj.time < resetThreshold) {
     STATE.update(() => "LESSON_SELECT");
@@ -27,33 +23,45 @@
   }
 
   function submitAnswers() {
+    userObj.lesson = userObj.lesson || "html-css";
+    userObj.level = userObj.level || "easy";
     userObj.time = Date.now();
     localStorage.setItem("userObj", JSON.stringify(userObj));
-    console.log(JSON.parse(localStorage.getItem("userObj")));
     STATE.update(() => "LESSON_SELECT");
   }
 </script>
 
 <div class="container">
-  <h1>Welcome To Typer</h1>
-  <p>Please answer a couple of questions before we get started.</p>
+  <div class="inner">
+    <h1>Welcome To Typer</h1>
+    <p>Please answer a couple of questions before we get started.</p>
 
-  <section class="question">
-    <h1 class="question__title">{welcomeQuestions[qIndex].question}</h1>
-    {#each welcomeQuestions[qIndex].possibleAnswers as answer}
-      <button on:click={() => answerQuestion(answer.action)}>
-        {answer.label}
-      </button>
-    {/each}
-  </section>
+    <section class="question">
+      <h1 class="question__title">{welcomeQuestions[qIndex].question}</h1>
+      {#each welcomeQuestions[qIndex].possibleAnswers as answer}
+        <button
+          class="btn"
+          class:selected={answer.action.type == userObj[answer.action.key]}
+          on:click={() => answerQuestion(answer.action)}>
+          {answer.label}
+        </button>
+      {/each}
+    </section>
 
-  {#if qIndex < welcomeQuestions.length - 1}
-    <button on:click={() => qIndex++}>Next</button>
-  {:else if qIndex > 0 && qIndex < welcomeQuestions.length - 1}
-    <button on:click={() => qIndex--}>Previous</button>
-    <button on:click={() => qIndex++}>Next</button>
-  {:else}
-    <button on:click={() => qIndex--}>Previous</button>
-    <button on:click={() => submitAnswers()}>Submit</button>
-  {/if}
+    <div class="btns">
+      {#if qIndex < welcomeQuestions.length - 1}
+        <button class="btn" on:click={() => qIndex++}>Next</button>
+      {:else if qIndex > 0 && qIndex < welcomeQuestions.length - 1}
+        <button class="btn -secondary" on:click={() => qIndex--}>
+          Previous
+        </button>
+        <button class="btn" on:click={() => qIndex++}>Next</button>
+      {:else}
+        <button class="btn -secondary" on:click={() => qIndex--}>
+          Previous
+        </button>
+        <button class="btn" on:click={() => submitAnswers()}>Submit</button>
+      {/if}
+    </div>
+  </div>
 </div>
