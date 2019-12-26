@@ -11,14 +11,17 @@
   });
 
   let lessonIndex;
+  let allLessons = JSON.parse(localStorage.getItem("lessons"));
+
   CURRENT_LESSON_INDEX.subscribe(index => {
     lessonIndex = index;
   });
 
-  let allLessons;
-  LESSONS.subscribe(data => {
-    allLessons = data;
-  });
+  if (!allLessons) {
+    LESSONS.subscribe(data => {
+      allLessons = data;
+    });
+  }
 </script>
 
 <style lang="scss" global>
@@ -37,6 +40,6 @@
   {/if}
 
   {#if mainState == 'LESSON_STARTED' || mainState == 'LESSON_ENDED'}
-    <Lesson />
+    <Lesson lesson={allLessons[lessonIndex]} />
   {/if}
 </main>

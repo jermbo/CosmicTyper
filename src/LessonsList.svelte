@@ -1,7 +1,7 @@
 <script>
   import { STATE, CURRENT_LESSON_INDEX } from "./stores/AppState.js";
 
-  export let lessons = [];
+  export let lessons = JSON.parse(localStorage.getItem("lessons")) || [];
 
   function selectLesson(index) {
     CURRENT_LESSON_INDEX.update(() => index);

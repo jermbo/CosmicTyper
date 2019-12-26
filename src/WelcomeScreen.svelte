@@ -1,4 +1,7 @@
 <script>
+  // Life Cycle
+  import { onMount } from "svelte";
+
   // Components
   import Loading from "./Loading.svelte";
 
@@ -7,21 +10,40 @@
   // Data -
   import welcomeQuestions from "./data/welcomeQuestions.js";
 
-  import welcome from "./scripts/welcome.js";
-
   // Local variables
   $: qIndex = 0;
 
   const rightNow = Date.now();
   // Setting Threshold to 18 hours.
-  const resetThreshold = 5000; // 1000 * 60 * 60 * 18;
+  const resetThreshold = 1000 * 60 * 60 * 18;
   let userObj = JSON.parse(localStorage.getItem("userObj")) || {};
 
-  if (rightNow - userObj.time < resetThreshold) {
-    STATE.update(() => "LESSON_SELECT");
-  } else {
-    resetUserData();
-  }
+  // onMount(async () => {
+  //   console.log(rightNow - userObj.time < resetThreshold);
+  //   console.log("mounted");
+  //   if (rightNow - userObj.time < resetThreshold) {
+  //     console.log("threshold");
+  //     await STATE.update(() => "LESSON_SELECT");
+  //     return;
+  //   }
+
+  //   await localStorage.clear("userObj");
+  //   console.log("reset as well");
+  //   // resetUserData();
+  // });
+
+  // let photos = [];
+
+  onMount(async () => {
+    if (rightNow - userObj.time < resetThreshold) {
+      console.log("threshold");
+      await STATE.update(() => "LESSON_SELECT");
+      return;
+    }
+
+    await localStorage.clear("userObj");
+    console.log("reset as well");
+  });
 
   function resetUserData() {
     localStorage.clear("userObj");
@@ -32,11 +54,13 @@
   }
 
   function submitAnswers() {
+    console.log("submit answer");
     userObj.lesson = userObj.lesson || "html-css";
     userObj.level = userObj.level || "easy";
     userObj.time = Date.now();
     localStorage.setItem("userObj", JSON.stringify(userObj));
     STATE.update(() => "LESSON_SELECT");
+    debugger;
   }
 
   // Eventually this will come from database
@@ -47,7 +71,7 @@
 
   async function getLessons() {
     const _lessons = await simulateDataLoad(LESSONS_FROM_STORAGE);
-    localStorage.setItem("lesson", JSON.stringify(_lessons));
+    localStorage.setItem("lessons", JSON.stringify(_lessons));
     LESSONS.update(() => _lessons);
     STATE.update(() => "WELCOME_SCREEN");
     localStorage.setItem("app_state", "WELCOME_SCREEN");
