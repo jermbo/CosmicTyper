@@ -3,8 +3,9 @@
   import LessonsList from "./LessonsList.svelte";
   import Lesson from "./Lesson.svelte";
   import WelcomeScreen from "./WelcomeScreen.svelte";
+
   import { STATE, CURRENT_LESSON_INDEX, LESSONS } from "./stores/AppState.js";
-  import AllLessons from "./lessons/lessons.js";
+  import AllLessons from "./data/lessons.js";
 
   let mainState;
   STATE.subscribe(newState => {
@@ -44,7 +45,7 @@
       setTimeout(() => {
         STATE.update(() => "WELCOME_SCREEN");
         resolve(data);
-      }, 250);
+      }, 5000);
     });
   }
 </script>
