@@ -3,7 +3,7 @@
   import { onMount } from "svelte";
 
   // Components
-  import Loading from "./Loading.svelte";
+  import Loading from "./components/UI/Loading.svelte";
 
   // Stores
   import { APP_STATE } from "./stores/AppState.js";
@@ -11,7 +11,7 @@
 
   // Helpers and Enums
   import { getLsItem, setLsItem } from "./scripts/LocalStorageHelper.js";
-  import { LSKeyEnums } from "./enum.js";
+  import { LSKeyEnums } from "./scripts/enum.js";
 
   // Eventually this will come from database
   import welcomeQuestions from "./data/welcomeQuestions.js";

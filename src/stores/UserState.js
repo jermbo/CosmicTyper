@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 import { getLsItem, setLsItem } from "../scripts/LocalStorageHelper";
-import { LSKeyEnums } from "../enum";
+import { LSKeyEnums } from "../scripts/enum";
 
 const defaultUser = {
   lesson: "html-css",

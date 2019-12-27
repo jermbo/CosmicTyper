@@ -3,8 +3,8 @@
   import { onMount } from "svelte";
 
   // Components
-  import Lessons from "./Lessons.svelte";
   import WelcomeScreen from "./WelcomeScreen.svelte";
+  import Lessons from "./components/Lesson/Lessons.svelte";
 
   // Stores
   import { APP_STATE } from "./stores/AppState.js";

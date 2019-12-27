@@ -3,21 +3,21 @@
   import { onMount } from "svelte";
 
   // Stores
-  import { LESSONS } from "./stores/LessonsState.js";
-  import { USER_OBJ } from "./stores/UserState.js";
+  import { LESSONS } from "../../stores/LessonsState.js";
+  import { USER_OBJ } from "../../stores/UserState.js";
 
   // Components
-  import Loading from "./Loading.svelte";
+  import Loading from "../UI/Loading.svelte";
   import LessonList from "./LessonList.svelte";
   import Lesson from "./Lesson.svelte";
 
   // Helpers and Enums
-  import { getLsItem, setLsItem } from "./scripts/LocalStorageHelper.js";
-  import { LSKeyEnums } from "./enum.js";
-  import SimulateLoadTime from "./scripts/SimulateLoadTime.js";
+  import { getLsItem, setLsItem } from "../../scripts/LocalStorageHelper.js";
+  import { LSKeyEnums } from "../../scripts/enum.js";
+  import SimulateLoadTime from "../../scripts/SimulateLoadTime.js";
 
   // Eventually this will come from database
-  import LESSONS_FROM_STORAGE from "./data/lessons.js";
+  import LESSONS_FROM_STORAGE from "../../data/lessons.js";
 
   // Reactive variables
   $: lessonIndex = $LESSONS.index;
