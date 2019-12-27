@@ -1,23 +1,14 @@
 import { writable } from "svelte/store";
-
-/**
- * Track Current Lesson
- * Track Visible State
- */
+import { getLsItem, setLsItem } from "../scripts/LocalStorageHelper";
+import { LSKeyEnums } from "../enum";
 
 /**
  * Possible States
  *
  * WELCOME_SCREEN | LESSON_SELECT | LESSON_STARTED | LESSON_ENDED
  */
-export const STATE = writable("WELCOME_SCREEN");
+const defaultState = { state: "WELCOME_SCREEN", session_start: Date.now() };
 
-/**
- * This should reflect an index of lessons
- */
-export const CURRENT_LESSON_INDEX = writable(0);
-
-/**
- * A spot for all lessons
- */
-export const LESSONS = writable([]);
+export const APP_STATE = writable(
+  getLsItem(LSKeyEnums.state) || setLsItem(LSKeyEnums.state, defaultState)
+);

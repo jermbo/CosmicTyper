@@ -6,102 +6,59 @@
   import Loading from "./Loading.svelte";
 
   // Stores
-  import { STATE, LESSONS } from "./stores/AppState.js";
-  // Data -
+  import { APP_STATE } from "./stores/AppState.js";
+  import { USER_OBJ } from "./stores/UserState.js";
+
+  // Helpers and Enums
+  import { getLsItem, setLsItem } from "./scripts/LocalStorageHelper.js";
+  import { LSKeyEnums } from "./enum.js";
+
+  // Eventually this will come from database
   import welcomeQuestions from "./data/welcomeQuestions.js";
 
-  // Local variables
+  // Reactive variables
   $: qIndex = 0;
+  $: appState = $APP_STATE.state;
 
+  // Local Variables
   const rightNow = Date.now();
   // Setting Threshold to 18 hours.
-  const resetThreshold = 1000 * 60 * 60 * 18;
-  let userObj = JSON.parse(localStorage.getItem("userObj")) || {};
-
-  // onMount(async () => {
-  //   console.log(rightNow - userObj.time < resetThreshold);
-  //   console.log("mounted");
-  //   if (rightNow - userObj.time < resetThreshold) {
-  //     console.log("threshold");
-  //     await STATE.update(() => "LESSON_SELECT");
-  //     return;
-  //   }
-
-  //   await localStorage.clear("userObj");
-  //   console.log("reset as well");
-  //   // resetUserData();
-  // });
-
-  // let photos = [];
-
-  onMount(async () => {
-    if (rightNow - userObj.time < resetThreshold) {
-      console.log("threshold");
-      await STATE.update(() => "LESSON_SELECT");
-      return;
-    }
-
-    await localStorage.clear("userObj");
-    console.log("reset as well");
-  });
-
-  function resetUserData() {
-    localStorage.clear("userObj");
-  }
+  const resetThreshold = 250; // 1000 * 60 * 60 * 18;
 
   function answerQuestion({ key, type }) {
-    userObj[key] = type;
+    $USER_OBJ[key] = type;
   }
 
   function submitAnswers() {
-    console.log("submit answer");
-    userObj.lesson = userObj.lesson || "html-css";
-    userObj.level = userObj.level || "easy";
-    userObj.time = Date.now();
-    localStorage.setItem("userObj", JSON.stringify(userObj));
-    STATE.update(() => "LESSON_SELECT");
-    debugger;
+    $USER_OBJ.active_time = Date.now();
+    updateState("LESSON_SELECT");
   }
 
-  // Eventually this will come from database
-  import LESSONS_FROM_STORAGE from "./data/lessons.js";
-  getLessons();
-
-  $: fetchingData = true;
-
-  async function getLessons() {
-    const _lessons = await simulateDataLoad(LESSONS_FROM_STORAGE);
-    localStorage.setItem("lessons", JSON.stringify(_lessons));
-    LESSONS.update(() => _lessons);
-    STATE.update(() => "WELCOME_SCREEN");
-    localStorage.setItem("app_state", "WELCOME_SCREEN");
-    fetchingData = false;
-  }
-
-  /**
-   * ----------------------------------------------------
-   * Simulating the wait time for loading data.
-   * Eventually this will be replaced with an acutal call
-   * to an api, but in the mean time I want to lay down
-   * a good foundation for making the updates later.
-   * ----------------------------------------------------
-   *
-   */
-  function simulateDataLoad(data) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(data);
-      }, 5000);
+  function updateState(newState) {
+    APP_STATE.update(obj => {
+      obj.state = newState;
+      return obj;
     });
+    setLsItem(LSKeyEnums.state, $APP_STATE);
   }
+
+  onMount(async () => {
+    if (rightNow - $USER_OBJ.active_time > resetThreshold) {
+      updateState("LESSON_SELECT");
+    } else {
+      // clear stuff
+    }
+  });
 </script>
 
 <div class="container">
   <div class="inner">
     <h1>Welcome To Typer</h1>
-    {#if fetchingData}
+    {#if !appState}
       <Loading />
-    {:else}
+    {/if}
+
+    {#if appState == 'WELCOME_SCREEN'}
       <p>Please answer a couple of questions before we get started.</p>
 
       <section class="question">
@@ -109,7 +66,7 @@
         {#each welcomeQuestions[qIndex].possibleAnswers as answer}
           <button
             class="btn"
-            class:selected={answer.action.type == userObj[answer.action.key]}
+            class:selected={answer.action.type == $USER_OBJ[answer.action.key]}
             on:click={() => answerQuestion(answer.action)}>
             {answer.label}
           </button>

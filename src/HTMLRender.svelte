@@ -1,4 +1,5 @@
 <script>
+  // Stores
   import { HTML_CODE, CSS_CODE } from "./stores/CodeState.js";
 
   // HACK - but necessary to avoid formatting issues in VSCode

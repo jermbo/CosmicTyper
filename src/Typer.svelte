@@ -1,9 +1,9 @@
 <script>
-  import { STATE, CURRENT_LESSON_INDEX } from "./stores/AppState.js";
+  import { createEventDispatcher } from "svelte";
+
   import { HTML_CODE, CSS_CODE } from "./stores/CodeState.js";
 
   export let lesson;
-  console.log(lesson);
 
   let currentLesson = 0;
   let currentRow = 0;
@@ -55,6 +55,11 @@
     return modifiers.some(mod => mod == key);
   }
 
+  const dispatch = createEventDispatcher();
+
+  function endLesson(index) {
+    dispatch("endLesson", index);
+  }
   function lessonNav(direction) {
     updateRenderView();
 
@@ -62,9 +67,7 @@
     currentLesson = currentLesson >= len ? len : ++currentLesson;
 
     if (endOfLesson()) {
-      CURRENT_LESSON_INDEX.update(() => 0);
-      STATE.update(() => "LESSON_ENDED");
-
+      endLesson();
       currentLesson = 0;
       currentRow = 0;
       currentChar = 0;

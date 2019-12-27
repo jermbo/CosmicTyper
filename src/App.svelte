@@ -1,27 +1,21 @@
 <script>
-  import LessonsList from "./LessonsList.svelte";
-  import Lesson from "./Lesson.svelte";
+  // Life Cycle
+  import { onMount } from "svelte";
+
+  // Components
+  import Lessons from "./Lessons.svelte";
   import WelcomeScreen from "./WelcomeScreen.svelte";
 
-  import { STATE, CURRENT_LESSON_INDEX, LESSONS } from "./stores/AppState.js";
+  // Stores
+  import { APP_STATE } from "./stores/AppState.js";
+  import { LESSONS } from "./stores/LessonsState.js";
 
-  let mainState;
-  STATE.subscribe(newState => {
-    mainState = newState;
+  // Reactive variables
+  $: appState = $APP_STATE.state;
+
+  onMount(() => {
+    // check to see if things need to be reset
   });
-
-  let lessonIndex;
-  let allLessons = JSON.parse(localStorage.getItem("lessons"));
-
-  CURRENT_LESSON_INDEX.subscribe(index => {
-    lessonIndex = index;
-  });
-
-  if (!allLessons) {
-    LESSONS.subscribe(data => {
-      allLessons = data;
-    });
-  }
 </script>
 
 <style lang="scss" global>
@@ -29,17 +23,16 @@
 </style>
 
 <main>
-  <p class="app-state">App State: {mainState} | Lesson Index: {lessonIndex}</p>
+  <p class="app-state">
+    App State: {appState} | Lesson Index: {$LESSONS.index}
+  </p>
 
-  {#if mainState == 'WELCOME_SCREEN'}
+  {#if !appState || appState == 'WELCOME_SCREEN'}
     <WelcomeScreen />
   {/if}
 
-  {#if mainState == 'LESSON_SELECT'}
-    <LessonsList />
+  {#if appState == 'LESSON_SELECT'}
+    <Lessons />
   {/if}
 
-  {#if mainState == 'LESSON_STARTED' || mainState == 'LESSON_ENDED'}
-    <Lesson lesson={allLessons[lessonIndex]} />
-  {/if}
 </main>
