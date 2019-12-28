@@ -9,6 +9,7 @@
 
   function clearLS() {
     localStorage.clear();
+    window.location.reload();
   }
 </script>
 

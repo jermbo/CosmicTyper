@@ -23,9 +23,6 @@
   $: appState = $APP_STATE.state;
 
   // Local Variables
-  const rightNow = Date.now();
-  // Setting Threshold to 18 hours.
-  const resetThreshold = 10000; // 1000 * 60 * 60 * 18;
   const dispatch = createEventDispatcher();
 
   function answerQuestion({ key, type }) {

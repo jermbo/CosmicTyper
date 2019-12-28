@@ -66,7 +66,7 @@
       <h1>Lesson Select</h1>
 
       {#if !$LESSONS.allLessons.length}
-        <Loading />
+        <Loading text="Loading Lessons...." />
       {:else}
         <p>Select a lesson.</p>
         <LessonList
