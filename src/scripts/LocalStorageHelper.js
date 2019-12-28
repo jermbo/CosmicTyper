@@ -7,6 +7,10 @@ export function setLsItem(name, value) {
   return getLsItem(name);
 }
 
-export function clearLsItem(name) {
-  localStorage.clear(name);
+export function removeLsItem(name) {
+  localStorage.removeItem(name);
+}
+
+export function clearAll() {
+  localStorage.clear();
 }
