@@ -1,6 +1,6 @@
 <script>
-  // Life Cycle
-  import { onMount } from "svelte";
+  // Svelte
+  import { onMount, createEventDispatcher } from "svelte";
 
   // Stores
   import { LESSONS } from "Stores/LessonsState.js";
@@ -12,8 +12,8 @@
   import Lesson from "./Lesson.svelte";
 
   // Helpers and Enums
-  import { getLsItem, setLsItem } from "Scripts/LocalStorageHelper.js";
-  import { LSKeyEnums } from "Scripts/enum.js";
+  import { setLsItem } from "Scripts/LocalStorageHelper.js";
+  import { LSKeyEnums, AppStateEnums } from "Scripts/enum.js";
   import SimulateLoadTime from "Scripts/SimulateLoadTime.js";
 
   // Eventually this will come from database
@@ -22,12 +22,18 @@
   // Reactive variables
   $: lessonIndex = $LESSONS.index;
 
+  const dispatch = createEventDispatcher();
+
   function selectLesson({ detail }) {
     updateLessonIndex(detail);
   }
 
   function lessonEnded() {
     updateLessonIndex(-1);
+  }
+
+  function triggerChangeDifficulty() {
+    dispatch("changeDifficulty", AppStateEnums.appStart);
   }
 
   function updateLessonIndex(index) {
@@ -58,12 +64,20 @@
   <div class="container">
     <div class="inner">
       <h1>Lesson Select</h1>
+
       {#if !$LESSONS.allLessons.length}
         <Loading />
       {:else}
+        <p>Select a lesson.</p>
         <LessonList
           on:lessonSelect={selectLesson}
           lessons={$LESSONS.allLessons} />
+
+        <div class="btns">
+          <button class="btn" on:click|once={() => triggerChangeDifficulty()}>
+            Change Difficulty
+          </button>
+        </div>
       {/if}
 
     </div>

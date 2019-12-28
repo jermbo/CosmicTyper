@@ -1,6 +1,6 @@
 <script>
   // Life Cycle
-  import { onMount } from "svelte";
+  import { onMount, createEventDispatcher } from "svelte";
 
   // Components
   import Loading from "UI/Loading.svelte";
@@ -8,14 +8,15 @@
   // Stores
   import { APP_STATE } from "Stores/AppState.js";
   import { USER_OBJ } from "Stores/UserState.js";
+  import { WELCOME_QUESTIONS } from "Stores/WelcomeState.js";
 
   // Helpers and Enums
-  import { getLsItem, setLsItem } from "Scripts/LocalStorageHelper.js";
+  import { setLsItem } from "Scripts/LocalStorageHelper.js";
   import { LSKeyEnums, AppStateEnums } from "Scripts/enum.js";
   import SimulateLoadTime from "Scripts/SimulateLoadTime.js";
 
   // Eventually this will come from database
-  import welcomeQuestions from "Data/welcomeQuestions.js";
+  import TEMP_WELCOME_QUESTIONS from "Data/welcomeQuestions.js";
 
   // Reactive variables
   $: qIndex = 0;
@@ -24,7 +25,8 @@
   // Local Variables
   const rightNow = Date.now();
   // Setting Threshold to 18 hours.
-  const resetThreshold = 250; // 1000 * 60 * 60 * 18;
+  const resetThreshold = 10000; // 1000 * 60 * 60 * 18;
+  const dispatch = createEventDispatcher();
 
   function answerQuestion({ key, type }) {
     $USER_OBJ[key] = type;
@@ -32,22 +34,26 @@
 
   function submitAnswers() {
     $USER_OBJ.active_time = Date.now();
+    setLsItem(LSKeyEnums.user, $USER_OBJ);
     updateState(AppStateEnums.lessonSelect);
   }
 
   function updateState(newState) {
-    APP_STATE.update(obj => {
-      obj.state = newState;
+    dispatch("updateState", newState);
+  }
+
+  async function getQuestions() {
+    const questions = await SimulateLoadTime(TEMP_WELCOME_QUESTIONS, 3000);
+    WELCOME_QUESTIONS.update(obj => {
+      obj.push(...questions);
       return obj;
     });
-    setLsItem(LSKeyEnums.state, $APP_STATE);
+    setLsItem(LSKeyEnums.welcomeQuestions, $WELCOME_QUESTIONS);
   }
 
   onMount(async () => {
-    if (rightNow - $USER_OBJ.active_time > resetThreshold) {
-      updateState(AppStateEnums.lessonSelect);
-    } else {
-      // clear stuff
+    if (!$WELCOME_QUESTIONS.length) {
+      getQuestions();
     }
   });
 </script>
@@ -55,16 +61,14 @@
 <div class="container">
   <div class="inner">
     <h1>Welcome To Typer</h1>
-    {#if !appState}
+    {#if !$WELCOME_QUESTIONS.length}
       <Loading />
-    {/if}
-
-    {#if appState == AppStateEnums.appStart}
+    {:else}
       <p>Please answer a couple of questions before we get started.</p>
 
       <section class="question">
-        <h1 class="question__title">{welcomeQuestions[qIndex].question}</h1>
-        {#each welcomeQuestions[qIndex].possibleAnswers as answer}
+        <h1 class="question__title">{$WELCOME_QUESTIONS[qIndex].question}</h1>
+        {#each $WELCOME_QUESTIONS[qIndex].possibleAnswers as answer}
           <button
             class="btn"
             class:selected={answer.action.type == $USER_OBJ[answer.action.key]}
@@ -75,9 +79,9 @@
       </section>
 
       <div class="btns">
-        {#if qIndex < welcomeQuestions.length - 1}
+        {#if qIndex < $WELCOME_QUESTIONS.length - 1}
           <button class="btn" on:click={() => qIndex++}>Next</button>
-        {:else if qIndex > 0 && qIndex < welcomeQuestions.length - 1}
+        {:else if qIndex > 0 && qIndex < $WELCOME_QUESTIONS.length - 1}
           <button class="btn -secondary" on:click={() => qIndex--}>
             Previous
           </button>

@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
-import { getLsItem, setLsItem } from "../scripts/LocalStorageHelper";
-import { LSKeyEnums } from "../scripts/enum";
+import { getLsItem, setLsItem } from "Scripts/LocalStorageHelper";
+import { LSKeyEnums } from "Scripts/enum";
 
 const defaultLessonData = {
   allLessons: [],
@@ -9,6 +9,5 @@ const defaultLessonData = {
 };
 
 export const LESSONS = writable(
-  getLsItem(LSKeyEnums.lessons) ||
-    setLsItem(LSKeyEnums.lessons, defaultLessonData)
+  getLsItem(LSKeyEnums.lessons) || setLsItem(LSKeyEnums.lessons, defaultLessonData)
 );

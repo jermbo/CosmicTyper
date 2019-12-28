@@ -9,10 +9,21 @@
 
   // Stores
   import { APP_STATE, IS_DEBUG } from "./stores/AppState.js";
-  import { AppStateEnums } from "./scripts/enum.js";
+
+  // Helpers and Enums
+  import { setLsItem } from "Scripts/LocalStorageHelper.js";
+  import { LSKeyEnums, AppStateEnums } from "./scripts/enum.js";
 
   // Reactive variables
   $: appState = $APP_STATE.state;
+
+  function changeAppState({ detail }) {
+    APP_STATE.update(obj => {
+      obj.state = detail;
+      return obj;
+    });
+    setLsItem(LSKeyEnums.state, $APP_STATE);
+  }
 
   onMount(() => {
     // check to see if things need to be reset
@@ -29,11 +40,11 @@
   {/if}
 
   {#if !appState || appState == AppStateEnums.appStart}
-    <WelcomeScreen />
+    <WelcomeScreen on:updateState={changeAppState} />
   {/if}
 
   {#if appState == AppStateEnums.lessonSelect}
-    <Lessons />
+    <Lessons on:changeDifficulty={changeAppState} />
   {/if}
 
 </main>

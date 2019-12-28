@@ -60,6 +60,7 @@
   function endLesson(index) {
     dispatch("endLesson", index);
   }
+
   function lessonNav(direction) {
     updateRenderView();
 

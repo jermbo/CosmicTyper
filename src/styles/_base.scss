@@ -25,15 +25,17 @@ main {
 }
 
 .app-state {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: $padding/2;
   position: fixed;
   width: 100%;
   bottom: 0;
   left: 0;
-  background: $accent;
+  background: rgba($accent, 0.4);
   text-align: right;
   z-index: 100;
-  opacity: 0.5;
 }
 
 .container {
