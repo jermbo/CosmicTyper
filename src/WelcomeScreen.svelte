@@ -11,7 +11,8 @@
 
   // Helpers and Enums
   import { getLsItem, setLsItem } from "./scripts/LocalStorageHelper.js";
-  import { LSKeyEnums } from "./scripts/enum.js";
+  import { LSKeyEnums, AppStateEnums } from "./scripts/enum.js";
+  import SimulateLoadTime from "./scripts/SimulateLoadTime.js";
 
   // Eventually this will come from database
   import welcomeQuestions from "./data/welcomeQuestions.js";
@@ -31,7 +32,7 @@
 
   function submitAnswers() {
     $USER_OBJ.active_time = Date.now();
-    updateState("LESSON_SELECT");
+    updateState(AppStateEnums.lessonSelect);
   }
 
   function updateState(newState) {
@@ -44,7 +45,7 @@
 
   onMount(async () => {
     if (rightNow - $USER_OBJ.active_time > resetThreshold) {
-      updateState("LESSON_SELECT");
+      updateState(AppStateEnums.lessonSelect);
     } else {
       // clear stuff
     }
@@ -58,7 +59,7 @@
       <Loading />
     {/if}
 
-    {#if appState == 'WELCOME_SCREEN'}
+    {#if appState == AppStateEnums.appStart}
       <p>Please answer a couple of questions before we get started.</p>
 
       <section class="question">

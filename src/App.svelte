@@ -4,11 +4,12 @@
 
   // Components
   import WelcomeScreen from "./WelcomeScreen.svelte";
+  import AppState from "./components/UI/AppState.svelte";
   import Lessons from "./components/Lesson/Lessons.svelte";
 
   // Stores
-  import { APP_STATE } from "./stores/AppState.js";
-  import { LESSONS } from "./stores/LessonsState.js";
+  import { APP_STATE, IS_DEBUG } from "./stores/AppState.js";
+  import { AppStateEnums } from "./scripts/enum.js";
 
   // Reactive variables
   $: appState = $APP_STATE.state;
@@ -23,15 +24,15 @@
 </style>
 
 <main>
-  <p class="app-state">
-    App State: {appState} | Lesson Index: {$LESSONS.index}
-  </p>
+  {#if $IS_DEBUG}
+    <AppState />
+  {/if}
 
-  {#if !appState || appState == 'WELCOME_SCREEN'}
+  {#if !appState || appState == AppStateEnums.appStart}
     <WelcomeScreen />
   {/if}
 
-  {#if appState == 'LESSON_SELECT'}
+  {#if appState == AppStateEnums.lessonSelect}
     <Lessons />
   {/if}
 
