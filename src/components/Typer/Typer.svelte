@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
 
-  import { HTML_CODE, CSS_CODE } from "../../stores/CodeState.js";
+  import { HTML_CODE, CSS_CODE } from "Stores/CodeState.js";
 
   export let lesson;
 

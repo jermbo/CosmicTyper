@@ -4,8 +4,8 @@
 
   // Components
   import WelcomeScreen from "./WelcomeScreen.svelte";
-  import AppState from "./components/UI/AppState.svelte";
-  import Lessons from "./components/Lesson/Lessons.svelte";
+  import AppState from "UI/AppState.svelte";
+  import Lessons from "Comps/Lesson/Lessons.svelte";
 
   // Stores
   import { APP_STATE, IS_DEBUG } from "./stores/AppState.js";

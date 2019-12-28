@@ -3,19 +3,19 @@
   import { onMount } from "svelte";
 
   // Components
-  import Loading from "./components/UI/Loading.svelte";
+  import Loading from "UI/Loading.svelte";
 
   // Stores
-  import { APP_STATE } from "./stores/AppState.js";
-  import { USER_OBJ } from "./stores/UserState.js";
+  import { APP_STATE } from "Stores/AppState.js";
+  import { USER_OBJ } from "Stores/UserState.js";
 
   // Helpers and Enums
-  import { getLsItem, setLsItem } from "./scripts/LocalStorageHelper.js";
-  import { LSKeyEnums, AppStateEnums } from "./scripts/enum.js";
-  import SimulateLoadTime from "./scripts/SimulateLoadTime.js";
+  import { getLsItem, setLsItem } from "Scripts/LocalStorageHelper.js";
+  import { LSKeyEnums, AppStateEnums } from "Scripts/enum.js";
+  import SimulateLoadTime from "Scripts/SimulateLoadTime.js";
 
   // Eventually this will come from database
-  import welcomeQuestions from "./data/welcomeQuestions.js";
+  import welcomeQuestions from "Data/welcomeQuestions.js";
 
   // Reactive variables
   $: qIndex = 0;

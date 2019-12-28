@@ -3,9 +3,9 @@
   import { createEventDispatcher } from "svelte";
 
   // Components
-  import Typer from "../Typer/Typer.svelte";
-  import HTMLRender from "../Typer/HTMLRender.svelte";
-  import CodeDisplay from "../Typer/CodeDisplay.svelte";
+  import Typer from "Comps/Typer/Typer.svelte";
+  import HTMLRender from "Comps/Typer/HTMLRender.svelte";
+  import CodeDisplay from "Comps/Typer/CodeDisplay.svelte";
 
   // Props - Imports
   export let lesson;

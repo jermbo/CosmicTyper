@@ -1,7 +1,7 @@
 <script>
   // Stores
-  import { APP_STATE } from "../../stores/AppState.js";
-  import { LESSONS } from "../../stores/LessonsState.js";
+  import { APP_STATE } from "Stores/AppState.js";
+  import { LESSONS } from "Stores/LessonsState.js";
 
   // Reactive variables
   $: appState = $APP_STATE.state;
