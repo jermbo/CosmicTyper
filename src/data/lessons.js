@@ -1,16 +1,16 @@
 export default [
   {
-    categories: ["general", "beginner"],
-    title: "General Typing",
+    categories: ["typing", "easy"],
+    title: "General Typing Easy",
     steps: [
       {
-        type: "general",
+        type: "typing",
         desc: null,
         action: ["This is a story"],
         render: true
       },
       {
-        type: "general",
+        type: "typing",
         desc: null,
         action: ["All about how"],
         render: true
@@ -18,7 +18,25 @@ export default [
     ]
   },
   {
-    categories: ["html", "css", "beginner"],
+    categories: ["typing", "hard"],
+    title: "General Typing Hard",
+    steps: [
+      {
+        type: "typing",
+        desc: null,
+        action: ["This is a story"],
+        render: true
+      },
+      {
+        type: "typing",
+        desc: null,
+        action: ["All about how"],
+        render: true
+      }
+    ]
+  },
+  {
+    categories: ["html-css", "easy"],
     title: "The First Lesson",
     steps: [
       {
@@ -51,8 +69,21 @@ export default [
     ]
   },
   {
-    categories: ["html", "css", "beginner"],
+    categories: ["html-css", "easy"],
     title: "The Second Lesson",
+    steps: [
+      {
+        type: "dom",
+        desc:
+          "This is the H1 heading tag. Our most important tag. Type out the tag and the words in between.",
+        action: ["<h1>largest heading</h1>"],
+        render: true
+      }
+    ]
+  },
+  {
+    categories: ["html-css", "hard"],
+    title: "The Third Lesson",
     steps: [
       {
         type: "dom",

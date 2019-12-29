@@ -4,7 +4,7 @@ import { LSKeyEnums } from "../scripts/enum";
 
 const defaultUser = {
   lesson_type: "html-css",
-  level: "easy",
+  difficulty: "easy",
   active_time: Date.now()
 };
 

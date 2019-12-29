@@ -1,7 +1,7 @@
 export default [
   {
     question: "What would you like to practice today?",
-    possibleAnswers: [
+    possible_answers: [
       {
         label: "HTML & CSS",
         action: {
@@ -20,18 +20,18 @@ export default [
   },
   {
     question: "Would you like a challenge or take it easy today?",
-    possibleAnswers: [
+    possible_answers: [
       {
         label: "Take it easy",
         action: {
-          key: "level",
+          key: "difficulty",
           type: "easy"
         }
       },
       {
         label: "Challenge Me",
         action: {
-          key: "level",
+          key: "difficulty",
           type: "hard"
         }
       }

@@ -47,15 +47,36 @@
   async function getLessons() {
     const lessons = await SimulateLoadTime(LESSONS_FROM_STORAGE, 2500);
     LESSONS.update(obj => {
-      obj.allLessons.push(...lessons);
+      obj.all_lessons.push(...lessons);
       return obj;
     });
+    setLsItem(LSKeyEnums.lessons, $LESSONS);
+    filterLessons();
+  }
+
+  function filterLessons() {
+    const lessons = $LESSONS.all_lessons;
+    const lessonType = $USER_OBJ.lesson_type;
+    const difficulty = $USER_OBJ.difficulty;
+    const filtered_lessons = lessons.filter(
+      lesson =>
+        lesson.categories.includes(lessonType) &&
+        lesson.categories.includes(difficulty)
+    );
+
+    LESSONS.update(obj => {
+      obj.filtered_lessons = [...filtered_lessons];
+      return obj;
+    });
+
     setLsItem(LSKeyEnums.lessons, $LESSONS);
   }
 
   onMount(async () => {
-    if (!$LESSONS.allLessons.length) {
+    if (!$LESSONS.all_lessons.length) {
       getLessons();
+    } else {
+      filterLessons();
     }
   });
 </script>
@@ -65,13 +86,13 @@
     <div class="inner">
       <h1>Lesson Select</h1>
 
-      {#if !$LESSONS.allLessons.length}
+      {#if !$LESSONS.filtered_lessons.length}
         <Loading text="Loading Lessons...." />
       {:else}
         <p>Select a lesson.</p>
         <LessonList
           on:lessonSelect={selectLesson}
-          lessons={$LESSONS.allLessons} />
+          lessons={$LESSONS.filtered_lessons} />
 
         <div class="btns">
           <button class="btn" on:click|once={() => triggerChangeDifficulty()}>
@@ -85,5 +106,5 @@
 {:else if lessonIndex >= 0}
   <Lesson
     on:sectionFinished={lessonEnded}
-    lesson={$LESSONS.allLessons[lessonIndex]} />
+    lesson={$LESSONS.filtered_lessons[lessonIndex]} />
 {/if}

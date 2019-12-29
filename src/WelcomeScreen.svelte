@@ -65,7 +65,7 @@
 
       <section class="question">
         <h1 class="question__title">{$WELCOME_QUESTIONS[qIndex].question}</h1>
-        {#each $WELCOME_QUESTIONS[qIndex].possibleAnswers as answer}
+        {#each $WELCOME_QUESTIONS[qIndex].possible_answers as answer}
           <button
             class="btn"
             class:selected={answer.action.type == $USER_OBJ[answer.action.key]}

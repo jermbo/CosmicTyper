@@ -3,9 +3,9 @@ import { getLsItem, setLsItem } from "Scripts/LocalStorageHelper";
 import { LSKeyEnums } from "Scripts/enum";
 
 const defaultLessonData = {
-  allLessons: [],
+  all_lessons: [],
   index: -1,
-  filteredLessons: []
+  filtered_lessons: []
 };
 
 export const LESSONS = writable(
