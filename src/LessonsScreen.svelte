@@ -7,9 +7,9 @@
   import { USER_OBJ } from "Stores/UserState.js";
 
   // Components
-  import Loading from "../UI/Loading.svelte";
-  import LessonList from "./LessonList.svelte";
-  import Lesson from "./Lesson.svelte";
+  import Loading from "UI/Loading.svelte";
+  import LessonList from "Comps/Lesson/LessonList.svelte";
+  import Lesson from "Comps/Lesson/Lesson.svelte";
 
   // Helpers and Enums
   import { setLsItem } from "Scripts/LocalStorageHelper.js";

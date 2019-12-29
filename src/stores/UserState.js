@@ -3,7 +3,7 @@ import { getLsItem, setLsItem } from "../scripts/LocalStorageHelper";
 import { LSKeyEnums } from "../scripts/enum";
 
 const defaultUser = {
-  lesson: "html-css",
+  lesson_type: "html-css",
   level: "easy",
   active_time: Date.now()
 };

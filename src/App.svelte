@@ -3,9 +3,9 @@
   import { beforeUpdate } from "svelte";
 
   // Components
-  import WelcomeScreen from "./WelcomeScreen.svelte";
   import AppState from "UI/AppState.svelte";
-  import Lessons from "Comps/Lesson/Lessons.svelte";
+  import WelcomeScreen from "./WelcomeScreen.svelte";
+  import LessonsScreen from "./LessonsScreen.svelte";
 
   // Stores
   import { APP_STATE, IS_DEBUG } from "Stores/AppState.js";
@@ -20,7 +20,7 @@
 
   const rightNow = Date.now();
   // Setting Threshold to 18 hours.
-  const resetThreshold = 50000; // 1000 * 60 * 60 * 18;
+  const resetThreshold = 1000 * 60 * 60 * 18;
 
   function changeAppState({ detail }) {
     APP_STATE.update(obj => {
@@ -32,11 +32,8 @@
 
   beforeUpdate(() => {
     if (rightNow - $USER_OBJ.active_time > resetThreshold) {
-      console.log("threshold");
       localStorage.clear();
       window.location.reload();
-    } else {
-      console.log("not threshold");
     }
   });
 </script>
@@ -55,7 +52,7 @@
   {/if}
 
   {#if appState == AppStateEnums.lessonSelect}
-    <Lessons on:changeDifficulty={changeAppState} />
+    <LessonsScreen on:changeDifficulty={changeAppState} />
   {/if}
 
 </main>

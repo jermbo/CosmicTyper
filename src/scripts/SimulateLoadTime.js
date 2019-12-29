@@ -5,11 +5,3 @@ export default function SimulateLoadTime(data, waitTime = 250) {
     }, waitTime);
   });
 }
-
-// function simulateDataLoad(data) {
-//   return new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//       resolve(data);
-//     }, 5000);
-//   });
-// }

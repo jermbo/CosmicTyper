@@ -1,24 +1,20 @@
 <script>
-  // Life Cycle
-  import { createEventDispatcher } from "svelte";
+  // Stores
+  import { LESSONS } from "Stores/LessonsState.js";
+  import { USER_OBJ } from "Stores/UserState.js";
 
   // Components
-  import Typer from "Comps/Typer/Typer.svelte";
-  import HTMLRender from "Comps/Typer/HTMLRender.svelte";
-  import CodeDisplay from "Comps/Typer/CodeDisplay.svelte";
+  import CodeGUI from "Comps/CodeGUI/CodeGUI.svelte";
+  import TypingGUI from "Comps/TypingGUI/TypingGUI.svelte";
 
   // Props - Imports
   export let lesson;
 
-  // Local Variables
-  const dispatch = createEventDispatcher();
-
-  function onLessonEnded() {
-    alert("all done");
-    dispatch("sectionFinished");
-  }
+  $: lessonType = $USER_OBJ.lesson_type;
 </script>
 
-<Typer on:endLesson={onLessonEnded} {lesson} />
-<HTMLRender />
-<CodeDisplay />
+{#if lessonType == 'html-css'}
+  <CodeGUI {lesson} />
+{:else}
+  <TypingGUI {lesson} />
+{/if}
