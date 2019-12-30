@@ -8,6 +8,50 @@ const defaultLessonData = {
   filtered_lessons: []
 };
 
-export const LESSONS = writable(
-  getLsItem(LSKeyEnums.lessons) || setLsItem(LSKeyEnums.lessons, defaultLessonData)
-);
+function CreateLessonObj() {
+  const { subscribe, set, update } = writable(
+    getLsItem(LSKeyEnums.lessons) || setLsItem(LSKeyEnums.lessons, defaultLessonData)
+  );
+
+  function changeIndex(newIndex) {
+    update(obj => {
+      obj.index = newIndex;
+      __setLocalStorage(obj);
+      return obj;
+    });
+  }
+
+  function setAllLessons(lessons) {
+    update(obj => {
+      obj.all_lessons.push(...lessons);
+      __setLocalStorage(obj);
+      return obj;
+    });
+  }
+
+  function setFilteredLessons(lessonType, difficulty) {
+    const lessons = getLsItem(LSKeyEnums.lessons).all_lessons;
+    const filtered_lessons = lessons.filter(
+      lesson => lesson.categories.includes(lessonType) && lesson.categories.includes(difficulty)
+    );
+
+    update(obj => {
+      obj.filtered_lessons = filtered_lessons;
+      __setLocalStorage(obj);
+      return obj;
+    });
+  }
+
+  function __setLocalStorage(obj) {
+    setLsItem(LSKeyEnums.lessons, obj);
+  }
+
+  return {
+    subscribe,
+    setAllLessons,
+    setFilteredLessons,
+    changeIndex
+  };
+}
+
+export const LESSONS = CreateLessonObj();

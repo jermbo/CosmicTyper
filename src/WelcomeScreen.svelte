@@ -26,12 +26,10 @@
   const dispatch = createEventDispatcher();
 
   function answerQuestion({ key, type }) {
-    $USER_OBJ[key] = type;
+    USER_OBJ.change(key, type);
   }
 
   function submitAnswers() {
-    $USER_OBJ.active_time = Date.now();
-    setLsItem(LSKeyEnums.user, $USER_OBJ);
     updateState(AppStateEnums.lessonSelect);
   }
 

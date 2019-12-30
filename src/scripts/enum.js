@@ -7,7 +7,7 @@ export const LSKeyEnums = {
 
 export const AppStateEnums = {
   appStart: "WELCOME_SCREEN",
-  lessonSelect: "LESSON_SELECT",
+  lessonSelect: "LESSON_SCREEN",
   lessonStart: "LESSON_START",
   lessonEnd: "LESSON_END"
 };

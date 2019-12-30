@@ -37,39 +37,19 @@
   }
 
   function updateLessonIndex(index) {
-    LESSONS.update(obj => {
-      obj.index = index;
-      return obj;
-    });
-    setLsItem(LSKeyEnums.lessons, $LESSONS);
+    LESSONS.changeIndex(index);
   }
 
   async function getLessons() {
     const lessons = await SimulateLoadTime(LESSONS_FROM_STORAGE, 2500);
-    LESSONS.update(obj => {
-      obj.all_lessons.push(...lessons);
-      return obj;
-    });
-    setLsItem(LSKeyEnums.lessons, $LESSONS);
+    LESSONS.setAllLessons(lessons);
     filterLessons();
   }
 
   function filterLessons() {
-    const lessons = $LESSONS.all_lessons;
     const lessonType = $USER_OBJ.lesson_type;
     const difficulty = $USER_OBJ.difficulty;
-    const filtered_lessons = lessons.filter(
-      lesson =>
-        lesson.categories.includes(lessonType) &&
-        lesson.categories.includes(difficulty)
-    );
-
-    LESSONS.update(obj => {
-      obj.filtered_lessons = [...filtered_lessons];
-      return obj;
-    });
-
-    setLsItem(LSKeyEnums.lessons, $LESSONS);
+    LESSONS.setFilteredLessons(lessonType, difficulty);
   }
 
   onMount(async () => {

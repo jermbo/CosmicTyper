@@ -23,11 +23,7 @@
   const resetThreshold = 1000 * 60 * 60 * 18;
 
   function changeAppState({ detail }) {
-    APP_STATE.update(obj => {
-      obj.state = detail;
-      return obj;
-    });
-    setLsItem(LSKeyEnums.state, $APP_STATE);
+    APP_STATE.setState(detail);
   }
 
   beforeUpdate(() => {

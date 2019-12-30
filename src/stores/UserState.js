@@ -8,6 +8,35 @@ const defaultUser = {
   active_time: Date.now()
 };
 
-export const USER_OBJ = writable(
-  getLsItem(LSKeyEnums.user) || setLsItem(LSKeyEnums.user, defaultUser)
-);
+function CreateUserObj() {
+  const { subscribe, set, update } = writable(
+    getLsItem(LSKeyEnums.user) || setLsItem(LSKeyEnums.user, defaultUser)
+  );
+
+  function save() {
+    update(obj => {
+      obj.active_time = Date.now();
+      __setLocalStorage(obj);
+      return obj;
+    });
+  }
+  function change(key, value) {
+    update(obj => {
+      obj[key] = value;
+      __setLocalStorage(obj);
+      return obj;
+    });
+  }
+
+  function __setLocalStorage(obj) {
+    setLsItem(LSKeyEnums.user, obj);
+  }
+
+  return {
+    subscribe,
+    save,
+    change
+  };
+}
+
+export const USER_OBJ = CreateUserObj();
