@@ -1,9 +1,18 @@
 # User Flow
 
-Loading Screen [STATE = LOADING]
-Welcome Page [STATE = USER_INPUT]
--> Select Type of Lessons ( HTML & CSS or General Typing )
---> Choose Difficulty Preference ( Easy, Medium, Hard )
+App
 
---> Lesson Select [STATE = LESSON_SELECT]
----> Start Lesson [STATE = LESSON_STARTED]
+- App State
+- Welcome Screen
+  -- Loading
+- Lesson Screen
+  -- Loading
+  -- Lesson List
+  -- Lesson
+  --- CodeGUI
+  ---- Typer
+  ---- HTMLOutput
+  ---- CodeOutput
+  --- TypingGUI
+  ---- Typer
+  ---- TextOutput
