@@ -1,4 +1,7 @@
 <script>
+  // Life Cycle
+  import { createEventDispatcher } from "svelte";
+
   // Stores
   import { LESSONS } from "Stores/LessonsState.js";
   import { USER_OBJ } from "Stores/UserState.js";
@@ -10,11 +13,18 @@
   // Props - Imports
   export let lesson;
 
+  // Local Variables
+  const dispatch = createEventDispatcher();
+
   $: lessonType = $USER_OBJ.lesson_type;
+
+  function sectionFinished() {
+    dispatch("sectionFinished");
+  }
 </script>
 
 {#if lessonType == 'html-css'}
-  <CodeGUI {lesson} />
+  <CodeGUI on:sectionFinished={sectionFinished} {lesson} />
 {:else}
   <TypingGUI {lesson} />
 {/if}
