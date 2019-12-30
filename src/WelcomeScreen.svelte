@@ -39,11 +39,7 @@
 
   async function getQuestions() {
     const questions = await SimulateLoadTime(TEMP_WELCOME_QUESTIONS, 3000);
-    WELCOME_QUESTIONS.update(obj => {
-      obj.push(...questions);
-      return obj;
-    });
-    setLsItem(LSKeyEnums.welcomeQuestions, $WELCOME_QUESTIONS);
+    WELCOME_QUESTIONS.setQuestions(questions);
   }
 
   onMount(async () => {

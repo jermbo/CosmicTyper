@@ -2,8 +2,27 @@ import { writable } from "svelte/store";
 import { getLsItem, setLsItem } from "Scripts/LocalStorageHelper";
 import { LSKeyEnums } from "Scripts/enum";
 
-const defaultQuestions = [];
+function CreateWelcomeState() {
+  const { subscribe, set, update } = writable(
+    getLsItem(LSKeyEnums.welcomeQuestions) || setLsItem(LSKeyEnums.welcomeQuestions, [])
+  );
 
-export const WELCOME_QUESTIONS = writable(
-  getLsItem(LSKeyEnums.welcomeQuestions) || setLsItem(LSKeyEnums.welcomeQuestions, defaultQuestions)
-);
+  function setQuestions(questions) {
+    update(obj => {
+      obj.push(...questions);
+      __setLocalStorage(obj);
+      return obj;
+    });
+  }
+
+  function __setLocalStorage(obj) {
+    setLsItem(LSKeyEnums.welcomeQuestions, obj);
+  }
+
+  return {
+    subscribe,
+    setQuestions
+  };
+}
+
+export const WELCOME_QUESTIONS = CreateWelcomeState();
