@@ -1,0 +1,32 @@
+// sass-lint:disable-all
+@function color($color-name, $color-variant: base, $hex: false, $rgb: false) {
+  @if $hex == true {
+    @return map-get(map-get($colors, $color-name), $color-variant);
+  } @else {
+    @return var(--color-#{$color-name}-#{$color-variant});
+  }
+}
+
+@function font($category: text, $font-size: md) {
+  @return var(--font-#{$category}-#{$font-size});
+}
+
+@function layout($category: padding, $size: base) {
+  @return var(--layout-#{$category}-#{$size});
+}
+
+@function capitalize($string) {
+  @return to-upper-case(str-slice($string, 1, 1)) + str-slice($string, 2);
+}
+
+@mixin min-screen($size) {
+  @media (min-width: map-get($grid-breakpoints, $size)) {
+    @content;
+  }
+}
+
+@mixin max-screen($size) {
+  @media (max-width: map-get($grid-breakpoints, $size)) {
+    @content;
+  }
+}

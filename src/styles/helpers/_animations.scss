@@ -1,18 +1,18 @@
 @keyframes flashError {
   0% {
-    background: rgba($danger, 1);
+    background: rgba(color(status, danger), 1);
   }
   100% {
-    background: rgba($danger, 0);
+    background: rgba(color(status, danger), 0);
   }
 }
 
 @keyframes blink {
   0%,
   100% {
-    background: rgba($accent, 1);
+    background: rgba(color(status, success-rgb), 1);
   }
   50% {
-    background: rgba($accent, 0);
+    background: rgba(color(status, success-rgb), 0);
   }
 }

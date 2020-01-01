@@ -1,0 +1,46 @@
+:root {
+  /*
+  * -------
+  * Layout
+  * -------
+  */
+  @each $name, $size in $layout {
+    /*** Layout - #{capitalize($name)} ***/
+    @each $n, $c in $size {
+      --layout-#{$name}-#{$n}: #{$c};
+    }
+  }
+
+  /*
+  * -------
+  * Colors
+  * -------
+  */
+  @each $name, $color in $colors {
+    /*** Color - #{capitalize($name)} ***/
+    @each $n, $c in $color {
+      --color-#{$name}-#{$n}: #{$c};
+    }
+    @each $n, $c in $color {
+      --color-#{$name}-#{$n}-rgb: #{red($c), green($c), blue($c)};
+    }
+  }
+
+  /*
+  * -------
+  * Text
+  * -------
+  */
+  @each $name, $size in $fonts {
+    /*** Font - #{capitalize($name)} ***/
+    @each $n, $s in $size {
+      --font-#{$name}-#{$n}: #{$s};
+    }
+  }
+  @each $name, $size in $font-sizes {
+    /*** #{capitalize($name)} - Sizes ***/
+    @each $n, $s in $size {
+      --font-#{$name}-#{$n}: #{$s};
+    }
+  }
+}
