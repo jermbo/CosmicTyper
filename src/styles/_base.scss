@@ -18,6 +18,11 @@ p {
   margin: 0;
 }
 
+a {
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
 main {
   overflow: hidden;
   height: 100vh;

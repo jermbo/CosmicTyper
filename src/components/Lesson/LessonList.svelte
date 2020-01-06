@@ -13,10 +13,15 @@
   }
 </script>
 
-<div class="lessons-select">
+<ul class="lesson-list">
   {#each lessons as lesson, index}
-    <button class="btn" on:click|preventDefault={() => selectLesson(index)}>
-      {lesson.title}
-    </button>
+    <li class="lesson-item" class:hasCompleted={lesson.hasCompleted}>
+      <a
+        href="#"
+        class="lesson-link"
+        on:click|preventDefault={() => selectLesson(index)}>
+        {lesson.title}
+      </a>
+    </li>
   {/each}
-</div>
+</ul>

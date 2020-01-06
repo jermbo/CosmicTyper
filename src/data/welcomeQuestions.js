@@ -8,14 +8,14 @@ export default [
           key: "lesson_type",
           type: "html-css"
         }
-      },
-      {
-        label: "General Typing",
-        action: {
-          key: "lesson_type",
-          type: "typing"
-        }
       }
+      // {
+      //   label: "General Typing",
+      //   action: {
+      //     key: "lesson_type",
+      //     type: "typing"
+      //   }
+      // }
     ]
   },
   {
