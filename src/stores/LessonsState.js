@@ -5,12 +5,12 @@ import { LSKeyEnums } from "Scripts/enum";
 const defaultLessonData = {
   all_lessons: [],
   index: -1,
-  filtered_lessons: []
+  filtered_lessons: [],
 };
 
 function CreateLessonObj() {
-  const { subscribe, set, update } = writable(
-    getLsItem(LSKeyEnums.lessons) || setLsItem(LSKeyEnums.lessons, defaultLessonData)
+  const { subscribe, update } = writable(
+    getLsItem(LSKeyEnums.lessons) || setLsItem(LSKeyEnums.lessons, defaultLessonData),
   );
 
   function changeIndex(newIndex) {
@@ -32,7 +32,7 @@ function CreateLessonObj() {
   function setFilteredLessons(lessonType, difficulty) {
     const lessons = getLsItem(LSKeyEnums.lessons).all_lessons;
     const filtered_lessons = lessons.filter(
-      lesson => lesson.categories.includes(lessonType) && lesson.categories.includes(difficulty)
+      lesson => lesson.categories.includes(lessonType) && lesson.categories.includes(difficulty),
     );
 
     update(obj => {
@@ -50,7 +50,7 @@ function CreateLessonObj() {
     subscribe,
     setAllLessons,
     setFilteredLessons,
-    changeIndex
+    changeIndex,
   };
 }
 

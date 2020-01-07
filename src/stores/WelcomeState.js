@@ -3,8 +3,8 @@ import { getLsItem, setLsItem } from "Scripts/LocalStorageHelper";
 import { LSKeyEnums } from "Scripts/enum";
 
 function CreateWelcomeState() {
-  const { subscribe, set, update } = writable(
-    getLsItem(LSKeyEnums.welcomeQuestions) || setLsItem(LSKeyEnums.welcomeQuestions, [])
+  const { subscribe, update } = writable(
+    getLsItem(LSKeyEnums.welcomeQuestions) || setLsItem(LSKeyEnums.welcomeQuestions, []),
   );
 
   function setQuestions(questions) {
@@ -21,7 +21,7 @@ function CreateWelcomeState() {
 
   return {
     subscribe,
-    setQuestions
+    setQuestions,
   };
 }
 

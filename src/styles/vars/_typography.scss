@@ -6,13 +6,13 @@ $fonts: (
   family: (
     title: "Roboto",
     text: "Roboto",
-    line-height: 1.75em
+    line-height: 1.75em,
   ),
   weight: (
     light: 200,
     normal: 400,
-    bold: 700
-  )
+    bold: 700,
+  ),
 );
 
 $font-sizes: (
@@ -21,15 +21,15 @@ $font-sizes: (
     sm: $font-size-base - 0.15,
     md: $font-size-base,
     lg: $font-size-base + 0.25,
-    xl: $font-size-base + 0.5
+    xl: $font-size-base + 0.5,
   ),
   title: (
     xs: $font-size-base,
     sm: $font-size-base + 0.25,
     md: $font-size-base + 0.75,
     lg: $font-size-base + 1.25,
-    xl: $font-size-base + 1.5
-  )
+    xl: $font-size-base + 1.5,
+  ),
 );
 
 // sass-lint:disable-all
@@ -41,10 +41,7 @@ $font-sizes: (
   @media (min-width: $min-vw) {
     @each $property in $properties {
       #{$property}: calc(
-        #{$min-value} +
-          #{strip-unit($max-value - $min-value)} *
-          (100vw - #{$min-vw}) /
-          #{strip-unit($max-vw - $min-vw)}
+        #{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}
       );
     }
   }

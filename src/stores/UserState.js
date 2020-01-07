@@ -5,13 +5,11 @@ import { LSKeyEnums } from "../scripts/enum";
 const defaultUser = {
   lesson_type: "html-css",
   difficulty: "easy",
-  active_time: Date.now()
+  active_time: Date.now(),
 };
 
 function CreateUserObj() {
-  const { subscribe, set, update } = writable(
-    getLsItem(LSKeyEnums.user) || setLsItem(LSKeyEnums.user, defaultUser)
-  );
+  const { subscribe, update } = writable(getLsItem(LSKeyEnums.user) || setLsItem(LSKeyEnums.user, defaultUser));
 
   function save() {
     update(obj => {
@@ -35,7 +33,7 @@ function CreateUserObj() {
   return {
     subscribe,
     save,
-    change
+    change,
   };
 }
 

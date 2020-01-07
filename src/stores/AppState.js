@@ -5,9 +5,7 @@ import { LSKeyEnums, AppStateEnums } from "Scripts/enum";
 const defaultState = { state: AppStateEnums.appStart, session_start: Date.now() };
 
 function CreateAppState() {
-  const { subscribe, set, update } = writable(
-    getLsItem(LSKeyEnums.state) || setLsItem(LSKeyEnums.state, defaultState)
-  );
+  const { subscribe, update } = writable(getLsItem(LSKeyEnums.state) || setLsItem(LSKeyEnums.state, defaultState));
 
   function setState(detail) {
     update(obj => {
@@ -23,7 +21,7 @@ function CreateAppState() {
 
   return {
     subscribe,
-    setState
+    setState,
   };
 }
 

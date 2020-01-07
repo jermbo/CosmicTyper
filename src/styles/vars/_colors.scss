@@ -29,27 +29,27 @@ $colors: (
   primary: (
     base: $cherry,
     light: $cherry-light,
-    dark: $cherry-dark
+    dark: $cherry-dark,
   ),
   secondary: (
     base: $amber,
     light: $amber-light,
-    dark: $amber-dark
+    dark: $amber-dark,
   ),
   text: (
     light: $grey-2,
     medium: $grey-5,
-    dark: $black
+    dark: $black,
   ),
   bg: (
     white: $white,
     light: $grey-2,
     medium: $grey-4,
     dark: $grey-9,
-    black: $black
+    black: $black,
   ),
   status: (
     danger: $cherry,
-    success: $green
-  )
+    success: $green,
+  ),
 );

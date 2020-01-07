@@ -6,17 +6,10 @@ export default [
         label: "HTML & CSS",
         action: {
           key: "lesson_type",
-          type: "html-css"
-        }
-      }
-      // {
-      //   label: "General Typing",
-      //   action: {
-      //     key: "lesson_type",
-      //     type: "typing"
-      //   }
-      // }
-    ]
+          type: "html-css",
+        },
+      },
+    ],
   },
   {
     question: "Would you like a challenge or take it easy today?",
@@ -25,16 +18,16 @@ export default [
         label: "Take it easy",
         action: {
           key: "difficulty",
-          type: "easy"
-        }
+          type: "easy",
+        },
       },
       {
         label: "Challenge Me",
         action: {
           key: "difficulty",
-          type: "hard"
-        }
-      }
-    ]
-  }
+          type: "hard",
+        },
+      },
+    ],
+  },
 ];
