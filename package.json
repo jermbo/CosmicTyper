@@ -5,7 +5,8 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public"
+    "start": "sirv public",
+    "now-build": "npm run build"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.0.0",
