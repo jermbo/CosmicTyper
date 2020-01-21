@@ -1,11 +1,6 @@
-@import "vars";
-@import "vars/vars";
-@import "helpers/__helpers";
-@import "base";
-
-@import "buttons";
-
-@import "loading";
-@import "lesson";
-@import "codeDisplay";
-@import "render";
+@import "abstracts/index";
+@import "helpers/index";
+@import "base/index";
+@import "components/index";
+@import "helpers/index";
+@import "base/index";
