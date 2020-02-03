@@ -27,6 +27,7 @@ export default {
     alias({
       entries: [
         { find: "Comps", replacement: `${__dirname}/src/components` },
+        { find: "Global", replacement: `${__dirname}/src/components/Global` },
         { find: "UI", replacement: `${__dirname}/src/components/UI` },
         { find: "Stores", replacement: `${__dirname}/src/stores` },
         { find: "Data", replacement: `${__dirname}/src/data` },

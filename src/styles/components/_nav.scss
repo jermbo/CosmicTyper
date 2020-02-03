@@ -1,0 +1,80 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  background: $link-bg-color;
+  height: 100vh;
+  box-shadow: 0 0 5px rgba($black, 0.5);
+}
+
+.nav__link {
+  padding: 1.15rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: color(links, text);
+  background: color(links, bg);
+  position: relative;
+  border-bottom: 1px solid color(links, border);
+  transition: all 0.25s ease;
+  font-size: 0;
+  text-decoration: none;
+
+  &:hover {
+    background: color(links, text);
+    color: color(links, bg);
+  }
+
+  &:before {
+    font-family: FontAwesome;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-indent: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 1.5rem;
+  }
+
+  &.-active {
+    background: $link-color;
+    color: $text-color;
+
+    &:after {
+      content: "";
+      position: absolute;
+      display: inline-block;
+      left: 100%;
+      border: 2.5rem solid transparent;
+      border-left-color: $link-color;
+      border-width: 2rem 0.5rem;
+    }
+  }
+}
+
+$nav: (
+  home: (
+    icon: "\f015"
+  ),
+  code: (
+    icon: "\f121"
+  ),
+  type: (
+    icon: "\f10e"
+  ),
+  // type: (
+  //   icon: "\f8e7"
+  // ),
+  // Pro Icon - I would rather use
+);
+
+@each $type, $icon in $nav {
+  .-#{$type}:before {
+    content: map-get($icon, "icon");
+  }
+}
