@@ -19,46 +19,45 @@ $cherry: #c51d0a;
 $cherry-light: #ff331c;
 $cherry-dark: #861003;
 
-// $green: #11b822;
-// $green-light: #1dee32;
-// $green-dark: #0c8518;
-
 $green: #3b8332;
 $green-light: #5daf52;
 $green-dark: #245a1d;
-
-$ggg: 0, 255, 0;
 
 $colors: (
   primary: (
     base: $cherry,
     light: $cherry-light,
-    dark: $cherry-dark
+    dark: $cherry-dark,
   ),
   secondary: (
     base: $amber,
     light: $amber-light,
-    dark: $amber-dark
+    dark: $amber-dark,
   ),
   text: (
     light: $grey-2,
     medium: $grey-5,
-    dark: $black
+    dark: $black,
   ),
   bg: (
     white: $white,
     light: $grey-2,
     medium: $grey-4,
     dark: $grey-9,
-    black: $black
+    black: $black,
   ),
   status: (
     danger: $cherry,
-    success: $green
+    success: $green,
   ),
   links: (
     text: $green,
     bg: $grey-2,
-    border: #e2fff3
-  )
+    border: #e2fff3,
+  ),
+  buttons: (
+    text: $grey-2,
+    bg: $green,
+    border: $green-light,
+  ),
 );
