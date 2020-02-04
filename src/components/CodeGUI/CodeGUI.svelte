@@ -19,6 +19,14 @@
   }
 </script>
 
-<Typer on:endLesson={onLessonEnded} {lesson} />
-<HTMLOutput />
-<CodeOutput />
+<div class="code-gui">
+  <div class="lesson-area">
+    <Typer on:endLesson={onLessonEnded} {lesson} />
+  </div>
+  <div class="output">
+    <HTMLOutput />
+  </div>
+  <div class="mini-maps">
+    <CodeOutput />
+  </div>
+</div>

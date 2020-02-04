@@ -1,9 +1,5 @@
 .nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  margin: 0;
-  padding: 0;
+  grid-area: 1 / 1 / 1 /1;
   background: $link-bg-color;
   height: 100vh;
   box-shadow: 0 0 5px rgba($black, 0.5);

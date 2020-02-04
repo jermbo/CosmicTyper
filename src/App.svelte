@@ -9,12 +9,17 @@
 <main>
   <Nav />
 
-  <div class="container">
+  <!-- <div class="welcome">
     <header>
       <h1>
         <small>Welcome to</small>
         Typer
       </h1>
+      <p>
+        This is a tool to help you type better. With a little practice every
+        day, you will get faster and more accurate.
+      </p>
     </header>
-  </div>
+  </div> -->
+
 </main>
