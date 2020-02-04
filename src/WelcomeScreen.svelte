@@ -49,7 +49,7 @@
   });
 </script>
 
-<div class="welcome-wrapper">
+<div class="center-wrapper">
   <div class="inner">
     <h1>Welcome To Typer</h1>
     {#if !$WELCOME_QUESTIONS.length}

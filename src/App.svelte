@@ -6,6 +6,7 @@
   import AppState from "UI/AppState.svelte";
   import Nav from "Global/Nav.svelte";
   import WelcomeScreen from "./WelcomeScreen.svelte";
+  import LessonsScreen from "./LessonsScreen.svelte";
 
   // Stores
   import { APP_STATE, IS_DEBUG } from "Stores/AppState.js";
@@ -48,4 +49,7 @@
     <WelcomeScreen on:updateState={changeAppState} />
   {/if}
 
+  {#if appState == AppStateEnums.lessonSelect}
+    <LessonsScreen on:changeDifficulty={changeAppState} />
+  {/if}
 </main>

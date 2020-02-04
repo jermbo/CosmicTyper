@@ -62,7 +62,7 @@
 </script>
 
 {#if lessonIndex == -1}
-  <div class="container">
+  <div class="center-wrapper">
     <div class="inner">
       <h1>Lesson Select</h1>
 
