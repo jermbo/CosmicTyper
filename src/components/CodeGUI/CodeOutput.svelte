@@ -2,12 +2,10 @@
   import { HTML_CODE, CSS_CODE } from "Stores/CodeState.js";
 
   let cssCode;
-  CSS_CODE.subscribe(code => (cssCode = code));
+  CSS_CODE.subscribe((code) => (cssCode = code));
 
   let htmlCode;
-  HTML_CODE.subscribe(code => (htmlCode = code));
-
-  let toggle = false;
+  HTML_CODE.subscribe((code) => (htmlCode = code));
 
   let tabFocus = "html";
 
@@ -16,24 +14,23 @@
   }
 </script>
 
-<div class="code-display" class:hidden={toggle}>
+<div class="code-display">
   <div class="tabs">
     <div class="tab-group">
-      <button
+      <span
         on:click={() => focusTab('html')}
         class="tab"
         class:focus={tabFocus == 'html'}>
         HTML
-      </button>
-      <button
+      </span>
+      <span
         on:click={() => focusTab('css')}
         class="tab"
         class:focus={tabFocus == 'css'}>
         CSS
-      </button>
+      </span>
     </div>
 
-    <button on:click={() => (toggle = !toggle)} class="tab">Toggle</button>
   </div>
   <div class="displays">
     <pre class="display html" class:focus={tabFocus == 'html'}>

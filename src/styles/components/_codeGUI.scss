@@ -1,0 +1,21 @@
+.code-gui {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: minmax(50vh, 85vh) minmax(15vh, 50vh);
+  grid-template-areas:
+    "lesson render render"
+    "lesson minimap minimap";
+  height: 100vh;
+}
+
+.code-area {
+  grid-area: lesson;
+}
+
+.render-view {
+  grid-area: render;
+}
+
+.mini-maps {
+  grid-area: minimap;
+}

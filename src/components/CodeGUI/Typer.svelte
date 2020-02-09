@@ -106,14 +106,14 @@
 
 <svelte:window on:keydown|preventDefault={handleKeydown} />
 
-<div class="lesson-area">
+<div class="code-container">
 
-  <div class="lesson">
-    <h1 class="lesson__title">Lesson:</h1>
-    <p class="lesson__desc">{lesson.steps[currentLesson].desc}</p>
+  <div class="code-lesson">
+    <h1 class="code-lesson__title">Lesson:</h1>
+    <p class="code-lesson__desc">{lesson.steps[currentLesson].desc}</p>
   </div>
 
-  <div class="code">
+  <div class="code-block">
     {#each actionOutput as row, outer}
       <div
         class="row"

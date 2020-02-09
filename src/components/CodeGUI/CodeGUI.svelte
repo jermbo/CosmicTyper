@@ -23,7 +23,7 @@
   <div class="lesson-area">
     <Typer on:endLesson={onLessonEnded} {lesson} />
   </div>
-  <div class="output">
+  <div class="render-view">
     <HTMLOutput />
   </div>
   <div class="mini-maps">
