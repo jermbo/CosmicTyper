@@ -1,0 +1,34 @@
+.lesson-list {
+  max-height: 45vh;
+  width: 75vh;
+  overflow-y: auto;
+}
+
+.lesson-item {
+  list-style: none;
+  width: 100%;
+  border-bottom: 2px solid color(bg, dark);
+}
+
+.lesson-link {
+  display: inline-block;
+  padding: $padding;
+  text-align: left;
+  width: 100%;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  position: relative;
+
+  .hasCompleted &,
+  &:hover {
+    background: color(primary, light);
+  }
+
+  .hasCompleted & {
+    &:after {
+      content: "✔";
+      position: absolute;
+      right: $padding;
+    }
+  }
+}
