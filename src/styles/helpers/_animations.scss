@@ -7,12 +7,12 @@
   }
 }
 
-@keyframes blink {
+@keyframes cursorBlink {
   0%,
   100% {
-    background: rgba(color(status, success-rgb), 1);
+    background: rgba(color(code, cursor-rgb), 1);
   }
   50% {
-    background: rgba(color(status, success-rgb), 0);
+    background: rgba(color(code, cursor-rgb), 0);
   }
 }

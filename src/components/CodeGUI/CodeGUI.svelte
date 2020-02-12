@@ -19,6 +19,19 @@
   }
 </script>
 
-<Typer on:endLesson={onLessonEnded} {lesson} />
-<HTMLOutput />
-<CodeOutput />
+<div class="code-gui">
+  <div class="code-view">
+    <Typer on:endLesson={onLessonEnded} {lesson} />
+  </div>
+  <div class="render-view">
+    <HTMLOutput />
+  </div>
+  <div class="mini-maps">
+    <CodeOutput />
+  </div>
+  <div class="lesson-nav">
+    <button class="btn">Prev Lesson</button>
+    <button class="btn">Next Lesson</button>
+    <button class="btn">Lesson Select</button>
+  </div>
+</div>

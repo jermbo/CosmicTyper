@@ -28,6 +28,21 @@
 
   /*
   * -------
+  * Buttons
+  * -------
+  */
+  @each $name, $color in $buttons {
+    /*** Color - #{capitalize($name)} ***/
+    @each $n, $c in $color {
+      --button-#{$name}-#{$n}: #{$c};
+    }
+    @each $n, $c in $color {
+      --button-#{$name}-#{$n}-rgb: #{red($c), green($c), blue($c)};
+    }
+  }
+
+  /*
+  * -------
   * Text
   * -------
   */

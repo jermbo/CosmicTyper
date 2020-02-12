@@ -17,7 +17,7 @@
   {#each lessons as lesson, index}
     <li class="lesson-item" class:hasCompleted={lesson.hasCompleted}>
       <a
-        href="#"
+        href={null}
         class="lesson-link"
         on:click|preventDefault={() => selectLesson(index)}>
         {lesson.title}

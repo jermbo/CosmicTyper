@@ -8,7 +8,7 @@ function CreateAppState() {
   const { subscribe, update } = writable(getLsItem(LSKeyEnums.state) || setLsItem(LSKeyEnums.state, defaultState));
 
   function setState(detail) {
-    update(obj => {
+    update((obj) => {
       obj.state = detail;
       __setLocalStorage(obj);
       return obj;
@@ -27,4 +27,4 @@ function CreateAppState() {
 
 export const APP_STATE = CreateAppState();
 
-export const IS_DEBUG = readable(true);
+export const IS_DEBUG = readable(false);

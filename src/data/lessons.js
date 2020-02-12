@@ -12,7 +12,7 @@ export default [
   {
     categories: ["html-css", "easy"],
     title: "The First Lesson",
-    hasCompleted: false,
+    hasCompleted: true,
     steps: [
       {
         type: "dom",

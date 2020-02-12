@@ -1,0 +1,13 @@
+.app-state {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $padding/2;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background: goldenrod;
+  text-align: right;
+  z-index: 100;
+}

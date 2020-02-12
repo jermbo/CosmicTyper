@@ -1,20 +1,17 @@
 .code-display {
-  position: absolute;
   right: 0;
   bottom: 0;
-  width: 60vw;
-  height: 50vh;
+  width: 100%;
+  height: 100%;
   z-index: 0;
   transition: all 0.25s ease;
-
-  &.hidden {
-    bottom: -45%;
-  }
+  position: relative;
 }
 
 .tabs {
   display: flex;
   justify-content: space-between;
+  box-shadow: 0 -5px 0px color(minimap, bg);
 }
 
 .tab-group {
@@ -23,22 +20,22 @@
 
 .tab {
   cursor: pointer;
-  background: $white;
   padding: $padding/2;
-  border: 1px solid $border-color-light;
-  border-top: 4px solid $border-color-light;
+  border-top: 4px solid transparent;
+  transition: all 0.25s ease;
 
+  &:hover,
   &.focus {
-    border-top: 4px solid orangered;
+    background: color(minimap, bg);
+    border-top: 4px solid color(minimap, border);
   }
-
   &:focus {
     outline: none;
   }
 }
 
 .displays {
-  background: $bg-light;
+  background: color(minimap, bg);
   padding: $padding/2;
   height: calc(100% - 37px);
   position: relative;
@@ -64,6 +61,6 @@
   padding: 4px $padding/2;
 
   &:nth-child(even) {
-    background: $white;
+    background: color(minimap, bg2);
   }
 }

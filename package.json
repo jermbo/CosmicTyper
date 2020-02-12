@@ -5,12 +5,13 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public"
+    "start": "sirv public",
+    "now-build": "npm run build"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.0.0",
     "autoprefixer": "^9.7.4",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "postcss": "^7.0.26",
     "rollup": "^1.29.0",
     "rollup-plugin-commonjs": "^10.0.0",

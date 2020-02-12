@@ -4,7 +4,6 @@
 
   // Components
   import AppState from "UI/AppState.svelte";
-  import Nav from "Global/Nav.svelte";
   import WelcomeScreen from "./WelcomeScreen.svelte";
   import LessonsScreen from "./LessonsScreen.svelte";
 
@@ -43,7 +42,6 @@
   {#if $IS_DEBUG}
     <AppState />
   {/if}
-  <!-- <Nav /> -->
 
   {#if !appState || appState == AppStateEnums.appStart}
     <WelcomeScreen on:updateState={changeAppState} />
@@ -52,4 +50,5 @@
   {#if appState == AppStateEnums.lessonSelect}
     <LessonsScreen on:changeDifficulty={changeAppState} />
   {/if}
+
 </main>

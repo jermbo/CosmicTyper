@@ -1,0 +1,75 @@
+$white: #f2f8ff;
+$black: #21232b;
+
+$grey-1: #ecf1f8;
+$grey-2: #e8e9ed;
+$grey-3: #d4d4db;
+$grey-4: #ababb6;
+$grey-5: #919199;
+$grey-6: #424556;
+$grey-7: #333645;
+$grey-8: #2e2e2e;
+$grey-9: #1d1d1d;
+
+$peter-river: #3498db;
+$belize-hole: #2980b9;
+$amethyst: #9b59b6;
+$wisteria: #8e44ad;
+$sunflower: #f1c40f;
+$orange: #f39c12;
+$carrot: #e67e22;
+$pumpkin: #d35400;
+$alizarin: #e74c3c;
+$pomegranate: #c0392b;
+
+$cherry: #e64c65;
+$mint: #11a8ab;
+$blue: #35aadc;
+$orange: #fcb150;
+
+$buttons: (
+  primary: (
+    text: $mint,
+    bg: $white,
+    border: $mint,
+  ),
+  secondary: (),
+);
+
+$colors: (
+  bg: (
+    light: $white,
+    dark: $grey-7,
+  ),
+  primary: (
+    base: $mint,
+    light: lighten($mint, 15%),
+    dark: darken($mint, 15%),
+  ),
+  secondary: (
+    base: $pomegranate,
+    light: lighten($pomegranate, 15%),
+    dark: darken($pomegranate, 15%),
+  ),
+  text: (
+    light: $white,
+    dark: $grey-7,
+  ),
+  nav: (
+    text: $mint,
+    bg: $grey-1,
+    border: $mint,
+  ),
+  code: (
+    text: $white,
+    bg: $grey-6,
+    cursor: $mint,
+    correctText: $mint,
+    complete: $grey-7,
+  ),
+  minimap: (
+    bg: $grey-2,
+    bg2: $grey-3,
+    border: $pomegranate,
+  ),
+);

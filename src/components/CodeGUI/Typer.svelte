@@ -14,7 +14,7 @@
   getLesson();
 
   function getLesson() {
-    actionOutput = lesson.steps[currentLesson].action.map(c => c.split(""));
+    actionOutput = lesson.steps[currentLesson].action.map((c) => c.split(""));
   }
 
   function handleKeydown(e) {
@@ -52,7 +52,7 @@
   }
 
   function isModifier(key) {
-    return modifiers.some(mod => mod == key);
+    return modifiers.some((mod) => mod == key);
   }
 
   const dispatch = createEventDispatcher();
@@ -86,12 +86,12 @@
 
     const type = lesson.steps[currentLesson].type;
     if (type == "dom") {
-      HTML_CODE.update(code => {
+      HTML_CODE.update((code) => {
         code.push(...lesson.steps[currentLesson].action);
         return code;
       });
     } else if (type == "style") {
-      CSS_CODE.update(code => {
+      CSS_CODE.update((code) => {
         code.push(...lesson.steps[currentLesson].action);
         return code;
       });
@@ -99,21 +99,21 @@
   }
 
   function resetRenderView() {
-    HTML_CODE.update(code => []);
-    CSS_CODE.update(code => []);
+    HTML_CODE.update((code) => []);
+    CSS_CODE.update((code) => []);
   }
 </script>
 
 <svelte:window on:keydown|preventDefault={handleKeydown} />
 
-<div class="lesson-wrapper">
+<div class="code-container">
 
-  <div class="lesson">
-    <h1 class="lesson__title">Lesson:</h1>
-    <p class="lesson__desc">{lesson.steps[currentLesson].desc}</p>
+  <div class="code-lesson">
+    <h1 class="code-lesson__title">Lesson:</h1>
+    <p class="code-lesson__desc">{lesson.steps[currentLesson].desc}</p>
   </div>
 
-  <div class="code">
+  <div class="code-block">
     {#each actionOutput as row, outer}
       <div
         class="row"

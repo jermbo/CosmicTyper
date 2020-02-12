@@ -1,0 +1,38 @@
+.btns {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: $padding 0;
+}
+
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  padding: $padding/2 $padding;
+  transition: all 0.25s ease;
+  background: button(primary, bg);
+  border: 2px solid button(primary, border);
+  color: button(primary, text);
+  font-weight: bold;
+  text-transform: uppercase;
+
+  &:hover {
+    background: button(primary, text);
+    color: button(primary, bg);
+  }
+
+  &:not(:last-child) {
+    margin-right: $padding/2;
+  }
+
+  &.-secondary {
+    background: button(primary, bg);
+    border: 2px solid button(primary, border);
+    color: button(primary, text);
+  }
+
+  &.selected {
+    background: button(primary, text);
+    color: button(primary, bg);
+  }
+}

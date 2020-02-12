@@ -7,6 +7,14 @@
   }
 }
 
+@function button($color-name, $color-variant: base, $hex: false, $rgb: false) {
+  @if $hex == true {
+    @return map-get(map-get($colors, $color-name), $color-variant);
+  } @else {
+    @return var(--button-#{$color-name}-#{$color-variant});
+  }
+}
+
 @function font($category: text, $font-size: md) {
   @return var(--font-#{$category}-#{$font-size});
 }
@@ -30,3 +38,13 @@
     @content;
   }
 }
+
+// -----
+// @function map-deep-get($map, $keys...) {
+//   @each $key in $keys {
+//     $map: map-get($map, $key);
+//   }
+//   @return $map;
+// }
+
+// $random: map-deep-get($grid-breakpoints, "layouts", "M");

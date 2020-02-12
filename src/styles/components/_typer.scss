@@ -1,0 +1,63 @@
+.code-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(50%, 90%) minmax(10%, 50%);
+  grid-template-areas:
+    "code"
+    "desc";
+  height: 100%;
+}
+
+// Code Block
+.code-block {
+  grid-area: code;
+  color: color(code, text);
+  background: color(code, bg);
+}
+
+.cursor {
+  animation: cursorBlink 1.25s ease infinite;
+}
+
+.row {
+  min-height: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 $padding/2;
+}
+
+.character {
+  padding: 0;
+  min-width: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.complete,
+.correct {
+  color: color(code, correctText);
+  border-bottom: 1px solid color(code, correctText);
+  font-weight: bold;
+}
+
+.completeRow,
+.currentRow {
+  background: color(code, complete);
+}
+
+// Code Lesson Block
+.code-lesson {
+  grid-area: desc;
+  border: 4px solid color(code, bg);
+  border-top: 0;
+  background: $white;
+  padding: 1rem;
+
+  overflow-y: auto;
+}
+
+.code-lesson__title {
+  margin: 0;
+  font-size: 1.25rem;
+}
