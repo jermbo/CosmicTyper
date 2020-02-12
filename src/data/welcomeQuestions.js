@@ -9,6 +9,13 @@ export default [
           type: "html-css",
         },
       },
+      {
+        label: "General Typing",
+        action: {
+          key: "lesson_type",
+          type: "general",
+        },
+      },
     ],
   },
   {

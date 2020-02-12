@@ -1,5 +1,15 @@
 export default [
   {
+    categories: ["general", "easy"],
+    title: "general typing 1",
+    hasCompleted: false,
+    steps: [
+      "This is a story all about how",
+      "my life got flipped, turned upside down.",
+      "I'd like to take a minute just sitting right there, and I'll tell you how I became the Price of Belair.",
+    ],
+  },
+  {
     categories: ["html-css", "easy"],
     title: "The First Lesson",
     hasCompleted: true,
@@ -363,25 +373,6 @@ export default [
         desc:
           "Just as 'space-evenly' sounds, it spaces the items... Evenly! Finish it up by making the items go as far apart as they can.",
         action: [".item-container {", "  justify-content: space-between;", "}"],
-        render: true,
-      },
-    ],
-  },
-  {
-    categories: ["html-css", "easy", "hard"],
-    title: "TEST LESSON",
-    hasCompleted: false,
-    steps: [
-      {
-        type: "dom",
-        desc: "TEST",
-        action: ["<h1>", "  Hello", "</h1>"],
-        render: true,
-      },
-      {
-        type: "dom",
-        desc: "TEST",
-        action: ["<h2>", "  world", "</h2>"],
         render: true,
       },
     ],

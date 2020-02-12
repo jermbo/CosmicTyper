@@ -26,5 +26,5 @@
 {#if lessonType == 'html-css'}
   <CodeGUI on:sectionFinished={sectionFinished} {lesson} />
 {:else}
-  <TypingGUI {lesson} />
+  <TypingGUI on:sectionFinished={sectionFinished} {lesson} />
 {/if}
