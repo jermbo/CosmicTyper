@@ -1,15 +1,16 @@
 .code-gui {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: minmax(50vh, 85vh) minmax(15vh, 50vh);
+  grid-template-rows: minmax(50vh, 80vh) minmax(15vh, 50vh) 8vh;
   grid-template-areas:
-    "lesson render render"
-    "lesson minimap minimap";
+    "code render render"
+    "code minimap minimap"
+    "nav nav nav";
   height: 100vh;
 }
 
-.code-area {
-  grid-area: lesson;
+.code-view {
+  grid-area: code;
 }
 
 .render-view {
@@ -18,4 +19,10 @@
 
 .mini-maps {
   grid-area: minimap;
+}
+
+.lesson-nav {
+  grid-area: nav;
+  background: color(bg, dark);
+  padding: $padding;
 }

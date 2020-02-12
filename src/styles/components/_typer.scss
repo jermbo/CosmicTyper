@@ -1,11 +1,11 @@
 .code-container {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: minmax(50vh, 90vh) minmax(10vh, 50vh);
+  grid-template-rows: minmax(50%, 90%) minmax(10%, 50%);
   grid-template-areas:
     "code"
     "desc";
-  height: 100vh;
+  height: 100%;
 }
 
 // Code Block

@@ -296,7 +296,7 @@ export default [
     ],
   },
   {
-    categories: ["html-css", "easy"],
+    categories: ["html-css", "hard"],
     title: "The Fifth Lesson",
     hasCompleted: false,
     steps: [
@@ -363,6 +363,25 @@ export default [
         desc:
           "Just as 'space-evenly' sounds, it spaces the items... Evenly! Finish it up by making the items go as far apart as they can.",
         action: [".item-container {", "  justify-content: space-between;", "}"],
+        render: true,
+      },
+    ],
+  },
+  {
+    categories: ["html-css", "easy", "hard"],
+    title: "TEST LESSON",
+    hasCompleted: false,
+    steps: [
+      {
+        type: "dom",
+        desc: "TEST",
+        action: ["<h1>", "  Hello", "</h1>"],
+        render: true,
+      },
+      {
+        type: "dom",
+        desc: "TEST",
+        action: ["<h2>", "  world", "</h2>"],
         render: true,
       },
     ],
