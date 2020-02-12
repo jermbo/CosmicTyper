@@ -33,7 +33,7 @@
   const dispatch = createEventDispatcher();
 
   function endLesson() {
-    alert("all done");
+    // alert("all done");
     dispatch("sectionFinished");
   }
 
@@ -65,16 +65,23 @@
 <svelte:window on:keydown|preventDefault={handleKeydown} />
 
 <div class="typing-wrapper">
-  <div class="typing-inner row">
-    {#each actionOutput as char, index}
-      <span
-        data-id={`i-${index}`}
-        data-char={char}
-        class="character"
-        class:correct={currentChar > index}
-        class:cursor={currentChar == index}>
-        {char}
-      </span>
-    {/each}
+  <div class="typing-inner">
+    <div class="row">
+      {#each actionOutput as char, index}
+        <span
+          data-id={`i-${index}`}
+          data-char={char}
+          class="character"
+          class:correct={currentChar > index}
+          class:cursor={currentChar == index}>
+          {char}
+        </span>
+      {/each}
+    </div>
+  </div>
+  <div class="lesson-nav">
+    <button on:click|preventDefault={() => onLessonEnded()} class="btn">
+      Back to Lesson Select
+    </button>
   </div>
 </div>
