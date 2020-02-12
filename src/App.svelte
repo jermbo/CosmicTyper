@@ -43,7 +43,7 @@
   {#if $IS_DEBUG}
     <AppState />
   {/if}
-  <Nav />
+  <!-- <Nav /> -->
 
   {#if !appState || appState == AppStateEnums.appStart}
     <WelcomeScreen on:updateState={changeAppState} />

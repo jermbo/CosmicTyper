@@ -27,8 +27,11 @@ a {
 
 main {
   display: grid;
-  grid-template-columns: 50px 1fr;
+  // grid-template-columns: 50px 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr;
+  // grid-template-areas: "nav main";
+  grid-template-areas: "main";
   height: 100vh;
   width: 100vw;
 }
@@ -38,4 +41,5 @@ main {
   justify-content: center;
   align-items: center;
   text-align: center;
+  grid-area: main;
 }
