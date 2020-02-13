@@ -47,9 +47,9 @@
   }
 
   function filterLessons() {
-    const lessonType = $USER_OBJ.lesson_type;
+    const lessonCategory = $USER_OBJ.lesson_category;
     const difficulty = $USER_OBJ.difficulty;
-    LESSONS.setFilteredLessons(lessonType, difficulty);
+    LESSONS.setFilteredLessons(lessonCategory, difficulty);
   }
 
   onMount(async () => {

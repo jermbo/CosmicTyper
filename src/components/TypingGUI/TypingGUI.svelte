@@ -6,6 +6,7 @@
   let currentLesson = 0;
   let currentChar = 0;
   let actionOutput;
+  let lessonOver = false;
 
   const modifiers = ["CapsLock", "Shift", "Control", "Alt"];
   getLesson();
@@ -33,17 +34,15 @@
   const dispatch = createEventDispatcher();
 
   function endLesson() {
-    // alert("all done");
+    currentLesson = 0;
+    currentChar = 0;
     dispatch("sectionFinished");
   }
 
   function lessonNav() {
-    // updateRenderView();
     currentLesson++;
     if (endOfLesson()) {
-      endLesson();
-      currentLesson = 0;
-      currentChar = 0;
+      lessonOver = true;
     } else {
       getLesson();
     }
@@ -80,7 +79,7 @@
     </div>
   </div>
   <div class="lesson-nav">
-    <button on:click|preventDefault={() => onLessonEnded()} class="btn">
+    <button on:click|preventDefault={() => endLesson()} class="btn">
       Back to Lesson Select
     </button>
   </div>

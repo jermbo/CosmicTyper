@@ -5,14 +5,14 @@ export default [
       {
         label: "HTML & CSS",
         action: {
-          key: "lesson_type",
+          key: "lesson_category",
           type: "html-css",
         },
       },
       {
         label: "General Typing",
         action: {
-          key: "lesson_type",
+          key: "lesson_category",
           type: "general",
         },
       },
