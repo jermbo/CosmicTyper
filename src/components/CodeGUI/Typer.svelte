@@ -5,13 +5,24 @@
 
   export let lesson;
 
+  const dispatch = createEventDispatcher();
+
   let currentLesson = 0;
   let currentRow = 0;
   let currentChar = 0;
   let actionOutput;
 
   const modifiers = ["CapsLock", "Shift", "Control", "Alt"];
+  resetView();
   getLesson();
+
+  function resetView() {
+    currentLesson = 0;
+    currentRow = 0;
+    currentChar = 0;
+    HTML_CODE.update((code) => []);
+    CSS_CODE.update((code) => []);
+  }
 
   function getLesson() {
     actionOutput = lesson.steps[currentLesson].action.map((c) => c.split(""));
@@ -55,8 +66,6 @@
     return modifiers.some((mod) => mod == key);
   }
 
-  const dispatch = createEventDispatcher();
-
   function endLesson(index) {
     dispatch("endLesson", index);
   }
@@ -68,12 +77,8 @@
     currentLesson = currentLesson >= len ? len : ++currentLesson;
 
     if (endOfLesson()) {
+      resetView();
       endLesson();
-      currentLesson = 0;
-      currentRow = 0;
-      currentChar = 0;
-
-      resetRenderView();
     } else {
       getLesson();
     }
@@ -96,11 +101,6 @@
         return code;
       });
     }
-  }
-
-  function resetRenderView() {
-    HTML_CODE.update((code) => []);
-    CSS_CODE.update((code) => []);
   }
 </script>
 
