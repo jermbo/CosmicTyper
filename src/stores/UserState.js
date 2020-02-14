@@ -3,7 +3,7 @@ import { getLsItem, setLsItem } from "../scripts/LocalStorageHelper";
 import { LSKeyEnums } from "../scripts/enum";
 
 const defaultUser = {
-  lesson_type: "html-css",
+  lesson_category: "html-css",
   difficulty: "easy",
   active_time: Date.now(),
 };
@@ -12,14 +12,14 @@ function CreateUserObj() {
   const { subscribe, update } = writable(getLsItem(LSKeyEnums.user) || setLsItem(LSKeyEnums.user, defaultUser));
 
   function save() {
-    update(obj => {
+    update((obj) => {
       obj.active_time = Date.now();
       __setLocalStorage(obj);
       return obj;
     });
   }
   function change(key, value) {
-    update(obj => {
+    update((obj) => {
       obj[key] = value;
       __setLocalStorage(obj);
       return obj;

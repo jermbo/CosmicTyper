@@ -14,7 +14,7 @@ function CreateLessonObj() {
   );
 
   function changeIndex(newIndex) {
-    update(obj => {
+    update((obj) => {
       obj.index = newIndex;
       __setLocalStorage(obj);
       return obj;
@@ -22,7 +22,7 @@ function CreateLessonObj() {
   }
 
   function setAllLessons(lessons) {
-    update(obj => {
+    update((obj) => {
       obj.all_lessons.push(...lessons);
       __setLocalStorage(obj);
       return obj;
@@ -31,11 +31,15 @@ function CreateLessonObj() {
 
   function setFilteredLessons(lessonType, difficulty) {
     const lessons = getLsItem(LSKeyEnums.lessons).all_lessons;
-    const filtered_lessons = lessons.filter(
-      lesson => lesson.categories.includes(lessonType) && lesson.categories.includes(difficulty),
-    );
+    // const filtered_lessons = lessons.filter(
+    //   lesson => lesson.categories.includes(lessonType) && lesson.categories.includes(difficulty),
+    // );
 
-    update(obj => {
+    const filtered_lessons = lessons
+      .filter((lesson) => lesson.category == lessonType)
+      .filter((lesson) => lesson.difficulty == difficulty);
+
+    update((obj) => {
       obj.filtered_lessons = filtered_lessons;
       __setLocalStorage(obj);
       return obj;

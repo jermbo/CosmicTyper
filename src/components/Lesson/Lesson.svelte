@@ -16,7 +16,7 @@
   // Local Variables
   const dispatch = createEventDispatcher();
 
-  $: lessonType = $USER_OBJ.lesson_type;
+  $: lessonType = $USER_OBJ.lesson_category;
 
   function sectionFinished() {
     dispatch("sectionFinished");

@@ -9,7 +9,7 @@
   import LessonsScreen from "./LessonsScreen.svelte";
 
   // Stores
-  import { APP_STATE, IS_DEBUG } from "Stores/AppState.js";
+  import { APP_STATE } from "Stores/AppState.js";
   import { USER_OBJ } from "Stores/UserState.js";
 
   // Helpers and Enums
@@ -40,10 +40,8 @@
 </style>
 
 <main>
-  {#if $IS_DEBUG}
-    <AppState />
-  {/if}
-  <!-- <Nav /> -->
+
+  <AppState />
 
   {#if !appState || appState == AppStateEnums.appStart}
     <WelcomeScreen on:updateState={changeAppState} />

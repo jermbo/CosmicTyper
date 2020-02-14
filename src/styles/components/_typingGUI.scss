@@ -1,0 +1,17 @@
+.typing-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 92vh 8vh;
+  grid-template-areas:
+    "type"
+    "nav";
+  height: 100vh;
+}
+
+.typing-inner {
+  font-size: font(text, xl);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 $padding * 4;
+}

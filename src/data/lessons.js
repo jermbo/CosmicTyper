@@ -1,6 +1,7 @@
 export default [
   {
-    categories: ["general", "easy"],
+    difficulty: "easy",
+    category: "general",
     title: "general typing 1",
     hasCompleted: false,
     steps: [
@@ -10,7 +11,39 @@ export default [
     ],
   },
   {
-    categories: ["html-css", "easy"],
+    difficulty: "hard",
+    category: "general",
+    title: "general typing 1",
+    hasCompleted: false,
+    steps: [
+      "This is a story all about how",
+      "my life got flipped, turned upside down.",
+      "I'd like to take a minute just sitting right there, and I'll tell you how I became the Price of Belair.",
+    ],
+  },
+  {
+    difficulty: "hard",
+    category: "html-css",
+    title: "The Easy Lesson",
+    hasCompleted: true,
+    steps: [
+      {
+        type: "dom",
+        desc: "This is the H1 heading tag. Our most important tag. Type out the tag and the words in between.",
+        action: ["<h1>largest heading</h1>"],
+        render: true,
+      },
+      {
+        type: "dom",
+        desc: "This is the H1 heading tag. Our most important tag. Type out the tag and the words in between.",
+        action: ["<h1>largest heading</h1>"],
+        render: true,
+      },
+    ],
+  },
+  {
+    difficulty: "easy",
+    category: "html-css",
     title: "The First Lesson",
     hasCompleted: true,
     steps: [
@@ -93,7 +126,8 @@ export default [
     ],
   },
   {
-    categories: ["html-css", "easy"],
+    difficulty: "easy",
+    category: "html-css",
     title: "The Second Lesson",
     hasCompleted: false,
     steps: [
@@ -176,7 +210,8 @@ export default [
     ],
   },
   {
-    categories: ["html-css", "easy"],
+    difficulty: "easy",
+    category: "html-css",
     title: "The Third Lesson",
     hasCompleted: false,
     steps: [
@@ -242,7 +277,8 @@ export default [
     ],
   },
   {
-    categories: ["html-css", "easy"],
+    difficulty: "easy",
+    category: "html-css",
     title: "The Fourth Lesson",
     hasCompleted: false,
     steps: [
@@ -306,7 +342,8 @@ export default [
     ],
   },
   {
-    categories: ["html-css", "hard"],
+    difficulty: "easy",
+    category: "html-css",
     title: "The Fifth Lesson",
     hasCompleted: false,
     steps: [

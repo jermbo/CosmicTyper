@@ -14,9 +14,11 @@
   const dispatch = createEventDispatcher();
 
   function onLessonEnded() {
-    alert("all done");
+    // alert("all done");
     dispatch("sectionFinished");
   }
+
+  function backToSelect() {}
 </script>
 
 <div class="code-gui">
@@ -30,8 +32,8 @@
     <CodeOutput />
   </div>
   <div class="lesson-nav">
-    <button class="btn">Prev Lesson</button>
-    <button class="btn">Next Lesson</button>
-    <button class="btn">Lesson Select</button>
+    <button on:click|preventDefault={() => onLessonEnded()} class="btn">
+      Back to Lesson Select
+    </button>
   </div>
 </div>
