@@ -35,10 +35,9 @@ function CreateLessonObj() {
     //   lesson => lesson.categories.includes(lessonType) && lesson.categories.includes(difficulty),
     // );
 
-    const filtered_lessons = lessons.filter((lesson) => lesson.category == lessonType);
-    // .filter((lesson) => lesson.difficulty == difficulty);
-    console.log(lessons);
-    console.log(filtered_lessons);
+    const filtered_lessons = lessons
+      .filter((lesson) => lesson.category == lessonType)
+      .filter((lesson) => lesson.difficulty == difficulty);
 
     update((obj) => {
       obj.filtered_lessons = filtered_lessons;
