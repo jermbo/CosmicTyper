@@ -3,3 +3,5 @@ node_modules
 public/build
 styles-old
 styles-oldnew
+
+.now
