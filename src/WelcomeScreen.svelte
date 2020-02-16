@@ -6,7 +6,7 @@
   import Loading from "UI/Loading.svelte";
 
   // Stores
-  import { APP_STATE } from "Stores/AppState.js";
+  import { APP_STATE, API_URL } from "Stores/AppState.js";
   import { USER_OBJ } from "Stores/UserState.js";
   import { WELCOME_QUESTIONS } from "Stores/WelcomeState.js";
 
@@ -38,8 +38,9 @@
   }
 
   async function getQuestions() {
-    const questions = await SimulateLoadTime(TEMP_WELCOME_QUESTIONS, 3000);
-    WELCOME_QUESTIONS.setQuestions(questions);
+    const response = await fetch(`${$API_URL}/welcomeQuestions`);
+    const data = await response.json();
+    WELCOME_QUESTIONS.setQuestions(data);
   }
 
   onMount(async () => {

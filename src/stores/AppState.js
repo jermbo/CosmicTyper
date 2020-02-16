@@ -28,3 +28,6 @@ function CreateAppState() {
 export const APP_STATE = CreateAppState();
 
 export const IS_DEBUG = readable(false);
+
+export const API_URL = readable("https://sampleapis.com/typer/api");
+// export const API_URL = readable("http://localhost:5001/typer");

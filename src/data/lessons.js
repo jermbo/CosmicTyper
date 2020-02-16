@@ -69,13 +69,13 @@ export default [
       {
         type: "dom",
         desc: "Now we will make an H3 tag with a CLASS. This acts as a SELECTOR for styles. ",
-        action: ['<h3 class="green">green heading</h3>'],
+        action: ["<h3 class=\"green\">green heading</h3>"],
         render: true,
       },
       {
         type: "dom",
         desc: "Add a wrapper to contain your page.",
-        action: ['<div class="wrapper"></div>'],
+        action: ["<div class=\"wrapper\"></div>"],
         render: true,
       },
       {
@@ -87,8 +87,8 @@ export default [
       {
         type: "dom",
         desc:
-          'The "p" tag is what we use for body text. This text is smaller and fills out most of content on the site.',
-        action: ['<p class="body">body text</p>'],
+          "The \"p\" tag is what we use for body text. This text is smaller and fills out most of content on the site.",
+        action: ["<p class=\"body\">body text</p>"],
         render: true,
       },
       {
@@ -99,28 +99,28 @@ export default [
       },
       {
         type: "dom",
-        desc: 'The "<span>" tag is used in addition to other tags and sometimes alone.',
-        action: ['<span class="yellow">in between tag</span>'],
+        desc: "The \"<span>\" tag is used in addition to other tags and sometimes alone.",
+        action: ["<span class=\"yellow\">in between tag</span>"],
         render: true,
       },
       {
         type: "dom",
         desc:
-          'The "href" or "Link Tag" is what we link everything together with on the web. This is not the only way to link things but the most common.',
-        action: ['<a href="#">Link Tag</a>'],
+          "The \"href\" or \"Link Tag\" is what we link everything together with on the web. This is not the only way to link things but the most common.",
+        action: ["<a href=\"#\">Link Tag</a>"],
         render: true,
       },
       {
         type: "dom",
-        desc: 'Tags can be "Nested" within each other to do things like LINK BODY TEXT.',
-        action: ['<p>Nested <a href="#">elements</a></p>'],
+        desc: "Tags can be \"Nested\" within each other to do things like LINK BODY TEXT.",
+        action: ["<p>Nested <a href=\"#\">elements</a></p>"],
         render: true,
       },
       {
         type: "dom",
         desc:
-          'This is the "img" or IMAGE tag. We place the images here by setting the path inside the "src" or SOURCE attribute.',
-        action: ['<img src="http://placekitten.com/400/200" />'],
+          "This is the \"img\" or IMAGE tag. We place the images here by setting the path inside the \"src\" or SOURCE attribute.",
+        action: ["<img src=\"http://placekitten.com/400/200\" />"],
         render: true,
       },
     ],
@@ -158,7 +158,7 @@ export default [
       {
         type: "dom",
         desc: "You want this paragraph to stand out, give it a class so we can style it with css.",
-        action: ['<p id="different">I am different than the rest.</p>'],
+        action: ["<p id=\"different\">I am different than the rest.</p>"],
         render: true,
       },
       {
@@ -171,14 +171,14 @@ export default [
         type: "dom",
         desc:
           "Image tags are used to show pictures. You can place as many images on a page as you want. Each time you update the src attribute.",
-        action: ['<img src="https://placekitten.com/g/200/300" />'],
+        action: ["<img src=\"https://placekitten.com/g/200/300\" />"],
         render: true,
       },
       {
         type: "dom",
         desc:
           "Anchors allow you to link to other pages in your site, or other websites all together. You can place as many anchors on the page as you would like. To tell the link to navigate to a specific location by its href attribute. You can nest tags inside eachother. You must open and close the tags in order.",
-        action: ['<p>Go to the <a href="http://html.com">HTML</a> site</p>'],
+        action: ["<p>Go to the <a href=\"http://html.com\">HTML</a> site</p>"],
         render: true,
       },
       {
@@ -191,14 +191,14 @@ export default [
         type: "dom",
         desc:
           "The class attribute can be added to any element. You can use a class to identify any element and give it special styles in css",
-        action: ['<p class="fancy">What a fancy text</p>'],
+        action: ["<p class=\"fancy\">What a fancy text</p>"],
         render: true,
       },
       {
         type: "dom",
         desc:
           "We have multiple header tags to utilize. You can utilize this to divide your page up, as well as give it the same class of fancy to style it the same as the paragraph.",
-        action: ['<h2 class="fancy">Fancy Title</h2>'],
+        action: ["<h2 class=\"fancy\">Fancy Title</h2>"],
         render: true,
       },
       {
@@ -218,7 +218,7 @@ export default [
       {
         type: "dom",
         desc: "To link external styles, you need to connect it in the head tags of the document.",
-        action: ['<link rel="stylesheet" href="styles/styles.css">'],
+        action: ["<link rel=\"stylesheet\" href=\"styles/styles.css\">"],
         render: true,
       },
       {
@@ -231,7 +231,7 @@ export default [
       {
         type: "dom",
         desc: "Anchor tags go some where. You can tell it where to go by filling out the href attribute.",
-        action: ['<a href="/aang.html">Aang</a>'],
+        action: ["<a href=\"/aang.html\">Aang</a>"],
         render: true,
       },
       {
@@ -244,21 +244,21 @@ export default [
         type: "dom",
         desc:
           "If you only wanted to style one element at a time you can use the style attribute and style only that one thing.",
-        action: ['<div style="background-color: #f0ae12;">Golden</div>'],
+        action: ["<div style=\"background-color: #f0ae12;\">Golden</div>"],
         render: true,
       },
       {
         type: "dom",
         desc:
           "Image tags are used to show pictures. You can place as many images on a page as you want. Each time you update the src attribute.",
-        action: ['<img src="https://placekitten.com/g/300/300" />'],
+        action: ["<img src=\"https://placekitten.com/g/300/300\" />"],
         render: true,
       },
       {
         type: "dom",
         desc:
           "Image tags are used to show pictures. You can place as many images on a page as you want. Each time you update the src attribute.",
-        action: ['<img src="https://placekitten.com/g/400/400" />'],
+        action: ["<img src=\"https://placekitten.com/g/400/400\" />"],
         render: true,
       },
       {
@@ -271,7 +271,7 @@ export default [
         type: "dom",
         desc:
           "Anchors allow you to link to other pages in your site, or other websites all together. You can place as many anchors on the page as you would like. To tell the link to navigate to a specific location by its href attribute. You can nest tags inside eachother. You must open and close the tags in order.",
-        action: ['<p>Visit <a href="katara.html">Katara</a> page</p>'],
+        action: ["<p>Visit <a href=\"katara.html\">Katara</a> page</p>"],
         render: true,
       },
     ],
@@ -286,7 +286,7 @@ export default [
         type: "dom",
         desc:
           "Anchors allow you to link to other pages in your site, or other websites all together. You can place as many anchors on the page as you would like. To tell the link to navigate to a specific location by its href attribute. You can nest tags inside eachother. You must open and close the tags in order.",
-        action: ['<p>Go to <a href="lukas.html">Lukas Graham</a> page</p>'],
+        action: ["<p>Go to <a href=\"lukas.html\">Lukas Graham</a> page</p>"],
         render: true,
       },
       {
@@ -305,14 +305,14 @@ export default [
         type: "dom",
         desc:
           "The class attribute can be added to any element. You can use a class to identify any element and give it special styles in css",
-        action: ['<h3 class="fancy">Welcome to my site!</h3>'],
+        action: ["<h3 class=\"fancy\">Welcome to my site!</h3>"],
         render: true,
       },
       {
         type: "dom",
         desc:
           "We have multiple header tags to utilize. You can utilize this to divide your page up, as well as give it the same class of fancy to style it the same as the paragraph.",
-        action: ['<p class="fancy">Hope you enjoy your stay!</p>'],
+        action: ["<p class=\"fancy\">Hope you enjoy your stay!</p>"],
         render: true,
       },
       {
@@ -324,7 +324,7 @@ export default [
       {
         type: "dom",
         desc: "Add a wrapper to contain your page.",
-        action: ['<div class="wrapper"></div>'],
+        action: ["<div class=\"wrapper\"></div>"],
         render: true,
       },
       {
@@ -335,8 +335,8 @@ export default [
       },
       {
         type: "dom",
-        desc: 'The "<span>" tag is used in addition to other tags and sometimes alone.',
-        action: ["<p>", '  <span class="yellow">in between tag</span>', "</p>"],
+        desc: "The \"<span>\" tag is used in addition to other tags and sometimes alone.",
+        action: ["<p>", "  <span class=\"yellow\">in between tag</span>", "</p>"],
         render: true,
       },
     ],
@@ -352,9 +352,9 @@ export default [
         desc:
           "We're going to learn how to move elements around on the page a bit. First we need a container and a few elements inside of that container.",
         action: [
-          '<div class="item-container">',
-          '  <div class="item1"></div>',
-          '  <div class="item2"></div>',
+          "<div class=\"item-container\">",
+          "  <div class=\"item1\"></div>",
+          "  <div class=\"item2\"></div>",
           "</div>",
         ],
         render: true,
