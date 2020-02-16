@@ -12,7 +12,6 @@
   };
 
   function clearStorage() {
-    console.clear();
     localStorage.clear();
     window.location.reload();
   }

@@ -3,6 +3,7 @@
   import { onMount, createEventDispatcher } from "svelte";
 
   // Stores
+  import { API_URL } from "Stores/AppState.js";
   import { LESSONS } from "Stores/LessonsState.js";
   import { USER_OBJ } from "Stores/UserState.js";
 
@@ -41,8 +42,9 @@
   }
 
   async function getLessons() {
-    const lessons = await SimulateLoadTime(LESSONS_FROM_STORAGE, 2500);
-    LESSONS.setAllLessons(lessons);
+    const response = await fetch(`${$API_URL}/lessons`);
+    const data = await response.json();
+    LESSONS.setAllLessons(data);
     filterLessons();
   }
 

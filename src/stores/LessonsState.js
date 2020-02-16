@@ -30,11 +30,7 @@ function CreateLessonObj() {
   }
 
   function setFilteredLessons(lessonType, difficulty) {
-    const lessons = getLsItem(LSKeyEnums.lessons).all_lessons;
-    // const filtered_lessons = lessons.filter(
-    //   lesson => lesson.categories.includes(lessonType) && lesson.categories.includes(difficulty),
-    // );
-
+    const lessons = getLsItem(LSKeyEnums.lessons).all_lessons || [];
     const filtered_lessons = lessons
       .filter((lesson) => lesson.category == lessonType)
       .filter((lesson) => lesson.difficulty == difficulty);
