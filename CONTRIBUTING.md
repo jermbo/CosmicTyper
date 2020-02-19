@@ -4,13 +4,11 @@ Thanks for taking the time to contribute!
 
 The following is a set of guidelines for contributing to this project. These are mostly guidelines, not rules. Use your best judgement, and feel free to propose changes to this document in a pull request.
 
-We are running this project like an open source project and we would love to receive contributions from our community members. There are many ways to contribute, from writing / improving documentation, submitting bug reports and feature requests, and or writing code which can be incorporated to our project.
-
 Following these guidelines helps to communicate that you respect the time of the developers managing and developing this open source project. In return, they should reciprocate that respect in addressing your issue, assessing changes, and helping you finalize your pull requests.
 
 ## Code of Conduct
 
-Before we get any further, please take the time to review our [Code of Conduct](LINK_HERE). This project and everyone participating in it will be governed by the [Code of Conduct](LINK_HERE). By participating, you are expected to uphold this code. Please report unacceptable behavior to [INSERT EMAIL HERE]. Be polite to everyone. If you are not in your best day, take a deep breath and try again. Smile 😄!
+Before we get any further, please take the time to review our [Code of Conduct](https://github.com/jermbo/CosmicTyper/blob/master/CODE_OF_CONDUCT.md). This project and everyone participating in it will be governed by the [Code of Conduct](https://github.com/jermbo/CosmicTyper/blob/master/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [INSERT EMAIL HERE]. Be polite to everyone. If you are not in your best day, take a deep breath and try again. Smile 😄!
 
 ## New Issues
 
