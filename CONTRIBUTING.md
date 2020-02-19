@@ -2,39 +2,49 @@
 
 Thanks for taking the time to contribute!
 
-The following is a set of guidelines for contributing to Cosmic Typer. These are just guidelines, not rules, so use your best judgement and feel free to propose changes to this document in a pull request.
+The following is a set of guidelines for contributing to this project. These are mostly guidelines, not rules. Use your best judgement, and feel free to propose changes to this document in a pull request.
 
-## Getting Started
+We are running this project like an open source project and we would love to receive contributions from our community members. There are many ways to contribute, from writing / improving documentation, submitting bug reports and feature requests, and or writing code which can be incorporated to our project.
 
-Typer is a tool built with vanilla JavaScript and Gulp. Though it's not 100% important to understand Gulp, as the build process is pretty complete at the moment, you can head over to [Gulp](https://gulpjs.com/) and take a look at the documentation.
+Following these guidelines helps to communicate that you respect the time of the developers managing and developing this open source project. In return, they should reciprocate that respect in addressing your issue, assessing changes, and helping you finalize your pull requests.
 
-## Community
+## Code of Conduct
 
-- If you have any questions regarding Typer, open an [issue](https://github.com/jermbo/CosmicTyper/issues).
+Before we get any further, please take the time to review our [Code of Conduct](LINK_HERE). This project and everyone participating in it will be governed by the [Code of Conduct](LINK_HERE). By participating, you are expected to uphold this code. Please report unacceptable behavior to [INSERT EMAIL HERE]. Be polite to everyone. If you are not in your best day, take a deep breath and try again. Smile 😄!
 
-## Issue
+## New Issues
 
-Ensure the bug was not already reported by searching on GitHub under [issues](https://github.com/jermbo/CosmicTyper/issues). If you're unable to find an open issue addressing the bug, open a [new issue](https://github.com/jermbo/CosmicTyper/issues/new).
+Before you submit an issue:
 
-Please pay attention to the following points while opening an issue.
+- Search the current list of issues, bug reports, or feature requests.
+- If the issue already exists, add a 👍 or a ❤️, and you can click the `Subscribe` or `Watching` button to get notifications via email.
+- Please, do not use the issue tracker for support questions.
 
-### Write detailed information
+## Contributing
 
-Detailed information is very helpful to understand an issue.
+When you are looking for an issue to work on:
 
-For example:
+- Search the current list of issues, bug reports, or feature requests.
+- When you find something you are interested in and assign it to you.
+- Give it a label of `Doing`.
+- Create a branch with issue number and title. ( ie. `1-create-contributing-documentation`)
+- Make the changes in your branch.
+- Submit a PR to `master` branch when ready. ( Please follow PR Comment Guide )
 
-- How to reproduce the issue, step-by-step.
-- The expected behavior (or what is wrong).
-- Error message and line number.
-- The browser make and version.
+## PR Comment Guide
 
-## Pull Requests
+The title of the pull request should contain only the issue number and issue title. ( ie `#1 Create Contributing Documentation`)
 
-Pull Requests are always welcome.
+The body's first line should be a link to the issue for quick reference. The rest of the body should be a brief explanation of what changes were made. Each issue should have a list for Acceptance Criteria, this should be addressed in the PR comment.
 
-1.  When you edit the code, please run `npm run lint` to check the formatting of your code before you `git commit`. ( COMING SOON )
-2.  Ensure the PR description clearly describes the problem and solution. It should include:
-    - The browser amke and version on which you tested.
-    - The Typer version on which you tested.
-    - The relevant issue number, if applicable.
+Example
+
+```MD
+[#1 Create Contribution Documentation]()
+
+Code of Conduct and Contributions markdown files were created with explanations necessary.
+```
+
+## Code Review Process
+
+The core team looks a Pull Request on a regular basis. Each PR will be reviewed and tested. Feedback will be provided via file comments or general comments. We will be clear if further action is required. It is the contributors responsibility their code does not have breaking changes or merge conflicts.
