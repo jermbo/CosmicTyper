@@ -17,9 +17,6 @@
   import { LSKeyEnums, AppStateEnums } from "Scripts/enum.js";
   import SimulateLoadTime from "Scripts/SimulateLoadTime.js";
 
-  // Eventually this will come from database
-  import LESSONS_FROM_STORAGE from "Data/lessons.js";
-
   // Reactive variables
   $: lessonIndex = $LESSONS.index;
 

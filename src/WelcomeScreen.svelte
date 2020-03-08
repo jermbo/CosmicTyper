@@ -15,9 +15,6 @@
   import { LSKeyEnums, AppStateEnums } from "Scripts/enum.js";
   import SimulateLoadTime from "Scripts/SimulateLoadTime.js";
 
-  // Eventually this will come from database
-  import TEMP_WELCOME_QUESTIONS from "Data/welcomeQuestions.js";
-
   // Reactive variables
   $: qIndex = 0;
   $: appState = $APP_STATE.state;
