@@ -20,7 +20,10 @@
 <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="/">
-      <img src="assets/images/logo.png" width="125" alt="Student Typer Logo" />
+      <img src="assets/images/icon.png" alt="Student Typer Logo" />
+      <span class="ml-2 is-size-5 has-text-weight-medium has-margin-left-6">
+        Student Typer
+      </span>
     </a>
 
     <a
