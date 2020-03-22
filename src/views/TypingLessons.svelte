@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { LessonsList } from "../components";
-  import { state, getTypingLessonsAction } from "../store";
+  import { state, getTypingLessonsAction, updateTypingLesson } from "../store";
 
   const { typingLessons } = state;
 
@@ -12,6 +12,10 @@
       await getTypingLessonsAction();
     }
   }
+
+  function finishLesson({ detail: id }) {
+    updateTypingLesson(id);
+  }
 </script>
 
 <section class="container">
@@ -20,5 +24,8 @@
     <p>In this section, you can work on your general typing skills.</p>
   </header>
 
-  <LessonsList baseURL="typing-lessons" lessons={$typingLessons} />
+  <LessonsList
+    baseURL="typing-lessons"
+    lessons={$typingLessons}
+    on:completed={finishLesson} />
 </section>

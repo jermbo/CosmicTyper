@@ -1,9 +1,17 @@
 import axios from "axios";
 import * as store from "./store";
-import { parseItem, parseList } from "./http-utils";
+import { parseList } from "./http-utils";
+import { getLsItem } from "./storage-utils";
+import { keyEnums } from "./enums";
 import API from "./config";
 
 export async function getWebLessonsAction() {
+  if (getLsItem(keyEnums.webKey)) {
+    console.log("checking first");
+    store.getWebLessons(getLsItem(keyEnums.webKey));
+    return;
+  }
+
   try {
     const resp = await axios.get(`${API}/webLessons`);
     const data = parseList(resp);

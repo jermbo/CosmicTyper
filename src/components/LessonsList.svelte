@@ -1,7 +1,10 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   import { link } from "svelte-routing";
   export let baseURL = "web-lessons";
   export let lessons = [];
+
+  const dispatch = createEventDispatcher();
 
   function slugify(name) {
     return name
@@ -9,11 +12,14 @@
       .split(" ")
       .join("_");
   }
+  function markComplete(id) {
+    dispatch("completed", id);
+  }
 </script>
 
 <style lang="scss">
   .lesson-table {
-    max-height: 65vh;
+    max-height: 75vh;
     overflow-x: auto;
   }
   th {
