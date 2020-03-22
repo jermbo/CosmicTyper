@@ -6,7 +6,7 @@
   import TypingLessons from "./views/TypingLessons.svelte";
   import PageNotFound from "./views/PageNotFound.svelte";
 
-  import { Nav, Redirect } from "./components";
+  import { Nav, Redirect, WebLesson, TypeLesson } from "./components";
 
   export let url = "";
 </script>
@@ -18,6 +18,12 @@
   </Route>
   <Route path="/welcome" component={Welcome} />
   <Route path="/web-lessons" component={WebLessons} />
+  <Route path="/web-lessons/:id" let:params>
+    <WebLesson id={params.id} />
+  </Route>
   <Route path="/typing-lessons" component={TypingLessons} />
+  <Route path="/typing-lessons/:id" let:params>
+    <TypeLesson id={params.id} />
+  </Route>
   <Route path="**" component={PageNotFound} />
 </Router>
