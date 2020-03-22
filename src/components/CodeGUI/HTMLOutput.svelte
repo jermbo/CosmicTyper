@@ -1,6 +1,6 @@
 <script>
   // Stores
-  import { HTML_CODE, CSS_CODE } from "Stores/CodeState.js";
+  import { HTML_CODE, CSS_CODE } from "../../store/code-data.js";
 
   // HACK - but necessary to avoid formatting issues in VSCode
   const openStyle = "<style>";

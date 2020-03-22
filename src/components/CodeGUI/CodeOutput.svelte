@@ -1,5 +1,5 @@
 <script>
-  import { HTML_CODE, CSS_CODE } from "Stores/CodeState.js";
+  import { HTML_CODE, CSS_CODE } from "../../store/code-data.js";
 
   let cssCode;
   CSS_CODE.subscribe((code) => (cssCode = code));

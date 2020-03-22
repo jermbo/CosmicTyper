@@ -1,12 +1,13 @@
 import svelte from "rollup-plugin-svelte";
-import resolve from "rollup-plugin-node-resolve";
-import commonjs from "rollup-plugin-commonjs";
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
 import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
-import autoPreprocess from "svelte-preprocess";
-import alias from "@rollup/plugin-alias";
+import postcss from "rollup-plugin-postcss";
+import replace from "@rollup/plugin-replace";
 
 const production = !process.env.ROLLUP_WATCH;
+const API = process.env.API || "/api";
 
 export default {
   input: "src/main.js",
@@ -17,26 +18,24 @@ export default {
     file: "public/build/bundle.js",
   },
   plugins: [
+    replace({
+      process: JSON.stringify({
+        env: {
+          isProd: production,
+          SVELTE_APP_API: "http://localhost:10627/api",
+        },
+      }),
+    }),
     svelte({
       dev: !production,
-      css: css => {
+      css: (css) => {
         css.write("public/build/bundle.css");
       },
-      preprocess: autoPreprocess(),
     }),
-    alias({
-      entries: [
-        { find: "Comps", replacement: `${__dirname}/src/components` },
-        { find: "Global", replacement: `${__dirname}/src/components/Global` },
-        { find: "UI", replacement: `${__dirname}/src/components/UI` },
-        { find: "Stores", replacement: `${__dirname}/src/stores` },
-        { find: "Data", replacement: `${__dirname}/src/data` },
-        { find: "Scripts", replacement: `${__dirname}/src/scripts` },
-      ],
-    }),
+    postcss(),
     resolve({
       browser: true,
-      dedupe: importee => importee === "svelte" || importee.startsWith("svelte/"),
+      dedupe: ["svelte"],
     }),
     commonjs(),
     !production && serve(),

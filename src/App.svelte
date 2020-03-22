@@ -1,53 +1,29 @@
 <script>
-  // Life Cycle
-  import { beforeUpdate } from "svelte";
+  import "./scss/styles.scss";
+  import { Router, Link, Route } from "svelte-routing";
+  import Welcome from "./views/Welcome.svelte";
+  import WebLessons from "./views/WebLessons.svelte";
+  import TypingLessons from "./views/TypingLessons.svelte";
+  import PageNotFound from "./views/PageNotFound.svelte";
 
-  // Components
-  import AppState from "UI/AppState.svelte";
-  import Nav from "Global/Nav.svelte";
-  import WelcomeScreen from "./WelcomeScreen.svelte";
-  import LessonsScreen from "./LessonsScreen.svelte";
+  import { Nav, Redirect, WebLesson, TypeLesson } from "./components";
 
-  // Stores
-  import { APP_STATE } from "Stores/AppState.js";
-  import { USER_OBJ } from "Stores/UserState.js";
-
-  // Helpers and Enums
-  import { setLsItem } from "Scripts/LocalStorageHelper.js";
-  import { LSKeyEnums, AppStateEnums } from "Scripts/enum.js";
-
-  // Reactive variables
-  $: appState = $APP_STATE.state;
-
-  const rightNow = Date.now();
-  // Setting Threshold to 18 hours.
-  const resetThreshold = 1000 * 60 * 60 * 18;
-
-  function changeAppState({ detail }) {
-    APP_STATE.setState(detail);
-  }
-
-  beforeUpdate(() => {
-    if (rightNow - $USER_OBJ.active_time > resetThreshold) {
-      localStorage.clear();
-      window.location.reload();
-    }
-  });
+  export let url = "";
 </script>
 
-<style lang="scss" global>
-  @import "./styles/styles.scss";
-</style>
-
-<main>
-
-  <AppState />
-
-  {#if !appState || appState == AppStateEnums.appStart}
-    <WelcomeScreen on:updateState={changeAppState} />
-  {/if}
-
-  {#if appState == AppStateEnums.lessonSelect}
-    <LessonsScreen on:changeDifficulty={changeAppState} />
-  {/if}
-</main>
+<Router {url}>
+  <Nav />
+  <Route path="/">
+    <Redirect path="/welcome" />
+  </Route>
+  <Route path="/welcome" component={Welcome} />
+  <Route path="/web-lessons" component={WebLessons} />
+  <Route path="/web-lessons/:id" let:params>
+    <WebLesson id={params.id} />
+  </Route>
+  <Route path="/typing-lessons" component={TypingLessons} />
+  <Route path="/typing-lessons/:id" let:params>
+    <TypeLesson id={params.id} />
+  </Route>
+  <Route path="**" component={PageNotFound} />
+</Router>

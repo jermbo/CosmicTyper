@@ -1,6 +1,6 @@
 <script>
   // Life Cycle
-  import { createEventDispatcher } from "svelte";
+  import { onMount, createEventDispatcher } from "svelte";
 
   // Components
   import Typer from "./Typer.svelte";
@@ -8,14 +8,14 @@
   import CodeOutput from "./CodeOutput.svelte";
 
   // Props - Imports
-  export let lesson;
+  export let lesson = null;
 
   // Local Variables
   const dispatch = createEventDispatcher();
 
-  function onLessonEnded() {
-    // alert("all done");
-    dispatch("sectionFinished");
+  function onLessonEnded({ detail: id }) {
+    console.log("on lesosn ended", id);
+    dispatch("sectionFinished", id);
   }
 
   function backToSelect() {}
@@ -30,10 +30,5 @@
   </div>
   <div class="mini-maps">
     <CodeOutput />
-  </div>
-  <div class="lesson-nav">
-    <button on:click|preventDefault={() => onLessonEnded()} class="btn">
-      Back to Lesson Select
-    </button>
   </div>
 </div>

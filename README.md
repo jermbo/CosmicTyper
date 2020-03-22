@@ -1,29 +1,93 @@
-# Cosmic Typer 2.0
+*Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
 
-Typer has been updated utilizing Svelte under the hood. This has opened the door to a world of enhancements and growth. The documentation is out of date and currently being worked on.
+---
 
-## Purpose
+# svelte app
 
-After observing students learn programming, it became evident that typing was a struggle. Not only does the syntax look weird and scary, but trying to find those characters on the key board is hard. Especially for those who only have experience with tablets or phones. This tools main purpose is to get beginners more comfortable with the keyboard and the special characters, as well as seeing programming syntax often to get comfortable with it.
+This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
 
-## Road Map
+To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
 
-Coming Soon...
+```bash
+npx degit sveltejs/template svelte-app
+cd svelte-app
+```
 
-## Contributing
+*Note that you will need to have [Node.js](https://nodejs.org) installed.*
 
-If you are looking to contribute, please checkout our issue list. Be sure to read the [Contributing Guidelines](https://github.com/jermbo/CosmicTyper/blob/master/CONTRIBUTING.md) and [Code of Conduct](https://github.com/jermbo/CosmicTyper/blob/master/CODE_OF_CONDUCT.md).
 
-## Project Setup
+## Get started
 
-This project is utilizing Svelte.js. To get the project running locally, clone the repo to a folder on your desktop and navigate there using your terminal of choice, install the dependencies, and trigger the dev. Once done navigate to `localhost:5000` or the location prompted in your terminal.
+Install the dependencies...
 
-```CMD
-cd path/to/project
-npm i
+```bash
+cd svelte-app
+npm install
+```
+
+...then start [Rollup](https://rollupjs.org):
+
+```bash
 npm run dev
 ```
 
-## License
+Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
 
-MIT © [Jeremy "Jermbo" Lawson](https://github.com/jermbo)
+By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
+
+
+## Building and running in production mode
+
+To create an optimised version of the app:
+
+```bash
+npm run build
+```
+
+You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
+
+
+## Single-page app mode
+
+By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
+
+If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
+
+```js
+"start": "sirv public --single"
+```
+
+
+## Deploying to the web
+
+### With [now](https://zeit.co/now)
+
+Install `now` if you haven't already:
+
+```bash
+npm install -g now
+```
+
+Then, from within your project folder:
+
+```bash
+cd public
+now deploy --name my-project
+```
+
+As an alternative, use the [Now desktop client](https://zeit.co/download) and simply drag the unzipped project folder to the taskbar icon.
+
+### With [surge](https://surge.sh/)
+
+Install `surge` if you haven't already:
+
+```bash
+npm install -g surge
+```
+
+Then, from within your project folder:
+
+```bash
+npm run build
+surge public my-project.surge.sh
+```
