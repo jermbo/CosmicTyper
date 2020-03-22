@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { state } from "../store";
   import { navigate } from "svelte-routing";
+  import { updateTypingLesson } from "../store";
 
   import TypingGUI from "./TypingGUI/TypingGUI.svelte";
 
@@ -26,8 +27,15 @@
     }
     findLesson();
   });
+
+  function markComplete({ detail: id }) {
+    console.log("mark typing complete", id);
+    updateTypingLesson(id);
+    navigate("/typing-lessons");
+  }
+  console.log("in TypeLesson");
 </script>
 
 <div class="container">
-  <TypingGUI lesson={specificLesson} />
+  <TypingGUI lesson={specificLesson} on:sectionFinished={markComplete} />
 </div>

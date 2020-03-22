@@ -74,8 +74,8 @@
     return modifiers.some((mod) => mod == key);
   }
 
-  function endLesson(index) {
-    dispatch("endLesson", index);
+  function endLesson() {
+    dispatch("endLesson", lesson.id);
   }
 
   function lessonNav(direction) {

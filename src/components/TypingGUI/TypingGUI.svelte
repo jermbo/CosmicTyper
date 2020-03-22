@@ -42,13 +42,14 @@
   function endLesson() {
     currentLesson = 0;
     currentChar = 0;
-    dispatch("sectionFinished");
+    dispatch("sectionFinished", lesson.id);
   }
 
   function lessonNav() {
     currentLesson++;
     if (endOfLesson()) {
       lessonOver = true;
+      endLesson();
     } else {
       getLesson();
     }
@@ -65,6 +66,8 @@
   function isModifier(key) {
     return modifiers.some((mod) => mod == key);
   }
+
+  console.log("in Typing GUI");
 </script>
 
 <svelte:window on:keydown|preventDefault={handleKeydown} />

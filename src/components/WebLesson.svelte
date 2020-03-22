@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { state } from "../store";
   import { navigate } from "svelte-routing";
+  import { updateWebLesson } from "../store";
 
   import CodeGUI from "./CodeGUI/CodeGUI.svelte";
 
@@ -26,8 +27,14 @@
     }
     findLesson();
   });
+
+  function markComplete({ detail: id }) {
+    console.log("mark complete", id);
+    updateWebLesson(id);
+    navigate("/web-lessons");
+  }
 </script>
 
 <div class="container">
-  <CodeGUI lesson={specificLesson} />
+  <CodeGUI lesson={specificLesson} on:sectionFinished={markComplete} />
 </div>

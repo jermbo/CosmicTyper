@@ -13,14 +13,9 @@
   // Local Variables
   const dispatch = createEventDispatcher();
 
-  onMount(() => {
-    if (lesson) {
-      console.log(lesson);
-    }
-  });
-
-  function onLessonEnded() {
-    dispatch("sectionFinished");
+  function onLessonEnded({ detail: id }) {
+    console.log("on lesosn ended", id);
+    dispatch("sectionFinished", id);
   }
 
   function backToSelect() {}
