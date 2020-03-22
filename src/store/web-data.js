@@ -7,7 +7,6 @@ import API from "./config";
 
 export async function getWebLessonsAction() {
   if (getLsItem(keyEnums.webKey)) {
-    console.log("checking first");
     store.getWebLessons(getLsItem(keyEnums.webKey));
     return;
   }

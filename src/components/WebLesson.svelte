@@ -1,6 +1,9 @@
 <script>
   import { onMount } from "svelte";
   import { state } from "../store";
+  import { navigate } from "svelte-routing";
+
+  import CodeGUI from "./CodeGUI/CodeGUI.svelte";
 
   const { webLessons } = state;
 
@@ -14,13 +17,17 @@
       .toLowerCase();
     specificLesson = $webLessons.filter(
       (lesson) => lesson.title.toLowerCase() == title,
-    );
+    )[0];
   }
 
-  onMount(() => findLesson());
+  onMount(() => {
+    if (!$webLessons.length) {
+      navigate("/web-lessons");
+    }
+    findLesson();
+  });
 </script>
 
 <div class="container">
-  <h1>Web Lesson ID: {id}</h1>
-  <pre>{JSON.stringify(specificLesson, null, 2)}</pre>
+  <CodeGUI lesson={specificLesson} />
 </div>

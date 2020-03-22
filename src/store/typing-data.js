@@ -7,7 +7,6 @@ import API from "./config";
 
 export async function getTypingLessonsAction() {
   if (getLsItem(keyEnums.typingKey)) {
-    console.log("checking typing first");
     store.getTypingLessons(getLsItem(keyEnums.typingKey));
     return;
   }

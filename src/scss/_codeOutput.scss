@@ -1,0 +1,69 @@
+.code-display {
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 -5px 0px #424556;
+  margin: 0 !important;
+}
+
+.tab-group {
+  display: flex;
+}
+
+.tab {
+  cursor: pointer;
+  padding: $padding/2;
+  border-top: 4px solid transparent;
+  transition: all 0.25s ease;
+
+  &:hover,
+  &.focus {
+    background: #d4d4db;
+    border-top: 4px solid #c0392b;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.displays {
+  background: #d4d4db;
+  padding: $padding/2;
+  height: calc(100% - 37px);
+  position: relative;
+}
+
+.display {
+  transition: all 0.25s ease;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  background: #d4d4db;
+
+  &.focus {
+    opacity: 1;
+  }
+}
+
+.display-line {
+  padding: 4px $padding/2;
+
+  &:nth-child(even) {
+    background: #e8e9ed;
+  }
+}
