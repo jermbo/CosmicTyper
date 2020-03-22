@@ -18,4 +18,5 @@ const getTypingLessons = (lessons) => {
 function sortOnDifficulty(lessons) {
   return lessons.sort((a, b) => (a.difficulty > b.difficulty ? 1 : -1));
 }
+
 export { state, getWebLessons, getTypingLessons };

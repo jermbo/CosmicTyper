@@ -1,5 +1,5 @@
 <script>
-  import { Router, Link, Route } from "svelte-routing";
+  import { Link, link } from "svelte-routing";
   import { getContext } from "svelte";
   import { ROUTER } from "svelte-routing/src/contexts";
 
@@ -18,7 +18,7 @@
 
 <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="/">
+    <a class="navbar-item" href="/" use:link>
       <img src="/assets/images/icon.png" alt="Student Typer Logo" />
       <span class="ml-2 is-size-5 has-text-weight-medium has-margin-left-6">
         Student Typer

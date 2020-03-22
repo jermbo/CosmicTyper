@@ -9,7 +9,6 @@
 
   async function getWebLessons() {
     if (!$webLessons.length) {
-      console.log("no web items yet");
       await getWebLessonsAction();
     }
   }
@@ -20,5 +19,5 @@
     <h1 class="is-size-3">Web Lessons</h1>
     <p>Let's learn how to type, while learning the basics of HTML and CSS.</p>
   </header>
-  <LessonsList lessons={$webLessons} />
+  <LessonsList baseURL="web-lessons" lessons={$webLessons} />
 </div>

@@ -9,7 +9,6 @@
 
   async function getTypingLessons() {
     if (!$typingLessons.length) {
-      console.log("no typing lessons yet");
       await getTypingLessonsAction();
     }
   }
@@ -21,5 +20,5 @@
     <p>In this section, you can work on your general typing skills.</p>
   </header>
 
-  <LessonsList lessons={$typingLessons} />
+  <LessonsList baseURL="typing-lessons" lessons={$typingLessons} />
 </section>

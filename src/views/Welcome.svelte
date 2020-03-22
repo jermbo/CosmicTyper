@@ -1,4 +1,4 @@
-<section class="hero is-primary is-fullheight-with-navbar">
+<section class="hero is-fullheight-with-navbar">
   <div class="hero-body">
     <div class="container has-text-centered ">
       <!-- <img
