@@ -1,0 +1,19 @@
+.typing-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "type";
+  height: calc(100vh - 52px);
+  width: 100vw;
+  position: fixed;
+  top: 52px;
+  left: 0;
+}
+
+.typing-inner {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 $padding * 4;
+}

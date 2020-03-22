@@ -1,15 +1,23 @@
 <script>
-  import { createEventDispatcher } from "svelte";
+  // Life Cycle
+  import { onMount, createEventDispatcher } from "svelte";
+
   // Props - Imports
-  export let lesson;
+  export let lesson = null;
+
+  // Local Varialbes
+  const dispatch = createEventDispatcher();
 
   let currentLesson = 0;
   let currentChar = 0;
-  let actionOutput;
+  let actionOutput = [];
   let lessonOver = false;
 
   const modifiers = ["CapsLock", "Shift", "Control", "Alt"];
-  getLesson();
+
+  $: if (lesson) {
+    getLesson();
+  }
 
   function getLesson() {
     actionOutput = lesson.steps[currentLesson].split("");
@@ -30,8 +38,6 @@
       }
     }
   }
-
-  const dispatch = createEventDispatcher();
 
   function endLesson() {
     currentLesson = 0;
@@ -77,10 +83,5 @@
         </span>
       {/each}
     </div>
-  </div>
-  <div class="lesson-nav">
-    <button on:click|preventDefault={() => endLesson()} class="btn">
-      Back to Lesson Select
-    </button>
   </div>
 </div>

@@ -1,6 +1,9 @@
 <script>
   import { onMount } from "svelte";
   import { state } from "../store";
+  import { navigate } from "svelte-routing";
+
+  import TypingGUI from "./TypingGUI/TypingGUI.svelte";
 
   const { typingLessons } = state;
 
@@ -14,13 +17,17 @@
       .toLowerCase();
     specificLesson = $typingLessons.filter(
       (lesson) => lesson.title.toLowerCase() == title,
-    );
+    )[0];
   }
 
-  onMount(() => findLesson());
+  onMount(() => {
+    if (!$typingLessons.length) {
+      navigate("/typing-lessons");
+    }
+    findLesson();
+  });
 </script>
 
 <div class="container">
-  <h1>Typing Lesson ID: {id}</h1>
-  <pre>{JSON.stringify(specificLesson, null, 2)}</pre>
+  <TypingGUI lesson={specificLesson} />
 </div>

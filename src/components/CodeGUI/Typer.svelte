@@ -1,10 +1,13 @@
 <script>
+  // Life Cycle
   import { onMount, createEventDispatcher } from "svelte";
 
   import { HTML_CODE, CSS_CODE } from "../../store/code-data.js";
 
+  // Props - Imports
   export let lesson = null;
 
+  // Local Varialbes
   const dispatch = createEventDispatcher();
 
   let currentLesson = 0;
