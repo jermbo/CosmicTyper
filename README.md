@@ -1,93 +1,59 @@
-*Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+# Cosmic Typer
 
----
+This tool is designed to introduce students to better typing abilities as we as the basics of web development.
 
-# svelte app
+## Project Setup
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
+This project is built with the [Svelte](https://svelte.dev) framework. Svelte provides the ability to utilize components, stores, and reactive development.
 
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
+To get the project up and running, install the dependencies by running `npm i`. Once that is completed, run the command `npm run dev`, and navigate to `http://localhost:7777` in your browser of choice.
 
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
+## Web Lessons
+
+The Web Lessons is a place to practice typing HTML and CSS. The use will be presented a list of lessons that are pulled from an API and are stored locally on the users machine. The reason for this is to reduce the number of API calls, as well as keep track of which lessons the user has completed.
+
+*Note: This is a temporary solution until a proper backend and database is finalized.*
+
+### Web Lesson Structure
+
+Each lesson will be as follows:
+
+```JavaScript
+// Lesson Template
+{
+  title: String,
+  difficulty: String, // easy | medium | hard
+  hasCompleted: Boolean, // defaults to false
+  steps: Step[],
+}
+
+// Step Template
+{
+  type: String, // dom | style
+  desc: String,
+  render: Boolean, // defaults to true. ( might be deprecated in the future. )
+  action: String[],
+}
 ```
 
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+## Typing Lessons
 
+The Typing Lessons is a place to practice general typing. The use will be presented a list of lessons that are pulled from an API and are stored locally on the users machine. The reason for this is to reduce the number of API calls, as well as keep track of which lessons the user has completed.
 
-## Get started
+### Typing Lesson Structure
 
-Install the dependencies...
+Each lesson will be as follows:
 
-```bash
-cd svelte-app
-npm install
+```JavaScript
+// Lesson Template
+{
+  title: String,
+  difficulty: String, // easy | medium | hard
+  hasCompleted: Boolean, // defaults to false
+  steps: String[],
+}
 ```
 
-...then start [Rollup](https://rollupjs.org):
+## License
 
-```bash
-npm run dev
-```
-
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
-
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
-
-
-## Building and running in production mode
-
-To create an optimised version of the app:
-
-```bash
-npm run build
-```
-
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
-
-
-## Single-page app mode
-
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
-
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
-
-```js
-"start": "sirv public --single"
-```
-
-
-## Deploying to the web
-
-### With [now](https://zeit.co/now)
-
-Install `now` if you haven't already:
-
-```bash
-npm install -g now
-```
-
-Then, from within your project folder:
-
-```bash
-cd public
-now deploy --name my-project
-```
-
-As an alternative, use the [Now desktop client](https://zeit.co/download) and simply drag the unzipped project folder to the taskbar icon.
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
-```
+MIT &copy; Jeremy "Jermbo" Lawson
