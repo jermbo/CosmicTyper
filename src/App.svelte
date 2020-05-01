@@ -1,5 +1,12 @@
 <script>
   import "./scss/styles.scss";
+  import { Router } from "@sveltech/routify";
+  import { routes } from "@sveltech/routify/tmp/routes";
+</script>
+
+<Router {routes} />
+<!-- <script>
+  import "./scss/styles.scss";
   import { Router, Link, Route } from "svelte-routing";
   import Welcome from "./views/Welcome.svelte";
   import WebLessons from "./views/WebLessons.svelte";
@@ -9,9 +16,7 @@
   import { Nav, Redirect, WebLesson, TypeLesson } from "./components";
 
   export let url = "";
-</script>
-
-<Router {url}>
+</script><Router {url}>
   <Nav />
   <Route path="/">
     <Redirect path="/welcome" />
@@ -26,4 +31,4 @@
     <TypeLesson id={params.id} />
   </Route>
   <Route path="**" component={PageNotFound} />
-</Router>
+</Router> -->
