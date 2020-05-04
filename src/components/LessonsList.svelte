@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import { link } from "svelte-routing";
+  // import { link } from "svelte-routing";
+  import { isActive, url } from "@sveltech/routify";
   export let baseURL = "web-lessons";
   export let lessons = [];
 
@@ -50,10 +51,10 @@
           <td width="5%">
             <a
               class="button is-small is-info"
-              href={`${baseURL}/${slugify(lesson.title)}`}
-              use:link>
-              Start Lesson
+              href={$url(`/${baseURL}/${slugify(lesson.title)}`)}>
+              Start Lesson {baseURL}
             </a>
+            <!-- <a class="button is-small is-info" href="#">Start Lesson</a> -->
           </td>
         </tr>
       {/each}
