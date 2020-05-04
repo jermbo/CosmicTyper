@@ -12,10 +12,6 @@
       await getTypingLessonsAction();
     }
   }
-
-  function finishLesson({ detail: id }) {
-    updateTypingLesson(id);
-  }
 </script>
 
 <section class="container">
@@ -24,8 +20,5 @@
     <p>In this section, you can work on your general typing skills.</p>
   </header>
 
-  <LessonsList
-    baseURL="typing-lessons"
-    lessons={$typingLessons}
-    on:completed={finishLesson} />
+  <LessonsList baseURL="typing-lessons" lessons={$typingLessons} />
 </section>

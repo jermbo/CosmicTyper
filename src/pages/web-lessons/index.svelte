@@ -12,10 +12,6 @@
       await getWebLessonsAction();
     }
   }
-
-  function finishLesson({ detail: id }) {
-    updateWebLesson(id);
-  }
 </script>
 
 <section class="container">
@@ -24,8 +20,5 @@
     <p>Let's learn how to type, while learning the basics of HTML and CSS.</p>
   </header>
 
-  <LessonsList
-    baseURL="web-lessons"
-    lessons={$webLessons}
-    on:completed={finishLesson} />
+  <LessonsList baseURL="web-lessons" lessons={$webLessons} />
 </section>

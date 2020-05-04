@@ -6,13 +6,6 @@
   .huge {
     font-size: 12rem;
   }
-  .e404 {
-    /* position: absolute; */
-    /* left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center; */
-  }
 </style>
 
 <div class="e404">
