@@ -1,20 +1,12 @@
 <script>
-  // import { Link, link } from "svelte-routing";
-  // import { getContext } from "svelte";
-  // import { ROUTER } from "svelte-routing/src/contexts";
-
-  // const { activeRoute } = getContext(ROUTER);
-
-  // function getProps({ location, href, isPartiallyCurrent, isCurrent }) {
-  //   const isActive = href === "/" ? isCurrent : isPartiallyCurrent || isCurrent;
-  //   if (isActive) {
-  //     return { class: "navbar-item is-active" };
-  //   }
-  //   return { class: "navbar-item" };
-  // }
-
-  let isOpen = false;
   import { isActive, url } from "@sveltech/routify";
+  let isOpen = false;
+  const links = [
+    ["/web-lessons", "Web Lessons"],
+    ["/typing-lessons", "Typing Lessons"],
+    ["/settings", "Settings"],
+    ["/admin", "Admin"],
+  ];
 </script>
 
 <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
@@ -44,9 +36,15 @@
   </div>
 
   <div class="navbar-menu" class:is-active={isOpen}>
-    <div class="nav">
-      <a class="nav-link active" href={$url('/web-lessons')}>Web Lessons</a>
-      <a class="nav-link" href={$url('/typing-lessons')}>Typing Lessons</a>
+    <div class="navbar-start">
+      {#each links as [path, name]}
+        <a
+          class="navbar-item"
+          href={$url(path)}
+          class:is-active={$isActive(path)}>
+          {name}
+        </a>
+      {/each}
     </div>
   </div>
 </nav>

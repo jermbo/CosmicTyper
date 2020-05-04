@@ -1,10 +1,10 @@
 <script>
   import { onMount } from "svelte";
-  import { state } from "../store";
-  import { goto } from "@sveltech/routify";
-  import { updateTypingLesson } from "../store";
+  import { state, updateTypingLesson } from "../../store";
+  // import { navigate } from "svelte-routing";
+  import { isActive, url, goto } from "@sveltech/routify";
 
-  import TypingGUI from "./TypingGUI/TypingGUI.svelte";
+  import TypingGUI from "../../components/TypingGUI/TypingGUI.svelte";
 
   const { typingLessons } = state;
 
