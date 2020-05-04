@@ -1,18 +1,14 @@
 <script>
   import { onMount } from "svelte";
   import { state, updateTypingLesson } from "../../store";
-  // import { navigate } from "svelte-routing";
-  import { isActive, url, goto } from "@sveltech/routify";
-
+  import { url, goto, params } from "@sveltech/routify";
   import TypingGUI from "../../components/TypingGUI/TypingGUI.svelte";
 
   const { typingLessons } = state;
-
-  export let id = "";
   let specificLesson = null;
 
   function findLesson() {
-    const title = id
+    const title = $params.lesson
       .split("_")
       .join(" ")
       .toLowerCase();
@@ -29,11 +25,9 @@
   });
 
   function markComplete({ detail: id }) {
-    console.log("mark typing complete", id);
     updateTypingLesson(id);
     $goto("/typing-lessons");
   }
-  console.log("in TypeLesson");
 </script>
 
 <div class="container">

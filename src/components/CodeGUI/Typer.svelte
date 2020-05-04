@@ -18,7 +18,6 @@
   const modifiers = ["CapsLock", "Shift", "Control", "Alt"];
 
   $: if (lesson) {
-    console.log("what up");
     resetView();
     getLesson();
   }
@@ -33,7 +32,6 @@
 
   function getLesson() {
     actionOutput = lesson.steps[currentLesson].action.map((c) => c.split(""));
-    console.log(actionOutput);
   }
 
   function handleKeydown(e) {
