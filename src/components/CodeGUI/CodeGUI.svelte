@@ -14,7 +14,6 @@
   const dispatch = createEventDispatcher();
 
   function onLessonEnded({ detail: id }) {
-    console.log("on lesosn ended", id);
     dispatch("sectionFinished", id);
   }
 

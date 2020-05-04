@@ -1,17 +1,15 @@
 <script>
   import { onMount } from "svelte";
   import { state, updateWebLesson } from "../../store";
-  import { isActive, url, goto } from "@sveltech/routify";
-
+  import { url, goto, params } from "@sveltech/routify";
   import CodeGUI from "../../components/CodeGUI/CodeGUI.svelte";
 
   const { webLessons } = state;
 
-  export let id = "";
   let specificLesson = null;
 
   function findLesson() {
-    const title = id
+    const title = $params.lesson
       .split("_")
       .join(" ")
       .toLowerCase();
@@ -28,7 +26,6 @@
   });
 
   function markComplete({ detail: id }) {
-    console.log("mark complete", id);
     updateWebLesson(id);
     $goto("/web-lessons");
   }
