@@ -1,21 +1,20 @@
 <script>
+  import { onMount } from "svelte";
   import { goto } from "@sveltech/routify";
-  // import { authorize } from "my-auth-service";
-  function authorize() {
-    return new Promise((resolve, reject) => {
-      if (Math.random() > 0.3) {
-        resolve("You are logged in");
-      } else {
-        reject("Need to test reject");
-      }
-    });
+  import { state, getAdminUserAction } from "../../store";
+  const { adminUser } = state;
+
+  onMount(async () => await getAdminUser());
+
+  async function getAdminUser() {
+    if (!$adminUser || !$adminUser.user) {
+      await getAdminUserAction();
+    }
   }
 </script>
 
-{#await authorize()}
-  Checking permissions...
-{:then}
+{#if $adminUser.user}
   <slot />
-{:catch}
-  {$goto('/')}
-{/await}
+{:else}
+  <div>{$goto('/login')}</div>
+{/if}

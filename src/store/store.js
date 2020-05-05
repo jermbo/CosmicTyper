@@ -1,10 +1,24 @@
 import { writable } from "svelte/store";
-import { getLsItem, setLsItem, removeLsItem, clearAll } from "./storage-utils";
+import { getLsItem, setLsItem } from "./storage-utils";
 import { keyEnums } from "./enums";
 
 const state = {
   webLessons: writable([]),
   typingLessons: writable([]),
+  adminUser: writable({}),
+  studentUser: writable({}),
+};
+
+const getAdminUser = (admin) => {
+  let adminData;
+  if (getLsItem(keyEnums.admin)) {
+    adminData = getLsItem(keyEnums.admin);
+  } else {
+    adminData = admin;
+  }
+
+  setLsItem(keyEnums.admin, adminData);
+  state.adminUser.update((old) => adminData);
 };
 
 const getWebLessons = (lessons) => {
@@ -70,4 +84,4 @@ function addStatus(sorted = []) {
   });
 }
 
-export { state, getWebLessons, getTypingLessons, updateWebLesson, updateTypingLesson };
+export { state, getWebLessons, getTypingLessons, updateWebLesson, updateTypingLesson, getAdminUser };
