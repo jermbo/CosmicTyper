@@ -2,6 +2,7 @@
   let isAuth = false;
 </script>
 
+<!-- routify:options name="settings" -->
 <section class="container">
   <header class="has-margin-top-4 has-margin-bottom-4">
     <h1 class="is-size-3">Choose your settings.</h1>

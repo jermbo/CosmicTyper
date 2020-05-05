@@ -14,6 +14,7 @@
   }
 </script>
 
+<!-- routify:options name="web-lessons" -->
 <section class="container">
   <header class="has-margin-top-4 has-margin-bottom-4">
     <h1 class="is-size-3">Web Lessons</h1>

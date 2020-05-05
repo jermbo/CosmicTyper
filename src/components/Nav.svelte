@@ -3,10 +3,11 @@
 
   let isOpen = false;
   const links = [
-    ["/web-lessons", "Web Lessons"],
-    ["/typing-lessons", "Typing Lessons"],
-    ["/settings", "Settings"],
-    ["/admin", "Admin"],
+    ["web-lessons", "Web Lessons"],
+    ["typing-lessons", "Typing Lessons"],
+    ["settings", "Settings"],
+    ["admin", "Admin"],
+    ["login", "Login"],
   ];
 </script>
 
