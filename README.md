@@ -24,7 +24,7 @@ Each lesson will be as follows:
   title: String,
   difficulty: String, // easy | medium | hard
   hasCompleted: Boolean, // defaults to false
-  steps: Step[],
+  steps: Step[]
 }
 
 // Step Template
