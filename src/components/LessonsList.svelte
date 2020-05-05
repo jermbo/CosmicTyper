@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import { isActive, url } from "@sveltech/routify";
+  import { url } from "@sveltech/routify";
   export let baseURL = "web-lessons";
   export let lessons = [];
 
