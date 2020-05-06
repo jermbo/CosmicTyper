@@ -1,14 +1,22 @@
 <script>
-  import { isActive, url } from "@sveltech/routify";
+  import { onMount } from "svelte";
+  import { isActive, url, goto } from "@sveltech/routify";
+  import { state, getAdminUserAction, logoutAdminUser } from "../store";
+  const { adminUser } = state;
+
+  $: shouldDisplayAdmin = JSON.stringify($adminUser) !== "{}";
 
   let isOpen = false;
   const links = [
     ["web-lessons", "Web Lessons"],
     ["typing-lessons", "Typing Lessons"],
     ["settings", "Settings"],
-    ["admin", "Admin"],
-    ["login", "Login"],
   ];
+
+  async function handleLogOut() {
+    await logoutAdminUser();
+    $goto("home");
+  }
 </script>
 
 <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
@@ -48,5 +56,18 @@
         </a>
       {/each}
     </div>
+
+    {#if shouldDisplayAdmin}
+      <div class="navbar-end">
+        <a class="navbar-item" href={$url('admin')}>Admin</a>
+        {#if $adminUser.isLoggedIn}
+          <a class="navbar-item" href={null} on:click={() => handleLogOut()}>
+            Log Out
+          </a>
+        {:else}
+          <a class="navbar-item" href={$url('login')}>Log In</a>
+        {/if}
+      </div>
+    {/if}
   </div>
 </nav>
