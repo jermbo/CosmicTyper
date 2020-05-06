@@ -2,27 +2,41 @@
   import { onMount } from "svelte";
   import { state, getAdminUserAction } from "../store";
   import { goto } from "@sveltech/routify";
+  import { form } from "svelte-forms";
   const { adminUser } = state;
 
-  let username = "";
-  let password = "";
+  let username = "jermbo";
+  let password = "test123";
 
-  onMount(async () => await getAdminUser());
+  const myForm = form(() => ({
+    username: {
+      value: username,
+      validators: ["required"],
+      enabled: true,
+    },
+    password: {
+      value: password,
+      validators: ["required"],
+      enabled: true,
+    },
+  }));
 
-  async function getAdminUser() {
-    if (!$adminUser || !$adminUser.user) {
+  onMount(async () => await authAdmin());
+
+  async function authAdmin() {
+    if (!$adminUser) {
       await getAdminUserAction();
     }
-
-    if ($adminUser.user) {
+    if ($adminUser.isLoggedIn) {
       $goto("admin");
     }
   }
 
-  async function handleLogin() {
-    if (!$adminUser.user) {
+  async function handleSubmit() {
+    console.log(!$adminUser.isLoggedIn);
+    if (!$adminUser.isLoggedIn) {
       await getAdminUserAction({ username, password });
-      if ($adminUser.user) {
+      if ($adminUser.isLoggedIn) {
         $goto("/admin");
       }
     }
@@ -34,20 +48,47 @@
   <header class="has-margin-top-4 has-margin-bottom-4">
     <h1 class="is-size-3">Login</h1>
   </header>
-  <div class="fields">
+  <form on:submit|preventDefault={handleSubmit}>
+
     <div class="field">
-      <label class="label">Name</label>
-      <div class="control">
-        <input class="input" type="text" bind:value={username} />
+      <label class="label">Username</label>
+      <div class="control has-icons-left has-icons-right">
+        <input
+          class="input"
+          type="text"
+          placeholder="User Name"
+          bind:value={username} />
+        <span class="icon is-small is-left">
+          <i class="fas fa-user" />
+        </span>
       </div>
+      {#if $myForm.dirty && $myForm.username.errors.includes('required')}
+        <p class="help is-danger">This username is required</p>
+      {/if}
+      {#if $myForm.dirty && $myForm.username.errors.includes('min')}
+        <p class="help is-danger">Min is 3</p>
+      {/if}
     </div>
 
     <div class="field">
       <label class="label">Password</label>
-      <div class="control">
-        <input class="input" type="password" bind:value={password} />
+      <div class="control has-icons-left has-icons-right">
+        <input
+          class="input"
+          type="password"
+          placeholder="Password"
+          bind:value={password} />
+        <span class="icon is-small is-left">
+          <i class="fas fa-lock" />
+        </span>
       </div>
+      {#if $myForm.dirty && $myForm.password.errors.includes('required')}
+        <p class="help is-danger">This password is required</p>
+      {/if}
     </div>
-    <button class="button is-primary" on:click={handleLogin}>Login</button>
-  </div>
+
+    <button type="submit" class="button is-primary" disabled={!$myForm.valid}>
+      Login
+    </button>
+  </form>
 </section>
