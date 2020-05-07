@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import { link } from "svelte-routing";
+  import { url } from "@sveltech/routify";
   export let baseURL = "web-lessons";
   export let lessons = [];
 
@@ -42,7 +42,7 @@
     <tbody>
       {#each lessons as lesson}
         <tr class:is-selected={lesson.hasCompleted}>
-          <td width="5%">
+          <td class="text-center" width="5%">
             <i class="fas fa-check" class:is-hidden={!lesson.hasCompleted} />
           </td>
           <td width="80%">{lesson.title}</td>
@@ -50,8 +50,7 @@
           <td width="5%">
             <a
               class="button is-small is-info"
-              href={`${baseURL}/${slugify(lesson.title)}`}
-              use:link>
+              href={$url(`/${baseURL}/${slugify(lesson.title)}`)}>
               Start Lesson
             </a>
           </td>

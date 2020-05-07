@@ -1,18 +1,15 @@
 <script>
   import { onMount } from "svelte";
-  import { state } from "../store";
-  import { navigate } from "svelte-routing";
-  import { updateWebLesson } from "../store";
-
-  import CodeGUI from "./CodeGUI/CodeGUI.svelte";
+  import { state, updateWebLesson } from "../../store";
+  import { url, goto, params } from "@sveltech/routify";
+  import CodeGUI from "../../components/CodeGUI/CodeGUI.svelte";
 
   const { webLessons } = state;
 
-  export let id = "";
   let specificLesson = null;
 
   function findLesson() {
-    const title = id
+    const title = $params.lesson
       .split("_")
       .join(" ")
       .toLowerCase();
@@ -23,15 +20,14 @@
 
   onMount(() => {
     if (!$webLessons.length) {
-      navigate("/web-lessons");
+      $goto("/web-lessons");
     }
     findLesson();
   });
 
   function markComplete({ detail: id }) {
-    console.log("mark complete", id);
     updateWebLesson(id);
-    navigate("/web-lessons");
+    $goto("/web-lessons");
   }
 </script>
 

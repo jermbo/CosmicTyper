@@ -66,8 +66,6 @@
   function isModifier(key) {
     return modifiers.some((mod) => mod == key);
   }
-
-  console.log("in Typing GUI");
 </script>
 
 <svelte:window on:keydown|preventDefault={handleKeydown} />

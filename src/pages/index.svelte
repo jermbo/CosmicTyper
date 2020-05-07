@@ -1,10 +1,7 @@
+<!-- routify:options name="home" -->
 <section class="hero is-fullheight-with-navbar">
   <div class="hero-body">
     <div class="container has-text-centered ">
-      <!-- <img
-        src="assets/images/logo.png"
-        width="500"
-        alt="Code Palm Beach Student Typer" /> -->
       <h1 class="title has-text-dark">
         <span class="has-text-weight-light">Welcome to Code Palm Beach</span>
         <br />
