@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { state, updateTypingLesson } from "../../store";
-  import { url, goto, params } from "@sveltech/routify";
+  import { goto, params } from "@sveltech/routify";
   import TypingGUI from "../../components/TypingGUI/TypingGUI.svelte";
 
   const { typingLessons } = state;
