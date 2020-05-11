@@ -18,19 +18,7 @@
   }
 </script>
 
-<style lang="scss">
-  .lesson-table {
-    max-height: 75vh;
-    overflow-x: auto;
-  }
-  th {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-  }
-</style>
-
-<div class="card lesson-table">
+<div class="table-container">
   <table class="table is-striped is-hoverable is-fullwidth">
     <thead>
       <tr>
