@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { LessonsList } from "../../components";
-  import { state, getWebLessonsAction, updateWebLesson } from "../../store";
+  import { state, getWebLessonsAction } from "../../store";
 
   const { webLessons } = state;
 

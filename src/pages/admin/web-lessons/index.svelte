@@ -1,40 +1,24 @@
 <script>
-  import LessonsList from "../../../components/LessonsList.svelte";
-  // let webData = [];
-  let display = false;
+  import { onMount } from "svelte";
+  import { AdminLessonsList } from "../../../components";
+  import { state, getWebLessonsAction } from "../../../store";
 
-  const getData = (async () => {
-    const resp = await fetch("http://localhost:1337/web-lessons");
-    return await resp.json();
-  })();
-</script>
+  const { webLessons } = state;
 
-<style>
-  pre {
-    height: 50vh;
-    overflow-y: auto;
+  onMount(async () => await getWebLessons());
+
+  async function getWebLessons() {
+    if (!$webLessons.length) {
+      await getWebLessonsAction();
+    }
   }
-</style>
+</script>
 
 <!-- routify:options name="admin-web-lessons" -->
 <div class="container">
-  <p>Web Lessons Admin</p>
-  <!-- <pre>{JSON.stringify(webData, null, 2)}</pre>
-  {#await getData}
-    <p>Getting data</p>
-  {:then lessons}
-    <pre>{JSON.stringify(lessons, null, 2)}</pre>
-    <!--  -->
-  <!-- {:catch error}
-    <p>something went wrong {error}</p>
-  {/await} -->
+  <header class="has-margin-top-4 has-margin-bottom-4">
+    <h1 class="is-size-3">Web Lessons Admin</h1>
+  </header>
 
-  {#await getData}
-    <p>...waiting</p>
-  {:then lessons}
-    <pre>{JSON.stringify(lessons, null, 2)}</pre>
-    <!-- <LessonsList baseURL="admin/web-lessons" {lessons} /> -->
-  {:catch error}
-    <p>An error occurred!</p>
-  {/await}
+  <AdminLessonsList lessons={$webLessons} />
 </div>

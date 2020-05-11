@@ -1,11 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { LessonsList } from "../../components";
-  import {
-    state,
-    getTypingLessonsAction,
-    updateTypingLesson,
-  } from "../../store";
+  import { state, getTypingLessonsAction } from "../../store";
 
   const { typingLessons } = state;
 

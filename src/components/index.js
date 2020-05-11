@@ -1,5 +1,5 @@
 import Nav from "./Nav.svelte";
-import Redirect from "./Redirect.svelte";
 import LessonsList from "./LessonsList.svelte";
+import AdminLessonsList from "./AdminLessonsList.svelte";
 
-export { Nav, LessonsList, Redirect };
+export { Nav, LessonsList, AdminLessonsList };
