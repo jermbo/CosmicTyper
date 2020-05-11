@@ -20,6 +20,7 @@
     <h1 class="is-size-3">Web Lessons</h1>
     <p>Let's learn how to type, while learning the basics of HTML and CSS.</p>
   </header>
-
-  <LessonsList baseURL="web-lessons" lessons={$webLessons} />
+  {#if $webLessons.length}
+    <LessonsList baseURL="web-lessons" lessons={$webLessons} />
+  {/if}
 </section>

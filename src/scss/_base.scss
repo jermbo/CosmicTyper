@@ -12,3 +12,9 @@
     z-index: 1;
   }
 }
+
+pre {
+  max-height: 50vh;
+  max-width: 100%;
+  overflow: auto;
+}

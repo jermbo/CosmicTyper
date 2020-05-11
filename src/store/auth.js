@@ -3,7 +3,7 @@ import * as store from "./store";
 import { parseList } from "./http-utils";
 import { getLsItem } from "./storage-utils";
 import { keyEnums } from "./enums";
-import { AUTH_URL } from "./config";
+import { API_URL } from "./config";
 
 export async function getAdminUserAction({ username, password } = {}) {
   if (getLsItem(keyEnums.admin)) {
@@ -16,7 +16,7 @@ export async function getAdminUserAction({ username, password } = {}) {
   }
 
   try {
-    const resp = await axios.post(`${AUTH_URL}/auth/local`, {
+    const resp = await axios.post(`${API_URL}/auth/local`, {
       identifier: username || "",
       password: password || "",
     });

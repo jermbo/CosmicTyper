@@ -47,7 +47,8 @@ const getWebLessons = (lessons) => {
 
 const updateWebLesson = (id) => {
   const lesson = getLsItem(keyEnums.webKey).filter((lesson) => lesson.id == id)[0];
-  lesson.hasCompleted = !lesson.hasCompleted;
+  // TODO - Refactor when creating user session
+  // lesson.hasCompleted = !lesson.hasCompleted;
   state.webLessons.update((old) => {
     const index = old.findIndex((l) => l.id == lesson.id);
     old.splice(index, 1, lesson);
@@ -71,7 +72,8 @@ const getTypingLessons = (lessons) => {
 
 const updateTypingLesson = (id) => {
   const lesson = getLsItem(keyEnums.typingKey).filter((lesson) => lesson.id == id)[0];
-  lesson.hasCompleted = !lesson.hasCompleted;
+  // TODO - Refactor when creating user session
+  // lesson.hasCompleted = !lesson.hasCompleted;
   state.typingLessons.update((old) => {
     const index = old.findIndex((l) => l.id == lesson.id);
     old.splice(index, 1, lesson);
