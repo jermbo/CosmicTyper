@@ -37,8 +37,13 @@
       </a>
       <div class="level">
         <h1 class="is-size-3">{lessonData.title}</h1>
-        <a class="button is-small is-danger" href={$url(`${lessonId}/edit`)}>
-          Edit
+        <a
+          class="button is-small is-danger is-outlined"
+          href={$url(`${lessonId}/edit`)}>
+          <span class="icon">
+            <i class="fas fa-edit" />
+          </span>
+          <span>Edit</span>
         </a>
       </div>
     </header>

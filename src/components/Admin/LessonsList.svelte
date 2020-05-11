@@ -14,20 +14,8 @@
   }
 </script>
 
-<style lang="scss">
-  .lesson-table {
-    max-height: 75vh;
-    overflow-x: auto;
-  }
-  th {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-  }
-</style>
-
-<div class="card lesson-table">
-  <table class="table is-striped is-hoverable is-fullwidth">
+<div class="table-container">
+  <table class="table is-striped is-fullwidth is-hoverable">
     <thead>
       <tr>
         <th class="has-background-grey-lighter">Lesson Name</th>
@@ -36,18 +24,24 @@
     </thead>
     <tbody>
       {#each lessons as lesson}
-        <tr class:is-selected={lesson.hasCompleted}>
-          <td width="75%">{lesson.title}</td>
-          <td width="25%">
+        <tr>
+          <td width="90%">{lesson.title}</td>
+          <td width="10%" class="field has-addons">
             <a
-              class="button is-small is-info"
+              class="control button is-small"
+              title={`View: ${lesson.title}`}
               href={$url(`${baseURL}/${slugify(lesson.title)}`)}>
-              View Lesson
+              <span class="icon has-text-info">
+                <i class="fas fa-eye" />
+              </span>
             </a>
             <a
-              class="button is-small is-info"
+              class="control button is-small"
+              title={`Edit: ${lesson.title}`}
               href={$url(`${baseURL}/${slugify(lesson.title)}/edit`)}>
-              Edit Lesson
+              <span class="icon has-text-danger">
+                <i class="fas fa-edit" />
+              </span>
             </a>
           </td>
         </tr>
