@@ -3,7 +3,7 @@ import * as store from "./store";
 import { parseList } from "./http-utils";
 import { getLsItem } from "./storage-utils";
 import { keyEnums } from "./enums";
-import API from "./config";
+import { API_URL } from "./config";
 
 export async function getTypingLessonsAction() {
   if (getLsItem(keyEnums.typingKey)) {
@@ -12,7 +12,7 @@ export async function getTypingLessonsAction() {
   }
 
   try {
-    const resp = await axios.get(`${API}/typingLessons`);
+    const resp = await axios.get(`${API_URL}/typing-lessons`);
     const data = parseList(resp);
     store.getTypingLessons(data);
     return data;

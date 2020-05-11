@@ -26,23 +26,25 @@
       {#each lessons as lesson}
         <tr>
           <td width="90%">{lesson.title}</td>
-          <td width="10%" class="field has-addons">
-            <a
-              class="control button is-small"
-              title={`View: ${lesson.title}`}
-              href={$url(`${baseURL}/${slugify(lesson.title)}`)}>
-              <span class="icon has-text-info">
-                <i class="fas fa-eye" />
-              </span>
-            </a>
-            <a
-              class="control button is-small"
-              title={`Edit: ${lesson.title}`}
-              href={$url(`${baseURL}/${slugify(lesson.title)}/edit`)}>
-              <span class="icon has-text-danger">
-                <i class="fas fa-edit" />
-              </span>
-            </a>
+          <td width="10%">
+            <div class="field has-addons">
+              <a
+                class="control button is-small"
+                title={`View: ${lesson.title}`}
+                href={$url(`${baseURL}/${slugify(lesson.title)}`)}>
+                <span class="icon has-text-info">
+                  <i class="fas fa-eye" />
+                </span>
+              </a>
+              <a
+                class="control button is-small"
+                title={`Edit: ${lesson.title}`}
+                href={$url(`${baseURL}/${slugify(lesson.title)}/edit`)}>
+                <span class="icon has-text-danger">
+                  <i class="fas fa-edit" />
+                </span>
+              </a>
+            </div>
           </td>
         </tr>
       {/each}

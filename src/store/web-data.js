@@ -3,7 +3,7 @@ import * as store from "./store";
 import { parseList } from "./http-utils";
 import { getLsItem } from "./storage-utils";
 import { keyEnums } from "./enums";
-import API from "./config";
+import { API_URL } from "./config";
 
 export async function getWebLessonsAction() {
   if (getLsItem(keyEnums.webKey)) {
@@ -12,7 +12,7 @@ export async function getWebLessonsAction() {
   }
 
   try {
-    const resp = await axios.get(`${API}/webLessons`);
+    const resp = await axios.get(`${API_URL}/web-lessons`);
     const data = parseList(resp);
     store.getWebLessons(data);
     return data;

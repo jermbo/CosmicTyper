@@ -20,6 +20,7 @@
     <h1 class="is-size-3">Typing Lessons</h1>
     <p>In this section, you can work on your general typing skills.</p>
   </header>
-
-  <LessonsList baseURL="typing-lessons" lessons={$typingLessons} />
+  {#if $typingLessons.length}
+    <LessonsList baseURL="typing-lessons" lessons={$typingLessons} />
+  {/if}
 </section>
