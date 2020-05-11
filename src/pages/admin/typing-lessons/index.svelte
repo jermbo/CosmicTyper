@@ -20,5 +20,5 @@
     <h1 class="is-size-3">Typing Lessons Admin</h1>
   </header>
 
-  <AdminLessonsList lessons={$typingLessons} />
+  <AdminLessonsList baseURL="typing-lessons" lessons={$typingLessons} />
 </div>

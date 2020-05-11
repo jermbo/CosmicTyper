@@ -12,6 +12,7 @@
       .split(" ")
       .join("_");
   }
+
   function markComplete(id) {
     dispatch("completed", id);
   }
