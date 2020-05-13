@@ -3,10 +3,10 @@
   import { state, getAdminUserAction } from "../store";
   import { goto } from "@sveltech/routify";
   import { form } from "svelte-forms";
-  const { adminUser } = state;
+  const { adminUser, loginErrors } = state;
 
   let username = "jermbo";
-  let password = "test123";
+  let password = "test123s";
 
   const myForm = form(() => ({
     username: {
@@ -33,7 +33,6 @@
   }
 
   async function handleSubmit() {
-    console.log(!$adminUser.isLoggedIn);
     if (!$adminUser.isLoggedIn) {
       await getAdminUserAction({ username, password });
       if ($adminUser.isLoggedIn) {
@@ -49,7 +48,6 @@
     <h1 class="is-size-3">Login</h1>
   </header>
   <form on:submit|preventDefault={handleSubmit}>
-
     <div class="field">
       <label class="label">Username</label>
       <div class="control has-icons-left has-icons-right">
@@ -87,8 +85,15 @@
       {/if}
     </div>
 
-    <button type="submit" class="button is-primary" disabled={!$myForm.valid}>
-      Login
-    </button>
+    <div class="level">
+      <button type="submit" class="button is-primary" disabled={!$myForm.valid}>
+        Login
+      </button>
+      {#if $loginErrors.length > 0}
+        {#each $loginErrors as error}
+          <p class="has-text-danger">{error.message}</p>
+        {/each}
+      {/if}
+    </div>
   </form>
 </section>
