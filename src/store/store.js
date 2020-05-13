@@ -6,6 +6,7 @@ const state = {
   webLessons: writable([]),
   typingLessons: writable([]),
   adminUser: writable({}),
+  loginErrors: writable([]),
   studentUser: writable({}),
 };
 
@@ -24,6 +25,11 @@ const getAdminUser = (admin) => {
 
   setLsItem(keyEnums.admin, adminData);
   state.adminUser.update((old) => adminData);
+  setLoginErrors();
+};
+
+const setLoginErrors = (errors = []) => {
+  state.loginErrors.update((old) => errors);
 };
 
 const logoutAdminUser = () => {
@@ -96,4 +102,13 @@ function addStatus(sorted = []) {
   });
 }
 
-export { state, getWebLessons, getTypingLessons, updateWebLesson, updateTypingLesson, getAdminUser, logoutAdminUser };
+export {
+  state,
+  getWebLessons,
+  getTypingLessons,
+  updateWebLesson,
+  updateTypingLesson,
+  getAdminUser,
+  logoutAdminUser,
+  setLoginErrors,
+};
