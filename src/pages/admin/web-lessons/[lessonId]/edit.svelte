@@ -3,8 +3,6 @@
   import { state } from "../../../../store";
   import { url, goto, params } from "@sveltech/routify";
 
-  import { AdminTypingLessonEdit } from "../../../../components";
-
   const { webLessons } = state;
   const { lessonId } = $params;
 
@@ -42,6 +40,5 @@
         </a>
       </div>
     </header>
-    <AdminTypingLessonEdit {lessonData} />
   </div>
 {/if}

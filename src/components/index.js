@@ -4,6 +4,6 @@ import LessonsList from "./LessonsList.svelte";
 import AdminLessonsList from "./Admin/LessonsList.svelte";
 import AdminLessonView from "./Admin/LessonView.svelte";
 import AdminTypingLesson from "./Admin/Typing/Lesson.svelte";
-import AdminTypingLessonEdit from "./Admin/Typing/LessonEdit.svelte";
+import AdminTypingSteps from "./Admin/Typing/Steps.svelte";
 
-export { Nav, LessonsList, AdminLessonsList, AdminLessonView, AdminTypingLesson, AdminTypingLessonEdit };
+export { Nav, LessonsList, AdminLessonsList, AdminLessonView, AdminTypingLesson, AdminTypingSteps };
