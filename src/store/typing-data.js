@@ -1,20 +1,17 @@
 import axios from "axios";
-import * as store from "./store";
-import { parseList } from "./http-utils";
-import { getLsItem } from "./storage-utils";
-import { keyEnums } from "./enums";
-import { API_URL } from "./config";
+import { getTypingLessons } from "./store";
+import { API_URL, KEY_ENUMS, getLsItem, parseList } from "../utils";
 
 export async function getTypingLessonsAction() {
-  if (getLsItem(keyEnums.typingKey)) {
-    store.getTypingLessons(getLsItem(keyEnums.typingKey));
+  if (getLsItem(KEY_ENUMS.typingKey)) {
+    getTypingLessons(getLsItem(KEY_ENUMS.typingKey));
     return;
   }
 
   try {
     const resp = await axios.get(`${API_URL}/typing-lessons`);
     const data = parseList(resp);
-    store.getTypingLessons(data);
+    getTypingLessons(data);
     return data;
   } catch (err) {
     return console.log(err);

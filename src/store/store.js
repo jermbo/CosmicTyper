@@ -1,6 +1,5 @@
 import { writable } from "svelte/store";
-import { getLsItem, setLsItem, removeLsItem } from "./storage-utils";
-import { keyEnums } from "./enums";
+import { KEY_ENUMS, getLsItem, setLsItem, removeLsItem } from "../utils";
 
 const state = {
   webLessons: writable([]),
@@ -12,8 +11,8 @@ const state = {
 
 const getAdminUser = (admin) => {
   let adminData;
-  if (getLsItem(keyEnums.admin)) {
-    adminData = getLsItem(keyEnums.admin);
+  if (getLsItem(KEY_ENUMS.admin)) {
+    adminData = getLsItem(KEY_ENUMS.admin);
   } else {
     adminData = {
       isLoggedIn: admin.user ? true : false,
@@ -23,7 +22,7 @@ const getAdminUser = (admin) => {
     };
   }
 
-  setLsItem(keyEnums.admin, adminData);
+  setLsItem(KEY_ENUMS.admin, adminData);
   state.adminUser.update((old) => adminData);
   setLoginErrors();
 };
@@ -33,57 +32,57 @@ const setLoginErrors = (errors = []) => {
 };
 
 const logoutAdminUser = () => {
-  removeLsItem(keyEnums.admin, null);
+  removeLsItem(KEY_ENUMS.admin, null);
   state.adminUser.update((old) => ({}));
 };
 
 const getWebLessons = (lessons) => {
   let lessonData;
-  if (getLsItem(keyEnums.webKey)) {
-    lessonData = getLsItem(keyEnums.webKey);
+  if (getLsItem(KEY_ENUMS.webKey)) {
+    lessonData = getLsItem(KEY_ENUMS.webKey);
   } else {
     const sorted = sortOnDifficulty(lessons);
     const status = addStatus(sorted);
     lessonData = status;
   }
 
-  setLsItem(keyEnums.webKey, lessonData);
+  setLsItem(KEY_ENUMS.webKey, lessonData);
   state.webLessons.update((old) => lessonData);
 };
 
 const updateWebLesson = (id) => {
-  const lesson = getLsItem(keyEnums.webKey).filter((lesson) => lesson.id == id)[0];
+  const lesson = getLsItem(KEY_ENUMS.webKey).filter((lesson) => lesson.id == id)[0];
   // TODO - Refactor when creating user session
   // lesson.hasCompleted = !lesson.hasCompleted;
   state.webLessons.update((old) => {
     const index = old.findIndex((l) => l.id == lesson.id);
     old.splice(index, 1, lesson);
-    setLsItem(keyEnums.webKey, old);
+    setLsItem(KEY_ENUMS.webKey, old);
     return [...old];
   });
 };
 
 const getTypingLessons = (lessons) => {
   let lessonData;
-  if (getLsItem(keyEnums.typingKey)) {
-    lessonData = getLsItem(keyEnums.typingKey);
+  if (getLsItem(KEY_ENUMS.typingKey)) {
+    lessonData = getLsItem(KEY_ENUMS.typingKey);
   } else {
     const sorted = sortOnDifficulty(lessons);
     const status = addStatus(sorted);
     lessonData = status;
   }
-  setLsItem(keyEnums.typingKey, lessonData);
+  setLsItem(KEY_ENUMS.typingKey, lessonData);
   state.typingLessons.update((old) => lessonData);
 };
 
 const updateTypingLesson = (id) => {
-  const lesson = getLsItem(keyEnums.typingKey).filter((lesson) => lesson.id == id)[0];
+  const lesson = getLsItem(KEY_ENUMS.typingKey).filter((lesson) => lesson.id == id)[0];
   // TODO - Refactor when creating user session
   // lesson.hasCompleted = !lesson.hasCompleted;
   state.typingLessons.update((old) => {
     const index = old.findIndex((l) => l.id == lesson.id);
     old.splice(index, 1, lesson);
-    setLsItem(keyEnums.typingKey, old);
+    setLsItem(KEY_ENUMS.typingKey, old);
     return [...old];
   });
 };

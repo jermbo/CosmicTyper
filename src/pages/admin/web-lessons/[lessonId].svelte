@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { state } from "../../../../store";
+  import { state } from "../../../store";
   import { url, goto, params } from "@sveltech/routify";
 
   const { webLessons } = state;
@@ -35,8 +35,13 @@
       </a>
       <div class="level">
         <h1 class="is-size-3">{lessonData.title}</h1>
-        <a class="button is-small is-success" href={$url(`${lessonId}/edit`)}>
-          Save
+        <a
+          class="button is-small is-danger is-outlined"
+          href={$url(`${lessonId}/edit`)}>
+          <span class="icon">
+            <i class="fas fa-edit" />
+          </span>
+          <span>Edit</span>
         </a>
       </div>
     </header>

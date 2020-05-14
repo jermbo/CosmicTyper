@@ -4,13 +4,11 @@
   import { state, getAdminUserAction } from "../../store";
   const { adminUser } = state;
 
-  onMount(async () => await authAdmin());
-
-  async function authAdmin() {
+  onMount(async () => {
     if (!$adminUser.isLoggedIn) {
       await getAdminUserAction();
     }
-  }
+  });
 </script>
 
 <section class="container">
