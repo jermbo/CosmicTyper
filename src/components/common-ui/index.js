@@ -1,3 +1,4 @@
+import CodeBlock from "./CodeBlock.svelte";
 import TextArea from "./TextArea.svelte";
 
-export { TextArea };
+export { CodeBlock, TextArea };
