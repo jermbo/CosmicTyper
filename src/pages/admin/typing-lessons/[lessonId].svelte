@@ -1,10 +1,10 @@
 <script>
   import { onMount } from "svelte";
-  import { state } from "../../../../store";
+  import { state } from "../../../store";
   import { url, goto, params } from "@sveltech/routify";
 
-  import { AdminTypingSteps } from "../../../../components";
-  import { CodeBlock } from "../../../../components/common-ui";
+  import { AdminTypingSteps } from "../../../components";
+  import { CodeBlock } from "../../../components/common-ui";
 
   const { typingLessons } = state;
   const { lessonId } = $params;

@@ -5,13 +5,11 @@
 
   const { webLessons } = state;
 
-  onMount(async () => await getWebLessons());
-
-  async function getWebLessons() {
+  onMount(async () => {
     if (!$webLessons.length) {
       await getWebLessonsAction();
     }
-  }
+  });
 </script>
 
 <!-- routify:options name="admin-web-lessons" -->

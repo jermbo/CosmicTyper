@@ -1,12 +1,10 @@
 import axios from "axios";
 import * as store from "./store";
-import { getLsItem } from "./storage-utils";
-import { keyEnums } from "./enums";
-import { API_URL } from "./config";
+import { API_URL, KEY_ENUMS, getLsItem } from "../utils";
 
 export async function getAdminUserAction({ username, password } = {}) {
-  if (getLsItem(keyEnums.admin)) {
-    store.getAdminUser(getLsItem(keyEnums.admin));
+  if (getLsItem(KEY_ENUMS.admin)) {
+    store.getAdminUser(getLsItem(KEY_ENUMS.admin));
     return;
   }
 
