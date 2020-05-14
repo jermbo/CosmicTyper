@@ -5,13 +5,11 @@
 
   const { typingLessons } = state;
 
-  onMount(async () => await getTypingLessons());
-
-  async function getTypingLessons() {
+  onMount(async () => {
     if (!$typingLessons.length) {
       await getTypingLessonsAction();
     }
-  }
+  });
 </script>
 
 <!-- routify:options name="typing-lessons" -->

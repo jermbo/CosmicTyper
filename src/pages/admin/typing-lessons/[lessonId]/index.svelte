@@ -3,19 +3,21 @@
   import { state } from "../../../../store";
   import { url, goto, params } from "@sveltech/routify";
 
-  import { AdminLessonView } from "../../../../components";
+  import { AdminTypingSteps } from "../../../../components";
+  import { CodeBlock } from "../../../../components/common-ui";
 
   const { typingLessons } = state;
   const { lessonId } = $params;
+  const DIFFICULTY_TYPES = ["easy", "medium", "hard"];
 
-  let lessonData = null;
+  let editingLesson = {};
 
   function findLesson() {
     const title = lessonId
       .split("_")
       .join(" ")
       .toLowerCase();
-    lessonData = $typingLessons.filter(
+    editingLesson = $typingLessons.filter(
       (lesson) => lesson.title.toLowerCase() == title,
     )[0];
   }
@@ -29,24 +31,50 @@
 </script>
 
 <!-- routify:options name="admin-typing-lesson-single" -->
-{#if lessonData}
-  <div class="container">
-    <header>
-      <a class="button is-small is-info" href={$url('admin-typing-lessons')}>
-        Back
+{#if editingLesson}
+  <header>
+    <a class="button is-small is-info" href={$url('admin-typing-lessons')}>
+      Back
+    </a>
+    <div class="level">
+      <h1 class="is-size-3">{editingLesson.title}</h1>
+      <a class="button is-small is-success" href={$url(`${lessonId}/edit`)}>
+        Save
       </a>
-      <div class="level">
-        <h1 class="is-size-3">{lessonData.title}</h1>
-        <a
-          class="button is-small is-danger is-outlined"
-          href={$url(`${lessonId}/edit`)}>
-          <span class="icon">
-            <i class="fas fa-edit" />
-          </span>
-          <span>Edit</span>
-        </a>
+    </div>
+  </header>
+  <div class="level">
+    <div class="container">
+      <div class="field">
+        <label class="label">Lesson Name</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            bind:value={editingLesson.title}
+            placeholder="Lesson Name" />
+        </div>
       </div>
-    </header>
-    <AdminLessonView {lessonData} />
+
+      <div class="field">
+        <label class="label">Difficulty</label>
+        <div class="control">
+          <div class="select">
+            <select bind:value={editingLesson.difficulty}>
+              <option value="">Select Option</option>
+              {#each DIFFICULTY_TYPES as type}
+                <option value={type}>{type}</option>
+              {/each}
+            </select>
+          </div>
+        </div>
+
+        <AdminTypingSteps bind:steps={editingLesson.steps} />
+      </div>
+    </div>
+    <div>
+      <p>Raw Data</p>
+      <CodeBlock data={editingLesson} />
+    </div>
   </div>
 {/if}

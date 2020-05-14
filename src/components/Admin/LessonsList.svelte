@@ -1,17 +1,8 @@
 <script>
-  import { createEventDispatcher } from "svelte";
   import { url } from "@sveltech/routify";
+  import { slugify } from "../../utils";
   export let baseURL = "web-lessons";
   export let lessons = [];
-
-  const dispatch = createEventDispatcher();
-
-  function slugify(name) {
-    return name
-      .toLowerCase()
-      .split(" ")
-      .join("_");
-  }
 </script>
 
 <div class="table-container">
@@ -27,24 +18,14 @@
         <tr>
           <td width="90%">{lesson.title}</td>
           <td width="10%">
-            <div class="field has-addons">
-              <a
-                class="control button is-small"
-                title={`View: ${lesson.title}`}
-                href={$url(`${baseURL}/${slugify(lesson.title)}`)}>
-                <span class="icon has-text-info">
-                  <i class="fas fa-eye" />
-                </span>
-              </a>
-              <a
-                class="control button is-small"
-                title={`Edit: ${lesson.title}`}
-                href={$url(`${baseURL}/${slugify(lesson.title)}/edit`)}>
-                <span class="icon has-text-danger">
-                  <i class="fas fa-edit" />
-                </span>
-              </a>
-            </div>
+            <a
+              class="control button is-small"
+              title={`View: ${lesson.title}`}
+              href={$url(`${baseURL}/${slugify(lesson.title)}`)}>
+              <span class="icon has-text-info">
+                <i class="fas fa-eye" />
+              </span>
+            </a>
           </td>
         </tr>
       {/each}
