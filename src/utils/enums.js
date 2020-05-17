@@ -4,3 +4,6 @@ export const KEY_ENUMS = {
   admin: "admin-user",
   student: "student-user",
 };
+
+export const DIFFICULTY_TYPES = ["easy", "medium", "hard"];
+export const LESSON_TYPES = ["dom", "style"];
