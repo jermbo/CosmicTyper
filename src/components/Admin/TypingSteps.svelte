@@ -1,5 +1,5 @@
 <script>
-  import { TextArea } from "../../common-ui";
+  import { TextArea } from "../common-ui";
   export let steps = [];
 
   $: weird = steps.join("\n");

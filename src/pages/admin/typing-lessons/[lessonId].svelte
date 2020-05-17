@@ -3,13 +3,14 @@
   import { state } from "../../../store";
   import { unslugify } from "../../../utils";
   import { url, goto, params } from "@sveltech/routify";
+  import axios from "axios";
 
   import { AdminTypingSteps } from "../../../components";
   import { CodeBlock } from "../../../components/common-ui";
 
   import { DIFFICULTY_TYPES } from "../../../utils";
 
-  const { typingLessons } = state;
+  const { typingLessons, adminUser } = state;
   const { lessonId } = $params;
 
   let editingLesson = {};
@@ -25,11 +26,59 @@
     if (!$typingLessons.length) {
       $goto("typing-lessons-admin");
     }
-    findLesson();
+
+    if ($params.lessonId != "new") {
+      findLesson();
+    }
   });
 
-  function handleSave() {
-    console.log("Save Web Lesson");
+  async function updateLesson() {
+    try {
+      const id = editingLesson.id;
+      const resp = await axios.put(
+        `http://localhost:1337/typing-lessons/${id}`,
+        editingLesson,
+        {
+          headers: { Authorization: `Bearer ${$adminUser.token}` },
+        },
+      );
+      const data = await resp.data;
+      $goto("typing-lessons-admin");
+    } catch (err) {
+      console.log(err.response.data.data.errors);
+    }
+  }
+
+  async function deleteLesson() {
+    try {
+      const id = editingLesson.id;
+      const resp = await axios.delete(
+        `http://localhost:1337/typing-lessons/${id}`,
+        {
+          headers: { Authorization: `Bearer ${$adminUser.token}` },
+        },
+      );
+      const data = await resp.data;
+      $goto("typing-lessons-admin");
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  }
+
+  async function addLesson() {
+    try {
+      const resp = await axios.post(
+        `http://localhost:1337/typing-lessons/`,
+        editingLesson,
+        {
+          headers: { Authorization: `Bearer ${$adminUser.token}` },
+        },
+      );
+      const data = await resp.data;
+      $goto("typing-lessons-admin");
+    } catch (err) {
+      console.log(err.response.data.data.errors);
+    }
   }
 </script>
 
@@ -41,7 +90,29 @@
     </a>
     <div class="level">
       <h1 class="is-size-3">{editingLesson.title}</h1>
-      <a class="button is-small is-success" href={handleSave}>Save</a>
+      {#if editingLesson.id}
+        <a
+          class="button is-small is-success"
+          href={null}
+          on:click|preventDefault={updateLesson}>
+          Update lesson
+        </a>
+
+        <a
+          class="button is-small is-danger"
+          href={null}
+          on:click|preventDefault={deleteLesson}>
+          Delete lesson
+        </a>
+      {:else}
+        <a
+          class="button is-small is-success"
+          href={null}
+          on:click|preventDefault={addLesson}>
+          Add Lesson
+        </a>
+      {/if}
+
     </div>
   </header>
   <div class="columns">

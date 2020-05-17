@@ -38,13 +38,13 @@ const logoutAdminUser = () => {
 
 const getWebLessons = (lessons) => {
   let lessonData;
-  if (getLsItem(KEY_ENUMS.webKey)) {
-    lessonData = getLsItem(KEY_ENUMS.webKey);
-  } else {
-    const sorted = sortOnDifficulty(lessons);
-    const status = addStatus(sorted);
-    lessonData = status;
-  }
+  // if (getLsItem(KEY_ENUMS.webKey)) {
+  //   lessonData = getLsItem(KEY_ENUMS.webKey);
+  // } else {
+  const sorted = sortOnDifficulty(lessons);
+  const status = addStatus(sorted);
+  lessonData = status;
+  // }
 
   setLsItem(KEY_ENUMS.webKey, lessonData);
   state.webLessons.update((old) => lessonData);
@@ -64,13 +64,13 @@ const updateWebLesson = (id) => {
 
 const getTypingLessons = (lessons) => {
   let lessonData;
-  if (getLsItem(KEY_ENUMS.typingKey)) {
-    lessonData = getLsItem(KEY_ENUMS.typingKey);
-  } else {
-    const sorted = sortOnDifficulty(lessons);
-    const status = addStatus(sorted);
-    lessonData = status;
-  }
+  // if (getLsItem(KEY_ENUMS.typingKey)) {
+  //   lessonData = getLsItem(KEY_ENUMS.typingKey);
+  // } else {
+  const sorted = sortOnDifficulty(lessons);
+  const status = addStatus(sorted);
+  lessonData = status;
+  // }
   setLsItem(KEY_ENUMS.typingKey, lessonData);
   state.typingLessons.update((old) => lessonData);
 };
