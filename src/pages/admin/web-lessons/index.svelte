@@ -12,7 +12,7 @@
   });
 </script>
 
-<!-- routify:options name="admin-web-lessons" -->
+<!-- routify:options name="web-lessons-admin" -->
 <div class="container">
   <header class="has-margin-top-4 has-margin-bottom-4">
     <h1 class="is-size-3">Web Lessons Admin</h1>

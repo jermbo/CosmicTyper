@@ -12,7 +12,7 @@
   });
 </script>
 
-<!-- routify:options name="admin-typing-lessons" -->
+<!-- routify:options name="typing-lessons-admin" -->
 <div class="container">
   <header class="has-margin-top-4 has-margin-bottom-4">
     <h1 class="is-size-3">Typing Lessons Admin</h1>
