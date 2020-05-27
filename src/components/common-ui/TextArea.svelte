@@ -1,4 +1,5 @@
 <script>
+  export let error = false;
   export let value = "";
   export let disabled = false;
   export let name = "";
@@ -18,5 +19,6 @@
   on:change
   on:input
   bind:value
+  class:is-danger={error}
   {name}
   {disabled} />

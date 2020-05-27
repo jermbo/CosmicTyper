@@ -25,7 +25,7 @@ The future of the project will include the following items.
   * Need to rework the css and remove Bulma framework
   * Update various places to be CSS Custom Properties
   * Connect to settings and persist to database / local storage
-* Enhance General Typing
+* Enhance General Typing - issue #61
   * white background
   * cursor indicator
   * individual wrappers around completed characters
