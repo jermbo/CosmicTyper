@@ -33,6 +33,7 @@
   });
 
   async function updateLesson() {
+    console.log('i should not run')
     try {
       const id = editingLesson.id;
       const resp = await axios.put(
@@ -80,6 +81,15 @@
       console.log(err.response.data.data.errors);
     }
   }
+
+  // Simple Custom Form Validation
+  $: isValid = !errors.title && !errors.steps;
+  $: errors = {
+    title: !editingLesson.title ? 'Title is required' : '',
+    steps: editingLesson.steps && editingLesson.steps.length - 1 <= 0 ? 'Need lesson steps' : '',
+  };
+  $: console.log(errors)
+
 </script>
 
 <!-- routify:options name="typing-lesson-single-admin" -->
@@ -89,28 +99,29 @@
       Back
     </a>
     <div class="level">
-      <h1 class="is-size-3">{editingLesson.title}</h1>
+      <h1 class="is-size-3">{editingLesson.title || "The Lesson"}</h1>
       {#if editingLesson.id}
-        <a
+        <button
           class="button is-small is-success"
-          href={null}
-          on:click|preventDefault={updateLesson}>
+          on:click|preventDefault={updateLesson}
+          disabled={!isValid}>
           Update lesson
-        </a>
+        </button>
 
-        <a
+        <button
           class="button is-small is-danger"
           href={null}
           on:click|preventDefault={deleteLesson}>
           Delete lesson
-        </a>
+        </button>
       {:else}
-        <a
+        <button
           class="button is-small is-success"
           href={null}
-          on:click|preventDefault={addLesson}>
+          on:click|preventDefault={addLesson}
+          disabled={!isValid}>
           Add Lesson
-        </a>
+        </button>
       {/if}
 
     </div>
@@ -118,14 +129,18 @@
   <div class="columns">
     <div class="column is-half">
       <div class="field">
-        <label class="label">Lesson Name</label>
+        <label class="label">Lesson Title</label>
         <div class="control">
           <input
             class="input"
+            class:is-danger="{errors.title}"
             type="text"
             bind:value={editingLesson.title}
-            placeholder="Lesson Name" />
+            placeholder="Lesson Title" />
         </div>
+        {#if errors.title}
+           <p class="help is-danger">{errors.title}</p>
+        {/if}
       </div>
 
       <div class="field">
@@ -133,7 +148,6 @@
         <div class="control">
           <div class="select">
             <select bind:value={editingLesson.difficulty}>
-              <option value="">Select Option</option>
               {#each DIFFICULTY_TYPES as type}
                 <option value={type}>{type}</option>
               {/each}
@@ -142,7 +156,7 @@
         </div>
       </div>
 
-      <AdminTypingSteps bind:steps={editingLesson.steps} />
+      <AdminTypingSteps bind:steps={editingLesson.steps} error={errors.steps} />
     </div>
     <div class="column is-half">
       <p>Raw Data</p>
