@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { state } from "../../../store";
+  import { state, addTypingLesson, deleteTypingLesson } from "../../../store";
   import { unslugify } from "../../../utils";
   import { url, goto, params } from "@sveltech/routify";
   import axios from "axios";
@@ -60,6 +60,7 @@
         },
       );
       const data = await resp.data;
+      deleteTypingLesson(id);
       $goto("typing-lessons-admin");
     } catch (err) {
       console.log(err.response.data);
@@ -76,6 +77,7 @@
         },
       );
       const data = await resp.data;
+      addTypingLesson(data);
       $goto("typing-lessons-admin");
     } catch (err) {
       console.log(err.response.data.data.errors);
@@ -88,8 +90,6 @@
     title: !editingLesson.title ? 'Title is required' : '',
     steps: editingLesson.steps && editingLesson.steps.length - 1 <= 0 ? 'Need lesson steps' : '',
   };
-  $: console.log(errors)
-
 </script>
 
 <!-- routify:options name="typing-lesson-single-admin" -->
