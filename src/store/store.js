@@ -36,7 +36,7 @@ const logoutAdminUser = () => {
   state.adminUser.update((old) => ({}));
 };
 
-const getWebLessons = (lessons) => {
+const setWebLessons = (lessons) => {
   let lessonData;
   // if (getLsItem(KEY_ENUMS.webKey)) {
   //   lessonData = getLsItem(KEY_ENUMS.webKey);
@@ -62,7 +62,7 @@ const updateWebLesson = (id) => {
   });
 };
 
-const getTypingLessons = (lessons) => {
+const setTypingLessons = (lessons) => {
   let lessonData;
   // if (getLsItem(KEY_ENUMS.typingKey)) {
   //   lessonData = getLsItem(KEY_ENUMS.typingKey);
@@ -73,6 +73,17 @@ const getTypingLessons = (lessons) => {
   // }
   setLsItem(KEY_ENUMS.typingKey, lessonData);
   state.typingLessons.update((old) => lessonData);
+};
+
+const addTypingLesson = (lesson) => {
+  state.typingLessons.update((old) => [lesson, ...old]);
+};
+
+const deleteTypingLesson = (id) => {
+  state.typingLessons.update((old) => {
+    let oldLesson = old.filter((l) => l.id !== id);
+    return oldLesson;
+  });
 };
 
 const updateTypingLesson = (id) => {
@@ -103,11 +114,15 @@ function addStatus(sorted = []) {
 
 export {
   state,
-  getWebLessons,
-  getTypingLessons,
-  updateWebLesson,
-  updateTypingLesson,
   getAdminUser,
   logoutAdminUser,
   setLoginErrors,
+  // Web Lessons
+  setWebLessons,
+  updateWebLesson,
+  // Typing Lessons
+  setTypingLessons,
+  updateTypingLesson,
+  addTypingLesson,
+  deleteTypingLesson,
 };
