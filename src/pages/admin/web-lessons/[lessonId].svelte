@@ -15,7 +15,7 @@
   const { webLessons, adminUser } = state;
   const { lessonId } = $params;
 
-  let editingLesson = {};
+  let lessonDup = {};
 
   onMount(() => {
     if (!$webLessons.length) {
@@ -29,11 +29,11 @@
 
   function findLesson() {
     const title = unslugify(lessonId);
-    editingLesson = $webLessons.filter(
+    lessonDup = $webLessons.filter(
       (lesson) => lesson.title.toLowerCase() == title,
     )[0];
 
-    const newValidation = editingLesson.steps.map((step) => ({
+    const newValidation = lessonDup.steps.map((step) => ({
       id: step.id,
       hasErrors: false,
     }));
@@ -43,10 +43,10 @@
 
   async function updateLesson() {
     try {
-      const id = editingLesson.id;
+      const id = lessonDup.id;
       const resp = await axios.put(
         `http://localhost:1337/web-lessons/${id}`,
-        editingLesson,
+        lessonDup,
         {
           headers: { Authorization: `Bearer ${$adminUser.token}` },
         },
@@ -60,7 +60,7 @@
 
   async function deleteLesson() {
     try {
-      const id = editingLesson.id;
+      const id = lessonDup.id;
       const resp = await axios.delete(
         `http://localhost:1337/web-lessons/${id}`,
         {
@@ -79,7 +79,7 @@
     try {
       const resp = await axios.post(
         `http://localhost:1337/web-lessons/`,
-        editingLesson,
+        lessonDup,
         {
           headers: { Authorization: `Bearer ${$adminUser.token}` },
         },
@@ -93,7 +93,7 @@
   }
 
   function addStep() {
-    const oldSteps = editingLesson.steps || [];
+    const oldSteps = lessonDup.steps || [];
     const newId = oldSteps.length + 1;
     const newStep = {
       type: "",
@@ -101,10 +101,23 @@
       action: [],
       id: newId,
     };
-    editingLesson.steps = [...oldSteps, newStep];
+    lessonDup.steps = [...oldSteps, newStep];
 
     const oldErrors = stepErrors || [];
     stepErrors = [...oldErrors, { id: newId, hasErrors: true }];
+    console.log(stepErrors);
+  }
+
+  function deleteStep({ detail }) {
+    const { index } = detail;
+    console.log(index);
+    const otherSteps = lessonDup.steps.filter((step, i) => i !== index);
+    lessonDup.steps = [...otherSteps];
+    console.log(lessonDup.steps);
+
+    const otherErrors = stepErrors.filter((step, i) => i !== index);
+    stepErrors = [...otherErrors];
+    console.log(stepErrors);
   }
 
   function updateStepValidation({ detail }) {
@@ -118,25 +131,29 @@
   }
 
   // Simple Custom Form Validation
-  $: isValid = !errors.title && !errors.steps && !errors.children;
+  $: isValid = !errors.title && !errors.steps && !errors.childres;
   $: stepErrors = [];
+
+  // TODO: figure out why steps is not validating properly.
   $: errors = {
-    title: !editingLesson.title ? "Title is required" : "",
-    steps: !editingLesson.steps ? "Need lesson steps" : "",
+    title: !lessonDup.title ? "Title is required" : "",
+    steps: lessonDup.steps && !lessonDup.steps ? "Need lesson steps" : "",
     children: stepErrors.some((c) => c.hasErrors)
       ? "Need to correct all step validation issues"
       : "",
   };
+  $: console.log(!lessonDup.steps);
+  $: console.log(!errors.steps);
 </script>
 
 <!-- routify:options name="web-lesson-single-admin" -->
-{#if editingLesson}
+{#if lessonDup}
   <header>
     <a class="button is-small is-info" href={$url('web-lessons-admin')}>Back</a>
     <div class="level">
-      <h1 class="is-size-3">{editingLesson.title || 'The Lesson'}</h1>
+      <h1 class="is-size-3">{lessonDup.title || 'The Lesson'}</h1>
       <div class="actions">
-        {#if editingLesson.id}
+        {#if lessonDup.id}
           <button
             class="button is-small is-primary"
             on:click|preventDefault={updateLesson}
@@ -171,7 +188,7 @@
             class="input"
             class:is-danger={errors.title}
             type="text"
-            bind:value={editingLesson.title}
+            bind:value={lessonDup.title}
             placeholder="Lesson Title" />
         </div>
         {#if errors.title}
@@ -183,7 +200,7 @@
         <label class="label">Difficulty</label>
         <div class="control">
           <div class="select">
-            <select bind:value={editingLesson.difficulty}>
+            <select bind:value={lessonDup.difficulty}>
               {#each DIFFICULTY_TYPES as type}
                 <option value={type}>{type}</option>
               {/each}
@@ -200,10 +217,14 @@
         <p class="help is-danger">{errors.steps}</p>
       {/if}
 
-      {#if editingLesson.steps && editingLesson.steps.length}
+      {#if lessonDup.steps && lessonDup.steps.length}
         <div class="small">
-          {#each editingLesson.steps as step, index}
-            <HTMLStep bind:step on:validate={updateStepValidation} />
+          {#each lessonDup.steps as step, index}
+            <HTMLStep
+              {index}
+              bind:step
+              on:validate={updateStepValidation}
+              on:removeStep={deleteStep} />
           {/each}
         </div>
       {/if}
@@ -211,7 +232,7 @@
     <div class="column is-half">
       <div class="sticky">
         <p>Raw Data</p>
-        <CodeBlock data={editingLesson} />
+        <CodeBlock data={lessonDup} />
       </div>
     </div>
   </div>

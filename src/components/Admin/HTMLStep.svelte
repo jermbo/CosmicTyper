@@ -4,6 +4,7 @@
   import { LESSON_TYPES } from "../../utils";
 
   export let step = {};
+  export let index = 0;
 
   const dispatch = createEventDispatcher();
 
@@ -14,6 +15,10 @@
     const val = target.value.split("\n");
     const stepIndex = +target.dataset.index;
     step.action = val;
+  }
+
+  function removeStep() {
+    dispatch("removeStep", { index: index });
   }
 
   function emitThing() {
@@ -30,7 +35,7 @@
     desc: !step.desc ? "Description is required" : "",
     type: step.type === "" ? "Type is required" : "",
     action:
-      step.action && step.action.length - 1 < 0 ? "Need lesson steps" : "",
+      step.action && step.action.length - 1 < 0 ? "Need lesson actions" : "",
     emptyLines:
       step.action && step.action.some((step) => !step.trim().length)
         ? "There can not be any empty lines"
@@ -39,6 +44,12 @@
 </script>
 
 <div class="field">
+  <div class="level">
+    <p>Lesson Step: {index + 1} (index {index})</p>
+    <button class="button is-danger is-small" on:click={removeStep}>
+      Delete Step
+    </button>
+  </div>
   <label class="label">Step Description</label>
   <div class="control">
     <input
