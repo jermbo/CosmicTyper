@@ -12,7 +12,7 @@
 
   import { DIFFICULTY_TYPES } from "../../../utils";
 
-  const { webLessons } = state;
+  const { webLessons, adminUser } = state;
   const { lessonId } = $params;
 
   let editingLesson = {};
@@ -39,6 +39,57 @@
     }));
 
     stepErrors = [...newValidation];
+  }
+
+  async function updateLesson() {
+    try {
+      const id = editingLesson.id;
+      const resp = await axios.put(
+        `http://localhost:1337/web-lessons/${id}`,
+        editingLesson,
+        {
+          headers: { Authorization: `Bearer ${$adminUser.token}` },
+        },
+      );
+      const data = await resp.data;
+      $goto("web-lessons-admin");
+    } catch (err) {
+      console.log(err.response.data.data.errors);
+    }
+  }
+
+  async function deleteLesson() {
+    try {
+      const id = editingLesson.id;
+      const resp = await axios.delete(
+        `http://localhost:1337/web-lessons/${id}`,
+        {
+          headers: { Authorization: `Bearer ${$adminUser.token}` },
+        },
+      );
+      const data = await resp.data;
+      deleteWebLesson(id);
+      $goto("web-lessons-admin");
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  }
+
+  async function addLesson() {
+    try {
+      const resp = await axios.post(
+        `http://localhost:1337/web-lessons/`,
+        editingLesson,
+        {
+          headers: { Authorization: `Bearer ${$adminUser.token}` },
+        },
+      );
+      const data = await resp.data;
+      addWebLesson(data);
+      $goto("web-lessons-admin");
+    } catch (err) {
+      console.log(err.response.data.data.errors);
+    }
   }
 
   function addStep() {
@@ -76,18 +127,6 @@
       ? "Need to correct all step validation issues"
       : "",
   };
-
-  async function updateLesson() {
-    console.log("updating lesson");
-  }
-
-  async function deleteLesson() {
-    console.log("deleting lesson");
-  }
-
-  async function addLesson() {
-    console.log("adding lesson");
-  }
 </script>
 
 <!-- routify:options name="web-lesson-single-admin" -->

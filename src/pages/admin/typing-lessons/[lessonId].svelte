@@ -21,7 +21,7 @@
       return $goto("typing-lessons-admin");
     }
 
-    if ($params.lessonId != "new") {
+    if (lessonId != "new") {
       findLesson();
     }
   });
