@@ -14,7 +14,12 @@
 }
 
 pre {
-  max-height: 50vh;
+  max-height: 75vh;
   max-width: 100%;
   overflow: auto;
+}
+
+.sticky {
+  position: sticky;
+  top: 60px;
 }
