@@ -32,7 +32,7 @@
     action:
       step.action && step.action.length - 1 < 0 ? "Need lesson steps" : "",
     emptyLines:
-      step.action && step.action.some((step) => !step.length)
+      step.action && step.action.some((step) => !step.trim().length)
         ? "There can not be any empty lines"
         : "",
   };
@@ -74,7 +74,7 @@
   <label class="label">Lesson Steps</label>
   <TextArea
     class="textarea"
-    error={errors.action}
+    error={errors.action || errors.emptyLines}
     type="textarea"
     rows="8"
     name="typingLesson"
@@ -83,5 +83,8 @@
     on:input={codeLesson} />
   {#if errors.action}
     <p class="help is-danger">{errors.action}</p>
+  {/if}
+  {#if errors.emptyLines}
+    <p class="help is-danger">{errors.emptyLines}</p>
   {/if}
 </div>
