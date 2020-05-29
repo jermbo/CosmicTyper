@@ -1,8 +1,8 @@
 import axios from "axios";
-import { setTypingLessons } from "./store";
 import { API_URL, parseList } from "../utils";
+import { state } from "./store";
 
-export async function getTypingLessonsAction() {
+const getTypingLessonsAction = async () => {
   try {
     const resp = await axios.get(`${API_URL}/typing-lessons`);
     const data = parseList(resp);
@@ -11,4 +11,18 @@ export async function getTypingLessonsAction() {
   } catch (err) {
     return console.log(err);
   }
-}
+};
+
+const setTypingLessons = (lessons) => {
+  state.typingLessons.update((old) => lessons);
+};
+
+const addTypingLesson = (lesson) => {
+  state.typingLessons.update((old) => [lesson, ...old]);
+};
+
+const deleteTypingLesson = (id) => {
+  state.typingLessons.update((old) => old.filter((l) => l.id !== id));
+};
+
+export { getTypingLessonsAction, setTypingLessons, addTypingLesson, deleteTypingLesson };

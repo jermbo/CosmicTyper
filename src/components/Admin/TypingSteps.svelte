@@ -1,6 +1,7 @@
 <script>
   import { TextArea } from "../common-ui";
-  export let error = false;
+  export let stepError = null;
+  export let emptyLines = null;
   export let steps = [];
 
   $: weird = steps.join("\n");
@@ -8,7 +9,6 @@
   function typingLesson({ target }) {
     steps = target.value.split("\n");
   }
-
 </script>
 
 <div class="control">
@@ -21,8 +21,11 @@
     id="typingLesson"
     bind:value={weird}
     on:input={typingLesson}
-    {error} />
-  {#if error}
-    <p class="help is-danger">Need at least 2 steps for a lesson.</p>
+    error={stepError || emptyLines} />
+  {#if stepError}
+    <p class="help is-danger">{stepError}</p>
+  {/if}
+  {#if emptyLines}
+    <p class="help is-danger">{emptyLines}</p>
   {/if}
 </div>

@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { state, updateTypingLesson } from "../../store";
+  import { state } from "../../store";
   import { goto, params } from "@sveltech/routify";
   import { unslugify } from "../../utils";
   import TypingGUI from "../../components/TypingGUI/TypingGUI.svelte";
@@ -23,7 +23,6 @@
   }
 
   function markComplete({ detail: id }) {
-    updateTypingLesson(id);
     $goto("typing-lessons");
   }
 </script>

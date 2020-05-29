@@ -36,68 +36,6 @@ const logoutAdminUser = () => {
   state.adminUser.update((old) => ({}));
 };
 
-const setWebLessons = (lessons) => {
-  let lessonData;
-  // if (getLsItem(KEY_ENUMS.webKey)) {
-  //   lessonData = getLsItem(KEY_ENUMS.webKey);
-  // } else {
-  const sorted = sortOnDifficulty(lessons);
-  const status = addStatus(sorted);
-  lessonData = status;
-  // }
-
-  setLsItem(KEY_ENUMS.webKey, lessonData);
-  state.webLessons.update((old) => lessonData);
-};
-
-const updateWebLesson = (id) => {
-  const lesson = getLsItem(KEY_ENUMS.webKey).filter((lesson) => lesson.id == id)[0];
-  // TODO - Refactor when creating user session
-  // lesson.hasCompleted = !lesson.hasCompleted;
-  state.webLessons.update((old) => {
-    const index = old.findIndex((l) => l.id == lesson.id);
-    old.splice(index, 1, lesson);
-    setLsItem(KEY_ENUMS.webKey, old);
-    return [...old];
-  });
-};
-
-const setTypingLessons = (lessons) => {
-  let lessonData;
-  // if (getLsItem(KEY_ENUMS.typingKey)) {
-  //   lessonData = getLsItem(KEY_ENUMS.typingKey);
-  // } else {
-  const sorted = sortOnDifficulty(lessons);
-  const status = addStatus(sorted);
-  lessonData = status;
-  // }
-  setLsItem(KEY_ENUMS.typingKey, lessonData);
-  state.typingLessons.update((old) => lessonData);
-};
-
-const addTypingLesson = (lesson) => {
-  state.typingLessons.update((old) => [lesson, ...old]);
-};
-
-const deleteTypingLesson = (id) => {
-  state.typingLessons.update((old) => {
-    let oldLesson = old.filter((l) => l.id !== id);
-    return oldLesson;
-  });
-};
-
-const updateTypingLesson = (id) => {
-  const lesson = getLsItem(KEY_ENUMS.typingKey).filter((lesson) => lesson.id == id)[0];
-  // TODO - Refactor when creating user session
-  // lesson.hasCompleted = !lesson.hasCompleted;
-  state.typingLessons.update((old) => {
-    const index = old.findIndex((l) => l.id == lesson.id);
-    old.splice(index, 1, lesson);
-    setLsItem(KEY_ENUMS.typingKey, old);
-    return [...old];
-  });
-};
-
 function sortOnDifficulty(lessons = []) {
   return lessons.sort((a, b) => (a.difficulty > b.difficulty ? 1 : -1));
 }
@@ -112,17 +50,4 @@ function addStatus(sorted = []) {
   });
 }
 
-export {
-  state,
-  getAdminUser,
-  logoutAdminUser,
-  setLoginErrors,
-  // Web Lessons
-  setWebLessons,
-  updateWebLesson,
-  // Typing Lessons
-  setTypingLessons,
-  updateTypingLesson,
-  addTypingLesson,
-  deleteTypingLesson,
-};
+export { state, getAdminUser, logoutAdminUser, setLoginErrors };

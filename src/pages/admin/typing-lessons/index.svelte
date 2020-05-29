@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import { AdminLessonsList } from "../../../components";
   import { state, getTypingLessonsAction } from "../../../store";
-  import { url, goto, params } from "@sveltech/routify";
+  import { goto } from "@sveltech/routify";
 
   const { typingLessons } = state;
 

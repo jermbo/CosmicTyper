@@ -1,82 +1,143 @@
 <script>
   import { onMount } from "svelte";
   import { state } from "../../../store";
+  import { addWebLesson, deleteWebLesson } from "../../../store";
   import { unslugify } from "../../../utils";
   import { url, goto, params } from "@sveltech/routify";
+  import axios from "axios";
 
   import { AdminTypingSteps } from "../../../components";
   import { CodeBlock } from "../../../components/common-ui";
+  import HTMLStep from "../../../components/Admin/HTMLStep.svelte";
 
   import { DIFFICULTY_TYPES } from "../../../utils";
-
-  import HTMLStep from "../../../components/Admin/HTMLStep.svelte";
 
   const { webLessons } = state;
   const { lessonId } = $params;
 
   let editingLesson = {};
 
+  onMount(() => {
+    if (!$webLessons.length) {
+      return $goto("web-lessons-admin");
+    }
+
+    if (lessonId !== "new") {
+      findLesson();
+    }
+  });
+
   function findLesson() {
     const title = unslugify(lessonId);
     editingLesson = $webLessons.filter(
       (lesson) => lesson.title.toLowerCase() == title,
     )[0];
-  }
 
-  onMount(() => {
-    if (!$webLessons.length) {
-      $goto("web-lessons-admin");
-    }
-    findLesson();
-  });
+    const newValidation = editingLesson.steps.map((step) => ({
+      id: step.id,
+      hasErrors: false,
+    }));
 
-  function handleSave() {
-    console.log("Save Web Lesson");
+    stepErrors = [...newValidation];
   }
 
   function addStep() {
+    const oldSteps = editingLesson.steps || [];
+    const newId = oldSteps.length + 1;
     const newStep = {
       type: "",
       desc: "",
       action: [],
-      render: true,
+      id: newId,
     };
-    editingLesson.steps = [...editingLesson.steps, newStep];
+    editingLesson.steps = [...oldSteps, newStep];
+
+    const oldErrors = stepErrors || [];
+    stepErrors = [...oldErrors, { id: newId, hasErrors: true }];
+  }
+
+  function updateStepValidation({ detail }) {
+    const oldErrors = stepErrors.map((step) => {
+      if (step.id == detail.id) {
+        step.hasErrors = detail.hasErrors;
+      }
+      return step;
+    });
+    stepErrors = [...oldErrors];
+  }
+
+  // Simple Custom Form Validation
+  $: isValid = !errors.title && !errors.steps && !errors.children;
+  $: stepErrors = [];
+  $: errors = {
+    title: !editingLesson.title ? "Title is required" : "",
+    steps: !editingLesson.steps ? "Need lesson steps" : "",
+    children: stepErrors.some((c) => c.hasErrors)
+      ? "Need to correct all step validation issues"
+      : "",
+  };
+
+  async function updateLesson() {
+    console.log("updating lesson");
+  }
+
+  async function deleteLesson() {
+    console.log("deleting lesson");
+  }
+
+  async function addLesson() {
+    console.log("adding lesson");
   }
 </script>
-
-<style>
-  .sticky {
-    position: sticky;
-    top: 60px;
-  }
-</style>
 
 <!-- routify:options name="web-lesson-single-admin" -->
 {#if editingLesson}
   <header>
     <a class="button is-small is-info" href={$url('web-lessons-admin')}>Back</a>
     <div class="level">
-      <h1 class="is-size-3">{editingLesson.title}</h1>
-      <a class="button is-small is-danger is-outlined" href={handleSave}>
-        <span class="icon">
-          <i class="fas fa-edit" />
-        </span>
-        <span>Edit</span>
-      </a>
+      <h1 class="is-size-3">{editingLesson.title || 'The Lesson'}</h1>
+      <div class="actions">
+        {#if editingLesson.id}
+          <button
+            class="button is-small is-primary"
+            on:click|preventDefault={updateLesson}
+            disabled={!isValid}>
+            Update lesson
+          </button>
+          <button
+            class="button is-small is-danger is-outlined"
+            href={null}
+            on:click|preventDefault={deleteLesson}>
+            Delete lesson
+          </button>
+        {:else}
+          <button
+            class="button is-small is-primary"
+            href={null}
+            on:click|preventDefault={addLesson}
+            disabled={!isValid}>
+            Add Lesson
+          </button>
+        {/if}
+      </div>
     </div>
   </header>
+
   <div class="columns">
     <div class="column is-half">
       <div class="field">
-        <label class="label">Lesson Name</label>
+        <label class="label">Lesson Title</label>
         <div class="control">
           <input
             class="input"
+            class:is-danger={errors.title}
             type="text"
             bind:value={editingLesson.title}
-            placeholder="Lesson Name" />
+            placeholder="Lesson Title" />
         </div>
+        {#if errors.title}
+          <p class="help is-danger">{errors.title}</p>
+        {/if}
       </div>
 
       <div class="field">
@@ -84,7 +145,6 @@
         <div class="control">
           <div class="select">
             <select bind:value={editingLesson.difficulty}>
-              <option value="">Select Option</option>
               {#each DIFFICULTY_TYPES as type}
                 <option value={type}>{type}</option>
               {/each}
@@ -94,11 +154,17 @@
       </div>
 
       <button class="button is-primary" on:click={addStep}>Add New Step</button>
+      {#if errors.children}
+        <p class="help is-danger">{errors.children}</p>
+      {/if}
+      {#if errors.steps}
+        <p class="help is-danger">{errors.steps}</p>
+      {/if}
 
       {#if editingLesson.steps && editingLesson.steps.length}
         <div class="small">
           {#each editingLesson.steps as step, index}
-            <HTMLStep {index} bind:step />
+            <HTMLStep bind:step on:validate={updateStepValidation} />
           {/each}
         </div>
       {/if}

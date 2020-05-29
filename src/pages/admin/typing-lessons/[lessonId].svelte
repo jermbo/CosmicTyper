@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
-  import { state, addTypingLesson, deleteTypingLesson } from "../../../store";
+  import { state } from "../../../store";
+  import { addTypingLesson, deleteTypingLesson } from "../../../store";
   import { unslugify } from "../../../utils";
   import { url, goto, params } from "@sveltech/routify";
   import axios from "axios";
@@ -15,16 +16,9 @@
 
   let editingLesson = {};
 
-  function findLesson() {
-    const title = unslugify(lessonId);
-    editingLesson = $typingLessons.filter(
-      (lesson) => lesson.title.toLowerCase() == title,
-    )[0];
-  }
-
   onMount(() => {
     if (!$typingLessons.length) {
-      $goto("typing-lessons-admin");
+      return $goto("typing-lessons-admin");
     }
 
     if ($params.lessonId != "new") {
@@ -32,8 +26,14 @@
     }
   });
 
+  function findLesson() {
+    const title = unslugify(lessonId);
+    editingLesson = $typingLessons.filter(
+      (lesson) => lesson.title.toLowerCase() == title,
+    )[0];
+  }
+
   async function updateLesson() {
-    console.log('i should not run')
     try {
       const id = editingLesson.id;
       const resp = await axios.put(
@@ -85,10 +85,17 @@
   }
 
   // Simple Custom Form Validation
-  $: isValid = !errors.title && !errors.steps;
+  $: isValid = !errors.title && !errors.steps && !errors.emptyLines;
   $: errors = {
-    title: !editingLesson.title ? 'Title is required' : '',
-    steps: editingLesson.steps && editingLesson.steps.length - 1 <= 0 ? 'Need lesson steps' : '',
+    title: !editingLesson.title ? "Title is required" : "",
+    steps:
+      editingLesson.steps && editingLesson.steps.length - 2 < 0
+        ? "Need at lest 2 steps in a lesson"
+        : "",
+    emptyLines:
+      editingLesson.steps && editingLesson.steps.some((step) => !step.length)
+        ? "There can not be any empty lines"
+        : "",
   };
 </script>
 
@@ -99,33 +106,35 @@
       Back
     </a>
     <div class="level">
-      <h1 class="is-size-3">{editingLesson.title || "The Lesson"}</h1>
-      {#if editingLesson.id}
-        <button
-          class="button is-small is-success"
-          on:click|preventDefault={updateLesson}
-          disabled={!isValid}>
-          Update lesson
-        </button>
+      <h1 class="is-size-3">{editingLesson.title || 'The Lesson'}</h1>
+      <div class="actions">
+        {#if editingLesson.id}
+          <button
+            class="button is-small is-primary"
+            on:click|preventDefault={updateLesson}
+            disabled={!isValid}>
+            Update lesson
+          </button>
 
-        <button
-          class="button is-small is-danger"
-          href={null}
-          on:click|preventDefault={deleteLesson}>
-          Delete lesson
-        </button>
-      {:else}
-        <button
-          class="button is-small is-success"
-          href={null}
-          on:click|preventDefault={addLesson}
-          disabled={!isValid}>
-          Add Lesson
-        </button>
-      {/if}
-
+          <button
+            class="button is-small is-danger is-outlined"
+            href={null}
+            on:click|preventDefault={deleteLesson}>
+            Delete lesson
+          </button>
+        {:else}
+          <button
+            class="button is-small is-primary"
+            href={null}
+            on:click|preventDefault={addLesson}
+            disabled={!isValid}>
+            Add Lesson
+          </button>
+        {/if}
+      </div>
     </div>
   </header>
+
   <div class="columns">
     <div class="column is-half">
       <div class="field">
@@ -133,13 +142,13 @@
         <div class="control">
           <input
             class="input"
-            class:is-danger="{errors.title}"
+            class:is-danger={errors.title}
             type="text"
             bind:value={editingLesson.title}
             placeholder="Lesson Title" />
         </div>
         {#if errors.title}
-           <p class="help is-danger">{errors.title}</p>
+          <p class="help is-danger">{errors.title}</p>
         {/if}
       </div>
 
@@ -156,7 +165,10 @@
         </div>
       </div>
 
-      <AdminTypingSteps bind:steps={editingLesson.steps} error={errors.steps} />
+      <AdminTypingSteps
+        bind:steps={editingLesson.steps}
+        stepError={errors.steps}
+        emptyLines={errors.emptyLines} />
     </div>
     <div class="column is-half">
       <p>Raw Data</p>
