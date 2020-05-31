@@ -1,22 +1,28 @@
 import axios from "axios";
-import * as store from "./store";
-import { parseList } from "./http-utils";
-import { getLsItem } from "./storage-utils";
-import { keyEnums } from "./enums";
-import API from "./config";
+import { API_URL, parseList } from "../utils";
+import { state } from "./store";
 
-export async function getTypingLessonsAction() {
-  if (getLsItem(keyEnums.typingKey)) {
-    store.getTypingLessons(getLsItem(keyEnums.typingKey));
-    return;
-  }
-
+const getTypingLessonsAction = async () => {
   try {
-    const resp = await axios.get(`${API}/typingLessons`);
+    const resp = await axios.get(`${API_URL}/typing-lessons`);
     const data = parseList(resp);
-    store.getTypingLessons(data);
+    setTypingLessons(data);
     return data;
   } catch (err) {
     return console.log(err);
   }
-}
+};
+
+const setTypingLessons = (lessons) => {
+  state.typingLessons.update((old) => lessons);
+};
+
+const addTypingLesson = (lesson) => {
+  state.typingLessons.update((old) => [lesson, ...old]);
+};
+
+const deleteTypingLesson = (id) => {
+  state.typingLessons.update((old) => old.filter((l) => l.id !== id));
+};
+
+export { getTypingLessonsAction, setTypingLessons, addTypingLesson, deleteTypingLesson };

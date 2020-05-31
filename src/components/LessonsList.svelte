@@ -1,35 +1,18 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import { url } from "@sveltech/routify";
+  import { slugify } from "../utils";
   export let baseURL = "web-lessons";
   export let lessons = [];
 
   const dispatch = createEventDispatcher();
 
-  function slugify(name) {
-    return name
-      .toLowerCase()
-      .split(" ")
-      .join("_");
-  }
   function markComplete(id) {
     dispatch("completed", id);
   }
 </script>
 
-<style lang="scss">
-  .lesson-table {
-    max-height: 75vh;
-    overflow-x: auto;
-  }
-  th {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-  }
-</style>
-
-<div class="card lesson-table">
+<div class="table-container">
   <table class="table is-striped is-hoverable is-fullwidth">
     <thead>
       <tr>

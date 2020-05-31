@@ -1,18 +1,18 @@
 import { writable } from "svelte/store";
-import { getLsItem, setLsItem, removeLsItem } from "./storage-utils";
-import { keyEnums } from "./enums";
+import { KEY_ENUMS, getLsItem, setLsItem, removeLsItem } from "../utils";
 
 const state = {
   webLessons: writable([]),
   typingLessons: writable([]),
   adminUser: writable({}),
+  loginErrors: writable([]),
   studentUser: writable({}),
 };
 
 const getAdminUser = (admin) => {
   let adminData;
-  if (getLsItem(keyEnums.admin)) {
-    adminData = getLsItem(keyEnums.admin);
+  if (getLsItem(KEY_ENUMS.admin)) {
+    adminData = getLsItem(KEY_ENUMS.admin);
   } else {
     adminData = {
       isLoggedIn: admin.user ? true : false,
@@ -22,62 +22,18 @@ const getAdminUser = (admin) => {
     };
   }
 
-  setLsItem(keyEnums.admin, adminData);
+  setLsItem(KEY_ENUMS.admin, adminData);
   state.adminUser.update((old) => adminData);
+  setLoginErrors();
+};
+
+const setLoginErrors = (errors = []) => {
+  state.loginErrors.update((old) => errors);
 };
 
 const logoutAdminUser = () => {
-  removeLsItem(keyEnums.admin, null);
+  removeLsItem(KEY_ENUMS.admin, null);
   state.adminUser.update((old) => ({}));
-};
-
-const getWebLessons = (lessons) => {
-  let lessonData;
-  if (getLsItem(keyEnums.webKey)) {
-    lessonData = getLsItem(keyEnums.webKey);
-  } else {
-    const sorted = sortOnDifficulty(lessons);
-    const status = addStatus(sorted);
-    lessonData = status;
-  }
-
-  setLsItem(keyEnums.webKey, lessonData);
-  state.webLessons.update((old) => lessonData);
-};
-
-const updateWebLesson = (id) => {
-  const lesson = getLsItem(keyEnums.webKey).filter((lesson) => lesson.id == id)[0];
-  lesson.hasCompleted = !lesson.hasCompleted;
-  state.webLessons.update((old) => {
-    const index = old.findIndex((l) => l.id == lesson.id);
-    old.splice(index, 1, lesson);
-    setLsItem(keyEnums.webKey, old);
-    return [...old];
-  });
-};
-
-const getTypingLessons = (lessons) => {
-  let lessonData;
-  if (getLsItem(keyEnums.typingKey)) {
-    lessonData = getLsItem(keyEnums.typingKey);
-  } else {
-    const sorted = sortOnDifficulty(lessons);
-    const status = addStatus(sorted);
-    lessonData = status;
-  }
-  setLsItem(keyEnums.typingKey, lessonData);
-  state.typingLessons.update((old) => lessonData);
-};
-
-const updateTypingLesson = (id) => {
-  const lesson = getLsItem(keyEnums.typingKey).filter((lesson) => lesson.id == id)[0];
-  lesson.hasCompleted = !lesson.hasCompleted;
-  state.typingLessons.update((old) => {
-    const index = old.findIndex((l) => l.id == lesson.id);
-    old.splice(index, 1, lesson);
-    setLsItem(keyEnums.typingKey, old);
-    return [...old];
-  });
 };
 
 function sortOnDifficulty(lessons = []) {
@@ -94,4 +50,4 @@ function addStatus(sorted = []) {
   });
 }
 
-export { state, getWebLessons, getTypingLessons, updateWebLesson, updateTypingLesson, getAdminUser, logoutAdminUser };
+export { state, getAdminUser, logoutAdminUser, setLoginErrors };

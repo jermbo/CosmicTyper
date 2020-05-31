@@ -1,3 +1,25 @@
 .text-center {
   text-align: center !important;
 }
+
+.table-container {
+  height: 75vh;
+  overflow-y: auto;
+
+  th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+}
+
+pre {
+  max-height: 75vh;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.sticky {
+  position: sticky;
+  top: 60px;
+}

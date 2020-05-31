@@ -1,29 +1,21 @@
 import axios from "axios";
 import * as store from "./store";
-import { parseList } from "./http-utils";
-import { getLsItem } from "./storage-utils";
-import { keyEnums } from "./enums";
-import { AUTH_URL } from "./config";
+import { API_URL, KEY_ENUMS, getLsItem } from "../utils";
 
 export async function getAdminUserAction({ username, password } = {}) {
-  if (getLsItem(keyEnums.admin)) {
-    store.getAdminUser(getLsItem(keyEnums.admin));
+  if (getLsItem(KEY_ENUMS.admin)) {
+    store.getAdminUser(getLsItem(KEY_ENUMS.admin));
     return;
   }
 
-  if (!username || !password) {
-    return "Need to fill out un pw";
-  }
-
   try {
-    const resp = await axios.post(`${AUTH_URL}/auth/local`, {
+    const resp = await axios.post(`${API_URL}/auth/local`, {
       identifier: username || "",
       password: password || "",
     });
-    const data = parseList(resp);
-    store.getAdminUser(data);
-    return data;
+    store.getAdminUser(resp.data);
+    return resp.data;
   } catch (err) {
-    return console.log(err);
+    store.setLoginErrors(err.response.data.data[0].messages);
   }
 }

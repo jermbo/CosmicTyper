@@ -8,10 +8,10 @@
     <h1 class="is-size-3">For Authorized Personal Only</h1>
     <p>If you are seeing this, you are authorized to see this.</p>
     <p>Choose what area you would like to view and edit</p>
-    <a class="button is-small is-info" href={$url('admin-web-lessons')}>
+    <a class="button is-small is-info" href={$url('web-lessons-admin')}>
       Web Lessons Admin
     </a>
-    <a class="button is-small is-info" href={$url('admin-typing-lessons')}>
+    <a class="button is-small is-info" href={$url('typing-lessons-admin')}>
       Typing Lessons Admin
     </a>
   </header>

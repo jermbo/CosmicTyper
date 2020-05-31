@@ -21,7 +21,7 @@
 
 <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href={$url('/')}>
+    <a class="navbar-item" href={$url('home')}>
       <img src="/assets/images/icon.png" alt="Student Typer Logo" />
       <span class="ml-2 is-size-5 has-text-weight-medium has-margin-left-6">
         Student Typer
