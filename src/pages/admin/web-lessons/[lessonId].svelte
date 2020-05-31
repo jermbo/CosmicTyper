@@ -23,8 +23,14 @@
     }
 
     if (lessonId !== "new") {
-      findLesson();
+      return findLesson();
     }
+
+    lessonDup = {
+      title: "",
+      difficulty: "",
+      steps: [],
+    };
   });
 
   function findLesson() {
@@ -105,19 +111,15 @@
 
     const oldErrors = stepErrors || [];
     stepErrors = [...oldErrors, { id: newId, hasErrors: true }];
-    console.log(stepErrors);
   }
 
   function deleteStep({ detail }) {
     const { index } = detail;
-    console.log(index);
     const otherSteps = lessonDup.steps.filter((step, i) => i !== index);
     lessonDup.steps = [...otherSteps];
-    console.log(lessonDup.steps);
 
     const otherErrors = stepErrors.filter((step, i) => i !== index);
     stepErrors = [...otherErrors];
-    console.log(stepErrors);
   }
 
   function updateStepValidation({ detail }) {
@@ -131,19 +133,16 @@
   }
 
   // Simple Custom Form Validation
-  $: isValid = !errors.title && !errors.steps && !errors.childres;
+  $: isValid = !errors.title && !errors.steps && !errors.children;
   $: stepErrors = [];
-
-  // TODO: figure out why steps is not validating properly.
   $: errors = {
     title: !lessonDup.title ? "Title is required" : "",
-    steps: lessonDup.steps && !lessonDup.steps ? "Need lesson steps" : "",
+    steps:
+      lessonDup.steps && !lessonDup.steps.length ? "Need lesson steps" : "",
     children: stepErrors.some((c) => c.hasErrors)
       ? "Need to correct all step validation issues"
       : "",
   };
-  $: console.log(!lessonDup.steps);
-  $: console.log(!errors.steps);
 </script>
 
 <!-- routify:options name="web-lesson-single-admin" -->
