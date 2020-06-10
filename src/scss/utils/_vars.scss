@@ -97,13 +97,27 @@ $colors: (
 );
 
 $colors-dark: (
-  bg: $dark-gray-9,
+  bg: $dark-gray-8,
   text: $dark-gray-1,
+  nav: $dark-gray-6,
+  nav-item-bg: $dark-gray-6,
+  nav-item-bg-hover: $dark-gray-8,
+  nav-item-text: $dark-gray-1,
+  nav-item-text-hover: $dark-gray-1,
+  button: $lime,
+  button-hover: $lime-dark,
 );
 
 $colors-light: (
-  bg: $dark-gray-1,
-  text: $dark-gray-9,
+  bg: $light-gray-2,
+  text: $light-gray-9,
+  nav: $light-gray-1,
+  nav-item-bg: $light-gray-1,
+  nav-item-bg-hover: $light-gray-4,
+  nav-item-text: $light-gray-7,
+  nav-item-text-hover: $light-gray-9,
+  button: $azure,
+  button-hover: $azure-dark,
 );
 
 // ----------------------------------------------

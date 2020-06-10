@@ -25,54 +25,37 @@
 </script>
 
 <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href={$url('/')}>
-      <img src="/assets/images/icon.png" alt="Student Typer Logo" />
-      <span class="">Student Typer</span>
-    </a>
 
-    <!-- <a
-      role="button"
-      class="navbar-burger burger"
-      class:is-active={isOpen}
-      on:click={() => {
-        isOpen = !isOpen;
-      }}
-      aria-label="menu"
-      aria-expanded="false"
-      data-target="navbarBasicExample"
-      href={null}>
-      <span aria-hidden="true" />
-      <span aria-hidden="true" />
-      <span aria-hidden="true" />
-    </a> -->
+  <a class="navbar-brand" href={$url('/')}>
+    <img src="/assets/images/icon.png" alt="Student Typer Logo" />
+    <span class="">Student Typer</span>
+  </a>
+
+  <div class="navbar-start">
+    {#each links as [path, name]}
+      <a
+        class="navbar-item"
+        href={$url(path)}
+        class:is-active={$isActive(path)}>
+        {name}
+      </a>
+    {/each}
   </div>
 
-  <div class="navbar-menu" class:is-active={isOpen}>
-    <div class="navbar-start">
-      {#each links as [path, name]}
-        <a
-          class="navbar-item"
-          href={$url(path)}
-          class:is-active={$isActive(path)}>
-          {name}
+  <div>
+    <button on:click={toggleMode}>Toggle Mode {mode}</button>
+  </div>
+
+  {#if shouldDisplayAdmin}
+    <div class="navbar-end">
+      <a class="navbar-item" href={$url('admin')}>Admin</a>
+      {#if $adminUser.isLoggedIn}
+        <a class="navbar-item" href={null} on:click={() => handleLogOut()}>
+          Log Out
         </a>
-      {/each}
+      {:else}
+        <a class="navbar-item" href={$url('login')}>Log In</a>
+      {/if}
     </div>
-    <div>
-      <button on:click={toggleMode}>Toggle Mode {mode}</button>
-    </div>
-    {#if shouldDisplayAdmin}
-      <div class="navbar-end">
-        <a class="navbar-item" href={$url('admin')}>Admin</a>
-        {#if $adminUser.isLoggedIn}
-          <a class="navbar-item" href={null} on:click={() => handleLogOut()}>
-            Log Out
-          </a>
-        {:else}
-          <a class="navbar-item" href={$url('login')}>Log In</a>
-        {/if}
-      </div>
-    {/if}
-  </div>
+  {/if}
 </nav>
