@@ -3,8 +3,8 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
-import postcss from "rollup-plugin-postcss";
 import replace from "@rollup/plugin-replace";
+import { autoPreprocess } from "svelte-preprocess/dist/autoProcess";
 
 const production = !process.env.ROLLUP_WATCH;
 const API = process.env.API || "/api";
@@ -28,11 +28,11 @@ export default {
     }),
     svelte({
       dev: !production,
+      preprocess: autoPreprocess(),
       css: (css) => {
         css.write("public/build/bundle.css");
       },
     }),
-    postcss(),
     resolve({
       browser: true,
       dedupe: ["svelte"],
