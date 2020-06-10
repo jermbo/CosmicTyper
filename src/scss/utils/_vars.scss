@@ -1,0 +1,144 @@
+// ----------------------------------------------
+// Miscellaneous Variables
+$alpha: 0.2;
+$transition-time: 0.25s;
+$default-border-radius: 2px;
+$full-border-radius: 50%;
+$padding: 1rem;
+
+// ----------------------------------------------
+// Layout
+$layout: (
+  padding: (
+    xs: $padding - 0.5,
+    sm: $padding - 0.25,
+    md: $padding,
+    lg: $padding + 0.5,
+    xl: $padding + 0.75,
+    xxl: $padding + 1,
+  ),
+);
+
+// ----------------------------------------------
+// Break Points
+$container-max-widths: (
+  xs: 90%,
+  sm: 400px,
+  md: 688px,
+  lg: 944px,
+  xl: 1194px,
+  xxl: 1468px,
+);
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 480px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1274px,
+  xxl: 1548px,
+);
+
+// ----------------------------------------------
+// Colors
+
+// Light Grays
+$light-gray-9: rgba(75, 75, 75, 255);
+$light-gray-8: rgba(95, 95, 95, 255);
+$light-gray-7: rgba(115, 115, 115, 255);
+$light-gray-6: rgba(135, 135, 135, 255);
+$light-gray-5: rgba(155, 155, 155, 255);
+$light-gray-4: rgba(175, 175, 175, 255);
+$light-gray-3: rgba(195, 195, 195, 255);
+$light-gray-2: rgba(215, 215, 215, 255);
+$light-gray-1: rgba(235, 235, 235, 255);
+$light-gray-0: rgba(252, 252, 252, 255);
+
+// Dark Grays
+$dark-gray-9: rgba(21, 23, 26, 255);
+$dark-gray-8: rgba(47, 48, 51, 255);
+$dark-gray-7: rgba(73, 74, 76, 255);
+$dark-gray-6: rgba(99, 100, 102, 255);
+$dark-gray-5: rgba(125, 126, 127, 255);
+$dark-gray-4: rgba(151, 151, 153, 255);
+$dark-gray-3: rgba(177, 177, 178, 255);
+$dark-gray-2: rgba(203, 203, 204, 255);
+$dark-gray-1: rgba(229, 229, 229, 255);
+$dark-gray-0: rgba(255, 255, 255, 255);
+
+$lime: rgba(186, 218, 85, 255);
+$lime-dark: rgba(124, 145, 56, 255);
+
+$azure: rgba(78, 148, 185, 255);
+$azure-dark: rgba(52, 98, 123, 255);
+
+$rose: rgba(228, 63, 90, 255);
+$rose-dark: rgba(152, 42, 60, 255);
+
+$electric: rgba(221, 221, 61, 255);
+$electric-dark: rgba(140, 140, 28, 255);
+
+$button-color: (
+  primary: (
+    base: $lime,
+    dark: $lime-dark,
+  ),
+  secondary: (
+    base: $azure,
+    dark: $azure-dark,
+  ),
+);
+
+$colors: (
+  bg: (
+    dark: $dark-gray-9,
+    light: $light-gray-1,
+  ),
+);
+
+$colors-dark: (
+  bg: $dark-gray-9,
+  text: $dark-gray-1,
+);
+
+$colors-light: (
+  bg: $dark-gray-1,
+  text: $dark-gray-9,
+);
+
+// ----------------------------------------------
+// Typography
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,700");
+$font-size-base: 1rem;
+
+$fonts: (
+  family: (
+    title: "Roboto",
+    text: "Roboto",
+    line-height: 1.75em,
+  ),
+  weight: (
+    light: 200,
+    normal: 400,
+    bold: 700,
+  ),
+);
+
+$font-sizes: (
+  text: (
+    xs: $font-size-base - 0.2,
+    sm: $font-size-base - 0.1,
+    md: $font-size-base,
+    lg: $font-size-base + 0.1,
+    xl: $font-size-base + 0.2,
+    xxl: $font-size-base + 0.3,
+  ),
+  title: (
+    xs: $font-size-base,
+    sm: $font-size-base + 0.2,
+    md: $font-size-base + 0.4,
+    lg: $font-size-base + 0.6,
+    xl: $font-size-base + 0.8,
+    xxl: $font-size-base + 1,
+  ),
+);

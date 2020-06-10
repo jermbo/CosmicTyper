@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+}
+
+.global-wrapper {
+  min-width: 100vw;
+  min-height: 100vh;
+
+  background: color(bg);
+  color: color(text);
+}
