@@ -10,8 +10,8 @@
   }
 }
 
-@function font($category: text, $font-size: md) {
-  @return var(--font-#{$category}-#{$font-size});
+@function font($category: text, $font-variant: md) {
+  @return var(--font-#{$category}-#{$font-variant});
 }
 
 @function layout($category: padding, $size: base) {
