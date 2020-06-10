@@ -2,8 +2,9 @@
   import { onMount } from "svelte";
   import { isActive, url, goto } from "@sveltech/routify";
   import { state, getAdminUserAction, logoutAdminUser } from "../store";
-  const { adminUser } = state;
+  const { adminUser, userSettings } = state;
 
+  $: mode = $userSettings.mode || "dark";
   $: shouldDisplayAdmin = JSON.stringify($adminUser) !== "{}";
 
   let isOpen = false;
@@ -17,18 +18,20 @@
     await logoutAdminUser();
     $goto("home");
   }
+
+  function toggleMode() {
+    $userSettings.mode = mode == "dark" ? "light" : "dark";
+  }
 </script>
 
-<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+<nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href={$url('home')}>
+    <a class="navbar-item" href={$url('/')}>
       <img src="/assets/images/icon.png" alt="Student Typer Logo" />
-      <span class="ml-2 is-size-5 has-text-weight-medium has-margin-left-6">
-        Student Typer
-      </span>
+      <span class="">Student Typer</span>
     </a>
 
-    <a
+    <!-- <a
       role="button"
       class="navbar-burger burger"
       class:is-active={isOpen}
@@ -42,7 +45,7 @@
       <span aria-hidden="true" />
       <span aria-hidden="true" />
       <span aria-hidden="true" />
-    </a>
+    </a> -->
   </div>
 
   <div class="navbar-menu" class:is-active={isOpen}>
@@ -56,7 +59,9 @@
         </a>
       {/each}
     </div>
-
+    <div>
+      <button on:click={toggleMode}>Toggle Mode {mode}</button>
+    </div>
     {#if shouldDisplayAdmin}
       <div class="navbar-end">
         <a class="navbar-item" href={$url('admin')}>Admin</a>
