@@ -41,7 +41,7 @@
   }
 }
 
-.mode-light {
+.light-mode {
   @each $name, $color in $colors-light {
     /*** Color - #{capitalize($name)} ***/
     --color-#{$name}: #{$color};

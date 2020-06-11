@@ -1,12 +1,21 @@
-html {
-  @include fluid-type(map-get($grid-breakpoints, sm), map-get($grid-breakpoints, xxl), 12px, 20px);
-}
-
 body {
   margin: 0;
   font-family: font(family, text);
   font-weight: font(weight, normal);
   letter-spacing: 1px;
+}
+
+::-webkit-scrollbar-track {
+  background: color(scroll-bar-bg);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background: color(scroll-bar-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: color(scroll-bar);
 }
 
 .global-wrapper {
@@ -16,28 +25,108 @@ body {
   color: color(text);
 }
 
-.text-center {
-  text-align: center !important;
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: calc(100vh - 66px - 2rem);
+  padding-top: layout(padding, xxl);
 }
 
+.page-container {
+  width: 75vw;
+
+  @include max-screen("md") {
+    width: 95vw;
+  }
+}
+
+.page {
+  border-bottom: 1px solid color(border);
+  margin-bottom: layout(padding, md);
+  padding-bottom: layout(padding, md);
+}
+
+.page__title {
+  margin: 0 0 layout(padding, xs);
+  font-weight: font(weight, bold);
+}
+
+.page__desc {
+  margin: 0;
+}
+
+// --------
+.button {
+  transition: all 0.25s ease;
+  display: inline-block;
+  padding: layout(padding, sm) layout(padding, md);
+  text-decoration: none;
+  color: color(button-text);
+  background: color(button);
+
+  &:hover {
+    color: color(button-text-hover);
+    background: color(button-hover);
+  }
+
+  &.is-small {
+    font-size: font(text, sm);
+  }
+}
+
+// Tables
 .table-container {
-  height: 75vh;
+  max-height: 75vh;
   overflow-y: auto;
+  border: 5px solid color(table-head);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: color(table-text);
 
   th {
     position: sticky;
     top: 0;
     z-index: 1;
+    background: color(table-head);
+    text-align: left;
+    padding: layout(padding, md);
+  }
+
+  tr {
+    background: color(table-row);
+
+    &:nth-child(even) {
+      background: color(table-stripe);
+    }
+
+    &:hover {
+      background: color(table-stripe-hover) !important;
+    }
+  }
+
+  td {
+    padding: layout(padding, sm);
+  }
+
+  .has-completed {
+    background: color(table-lesson-complete);
+    color: color(table-lesson-complete-text);
+
+    &:nth-child(even) {
+      background: color(table-lesson-complete);
+      color: color(table-lesson-complete-text);
+    }
   }
 }
 
-pre {
-  max-height: 75vh;
-  max-width: 100%;
-  overflow: auto;
-}
+.complete-icon {
+  display: none;
 
-.sticky {
-  position: sticky;
-  top: 60px;
+  .has-completed & {
+    display: block;
+  }
 }

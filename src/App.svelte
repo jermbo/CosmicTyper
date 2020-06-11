@@ -10,6 +10,6 @@
   @import "scss/styles.scss";
 </style>
 
-<div class="global-wrapper" class:mode-light={mode == 'light'}>
+<div class="global-wrapper" class:light-mode={mode == 'light'}>
   <Router {routes} />
 </div>

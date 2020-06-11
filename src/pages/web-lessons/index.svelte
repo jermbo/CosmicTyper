@@ -13,12 +13,16 @@
 </script>
 
 <!-- routify:options name="web-lessons" -->
-<section class="container">
-  <header class="has-margin-top-4 has-margin-bottom-4">
-    <h1 class="is-size-3">Web Lessons</h1>
-    <p>Let's learn how to type, while learning the basics of HTML and CSS.</p>
-  </header>
-  {#if $webLessons.length}
-    <LessonsList baseURL="web-lessons" lessons={$webLessons} />
-  {/if}
-</section>
+<div class="container">
+  <section class="page-container">
+    <header class="page">
+      <h1 class="page__title">Web Lessons</h1>
+      <p class="page__desc">
+        Let's learn how to type, while learning the basics of HTML and CSS.
+      </p>
+    </header>
+    {#if $webLessons.length}
+      <LessonsList baseURL="web-lessons" lessons={$webLessons} />
+    {/if}
+  </section>
+</div>
