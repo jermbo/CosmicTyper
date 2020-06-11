@@ -6,17 +6,18 @@
     "code"
     "desc";
   height: 100%;
+  border: 5px solid color(web-bg);
 }
 
 // Code Block
 .code-block {
   grid-area: code;
-  color: #f2f8ff;
-  background: #424556;
+  color: color(web-text);
+  background: color(web-bg);
 }
 
 .cursor {
-  animation: cursorBlink 1.25s ease infinite;
+  animation: blink 1.25s ease infinite;
 }
 
 .row {
@@ -27,38 +28,59 @@
 }
 
 .character {
+  font-size: font(text, lg);
   padding: 0;
   min-width: 7px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0.05rem;
+  margin: 0 0 5px;
 }
 
 .complete,
 .correct {
-  color: #11a8ab;
-  border-bottom: 1px solid #11a8ab;
+  color: color(web-character-bg);
+  // border-bottom: 1px solid color(web-character-bg);
   font-weight: bold;
 }
 
 .completeRow,
 .currentRow {
-  background: #333645;
+  background: color(web-current-row);
 }
 
 // Code Lesson Block
 .code-lesson {
   grid-area: desc;
-  border: 4px solid #424556;
   border-top: 0;
   border-bottom: 0;
-  background: $white;
+  background: color(web-lesson-bg);
   padding: 1rem;
-
   overflow-y: auto;
+  color: color(web-lesson-text);
 }
 
 .code-lesson__title {
   margin: 0;
   font-size: 1.25rem;
+}
+
+@keyframes flashError {
+  0% {
+    background: red;
+  }
+
+  100% {
+    background: rgba(255, 0, 0, 0);
+  }
+}
+
+@keyframes blink {
+  0% 100% {
+    background: color(web-cursor1);
+  }
+  50% {
+    background: color(web-cursor2);
+  }
 }

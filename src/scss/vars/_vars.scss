@@ -67,9 +67,13 @@ $dark-gray-1: rgba(229, 229, 229, 255);
 $dark-gray-0: rgba(255, 255, 255, 255);
 
 $lime: rgba(186, 218, 85, 255);
+$lime-alpha1: rgba(186, 218, 85, 15);
+$lime-alpha2: rgba(186, 218, 85, 5);
 $lime-dark: rgba(124, 145, 56, 255);
 
 $azure: rgba(78, 148, 185, 255);
+$azure-alpha1: rgba(78, 148, 185, 15);
+$azure-alpha2: rgba(78, 148, 185, 5);
 $azure-dark: rgba(52, 98, 123, 255);
 
 $rose: rgba(228, 63, 90, 255);
@@ -118,6 +122,21 @@ $colors-dark: (
   table-lesson-complete-text: $dark-gray-8,
   scroll-bar: $dark-gray-8,
   scroll-bar-bg: $dark-gray-4,
+  web-character-bg: $lime,
+  web-cursor1: $lime-alpha1,
+  web-cursor2: $lime-alpha2,
+  web-bg: $dark-gray-8,
+  web-text: $dark-gray-1,
+  web-current-row: $dark-gray-7,
+  web-lesson-bg: $dark-gray-2,
+  web-lesson-text: $dark-gray-9,
+  web-render: $dark-gray-1,
+  web-render-text: $dark-gray-8,
+  web-tab-bg: $dark-gray-2,
+  web-tab-border: $lime,
+  web-tab-text: $dark-gray-8,
+  minimap-bg1: $dark-gray-2,
+  minimap-bg2: $dark-gray-1,
 );
 
 $colors-light: (
@@ -142,6 +161,21 @@ $colors-light: (
   table-lesson-complete-text: $light-gray-2,
   scroll-bar: $light-gray-6,
   scroll-bar-bg: $light-gray-3,
+  web-character-bg: $azure,
+  web-cursor1: $azure-alpha1,
+  web-cursor2: $azure-alpha2,
+  web-bg: $light-gray-3,
+  web-text: $light-gray-9,
+  web-current-row: $light-gray-0,
+  web-lesson-bg: $light-gray-1,
+  web-lesson-text: $light-gray-8,
+  web-render: $light-gray-1,
+  web-render-text: $light-gray-9,
+  web-tab-bg: $light-gray-2,
+  web-tab-border: $azure,
+  web-tab-text: $light-gray-9,
+  minimap-bg1: $light-gray-2,
+  minimap-bg2: $light-gray-1,
 );
 
 // ----------------------------------------------
