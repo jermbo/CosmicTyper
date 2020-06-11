@@ -44,14 +44,14 @@ $grid-breakpoints: (
 
 // Light Grays
 $light-gray-9: rgba(75, 75, 75, 255);
-$light-gray-8: rgba(95, 95, 95, 255);
-$light-gray-7: rgba(115, 115, 115, 255);
-$light-gray-6: rgba(135, 135, 135, 255);
-$light-gray-5: rgba(155, 155, 155, 255);
-$light-gray-4: rgba(175, 175, 175, 255);
-$light-gray-3: rgba(195, 195, 195, 255);
-$light-gray-2: rgba(215, 215, 215, 255);
-$light-gray-1: rgba(235, 235, 235, 255);
+$light-gray-8: rgba(100, 100, 100, 255);
+$light-gray-7: rgba(125, 125, 125, 255);
+$light-gray-6: rgba(145, 145, 145, 255);
+$light-gray-5: rgba(165, 165, 165, 255);
+$light-gray-4: rgba(185, 185, 185, 255);
+$light-gray-3: rgba(205, 205, 205, 255);
+$light-gray-2: rgba(225, 225, 225, 255);
+$light-gray-1: rgba(245, 245, 245, 255);
 $light-gray-0: rgba(252, 252, 252, 255);
 
 // Dark Grays
@@ -106,18 +106,42 @@ $colors-dark: (
   nav-item-text-hover: $dark-gray-1,
   button: $lime,
   button-hover: $lime-dark,
+  button-text: $dark-gray-8,
+  button-text-hover: $dark-gray-8,
+  border: $dark-gray-2,
+  table-head: $dark-gray-5,
+  table-row: $dark-gray-2,
+  table-stripe: $dark-gray-3,
+  table-stripe-hover: $dark-gray-4,
+  table-text: $dark-gray-8,
+  table-lesson-complete: $lime-dark,
+  table-lesson-complete-text: $dark-gray-8,
+  scroll-bar: $dark-gray-8,
+  scroll-bar-bg: $dark-gray-4,
 );
 
 $colors-light: (
   bg: $light-gray-2,
-  text: $light-gray-9,
-  nav: $light-gray-1,
-  nav-item-bg: $light-gray-1,
-  nav-item-bg-hover: $light-gray-4,
+  text: $light-gray-8,
+  nav: $light-gray-0,
+  nav-item-bg: $light-gray-0,
+  nav-item-bg-hover: $light-gray-2,
   nav-item-text: $light-gray-7,
   nav-item-text-hover: $light-gray-9,
   button: $azure,
   button-hover: $azure-dark,
+  button-text: $light-gray-2,
+  button-text-hover: $light-gray-1,
+  border: $light-gray-8,
+  table-head: $light-gray-4,
+  table-row: $light-gray-2,
+  table-stripe: $light-gray-3,
+  table-stripe-hover: $light-gray-4,
+  table-text: $light-gray-9,
+  table-lesson-complete: $azure-dark,
+  table-lesson-complete-text: $light-gray-2,
+  scroll-bar: $light-gray-6,
+  scroll-bar-bg: $light-gray-3,
 );
 
 // ----------------------------------------------

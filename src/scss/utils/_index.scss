@@ -1,3 +1,14 @@
-@import "vars";
-@import "functions";
-@import "rootVars";
+.capitalize {
+  text-transform: capitalize;
+}
+
+pre {
+  max-height: 75vh;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.sticky {
+  position: sticky;
+  top: 60px;
+}
