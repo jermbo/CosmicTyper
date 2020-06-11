@@ -1,15 +1,23 @@
+// * {
+//   border: 1px solid red;
+// }
+
 .navbar {
   background: color(nav);
   display: flex;
-  align-items: center;
+  align-items: stretch;
 }
 
 .navbar-end {
   margin-left: auto;
+  display: flex;
+  align-items: stretch;
 }
 
 .navbar-start {
   margin-right: auto;
+  display: flex;
+  align-items: stretch;
 }
 
 .navbar-brand {
@@ -24,16 +32,18 @@
   font-weight: font(weight, normal);
 
   img {
-    width: 42px;
+    width: 2rem;
     margin-right: layout(padding, sm);
   }
 }
 
 .navbar-item {
   text-decoration: none;
+  display: flex;
+  align-items: center;
   background: color(nav-item-bg);
   color: color(nav-item-text);
-  padding: layout(padding, lg) layout(padding, md);
+  padding: layout(padding, md);
 
   &.is-active,
   &:hover {
