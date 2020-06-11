@@ -1,3 +1,7 @@
+html {
+  @include fluid-type(map-get($grid-breakpoints, sm), map-get($grid-breakpoints, xxl), 12px, 20px);
+}
+
 body {
   margin: 0;
   font-family: font(family, text);
