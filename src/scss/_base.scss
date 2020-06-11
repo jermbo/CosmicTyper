@@ -64,6 +64,7 @@ body {
   text-decoration: none;
   color: color(button-text);
   background: color(button);
+  white-space: nowrap;
 
   &:hover {
     color: color(button-text-hover);
