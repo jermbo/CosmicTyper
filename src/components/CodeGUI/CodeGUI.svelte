@@ -16,8 +16,6 @@
   function onLessonEnded({ detail: id }) {
     dispatch("sectionFinished", id);
   }
-
-  function backToSelect() {}
 </script>
 
 <div class="code-gui">

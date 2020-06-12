@@ -8,12 +8,9 @@
   CSS_CODE.subscribe((code) => {
     cssCode = `<${styleWord}> ${code.join("")} </${styleWord}>`;
   });
-
-  let htmlCode;
-  HTML_CODE.subscribe((code) => (htmlCode = code.join("")));
 </script>
 
 <div class="render">
   {@html cssCode}
-  {@html htmlCode}
+  {@html $HTML_CODE.join('')}
 </div>
