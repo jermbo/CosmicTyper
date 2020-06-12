@@ -1,12 +1,6 @@
 <script>
   import { HTML_CODE, CSS_CODE } from "../../store/code-data.js";
 
-  let cssCode;
-  CSS_CODE.subscribe((code) => (cssCode = code));
-
-  let htmlCode;
-  HTML_CODE.subscribe((code) => (htmlCode = code));
-
   let tabFocus = "html";
 
   function focusTab(tab) {
@@ -34,12 +28,12 @@
   </div>
   <div class="displays">
     <pre class="display html" class:focus={tabFocus == 'html'}>
-      {#each htmlCode as code, index}
+      {#each $HTML_CODE as code, index}
         <div class="display-line">{index + 1}: {code}</div>
       {/each}
     </pre>
     <pre class="display css" class:focus={tabFocus == 'css'}>
-      {#each cssCode as code, index}
+      {#each $CSS_CODE as code, index}
         <div class="display-line">{index + 1}: {code}</div>
       {/each}
     </pre>
