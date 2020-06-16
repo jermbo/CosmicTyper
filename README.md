@@ -1,6 +1,6 @@
 # Cosmic Typer
 
-This tool is designed to introduce students to better typing abilities as we as the basics of web development.
+This tool is designed to introduce students to better typing abilities as well as the basics of web development.
 
 ## Project Setup
 
@@ -12,7 +12,7 @@ To get the project up and running, install the dependencies by running `npm i`. 
 
 The Web Lessons is a place to practice typing HTML and CSS. The use will be presented a list of lessons that are pulled from an API and are stored locally on the users machine. The reason for this is to reduce the number of API calls, as well as keep track of which lessons the user has completed.
 
-*Note: This is a temporary solution until a proper backend and database is finalized.*
+_Note: This is a temporary solution until a proper backend and database is finalized._
 
 ### Web Lesson Structure
 
