@@ -67,13 +67,13 @@ $dark-gray-1: rgba(229, 229, 229, 255);
 $dark-gray-0: rgba(255, 255, 255, 255);
 
 $lime: rgba(186, 218, 85, 255);
-$lime-alpha1: rgba(186, 218, 85, 15);
-$lime-alpha2: rgba(186, 218, 85, 5);
+$lime-alpha1: #77893b;
+$lime-alpha2: #495425;
 $lime-dark: rgba(124, 145, 56, 255);
 
 $azure: rgba(78, 148, 185, 255);
-$azure-alpha1: rgba(78, 148, 185, 15);
-$azure-alpha2: rgba(78, 148, 185, 5);
+$azure-alpha1: #396d89;
+$azure-alpha2: #1e3a49;
 $azure-dark: rgba(52, 98, 123, 255);
 
 $rose: rgba(228, 63, 90, 255);
@@ -103,6 +103,7 @@ $colors: (
 $colors-dark: (
   bg: $dark-gray-8,
   text: $dark-gray-1,
+  text-inverse: $dark-gray-9,
   nav: $dark-gray-6,
   nav-item-bg: $dark-gray-6,
   nav-item-bg-hover: $dark-gray-8,
@@ -142,6 +143,7 @@ $colors-dark: (
 $colors-light: (
   bg: $light-gray-2,
   text: $light-gray-8,
+  text-inverse: $light-gray-1,
   nav: $light-gray-0,
   nav-item-bg: $light-gray-0,
   nav-item-bg-hover: $light-gray-2,
