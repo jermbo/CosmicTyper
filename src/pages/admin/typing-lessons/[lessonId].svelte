@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import { state } from "../../../store";
   import { addTypingLesson, deleteTypingLesson } from "../../../store";
-  import { unslugify } from "../../../utils";
+  import { API_URL, unslugify } from "../../../utils";
   import { url, goto, params } from "@sveltech/routify";
   import axios from "axios";
 
@@ -70,7 +70,7 @@
   async function addLesson() {
     try {
       const resp = await axios.post(
-        `http://localhost:1337/typing-lessons/`,
+        `${API_URL}typing-lessons/`,
         editingLesson,
         {
           headers: { Authorization: `Bearer ${$adminUser.token}` },
@@ -101,40 +101,44 @@
 
 <!-- routify:options name="typing-lesson-single-admin" -->
 {#if editingLesson}
-  <header>
-    <a class="button is-small is-info" href={$url('typing-lessons-admin')}>
-      Back
-    </a>
-    <div class="level">
-      <h1 class="is-size-3">{editingLesson.title || 'The Lesson'}</h1>
-      <div class="actions">
-        {#if editingLesson.id}
-          <button
-            class="button is-small is-primary"
-            on:click|preventDefault={updateLesson}
-            disabled={!isValid}>
-            Update lesson
-          </button>
+  <div class="container">
+    <section class="page-container">
+      <header class="page">
+        <a class="button is-small is-info" href={$url('typing-lessons-admin')}>
+          Back
+        </a>
+        <h1 class="page__title">{editingLesson.title || 'The Lesson'}</h1>
 
-          <button
-            class="button is-small is-danger is-outlined"
-            href={null}
-            on:click|preventDefault={deleteLesson}>
-            Delete lesson
-          </button>
-        {:else}
-          <button
-            class="button is-small is-primary"
-            href={null}
-            on:click|preventDefault={addLesson}
-            disabled={!isValid}>
-            Add Lesson
-          </button>
-        {/if}
-      </div>
-    </div>
-  </header>
+        <div class="page__actions">
+          {#if editingLesson.id}
+            <button
+              class="button is-small is-primary"
+              on:click|preventDefault={updateLesson}
+              disabled={!isValid}>
+              Update lesson
+            </button>
 
+            <button
+              class="button is-small is-danger is-outlined"
+              href={null}
+              on:click|preventDefault={deleteLesson}>
+              Delete lesson
+            </button>
+          {:else}
+            <button
+              class="button is-small is-primary"
+              href={null}
+              on:click|preventDefault={addLesson}
+              disabled={!isValid}>
+              Add Lesson
+            </button>
+          {/if}
+        </div>
+      </header>
+
+      <div class="page-body" />
+    </section>
+  </div>
   <div class="columns">
     <div class="column is-half">
       <div class="field">

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { state } from "./store";
-import { KEY_ENUMS, getLsItem, setLsItem, removeLsItem } from "../utils";
+import { API_URL, KEY_ENUMS, getLsItem, setLsItem, removeLsItem } from "../utils";
 
 const getAdminUserAction = async ({ username, password } = {}) => {
   if (getLsItem(KEY_ENUMS.admin)) {
