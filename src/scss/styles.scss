@@ -1,8 +1,11 @@
-@import "bulmaVars";
+@import "utils/index";
+@import "vars/index";
 
 @import "base";
 
+@import "components/index";
+
 @import "codeGUI";
-@import "codeOutput";
 @import "typer";
+@import "codeOutput";
 @import "typingGUI";

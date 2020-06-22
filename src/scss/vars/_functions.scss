@@ -1,0 +1,67 @@
+// ----------------------------------------------
+// Sass functions that will produce the necessary variable syntax
+// pulling from the maps based on the inputs.
+
+@function color($color-name, $hex: false) {
+  @if $hex == true {
+    @return map-get($colors, $color-name);
+  } @else {
+    @return var(--color-#{$color-name});
+  }
+}
+
+@function font($category: text, $font-variant: md) {
+  @return var(--font-#{$category}-#{$font-variant});
+}
+
+@function layout($category: padding, $size: base) {
+  @return var(--layout-#{$category}-#{$size});
+}
+
+@function capitalize($string) {
+  @return to-upper-case(str-slice($string, 1, 1)) + str-slice($string, 2);
+}
+
+// ----------------------------------------------
+// Screens
+// min-screen($size)
+// $size - based on $grid-breakpoints keys.
+
+// For screens larger than breakpoint defined.
+@mixin min-screen($size) {
+  @media (min-width: map-get($grid-breakpoints, $size)) {
+    @content;
+  }
+}
+
+// max-screen($size)
+// $size - based on $grid-breakpoints keys.
+// For screens smaller than breakpoint defined.
+@mixin max-screen($size) {
+  @media (max-width: map-get($grid-breakpoints, $size)) {
+    @content;
+  }
+}
+
+// Typography -
+// This was originally a Sass function, but with CSS Variables,
+// I am able to reduce the amount of output code.
+// Sass version - https://codepen.io/jermbo/pen/bRKJJd
+@mixin fluid-type($min-vw, $max-vw, $min-value, $max-value) {
+  font-size: $min-value;
+
+  @media (min-width: $min-vw) {
+    font-size: calc(
+      #{$min-value} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}
+    );
+  }
+
+  @media (min-width: $max-vw) {
+    font-size: $max-value;
+  }
+}
+
+// Strip Unit.
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}

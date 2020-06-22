@@ -1,0 +1,219 @@
+// ----------------------------------------------
+// Miscellaneous Variables
+$alpha: 0.2;
+$transition-time: 0.25s;
+$default-border-radius: 2px;
+$full-border-radius: 50%;
+$padding: 1rem;
+
+// ----------------------------------------------
+// Layout
+$layout: (
+  padding: (
+    xs: $padding - 0.5,
+    sm: $padding - 0.25,
+    md: $padding,
+    lg: $padding + 0.5,
+    xl: $padding + 0.75,
+    xxl: $padding + 1,
+  ),
+);
+
+// ----------------------------------------------
+// Break Points
+$container-max-widths: (
+  xs: 90%,
+  sm: 400px,
+  md: 688px,
+  lg: 944px,
+  xl: 1194px,
+  xxl: 1468px,
+);
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 480px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1274px,
+  xxl: 1548px,
+);
+
+// ----------------------------------------------
+// Colors
+
+// Light Grays
+$light-gray-9: rgba(75, 75, 75, 255);
+$light-gray-8: rgba(100, 100, 100, 255);
+$light-gray-7: rgba(125, 125, 125, 255);
+$light-gray-6: rgba(145, 145, 145, 255);
+$light-gray-5: rgba(165, 165, 165, 255);
+$light-gray-4: rgba(185, 185, 185, 255);
+$light-gray-3: rgba(205, 205, 205, 255);
+$light-gray-2: rgba(225, 225, 225, 255);
+$light-gray-1: rgba(245, 245, 245, 255);
+$light-gray-0: rgba(252, 252, 252, 255);
+
+// Dark Grays
+$dark-gray-9: rgba(21, 23, 26, 255);
+$dark-gray-8: rgba(47, 48, 51, 255);
+$dark-gray-7: rgba(73, 74, 76, 255);
+$dark-gray-6: rgba(99, 100, 102, 255);
+$dark-gray-5: rgba(125, 126, 127, 255);
+$dark-gray-4: rgba(151, 151, 153, 255);
+$dark-gray-3: rgba(177, 177, 178, 255);
+$dark-gray-2: rgba(203, 203, 204, 255);
+$dark-gray-1: rgba(229, 229, 229, 255);
+$dark-gray-0: rgba(255, 255, 255, 255);
+
+$lime: rgba(186, 218, 85, 255);
+$lime-alpha1: #77893b;
+$lime-alpha2: #495425;
+$lime-dark: rgba(124, 145, 56, 255);
+
+$azure: rgba(78, 148, 185, 255);
+$azure-alpha1: #396d89;
+$azure-alpha2: #1e3a49;
+$azure-dark: rgba(52, 98, 123, 255);
+
+$rose: rgba(228, 63, 90, 255);
+$rose-dark: rgba(152, 42, 60, 255);
+
+$electric: rgba(221, 221, 61, 255);
+$electric-dark: rgba(140, 140, 28, 255);
+
+$button-color: (
+  primary: (
+    base: $lime,
+    dark: $lime-dark,
+  ),
+  secondary: (
+    base: $azure,
+    dark: $azure-dark,
+  ),
+);
+
+$colors: (
+  bg: (
+    dark: $dark-gray-9,
+    light: $light-gray-1,
+  ),
+);
+
+$colors-dark: (
+  bg: $dark-gray-8,
+  text: $dark-gray-1,
+  text-inverse: $dark-gray-9,
+  nav: $dark-gray-6,
+  nav-item-bg: $dark-gray-6,
+  nav-item-bg-hover: $dark-gray-8,
+  nav-item-text: $dark-gray-1,
+  nav-item-text-hover: $dark-gray-1,
+  button: $lime,
+  button-hover: $lime-dark,
+  button-text: $dark-gray-8,
+  button-text-hover: $dark-gray-8,
+  border: $dark-gray-2,
+  table-head: $dark-gray-5,
+  table-row: $dark-gray-2,
+  table-stripe: $dark-gray-3,
+  table-stripe-hover: $dark-gray-4,
+  table-text: $dark-gray-8,
+  table-lesson-complete: $lime-dark,
+  table-lesson-complete-text: $dark-gray-8,
+  scroll-bar: $dark-gray-8,
+  scroll-bar-bg: $dark-gray-4,
+  web-character-bg: $lime,
+  web-cursor1: $lime-alpha1,
+  web-cursor2: $lime-alpha2,
+  web-bg: $dark-gray-8,
+  web-text: $dark-gray-1,
+  web-current-row: $dark-gray-7,
+  web-lesson-bg: $dark-gray-2,
+  web-lesson-text: $dark-gray-9,
+  web-render: $dark-gray-1,
+  web-render-text: $dark-gray-8,
+  web-tab-bg: $dark-gray-2,
+  web-tab-border: $lime,
+  web-tab-text: $dark-gray-8,
+  minimap-bg1: $dark-gray-2,
+  minimap-bg2: $dark-gray-1,
+);
+
+$colors-light: (
+  bg: $light-gray-2,
+  text: $light-gray-8,
+  text-inverse: $light-gray-1,
+  nav: $light-gray-0,
+  nav-item-bg: $light-gray-0,
+  nav-item-bg-hover: $light-gray-2,
+  nav-item-text: $light-gray-7,
+  nav-item-text-hover: $light-gray-9,
+  button: $azure,
+  button-hover: $azure-dark,
+  button-text: $light-gray-2,
+  button-text-hover: $light-gray-1,
+  border: $light-gray-8,
+  table-head: $light-gray-4,
+  table-row: $light-gray-2,
+  table-stripe: $light-gray-3,
+  table-stripe-hover: $light-gray-4,
+  table-text: $light-gray-9,
+  table-lesson-complete: $azure-dark,
+  table-lesson-complete-text: $light-gray-2,
+  scroll-bar: $light-gray-6,
+  scroll-bar-bg: $light-gray-3,
+  web-character-bg: $azure,
+  web-cursor1: $azure-alpha1,
+  web-cursor2: $azure-alpha2,
+  web-bg: $light-gray-3,
+  web-text: $light-gray-9,
+  web-current-row: $light-gray-0,
+  web-lesson-bg: $light-gray-1,
+  web-lesson-text: $light-gray-8,
+  web-render: $light-gray-1,
+  web-render-text: $light-gray-9,
+  web-tab-bg: $light-gray-2,
+  web-tab-border: $azure,
+  web-tab-text: $light-gray-9,
+  minimap-bg1: $light-gray-2,
+  minimap-bg2: $light-gray-1,
+);
+
+// ----------------------------------------------
+// Typography
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,400,700,900");
+$font-size-base: 1rem;
+
+$fonts: (
+  family: (
+    title: "Roboto",
+    text: "Roboto",
+    line-height: 1.75em,
+  ),
+  weight: (
+    light: 100,
+    normal: 400,
+    bold: 700,
+    black: 900,
+  ),
+);
+
+$font-sizes: (
+  text: (
+    xs: $font-size-base - 0.2,
+    sm: $font-size-base - 0.1,
+    md: $font-size-base,
+    lg: $font-size-base + 0.1,
+    xl: $font-size-base + 0.2,
+    xxl: $font-size-base + 0.3,
+  ),
+  title: (
+    xs: $font-size-base,
+    sm: $font-size-base + 0.25,
+    md: $font-size-base + 0.45,
+    lg: $font-size-base + 0.75,
+    xl: $font-size-base + 0.95,
+    xxl: $font-size-base + 1.05,
+  ),
+);

@@ -13,26 +13,26 @@
 </script>
 
 <div class="table-container">
-  <table class="table is-striped is-hoverable is-fullwidth">
+  <table class="table">
     <thead>
       <tr>
-        <th class="has-background-grey-lighter">Done</th>
-        <th class="has-background-grey-lighter">Lesson Name</th>
-        <th class="has-background-grey-lighter">Difficulty</th>
-        <th class="has-background-grey-lighter">Action</th>
+        <th>Done</th>
+        <th>Lesson Name</th>
+        <th>Difficulty</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
       {#each lessons as lesson}
-        <tr class:is-selected={lesson.hasCompleted}>
-          <td class="text-center" width="5%">
-            <i class="fas fa-check" class:is-hidden={!lesson.hasCompleted} />
+        <tr class:has-completed={lesson.hasCompleted}>
+          <td>
+            <i class="fas fa-check complete-icon" />
           </td>
-          <td width="80%">{lesson.title}</td>
-          <td width="10%" class="is-capitalized">{lesson.difficulty}</td>
-          <td width="5%">
+          <td width="70%">{lesson.title}</td>
+          <td class="capitalize">{lesson.difficulty}</td>
+          <td>
             <a
-              class="button is-small is-info"
+              class="button is-small"
               href={$url(`/${baseURL}/${slugify(lesson.title)}`)}>
               Start Lesson
             </a>

@@ -15,14 +15,15 @@
 
 <!-- routify:options name="web-lessons-admin" -->
 <div class="container">
-  <header class="has-margin-top-4 has-margin-bottom-4">
-    <h1 class="is-size-3">Web Lessons Admin</h1>
-    <button
-      on:click={$goto('web-lesson-single-admin', { lessonId: 'new' })}
-      class="button is-primary">
-      Add New
-    </button>
-  </header>
-
-  <AdminLessonsList lessons={$webLessons} />
+  <section class="page-container">
+    <header class="page">
+      <h1 class="page__title">Web Lessons Admin</h1>
+      <button
+        on:click={$goto('web-lesson-single-admin', { lessonId: 'new' })}
+        class="button is-primary">
+        Add New
+      </button>
+    </header>
+    <AdminLessonsList lessons={$webLessons} />
+  </section>
 </div>
