@@ -1,0 +1,19 @@
+// --------
+.button {
+  transition: all 0.25s ease;
+  display: inline-block;
+  padding: layout(padding, sm) layout(padding, md);
+  text-decoration: none;
+  color: color(button-text);
+  background: color(button);
+  white-space: nowrap;
+
+  &:hover {
+    color: color(button-text-hover);
+    background: color(button-hover);
+  }
+
+  &.is-small {
+    font-size: font(text, sm);
+  }
+}
