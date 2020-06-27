@@ -28,7 +28,7 @@
 
     lessonDup = {
       title: "",
-      difficulty: "",
+      difficulty: "easy",
       steps: [],
     };
   });
@@ -105,6 +105,7 @@
       type: "",
       desc: "",
       action: [],
+      render: true,
       id: newId,
     };
     lessonDup.steps = [...oldSteps, newStep];
@@ -147,11 +148,13 @@
 
 <!-- routify:options name="web-lesson-single-admin" -->
 {#if lessonDup}
-  <header>
-    <a class="button is-small is-info" href={$url('web-lessons-admin')}>Back</a>
-    <div class="level">
-      <h1 class="is-size-3">{lessonDup.title || 'The Lesson'}</h1>
-      <div class="actions">
+  <div class="page-container">
+    <header class="page-header">
+      <div class="header-info">
+        <a class="button" href={$url('web-lessons-admin')}>Back</a>
+        <h1 class="page__title">{lessonDup.title || 'New Lesson'}</h1>
+      </div>
+      <div class="header-actions">
         {#if lessonDup.id}
           <button
             class="button is-small is-primary"
@@ -175,9 +178,68 @@
           </button>
         {/if}
       </div>
-    </div>
-  </header>
+    </header>
+    <div class="page-content">
+      <div class="lesson-data">
+        <div class="field">
+          <label class="label">Lesson Title</label>
+          <div class="control">
+            <input
+              class="input"
+              class:is-danger={errors.title}
+              type="text"
+              bind:value={lessonDup.title}
+              placeholder="Lesson Title" />
+          </div>
+          {#if errors.title}
+            <p class="help is-danger">{errors.title}</p>
+          {/if}
+        </div>
 
+        <div class="field">
+          <label class="label">Difficulty</label>
+          <div class="control">
+            <div class="select">
+              <select bind:value={lessonDup.difficulty}>
+                {#each DIFFICULTY_TYPES as type}
+                  <option value={type}>{type}</option>
+                {/each}
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <button class="button" on:click={addStep}>Add New Step</button>
+        {#if errors.children}
+          <p class="help is-danger">{errors.children}</p>
+        {/if}
+        {#if errors.steps}
+          <p class="help is-danger">{errors.steps}</p>
+        {/if}
+        {#if lessonDup.steps && lessonDup.steps.length}
+          <div class="small">
+            {#each lessonDup.steps as step, index}
+              <HTMLStep
+                {index}
+                bind:step
+                on:validate={updateStepValidation}
+                on:removeStep={deleteStep} />
+            {/each}
+          </div>
+        {/if}
+      </div>
+
+      <div class="lesson-output">
+        <div class="sticky">
+          <p>Raw Data</p>
+          <CodeBlock data={lessonDup} />
+        </div>
+      </div>
+    </div>
+  </div>
+{/if}
+
+<!--
   <div class="columns">
     <div class="column is-half">
       <div class="field">
@@ -228,11 +290,6 @@
         </div>
       {/if}
     </div>
-    <div class="column is-half">
-      <div class="sticky">
-        <p>Raw Data</p>
-        <CodeBlock data={lessonDup} />
-      </div>
-    </div>
+
   </div>
-{/if}
+  -->

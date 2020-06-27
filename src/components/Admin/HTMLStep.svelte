@@ -81,6 +81,13 @@
   </div>
 </div>
 
+<div class="field">
+  <label class="class">Render</label>
+  <div class="control">
+    <input type="checkbox" bind:checked={step.render} />
+  </div>
+</div>
+
 <div class="control">
   <label class="label">Lesson Steps</label>
   <TextArea

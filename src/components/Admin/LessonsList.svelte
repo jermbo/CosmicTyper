@@ -6,11 +6,11 @@
 </script>
 
 <div class="table-container">
-  <table class="table is-striped is-fullwidth is-hoverable">
+  <table class="table">
     <thead>
       <tr>
-        <th class="has-background-grey-lighter">Lesson Name</th>
-        <th class="has-background-grey-lighter">Actions</th>
+        <th>Lesson Name</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -19,10 +19,10 @@
           <td width="90%">{lesson.title}</td>
           <td width="10%">
             <a
-              class="control button is-small"
+              class="button"
               title={`View: ${lesson.title}`}
               href={$url(`${baseURL}/${slugify(lesson.title)}`)}>
-              <span class="icon has-text-info">
+              <span class="icon">
                 <i class="fas fa-eye" />
               </span>
             </a>

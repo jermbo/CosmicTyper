@@ -1,0 +1,47 @@
+// Tables
+.table-container {
+  max-height: 75vh;
+  overflow-y: auto;
+  border: 5px solid color(table-head);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: color(table-text);
+
+  th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: color(table-head);
+    text-align: left;
+    padding: layout(padding, md);
+  }
+
+  tr {
+    background: color(table-row);
+
+    &:nth-child(even) {
+      background: color(table-stripe);
+    }
+
+    &:hover {
+      background: color(table-stripe-hover) !important;
+    }
+  }
+
+  td {
+    padding: layout(padding, sm);
+  }
+
+  .has-completed {
+    background: color(table-lesson-complete);
+    color: color(table-lesson-complete-text);
+
+    &:nth-child(even) {
+      background: color(table-lesson-complete);
+      color: color(table-lesson-complete-text);
+    }
+  }
+}

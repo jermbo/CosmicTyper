@@ -12,12 +12,10 @@
 </script>
 
 <section class="container">
-  <header class="has-margin-top-4 has-margin-bottom-4">
-    {#if $adminUser.isLoggedIn}
-      <slot />
-    {:else}
-      <p>You gotta login to see this page.</p>
-      <a class="button is-small is-info" href={$url('login')}>Go to Login</a>
-    {/if}
-  </header>
+  {#if $adminUser.isLoggedIn}
+    <slot />
+  {:else}
+    <p>You gotta login to see this page.</p>
+    <a class="button" href={$url('login')}>Go to Login</a>
+  {/if}
 </section>
