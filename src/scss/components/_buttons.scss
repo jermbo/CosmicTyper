@@ -7,6 +7,7 @@
   color: color(button-text);
   background: color(button);
   white-space: nowrap;
+  border: none;
 
   &:hover {
     color: color(button-text-hover);

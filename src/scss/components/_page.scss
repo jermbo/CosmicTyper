@@ -1,44 +1,35 @@
-.page-container {
-  width: 75vw;
+// .page-container {
+//   width: 75vw;
 
-  @include max-screen("md") {
-    width: 95vw;
-  }
-}
+//   @include max-screen("md") {
+//     width: 95vw;
+//   }
+// }
+
+// .page {
+//   border-bottom: 1px solid color(border);
+//   margin-bottom: layout(padding, md);
+//   padding-bottom: layout(padding, md);
+// }
+
+// .page__title {
+//   margin: 0 0 layout(padding, xs);
+//   font-weight: font(weight, bold);
+// }
+
+// .page__desc {
+//   margin: 0;
+// }
 
 .page {
-  border-bottom: 1px solid color(border);
-  margin-bottom: layout(padding, md);
-  padding-bottom: layout(padding, md);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: calc(100vw - #{layout(padding, xxl)});
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .page__title {
-  margin: 0 0 layout(padding, xs);
-  font-weight: font(weight, bold);
-}
-
-.page__desc {
-  margin: 0;
-}
-
-.page-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-
-.header-actions {
-}
-
-.page-content {
-  display: flex;
-}
-
-.lesson-data {
-  flex: 1 0 50%;
-  margin: 0 layout(spacing, md) 0;
-}
-
-.lesson-output {
-  flex: 1 0 50%;
+  font-size: font(title, xl);
 }
