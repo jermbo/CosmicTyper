@@ -4,18 +4,23 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: calc(100vh - 66px);
+  min-height: calc(100vh - 60px);
 }
 
-.title {
+.welcome__title {
   font-size: font(title, xxl);
-  font-weight: font(weight, bold);
+
+  &-thin,
+  .-thin {
+    font-weight: font(weight, light);
+  }
+
+  &-heavy,
+  .-heavy {
+    font-weight: font(weight, bold);
+  }
 }
 
-.title__thin {
-  font-weight: font(weight, light);
-}
-
-.subtitle {
+.welcome__subtitle {
   font-size: font(title, sm);
 }
