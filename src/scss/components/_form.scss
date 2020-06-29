@@ -1,0 +1,16 @@
+.form {
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: layout(padding, md);
+}
+
+.label {
+  padding-bottom: layout(padding, sm);
+}
+
+.input {
+  padding: layout(padding, md);
+}

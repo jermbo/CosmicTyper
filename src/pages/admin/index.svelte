@@ -3,16 +3,15 @@
 </script>
 
 <!-- routify:options name="admin" -->
-<section class="container">
-  <header class="has-margin-top-4 has-margin-bottom-4">
-    <h1 class="is-size-3">For Authorized Personal Only</h1>
-    <p>If you are seeing this, you are authorized to see this.</p>
-    <p>Choose what area you would like to view and edit</p>
-    <a class="button is-small is-info" href={$url('web-lessons-admin')}>
-      Web Lessons Admin
-    </a>
-    <a class="button is-small is-info" href={$url('typing-lessons-admin')}>
+<section class="page">
+  <header class="page-header">
+    <h1 class="page__title">Typer Admin Page</h1>
+    <p class="page__subtitle">Please select an area you would like to view.</p>
+  </header>
+  <div class="page-body">
+    <a class="button" href={$url('web-lessons-admin')}>Web Lessons Admin</a>
+    <a class="button" href={$url('typing-lessons-admin')}>
       Typing Lessons Admin
     </a>
-  </header>
+  </div>
 </section>
