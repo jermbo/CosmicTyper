@@ -5,6 +5,7 @@ import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
 import replace from "@rollup/plugin-replace";
 import { autoPreprocess } from "svelte-preprocess/dist/autoProcess";
+import json from "@rollup/plugin-json";
 
 const production = !process.env.ROLLUP_WATCH;
 const API = process.env.API || "/api";
@@ -18,6 +19,7 @@ export default {
     file: "public/build/bundle.js",
   },
   plugins: [
+    json(),
     replace({
       process: JSON.stringify({
         env: {

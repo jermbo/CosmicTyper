@@ -1,0 +1,19 @@
+{
+  "page": {
+    "home": {
+      "welcome": "Bem vindo ao Code Palm Beach",
+      "slogan": "Um aplicativo para aprender HTML e CSS básico enquanto você aprende a digitar."
+    },
+    "web-lessons": {
+      "nav": "Lições de Código",
+      "description": "Vamos aprender a digitar, enquanto também aprendemos HTML e CSS básico."
+    },
+    "typing-lessons": {
+      "nav": "Lições de Digitação",
+      "description": "Aqui você poderá praticar a sua digitação."
+    },
+    "settings": {
+      "nav": "Configurações"
+    }
+  }
+}

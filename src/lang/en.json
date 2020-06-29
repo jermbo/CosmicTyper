@@ -1,0 +1,19 @@
+{
+  "page": {
+    "home": {
+      "welcome": "Welcome to Code Palm Beach",
+      "slogan": "A tool to help you learn to type, while learning to code HTML and CSS."
+    },
+    "web-lessons": {
+      "nav": "Web Lessons",
+      "description": "Let's learn how to type, while learning the basics of HTML and CSS."
+    },
+    "typing-lessons": {
+      "nav": "Typing Lessons",
+      "description": "In this section, you can work on your general typing skills."
+    },
+    "settings": {
+      "nav": "Settings"
+    }
+  }
+}
