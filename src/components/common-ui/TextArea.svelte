@@ -10,6 +10,8 @@
 </script>
 
 <textarea
+  class="textarea"
+  class:is-danger={error}
   {...props}
   on:blur
   on:focus
@@ -19,6 +21,5 @@
   on:change
   on:input
   bind:value
-  class:is-danger={error}
   {name}
   {disabled} />

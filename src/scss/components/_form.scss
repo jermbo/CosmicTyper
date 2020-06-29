@@ -14,3 +14,21 @@
 .input {
   padding: layout(padding, md);
 }
+
+.textarea {
+  padding: layout(padding, md);
+  resize: none;
+}
+
+.select {
+  padding: layout(padding, md);
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  text-transform: capitalize;
+  background: {
+    image: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png);
+    repeat: no-repeat;
+    position: right;
+    position-x: calc(100% - #{layout(padding, md)});
+  }
+}

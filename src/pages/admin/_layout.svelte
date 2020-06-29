@@ -14,7 +14,14 @@
 <section class="page">
   {#if !$adminUser.isLoggedIn}
     <div class="page-header">
-      <h1 class="page__title">You gotta login to see this page.</h1>
+      <div class="page-header__info">
+        <h1 class="page__title">Restricted Access</h1>
+        <p class="page__subtitle">
+          You need to be logged in to view the admin area
+        </p>
+      </div>
+    </div>
+    <div class="page-body">
       <a class="button" href={$url('login')}>Go to Login</a>
     </div>
   {:else}

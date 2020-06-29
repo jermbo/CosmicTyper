@@ -1,0 +1,14 @@
+.admin-lesson {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(500px, 50%));
+  grid-template-areas: "edit raw";
+  grid-gap: layout(padding, md);
+}
+
+.lesson-edit {
+  grid-area: edit;
+}
+
+.lesson-raw {
+  grid-area: raw;
+}
