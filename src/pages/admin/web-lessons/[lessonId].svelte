@@ -148,148 +148,101 @@
 
 <!-- routify:options name="web-lesson-single-admin" -->
 {#if lessonDup}
-  <div class="page-container">
-    <header class="page-header">
-      <div class="header-info">
-        <a class="button" href={$url('web-lessons-admin')}>Back</a>
-        <h1 class="page__title">{lessonDup.title || 'New Lesson'}</h1>
-      </div>
-      <div class="header-actions">
-        {#if lessonDup.id}
-          <button
-            class="button is-small is-primary"
-            on:click|preventDefault={updateLesson}
-            disabled={!isValid}>
-            Update lesson
-          </button>
-          <button
-            class="button is-small is-danger is-outlined"
-            href={null}
-            on:click|preventDefault={deleteLesson}>
-            Delete lesson
-          </button>
-        {:else}
-          <button
-            class="button is-small is-primary"
-            href={null}
-            on:click|preventDefault={addLesson}
-            disabled={!isValid}>
-            Add Lesson
-          </button>
-        {/if}
-      </div>
-    </header>
-    <div class="page-content">
-      <div class="lesson-data">
-        <div class="field">
+  <header class="page-header">
+    <div class="page-header__info">
+      <h1 class="page__title">{lessonDup.title || 'New Lesson'}</h1>
+    </div>
+
+    <div class="page-actions">
+      {#if lessonDup.id}
+        <button
+          class="button"
+          on:click|preventDefault={updateLesson}
+          disabled={!isValid}>
+          Update lesson
+        </button>
+        <button
+          class="button"
+          href={null}
+          on:click|preventDefault={deleteLesson}>
+          Delete lesson
+        </button>
+      {:else}
+        <button
+          class="button"
+          href={null}
+          on:click|preventDefault={addLesson}
+          disabled={!isValid}>
+          Add Lesson
+        </button>
+      {/if}
+    </div>
+  </header>
+
+  <div class="page-body">
+
+    <div class="admin-lesson">
+
+      <div class="lesson-edit">
+        <div class="form-field">
           <label class="label">Lesson Title</label>
-          <div class="control">
-            <input
-              class="input"
-              class:is-danger={errors.title}
-              type="text"
-              bind:value={lessonDup.title}
-              placeholder="Lesson Title" />
-          </div>
+          <input
+            type="text"
+            class="input"
+            class:is-danger={errors.title}
+            bind:value={lessonDup.title}
+            placeholder="Lesson Title" />
           {#if errors.title}
             <p class="help is-danger">{errors.title}</p>
           {/if}
         </div>
+        <!-- /form-field -->
 
-        <div class="field">
+        <div class="form-field">
           <label class="label">Difficulty</label>
-          <div class="control">
-            <div class="select">
-              <select bind:value={lessonDup.difficulty}>
-                {#each DIFFICULTY_TYPES as type}
-                  <option value={type}>{type}</option>
-                {/each}
-              </select>
+
+          <select class="select" bind:value={lessonDup.difficulty}>
+            {#each DIFFICULTY_TYPES as type}
+              <option value={type}>{type}</option>
+            {/each}
+          </select>
+
+        </div>
+        <!-- TODO: Put Language Options Here -->
+
+        <div class="lesson-steps">
+          <p>Lesson Steps:</p>
+          <button class="button" on:click={addStep}>Add New Step</button>
+          {#if errors.children}
+            <p class="help is-danger">{errors.children}</p>
+          {/if}
+          {#if errors.steps}
+            <p class="help is-danger">{errors.steps}</p>
+          {/if}
+          {#if lessonDup.steps && lessonDup.steps.length}
+            <div class="small">
+              {#each lessonDup.steps as step, index}
+                <HTMLStep
+                  {index}
+                  bind:step
+                  on:validate={updateStepValidation}
+                  on:removeStep={deleteStep} />
+              {/each}
             </div>
-          </div>
+          {/if}
         </div>
 
-        <button class="button" on:click={addStep}>Add New Step</button>
-        {#if errors.children}
-          <p class="help is-danger">{errors.children}</p>
-        {/if}
-        {#if errors.steps}
-          <p class="help is-danger">{errors.steps}</p>
-        {/if}
-        {#if lessonDup.steps && lessonDup.steps.length}
-          <div class="small">
-            {#each lessonDup.steps as step, index}
-              <HTMLStep
-                {index}
-                bind:step
-                on:validate={updateStepValidation}
-                on:removeStep={deleteStep} />
-            {/each}
-          </div>
-        {/if}
       </div>
+      <!-- /lesson-edit -->
 
-      <div class="lesson-output">
+      <div class="lesson-raw">
         <div class="sticky">
-          <p>Raw Data</p>
+          <label>Raw Data</label>
           <CodeBlock data={lessonDup} />
         </div>
       </div>
+      <!-- /lesson-raw -->
+
     </div>
   </div>
 {/if}
-
-<!--
-  <div class="columns">
-    <div class="column is-half">
-      <div class="field">
-        <label class="label">Lesson Title</label>
-        <div class="control">
-          <input
-            class="input"
-            class:is-danger={errors.title}
-            type="text"
-            bind:value={lessonDup.title}
-            placeholder="Lesson Title" />
-        </div>
-        {#if errors.title}
-          <p class="help is-danger">{errors.title}</p>
-        {/if}
-      </div>
-
-      <div class="field">
-        <label class="label">Difficulty</label>
-        <div class="control">
-          <div class="select">
-            <select bind:value={lessonDup.difficulty}>
-              {#each DIFFICULTY_TYPES as type}
-                <option value={type}>{type}</option>
-              {/each}
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <button class="button is-primary" on:click={addStep}>Add New Step</button>
-      {#if errors.children}
-        <p class="help is-danger">{errors.children}</p>
-      {/if}
-      {#if errors.steps}
-        <p class="help is-danger">{errors.steps}</p>
-      {/if}
-
-      {#if lessonDup.steps && lessonDup.steps.length}
-        <div class="small">
-          {#each lessonDup.steps as step, index}
-            <HTMLStep
-              {index}
-              bind:step
-              on:validate={updateStepValidation}
-              on:removeStep={deleteStep} />
-          {/each}
-        </div>
-      {/if}
-    </div>
-
-  </div>
-  -->
