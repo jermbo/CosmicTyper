@@ -6,7 +6,7 @@
   const { adminUser, loginErrors } = state;
 
   let username = "jermbo";
-  let password = "test123s";
+  let password = "test123";
 
   const myForm = form(() => ({
     username: {
@@ -43,57 +43,50 @@
 </script>
 
 <!-- routify:options name="login" -->
-<section class="container">
-  <header class="has-margin-top-4 has-margin-bottom-4">
-    <h1 class="is-size-3">Login</h1>
-  </header>
-  <form on:submit|preventDefault={handleSubmit}>
-    <div class="field">
-      <label class="label">Username</label>
-      <div class="control has-icons-left has-icons-right">
+<section class="page">
+  <div class="page-header">
+    <h1 class="page__title">Login</h1>
+  </div>
+  <div class="page-body">
+    <form class="form" on:submit|preventDefault={handleSubmit}>
+      <div class="form-field">
+        <label class="label">User Name</label>
         <input
-          class="input"
           type="text"
+          class="input"
           placeholder="User Name"
           bind:value={username} />
-        <span class="icon is-small is-left">
-          <i class="fas fa-user" />
-        </span>
-      </div>
-      {#if $myForm.dirty && $myForm.username.errors.includes('required')}
-        <p class="help is-danger">This username is required</p>
-      {/if}
-      {#if $myForm.dirty && $myForm.username.errors.includes('min')}
-        <p class="help is-danger">Min is 3</p>
-      {/if}
-    </div>
 
-    <div class="field">
-      <label class="label">Password</label>
-      <div class="control has-icons-left has-icons-right">
+        {#if $myForm.dirty && $myForm.username.errors.includes('required')}
+          <p class="form-error">This username is required</p>
+        {/if}
+      </div>
+
+      <div class="form-field">
+        <label class="label">Password</label>
         <input
-          class="input"
           type="password"
+          class="input"
           placeholder="Password"
           bind:value={password} />
-        <span class="icon is-small is-left">
-          <i class="fas fa-lock" />
-        </span>
-      </div>
-      {#if $myForm.dirty && $myForm.password.errors.includes('required')}
-        <p class="help is-danger">This password is required</p>
-      {/if}
-    </div>
 
-    <div class="level">
-      <button type="submit" class="button is-primary" disabled={!$myForm.valid}>
-        Login
-      </button>
+        {#if $myForm.dirty && $myForm.password.errors.includes('required')}
+          <p class="form-danger">This password is required</p>
+        {/if}
+      </div>
+
+      <div class="form-actions">
+        <button class="button -primary" disabled={!$myForm.valid}>
+          Submit
+        </button>
+      </div>
       {#if $loginErrors.length > 0}
-        {#each $loginErrors as error}
-          <p class="has-text-danger">{error.message}</p>
-        {/each}
+        <div class="form-messages">
+          {#each $loginErrors as error}
+            <p class="form-danger">{error.message}</p>
+          {/each}
+        </div>
       {/if}
-    </div>
-  </form>
+    </form>
+  </div>
 </section>
