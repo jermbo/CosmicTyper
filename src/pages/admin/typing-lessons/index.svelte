@@ -14,16 +14,18 @@
 </script>
 
 <!-- routify:options name="typing-lessons-admin" -->
-<div class="container">
-  <section class="page-container">
-    <header class="page">
-      <h1 class="page__title">Typing Lessons Admin</h1>
-      <button
-        on:click={$goto('typing-lesson-single-admin', { lessonId: 'new' })}
-        class="button is-primary">
-        Add New
-      </button>
-    </header>
-    <AdminLessonsList baseURL="typing-lessons" lessons={$typingLessons} />
-  </section>
+<header class="page-header">
+  <div class="page-header__info">
+    <h1 class="page__title">Typing Lessons Admin</h1>
+  </div>
+  <div class="page-actions">
+    <button
+      on:click={$goto('typing-lesson-single-admin', { lessonId: 'new' })}
+      class="button is-primary">
+      Add New
+    </button>
+  </div>
+</header>
+<div class="page-body">
+  <AdminLessonsList baseURL="typing-lessons" lessons={$typingLessons} />
 </div>

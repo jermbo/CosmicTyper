@@ -11,12 +11,12 @@
   }
 </script>
 
-<div class="control">
+<div class="form-field">
   <label class="label">Lesson Steps</label>
   <TextArea
     class="textarea"
     type="textarea"
-    rows="8"
+    rows="20"
     name="typingLesson"
     id="typingLesson"
     bind:value={weird}

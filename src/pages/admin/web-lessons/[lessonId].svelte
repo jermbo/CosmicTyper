@@ -50,13 +50,9 @@
   async function updateLesson() {
     try {
       const id = lessonDup.id;
-      const resp = await axios.put(
-        `http://localhost:1337/web-lessons/${id}`,
-        lessonDup,
-        {
-          headers: { Authorization: `Bearer ${$adminUser.token}` },
-        },
-      );
+      const resp = await axios.put(`${API_URL}/${id}`, lessonDup, {
+        headers: { Authorization: `Bearer ${$adminUser.token}` },
+      });
       const data = await resp.data;
       $goto("web-lessons-admin");
     } catch (err) {
@@ -67,12 +63,9 @@
   async function deleteLesson() {
     try {
       const id = lessonDup.id;
-      const resp = await axios.delete(
-        `http://localhost:1337/web-lessons/${id}`,
-        {
-          headers: { Authorization: `Bearer ${$adminUser.token}` },
-        },
-      );
+      const resp = await axios.delete(`${API_URL}/${id}`, {
+        headers: { Authorization: `Bearer ${$adminUser.token}` },
+      });
       const data = await resp.data;
       deleteWebLesson(id);
       $goto("web-lessons-admin");
@@ -83,13 +76,9 @@
 
   async function addLesson() {
     try {
-      const resp = await axios.post(
-        `http://localhost:1337/web-lessons/`,
-        lessonDup,
-        {
-          headers: { Authorization: `Bearer ${$adminUser.token}` },
-        },
-      );
+      const resp = await axios.post(`${API_URL}/`, lessonDup, {
+        headers: { Authorization: `Bearer ${$adminUser.token}` },
+      });
       const data = await resp.data;
       addWebLesson(data);
       $goto("web-lessons-admin");
@@ -237,7 +226,6 @@
 
       <div class="lesson-raw">
         <div class="sticky">
-          <label>Raw Data</label>
           <CodeBlock data={lessonDup} />
         </div>
       </div>
