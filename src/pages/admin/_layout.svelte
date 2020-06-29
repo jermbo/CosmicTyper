@@ -11,11 +11,13 @@
   });
 </script>
 
-<section class="container">
-  {#if $adminUser.isLoggedIn}
-    <slot />
+<section class="page">
+  {#if !$adminUser.isLoggedIn}
+    <div class="page-header">
+      <h1 class="page__title">You gotta login to see this page.</h1>
+      <a class="button" href={$url('login')}>Go to Login</a>
+    </div>
   {:else}
-    <p>You gotta login to see this page.</p>
-    <a class="button" href={$url('login')}>Go to Login</a>
+    <slot />
   {/if}
 </section>
