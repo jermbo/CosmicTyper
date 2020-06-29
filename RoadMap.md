@@ -26,10 +26,10 @@ The future of the project will include the following items.
   - Update various places to be CSS Custom Properties - DONE
   - Connect to settings and persist to database / local storage
 - Enhance General Typing - issue #61
-  - white background
-  - cursor indicator
-  - individual wrappers around completed characters
-  - ( looking at typing.com for design inspiration )
+  - white background - DONE
+  - cursor indicator - DONE
+  - individual wrappers around completed characters - DONE
+  - ( looking at typing.com for design inspiration ) - DONE
 - Enhance Web Lessons
   - cursor indicator - DONE
 - Gamification
