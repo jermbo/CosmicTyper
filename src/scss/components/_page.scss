@@ -1,0 +1,30 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: calc(100vw - #{layout(padding, xxl)});
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: layout(padding, md) 0;
+}
+
+.page-header {
+  display: flex;
+  border-bottom: 1px solid color(border);
+  padding-bottom: layout(padding, md);
+  margin-bottom: layout(padding, md);
+}
+
+.page__title {
+  font-size: font(title, xl);
+  margin: 0 0 layout(padding, sm);
+}
+
+.page__subtitle {
+  font-size: font(title, sm);
+  margin: 0 0 layout(padding, sm);
+}
+
+.page-actions {
+  margin-left: auto;
+}

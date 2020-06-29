@@ -28,7 +28,7 @@
 
     lessonDup = {
       title: "",
-      difficulty: "",
+      difficulty: "easy",
       steps: [],
     };
   });
@@ -50,13 +50,9 @@
   async function updateLesson() {
     try {
       const id = lessonDup.id;
-      const resp = await axios.put(
-        `http://localhost:1337/web-lessons/${id}`,
-        lessonDup,
-        {
-          headers: { Authorization: `Bearer ${$adminUser.token}` },
-        },
-      );
+      const resp = await axios.put(`${API_URL}/${id}`, lessonDup, {
+        headers: { Authorization: `Bearer ${$adminUser.token}` },
+      });
       const data = await resp.data;
       $goto("web-lessons-admin");
     } catch (err) {
@@ -67,12 +63,9 @@
   async function deleteLesson() {
     try {
       const id = lessonDup.id;
-      const resp = await axios.delete(
-        `http://localhost:1337/web-lessons/${id}`,
-        {
-          headers: { Authorization: `Bearer ${$adminUser.token}` },
-        },
-      );
+      const resp = await axios.delete(`${API_URL}/${id}`, {
+        headers: { Authorization: `Bearer ${$adminUser.token}` },
+      });
       const data = await resp.data;
       deleteWebLesson(id);
       $goto("web-lessons-admin");
@@ -83,13 +76,9 @@
 
   async function addLesson() {
     try {
-      const resp = await axios.post(
-        `http://localhost:1337/web-lessons/`,
-        lessonDup,
-        {
-          headers: { Authorization: `Bearer ${$adminUser.token}` },
-        },
-      );
+      const resp = await axios.post(`${API_URL}/`, lessonDup, {
+        headers: { Authorization: `Bearer ${$adminUser.token}` },
+      });
       const data = await resp.data;
       addWebLesson(data);
       $goto("web-lessons-admin");
@@ -105,6 +94,7 @@
       type: "",
       desc: "",
       action: [],
+      render: true,
       id: newId,
     };
     lessonDup.steps = [...oldSteps, newStep];
@@ -147,92 +137,100 @@
 
 <!-- routify:options name="web-lesson-single-admin" -->
 {#if lessonDup}
-  <header>
-    <a class="button is-small is-info" href={$url('web-lessons-admin')}>Back</a>
-    <div class="level">
-      <h1 class="is-size-3">{lessonDup.title || 'The Lesson'}</h1>
-      <div class="actions">
-        {#if lessonDup.id}
-          <button
-            class="button is-small is-primary"
-            on:click|preventDefault={updateLesson}
-            disabled={!isValid}>
-            Update lesson
-          </button>
-          <button
-            class="button is-small is-danger is-outlined"
-            href={null}
-            on:click|preventDefault={deleteLesson}>
-            Delete lesson
-          </button>
-        {:else}
-          <button
-            class="button is-small is-primary"
-            href={null}
-            on:click|preventDefault={addLesson}
-            disabled={!isValid}>
-            Add Lesson
-          </button>
-        {/if}
-      </div>
+  <header class="page-header">
+    <div class="page-header__info">
+      <h1 class="page__title">{lessonDup.title || 'New Lesson'}</h1>
+    </div>
+
+    <div class="page-actions">
+      {#if lessonDup.id}
+        <button
+          class="button"
+          on:click|preventDefault={updateLesson}
+          disabled={!isValid}>
+          Update lesson
+        </button>
+        <button
+          class="button"
+          href={null}
+          on:click|preventDefault={deleteLesson}>
+          Delete lesson
+        </button>
+      {:else}
+        <button
+          class="button"
+          href={null}
+          on:click|preventDefault={addLesson}
+          disabled={!isValid}>
+          Add Lesson
+        </button>
+      {/if}
     </div>
   </header>
 
-  <div class="columns">
-    <div class="column is-half">
-      <div class="field">
-        <label class="label">Lesson Title</label>
-        <div class="control">
+  <div class="page-body">
+
+    <div class="admin-lesson">
+
+      <div class="lesson-edit">
+        <div class="form-field">
+          <label class="label">Lesson Title</label>
           <input
+            type="text"
             class="input"
             class:is-danger={errors.title}
-            type="text"
             bind:value={lessonDup.title}
             placeholder="Lesson Title" />
+          {#if errors.title}
+            <p class="help is-danger">{errors.title}</p>
+          {/if}
         </div>
-        {#if errors.title}
-          <p class="help is-danger">{errors.title}</p>
-        {/if}
-      </div>
+        <!-- /form-field -->
 
-      <div class="field">
-        <label class="label">Difficulty</label>
-        <div class="control">
-          <div class="select">
-            <select bind:value={lessonDup.difficulty}>
-              {#each DIFFICULTY_TYPES as type}
-                <option value={type}>{type}</option>
+        <div class="form-field">
+          <label class="label">Difficulty</label>
+
+          <select class="select" bind:value={lessonDup.difficulty}>
+            {#each DIFFICULTY_TYPES as type}
+              <option value={type}>{type}</option>
+            {/each}
+          </select>
+
+        </div>
+        <!-- TODO: Put Language Options Here -->
+
+        <div class="lesson-steps">
+          <p>Lesson Steps:</p>
+          <button class="button" on:click={addStep}>Add New Step</button>
+          {#if errors.children}
+            <p class="help is-danger">{errors.children}</p>
+          {/if}
+          {#if errors.steps}
+            <p class="help is-danger">{errors.steps}</p>
+          {/if}
+          {#if lessonDup.steps && lessonDup.steps.length}
+            <div class="small">
+              {#each lessonDup.steps as step, index}
+                <HTMLStep
+                  {index}
+                  bind:step
+                  on:validate={updateStepValidation}
+                  on:removeStep={deleteStep} />
               {/each}
-            </select>
-          </div>
+            </div>
+          {/if}
+        </div>
+
+      </div>
+      <!-- /lesson-edit -->
+
+      <div class="lesson-raw">
+        <div class="sticky">
+          <CodeBlock data={lessonDup} />
         </div>
       </div>
+      <!-- /lesson-raw -->
 
-      <button class="button is-primary" on:click={addStep}>Add New Step</button>
-      {#if errors.children}
-        <p class="help is-danger">{errors.children}</p>
-      {/if}
-      {#if errors.steps}
-        <p class="help is-danger">{errors.steps}</p>
-      {/if}
-
-      {#if lessonDup.steps && lessonDup.steps.length}
-        <div class="small">
-          {#each lessonDup.steps as step, index}
-            <HTMLStep
-              {index}
-              bind:step
-              on:validate={updateStepValidation}
-              on:removeStep={deleteStep} />
-          {/each}
-        </div>
-      {/if}
-    </div>
-    <div class="column is-half">
-      <div class="sticky">
-        <p>Raw Data</p>
-        <CodeBlock data={lessonDup} />
-      </div>
     </div>
   </div>
 {/if}
