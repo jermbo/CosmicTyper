@@ -13,16 +13,19 @@
 </script>
 
 <!-- routify:options name="web-lessons" -->
-<div class="container">
-  <section class="page-container">
-    <header class="page">
+<div class="page">
+  <div class="page-header">
+    <div class="page-header__info">
       <h1 class="page__title">Web Lessons</h1>
-      <p class="page__desc">
+      <p class="page__subtitle">
         Let's learn how to type, while learning the basics of HTML and CSS.
       </p>
-    </header>
+    </div>
+  </div>
+
+  <div class="page-body">
     {#if $webLessons.length}
       <LessonsList baseURL="web-lessons" lessons={$webLessons} />
     {/if}
-  </section>
+  </div>
 </div>
