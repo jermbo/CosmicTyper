@@ -3,14 +3,19 @@
 </script>
 
 <!-- routify:options name="settings" -->
-<section class="container">
-  <header class="has-margin-top-4 has-margin-bottom-4">
-    <h1 class="is-size-3">Choose your settings.</h1>
+<section class="page">
+  <header class="page-header">
+    <div class="page-header__info">
+      <h1 class="page__title">Choose your settings.</h1>
+    </div>
+  </header>
+  <div class="page-body">
+    <!-- settings go here -->
     <p>Todo</p>
     <ul>
       <li>See Unique ID</li>
       <li>Reset Progress</li>
       <li>Dark Theme</li>
     </ul>
-  </header>
+  </div>
 </section>

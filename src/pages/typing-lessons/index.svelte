@@ -13,16 +13,18 @@
 </script>
 
 <!-- routify:options name="typing-lessons" -->
-<div class="container">
-  <section class="page-container">
-    <header class="page">
+<section class="page">
+  <header class="page-header">
+    <div class="page-header__info">
       <h1 class="page__title">Typing Lessons</h1>
-      <p class="page__desc">
+      <p class="page__subtitle">
         In this section, you can work on your general typing skills.
       </p>
-    </header>
+    </div>
+  </header>
+  <div class="page-body">
     {#if $typingLessons.length}
       <LessonsList baseURL="typing-lessons" lessons={$typingLessons} />
     {/if}
-  </section>
-</div>
+  </div>
+</section>
