@@ -2,7 +2,6 @@
   import { onMount } from "svelte";
   import { state } from "../../../store";
   import { addWebLesson, deleteWebLesson } from "../../../store";
-  import { unslugify } from "../../../utils";
   import { url, goto, params } from "@sveltech/routify";
   import axios from "axios";
 
@@ -10,7 +9,12 @@
   import { CodeBlock } from "../../../components/common-ui";
   import HTMLStep from "../../../components/Admin/HTMLStep.svelte";
 
-  import { DIFFICULTY_TYPES } from "../../../utils";
+  import {
+    DIFFICULTY_TYPES,
+    LANGUAGES,
+    API_URL,
+    unslugify,
+  } from "../../../utils";
 
   const { webLessons, adminUser } = state;
   const { lessonId } = $params;
@@ -29,6 +33,7 @@
     lessonDup = {
       title: "",
       difficulty: "easy",
+      language: "",
       steps: [],
     };
   });
@@ -195,9 +200,17 @@
               <option value={type}>{type}</option>
             {/each}
           </select>
-
         </div>
-        <!-- TODO: Put Language Options Here -->
+
+        <div class="form-field">
+          <label class="label">Language</label>
+
+          <select class="select" bind:value={lessonDup.language}>
+            {#each LANGUAGES as lang}
+              <option value={lang}>{lang}</option>
+            {/each}
+          </select>
+        </div>
 
         <div class="lesson-steps">
           <p>Lesson Steps:</p>

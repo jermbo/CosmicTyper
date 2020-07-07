@@ -7,3 +7,4 @@ export const KEY_ENUMS = {
 
 export const DIFFICULTY_TYPES = ["easy", "medium", "hard"];
 export const LESSON_TYPES = ["dom", "style"];
+export const LANGUAGES = ["en", "es", "pt", "fr"];
