@@ -2,19 +2,23 @@
   import { onMount } from "svelte";
   import { state } from "../../../store";
   import { addTypingLesson, deleteTypingLesson } from "../../../store";
-  import { API_URL, unslugify } from "../../../utils";
   import { url, goto, params } from "@sveltech/routify";
   import axios from "axios";
 
   import { AdminTypingSteps } from "../../../components";
   import { CodeBlock } from "../../../components/common-ui";
 
-  import { DIFFICULTY_TYPES } from "../../../utils";
+  import {
+    DIFFICULTY_TYPES,
+    LANGUAGES,
+    API_URL,
+    unslugify,
+  } from "../../../utils";
 
   const { typingLessons, adminUser } = state;
   const { lessonId } = $params;
 
-  let editingLesson = {};
+  let lessonDup = {};
 
   onMount(() => {
     if (!$typingLessons.length) {
@@ -28,15 +32,15 @@
 
   function findLesson() {
     const title = unslugify(lessonId);
-    editingLesson = $typingLessons.filter(
+    lessonDup = $typingLessons.filter(
       (lesson) => lesson.title.toLowerCase() == title,
     )[0];
   }
 
   async function updateLesson() {
     try {
-      const id = editingLesson.id;
-      const resp = await axios.put(`${API_URL}/${id}`, editingLesson, {
+      const id = lessonDup.id;
+      const resp = await axios.put(`${API_URL}/${id}`, lessonDup, {
         headers: { Authorization: `Bearer ${$adminUser.token}` },
       });
       const data = await resp.data;
@@ -48,7 +52,7 @@
 
   async function deleteLesson() {
     try {
-      const id = editingLesson.id;
+      const id = lessonDup.id;
       const resp = await axios.delete(`${API_URL}/${id}`, {
         headers: { Authorization: `Bearer ${$adminUser.token}` },
       });
@@ -62,13 +66,9 @@
 
   async function addLesson() {
     try {
-      const resp = await axios.post(
-        `${API_URL}/typing-lessons/`,
-        editingLesson,
-        {
-          headers: { Authorization: `Bearer ${$adminUser.token}` },
-        },
-      );
+      const resp = await axios.post(`${API_URL}/typing-lessons/`, lessonDup, {
+        headers: { Authorization: `Bearer ${$adminUser.token}` },
+      });
       const data = await resp.data;
       addTypingLesson(data);
       $goto("typing-lessons-admin");
@@ -80,27 +80,27 @@
   // Simple Custom Form Validation
   $: isValid = !errors.title && !errors.steps && !errors.emptyLines;
   $: errors = {
-    title: !editingLesson.title ? "Title is required" : "",
+    title: !lessonDup.title ? "Title is required" : "",
     steps:
-      editingLesson.steps && editingLesson.steps.length - 2 < 0
+      lessonDup.steps && lessonDup.steps.length - 2 < 0
         ? "Need at lest 2 steps in a lesson"
         : "",
     emptyLines:
-      editingLesson.steps && editingLesson.steps.some((step) => !step.length)
+      lessonDup.steps && lessonDup.steps.some((step) => !step.length)
         ? "There can not be any empty lines"
         : "",
   };
 </script>
 
 <!-- routify:options name="typing-lesson-single-admin" -->
-{#if editingLesson}
+{#if lessonDup}
   <div class="page-header">
     <div class="page-header__info">
-      <h1 class="page__title">{editingLesson.title || 'The Lesson'}</h1>
+      <h1 class="page__title">{lessonDup.title || 'The Lesson'}</h1>
     </div>
     <div class="page-actions">
       <div class="page__actions">
-        {#if editingLesson.id}
+        {#if lessonDup.id}
           <button
             class="button is-small is-primary"
             on:click|preventDefault={updateLesson}
@@ -137,7 +137,7 @@
             class="input"
             class:is-danger={errors.title}
             type="text"
-            bind:value={editingLesson.title}
+            bind:value={lessonDup.title}
             placeholder="Lesson Title" />
           {#if errors.title}
             <p class="help is-danger">{errors.title}</p>
@@ -146,15 +146,25 @@
 
         <div class="form-field">
           <label class="label">Difficulty</label>
-          <select class="select" bind:value={editingLesson.difficulty}>
+          <select class="select" bind:value={lessonDup.difficulty}>
             {#each DIFFICULTY_TYPES as type}
               <option value={type}>{type}</option>
             {/each}
           </select>
         </div>
 
+        <div class="form-field">
+          <label class="label">Language</label>
+
+          <select class="select" bind:value={lessonDup.language}>
+            {#each LANGUAGES as lang}
+              <option value={lang}>{lang}</option>
+            {/each}
+          </select>
+        </div>
+
         <AdminTypingSteps
-          bind:steps={editingLesson.steps}
+          bind:steps={lessonDup.steps}
           stepError={errors.steps}
           emptyLines={errors.emptyLines} />
 
@@ -162,7 +172,7 @@
       <!-- /lesson-edit -->
 
       <div class="lesosn-raw">
-        <CodeBlock data={editingLesson} />
+        <CodeBlock data={lessonDup} />
       </div>
       <!-- /lesson-raw-->
     </div>
