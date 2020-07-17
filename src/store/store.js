@@ -6,4 +6,5 @@ export const state = {
   adminUser: writable({}),
   loginErrors: writable([]),
   userSettings: writable({}),
+  globalState: writable({})
 };
