@@ -1,7 +1,7 @@
 export const slugify = (name = "") => {
-  return name.toLowerCase().split(" ").join("_");
+  return name.toLowerCase().split(" ").join("-");
 };
 
 export const unslugify = (name = "") => {
-  return name.split("_").join(" ").toLowerCase();
+  return name.split("-").join(" ").toLowerCase();
 };
