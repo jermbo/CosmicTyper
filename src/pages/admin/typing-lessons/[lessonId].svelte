@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { state } from "../../../store";
+  import { state, showLoader } from "../../../store";
   import { addTypingLesson, deleteTypingLesson } from "../../../store";
   import { url, goto, params } from "@sveltech/routify";
   import axios from "axios";
@@ -13,6 +13,7 @@
     LANGUAGES,
     API_URL,
     unslugify,
+    slugify,
   } from "../../../utils";
 
   const { typingLessons, adminUser } = state;
@@ -37,42 +38,65 @@
     )[0];
   }
 
+  function updateSlug() {
+    lessonDup.slug = slugify(lessonDup.title);
+  }
+
   async function updateLesson() {
     try {
+      showLoader(true);
+      if (!lessonDup.slug) {
+        updateSlug();
+      }
       const id = lessonDup.id;
-      const resp = await axios.put(`${API_URL}/${id}`, lessonDup, {
-        headers: { Authorization: `Bearer ${$adminUser.token}` },
-      });
+      const resp = await axios.put(
+        `${API_URL}/typing-lessons/${id}`,
+        lessonDup,
+        {
+          headers: { Authorization: `Bearer ${$adminUser.token}` },
+        },
+      );
       const data = await resp.data;
+      showLoader(false);
       $goto("typing-lessons-admin");
     } catch (err) {
+      showLoader(false);
       console.log(err.response.data.data.errors);
     }
   }
 
   async function deleteLesson() {
     try {
+      showLoader(true);
       const id = lessonDup.id;
-      const resp = await axios.delete(`${API_URL}/${id}`, {
+      const resp = await axios.delete(`${API_URL}/typing-lessons/${id}`, {
         headers: { Authorization: `Bearer ${$adminUser.token}` },
       });
       const data = await resp.data;
       deleteTypingLesson(id);
+      showLoader(false);
       $goto("typing-lessons-admin");
     } catch (err) {
+      showLoader(false);
       console.log(err.response.data);
     }
   }
 
   async function addLesson() {
     try {
+      showLoader(true);
+      if (!lessonDup.slug) {
+        updateSlug();
+      }
       const resp = await axios.post(`${API_URL}/typing-lessons/`, lessonDup, {
         headers: { Authorization: `Bearer ${$adminUser.token}` },
       });
       const data = await resp.data;
+      showLoader(false);
       addTypingLesson(data);
       $goto("typing-lessons-admin");
     } catch (err) {
+      showLoader(false);
       console.log(err.response.data.data.errors);
     }
   }
@@ -142,6 +166,16 @@
           {#if errors.title}
             <p class="help is-danger">{errors.title}</p>
           {/if}
+        </div>
+
+        <div class="form-field">
+          <label class="label">Lesson Slug</label>
+          <input
+            class="input"
+            type="text"
+            bind:value={lessonDup.slug}
+            placeholder="Lesson Slug" />
+          <button on:click={updateSlug}>Update Slug</button>
         </div>
 
         <div class="form-field">
