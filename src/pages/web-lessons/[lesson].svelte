@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { state, updateWebLesson } from "../../store";
+  import { state } from "../../store";
   import { goto, params } from "@sveltech/routify";
   import { unslugify } from "../../utils";
   import CodeGUI from "../../components/CodeGUI/CodeGUI.svelte";
@@ -23,7 +23,6 @@
   }
 
   function markComplete({ detail: id }) {
-    updateWebLesson(id);
     $goto("web-lessons");
   }
 </script>
