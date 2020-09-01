@@ -1,18 +1,33 @@
 {
   "page": {
     "home": {
+      "page_heading": "Bem vindo ao Code Palm Beach",
       "welcome": "Bem vindo ao Code Palm Beach",
       "slogan": "Um aplicativo para aprender HTML e CSS básico enquanto você aprende a digitar."
     },
     "web-lessons": {
-      "nav": "Lições de Código",
-      "description": "Vamos aprender a digitar, enquanto também aprendemos HTML e CSS básico."
+      "page_heading": "Aulas de Desenvolvimento",
+      "nav": "Aulas de Desenvolvimento",
+      "description": "Aprenda HTML e CSS básico com essas classes de datilografia."
     },
     "typing-lessons": {
-      "nav": "Lições de Digitação",
-      "description": "Aqui você poderá praticar a sua digitação."
+      "page_heading": "Aulas de Datilografia",
+      "nav": "Aulas de Datilografia",
+      "description": "Aqui você poderá praticar a sua datilografia."
+    },
+    "common_ui": {
+      "table_head": {
+        "done": "Completo",
+        "lesson_name": "Exercício",
+        "difficulty": "Dificuldade",
+        "action": "Ação"
+      },
+      "buttons": {
+        "start_lesson": "Iniciar Lissão"
+      }
     },
     "settings": {
+      "page_heading": "Configurações",
       "nav": "Configurações"
     }
   }

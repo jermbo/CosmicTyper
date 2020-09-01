@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { LessonsList } from "../../components";
   import { state, getWebLessonsAction } from "../../store";
+  import { _ } from "svelte-i18n";
 
   const { webLessons } = state;
 
@@ -16,9 +17,11 @@
 <div class="page">
   <div class="page-header">
     <div class="page-header__info">
-      <h1 class="page__title">Web Lessons</h1>
+      <h1 class="page__title">
+        {$_(`page.web-lessons.page_heading`, { default: 'Web Lessons' })}
+      </h1>
       <p class="page__subtitle">
-        Let's learn how to type, while learning the basics of HTML and CSS.
+        {$_(`page.web-lessons.description`, { default: 'Web Lessons' })}
       </p>
     </div>
   </div>
