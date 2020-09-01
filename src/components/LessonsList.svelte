@@ -2,6 +2,8 @@
   import { createEventDispatcher } from "svelte";
   import { url } from "@sveltech/routify";
   import { slugify } from "../utils";
+  import { _ } from "svelte-i18n";
+
   export let baseURL = "web-lessons";
   export let lessons = [];
 
@@ -16,10 +18,18 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Done</th>
-        <th>Lesson Name</th>
-        <th>Difficulty</th>
-        <th>Action</th>
+        <th>{$_(`page.common_ui.table_head.done`, { default: 'Done' })}</th>
+        <th>
+          {$_(`page.common_ui.table_head.lesson_name`, {
+            default: 'Lesson Name',
+          })}
+        </th>
+        <th>
+          {$_(`page.common_ui.table_head.difficulty`, {
+            default: 'Difficulty',
+          })}
+        </th>
+        <th>{$_(`page.common_ui.table_head.action`, { default: 'Action' })}</th>
       </tr>
     </thead>
     <tbody>
@@ -34,7 +44,9 @@
             <a
               class="button is-small"
               href={$url(`/${baseURL}/${slugify(lesson.title)}`)}>
-              Start Lesson
+              {$_(`page.common_ui.buttons.start_lesson`, {
+                default: 'Start Lesson',
+              })}
             </a>
           </td>
         </tr>

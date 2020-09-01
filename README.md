@@ -1,6 +1,6 @@
 # Cosmic Typer
 
-This tool is designed to introduce students to better typing abilities as we as the basics of web development.
+This tool is designed to introduce students to better typing abilities as well as the basics of web development.
 
 ## Project Setup
 

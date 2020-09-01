@@ -2,6 +2,8 @@
   import { onMount } from "svelte";
   import { isActive, url, goto } from "@sveltech/routify";
   import { state, getAdminUserAction, logoutAdminUser } from "../store";
+  import { _, locale, locales } from "svelte-i18n";
+
   const { adminUser, userSettings } = state;
 
   $: mode = $userSettings.mode || "dark";
@@ -37,12 +39,17 @@
         class="navbar-item"
         href={$url(path)}
         class:is-active={$isActive(path)}>
-        {name}
+        {$_(`page.${path}.nav`, { default: 'Web Lessons' })}
       </a>
     {/each}
   </div>
 
   <div>
+    <select bind:value={$locale}>
+      {#each $locales as locale}
+        <option value={locale}>{locale}</option>
+      {/each}
+    </select>
     <button on:click={toggleMode}>Toggle Mode {mode}</button>
   </div>
 

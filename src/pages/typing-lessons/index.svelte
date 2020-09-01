@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { LessonsList } from "../../components";
   import { state, getTypingLessonsAction } from "../../store";
+  import { _ } from "svelte-i18n";
 
   const { typingLessons } = state;
 
@@ -16,9 +17,14 @@
 <section class="page">
   <header class="page-header">
     <div class="page-header__info">
-      <h1 class="page__title">Typing Lessons</h1>
+      <h1 class="page__title">
+        {$_(`page.typing-lessons.page_heading`, { default: 'Typing Lessons' })}
+      </h1>
       <p class="page__subtitle">
-        In this section, you can work on your general typing skills.
+        {$_(`page.typing-lessons.description`, {
+          default:
+            'In this section, you can work on your general typing skills.',
+        })}
       </p>
     </div>
   </header>
