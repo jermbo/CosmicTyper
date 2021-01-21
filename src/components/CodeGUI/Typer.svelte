@@ -18,7 +18,6 @@
   const modifiers = ["CapsLock", "Shift", "Control", "Alt"];
 
   $: if (lesson) {
-    console.log("what up");
     resetView();
     getLesson();
   }
@@ -33,7 +32,6 @@
 
   function getLesson() {
     actionOutput = lesson.steps[currentLesson].action.map((c) => c.split(""));
-    console.log(actionOutput);
   }
 
   function handleKeydown(e) {
@@ -116,7 +114,6 @@
 
 {#if lesson}
   <div class="code-container">
-
     <div class="code-lesson">
       <h1 class="code-lesson__title">Lesson:</h1>
       <p class="code-lesson__desc">{lesson.steps[currentLesson].desc}</p>
@@ -124,10 +121,7 @@
 
     <div class="code-block">
       {#each actionOutput as row, outer}
-        <div
-          class="row"
-          class:completeRow={currentRow > outer}
-          class:currentRow={currentRow == outer}>
+        <div class="row" class:completeRow={currentRow > outer} class:currentRow={currentRow == outer}>
           {#each row as char, inner}
             <span
               data-id={`${outer}-${inner}`}
@@ -142,6 +136,5 @@
         </div>
       {/each}
     </div>
-
   </div>
 {/if}
