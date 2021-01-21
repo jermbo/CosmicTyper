@@ -1,3 +1,3 @@
-const API = "https://sampleapis.com/typer/api";
+const API = "https://api.sampleapis.com/typer";
 
 export { API as default };
