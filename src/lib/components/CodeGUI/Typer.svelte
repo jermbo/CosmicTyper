@@ -73,6 +73,7 @@
 		}
 
 		if (endOfRow()) {
+			commitRow(currentRow);
 			currentRow++;
 			currentChar = -1;
 		}
@@ -100,7 +101,6 @@
 
 	function advanceStep() {
 		if (!lesson) return;
-		updateRenderView();
 		currentStep++;
 
 		if (endOfLesson()) {
@@ -114,15 +114,18 @@
 		oncomplete?.({ lessonId, duration, keystrokes, mistakes, accuracy });
 	}
 
-	function updateRenderView() {
+	function commitRow(rowIndex: number) {
 		if (!lesson) return;
 		const step = lesson.steps[currentStep];
-		if (!step.render) return;
+		if (!step?.render) return;
+
+		const line = step.action[rowIndex];
+		if (line === undefined) return;
 
 		if (step.type === 'dom') {
-			codeData.pushHtml(step.action);
+			codeData.pushHtml([line]);
 		} else if (step.type === 'style') {
-			codeData.pushCss(step.action);
+			codeData.pushCss([line]);
 		}
 	}
 </script>
