@@ -86,6 +86,7 @@ Learner Selection Screen
 Shows a summary of the learner's activity and quick access to lessons.
 
 **Sections:**
+
 1. **Header** — Avatar, name, and a greeting ("Welcome back, Alex!")
 2. **Stats strip** — Three key numbers at a glance:
    - Lessons completed (count)
@@ -100,6 +101,7 @@ Shows a summary of the learner's activity and quick access to lessons.
 Shown immediately after a lesson completes, before returning to the lesson list.
 
 **Displays:**
+
 - Lesson name
 - Time taken (e.g., "1m 42s")
 - Keystrokes
@@ -114,6 +116,7 @@ Shown immediately after a lesson completes, before returning to the lesson list.
 ### Error Feedback (Show and Forgive)
 
 When a wrong key is pressed during a lesson:
+
 - The current character flashes red briefly (CSS animation, ~300ms)
 - A mistake is counted in the background
 - The lesson does **not** advance — the learner must still press the correct key
@@ -127,11 +130,11 @@ When a wrong key is pressed during a lesson:
 
 ```typescript
 interface Learner {
-  id: string;          // generated uuid (crypto.randomUUID)
-  name: string;
-  color: string;       // one of the palette values, e.g. '#e64c65'
-  createdAt: string;   // ISO 8601
-  lastActiveAt: string;
+	id: string; // generated uuid (crypto.randomUUID)
+	name: string;
+	color: string; // one of the palette values, e.g. '#e64c65'
+	createdAt: string; // ISO 8601
+	lastActiveAt: string;
 }
 ```
 
@@ -139,15 +142,15 @@ interface Learner {
 
 ```typescript
 interface Attempt {
-  id: string;
-  learnerId: string;
-  lessonId: string;
-  lessonType: 'web' | 'typing';
-  completedAt: string;  // ISO 8601
-  duration: number;     // seconds
-  keystrokes: number;   // total correct + incorrect key presses
-  mistakes: number;     // wrong key presses
-  accuracy: number;     // 0–100, computed as (keystrokes - mistakes) / keystrokes * 100
+	id: string;
+	learnerId: string;
+	lessonId: string;
+	lessonType: 'web' | 'typing';
+	completedAt: string; // ISO 8601
+	duration: number; // seconds
+	keystrokes: number; // total correct + incorrect key presses
+	mistakes: number; // wrong key presses
+	accuracy: number; // 0–100, computed as (keystrokes - mistakes) / keystrokes * 100
 }
 ```
 
@@ -157,21 +160,22 @@ interface Attempt {
 
 All keys are prefixed with `ct_` to avoid collisions with other apps.
 
-| Key | Type | Description |
-|-----|------|-------------|
-| `ct_learners` | `Learner[]` | All learner profiles |
-| `ct_active_learner` | `string` | ID of the currently selected learner |
-| `ct_lessons_web` | `WebLesson[]` | Web lesson definitions (no per-learner state) |
+| Key                 | Type             | Description                                      |
+| ------------------- | ---------------- | ------------------------------------------------ |
+| `ct_learners`       | `Learner[]`      | All learner profiles                             |
+| `ct_active_learner` | `string`         | ID of the currently selected learner             |
+| `ct_lessons_web`    | `WebLesson[]`    | Web lesson definitions (no per-learner state)    |
 | `ct_lessons_typing` | `TypingLesson[]` | Typing lesson definitions (no per-learner state) |
-| `ct_attempts` | `Attempt[]` | All attempts across all learners |
+| `ct_attempts`       | `Attempt[]`      | All attempts across all learners                 |
 
 > **Note:** The current storage keys `web-lessons` and `typing-lessons` embed `hasCompleted` directly on the lesson object, which is not compatible with multiple learners. These will be migrated to `ct_lessons_web` / `ct_lessons_typing` (definitions only) with completion state derived from `ct_attempts` per learner.
 
 **Deriving lesson completion per learner:**
+
 ```typescript
 const completedLessonIds = attempts
-  .filter(a => a.learnerId === activeLearner.id)
-  .map(a => a.lessonId);
+	.filter((a) => a.learnerId === activeLearner.id)
+	.map((a) => a.lessonId);
 
 const hasCompleted = completedLessonIds.includes(lesson.id);
 ```
@@ -225,37 +229,37 @@ export const attemptsStore = new AttemptsStore();
 
 ### New Components
 
-| Component | Location | Description |
-|-----------|----------|-------------|
-| `LearnerSelect.svelte` | `routes/` | Entry screen, learner cards + add button |
-| `LearnerCard.svelte` | `lib/components/` | Single learner card (avatar, name, last seen) |
-| `LearnerAvatar.svelte` | `lib/components/` | Colored circle with initials, reusable |
-| `CreateLearner.svelte` | `lib/components/` | Name input + color picker form |
-| `Dashboard.svelte` | `routes/dashboard/` | Personal dashboard page |
-| `ResultsScreen.svelte` | `lib/components/` | Post-lesson results overlay |
-| `ColorPicker.svelte` | `lib/components/` | Fixed palette color selector |
+| Component              | Location            | Description                                   |
+| ---------------------- | ------------------- | --------------------------------------------- |
+| `LearnerSelect.svelte` | `routes/`           | Entry screen, learner cards + add button      |
+| `LearnerCard.svelte`   | `lib/components/`   | Single learner card (avatar, name, last seen) |
+| `LearnerAvatar.svelte` | `lib/components/`   | Colored circle with initials, reusable        |
+| `CreateLearner.svelte` | `lib/components/`   | Name input + color picker form                |
+| `Dashboard.svelte`     | `routes/dashboard/` | Personal dashboard page                       |
+| `ResultsScreen.svelte` | `lib/components/`   | Post-lesson results overlay                   |
+| `ColorPicker.svelte`   | `lib/components/`   | Fixed palette color selector                  |
 
 ### Modified Components
 
-| Component | Change |
-|-----------|--------|
-| `TypingGUI.svelte` | Track keystrokes + mistakes, emit result data on complete |
-| `Typer.svelte` | Track keystrokes + mistakes, emit result data on complete |
-| `LessonsList.svelte` | Derive `hasCompleted` from attemptsStore for active learner |
-| `Nav.svelte` | Add active learner avatar + "switch learner" affordance |
-| `+layout.svelte` | Guard: redirect to `/` (learner select) if no active learner |
+| Component            | Change                                                       |
+| -------------------- | ------------------------------------------------------------ |
+| `TypingGUI.svelte`   | Track keystrokes + mistakes, emit result data on complete    |
+| `Typer.svelte`       | Track keystrokes + mistakes, emit result data on complete    |
+| `LessonsList.svelte` | Derive `hasCompleted` from attemptsStore for active learner  |
+| `Nav.svelte`         | Add active learner avatar + "switch learner" affordance      |
+| `+layout.svelte`     | Guard: redirect to `/` (learner select) if no active learner |
 
 ---
 
 ## Route Changes
 
-| Route | Change |
-|-------|--------|
-| `/` | Becomes the Learner Selection screen (replaces the redirect to `/welcome`) |
-| `/welcome` | Removed — welcome content moves into the dashboard header |
-| `/dashboard` | New — personal dashboard for the active learner |
-| `/web-lessons` | Guard: requires active learner |
-| `/typing-lessons` | Guard: requires active learner |
+| Route             | Change                                                                     |
+| ----------------- | -------------------------------------------------------------------------- |
+| `/`               | Becomes the Learner Selection screen (replaces the redirect to `/welcome`) |
+| `/welcome`        | Removed — welcome content moves into the dashboard header                  |
+| `/dashboard`      | New — personal dashboard for the active learner                            |
+| `/web-lessons`    | Guard: requires active learner                                             |
+| `/typing-lessons` | Guard: requires active learner                                             |
 
 ---
 
@@ -263,16 +267,16 @@ export const attemptsStore = new AttemptsStore();
 
 Eight distinct, friendly colors — enough variety without overwhelming a beginner:
 
-| Name | Hex |
-|------|-----|
-| Cherry | `#e64c65` |
-| Ocean | `#35aadc` |
-| Lime | `#bada55` |
+| Name      | Hex       |
+| --------- | --------- |
+| Cherry    | `#e64c65` |
+| Ocean     | `#35aadc` |
+| Lime      | `#bada55` |
 | Tangerine | `#fcb150` |
-| Lavender | `#a855f7` |
-| Mint | `#10b981` |
-| Slate | `#64748b` |
-| Coral | `#f97316` |
+| Lavender  | `#a855f7` |
+| Mint      | `#10b981` |
+| Slate     | `#64748b` |
+| Coral     | `#f97316` |
 
 ---
 
@@ -281,6 +285,7 @@ Eight distinct, friendly colors — enough variety without overwhelming a beginn
 This feature is large enough to require multiple iterations. Each phase is independently shippable.
 
 ### Phase 1 — Learner Profiles
+
 - `Learner` type and `learnerStore`
 - Learner selection screen (`/`)
 - Create learner form (name + color picker)
@@ -289,17 +294,20 @@ This feature is large enough to require multiple iterations. Each phase is indep
 - Learner avatar in nav with switch option
 
 ### Phase 2 — Storage Migration
+
 - Rename localStorage keys to `ct_` prefix
 - Remove `hasCompleted` / `hasStarted` from lesson objects
 - `attemptsStore` scaffolded (empty, no UI yet)
 - `LessonsList` derives completion from attempts store
 
 ### Phase 3 — Error Tracking
+
 - Wrong keystroke detection in `TypingGUI` and `Typer`
 - Red flash animation on wrong key
 - Keystroke and mistake counters tracked during lesson
 
 ### Phase 4 — Results Screen
+
 - `ResultsScreen` component
 - Attempt saved to `attemptsStore` on lesson completion
 - Show time, keystrokes, mistakes, accuracy
@@ -307,12 +315,14 @@ This feature is large enough to require multiple iterations. Each phase is indep
 - "Try Again" and "Done" actions
 
 ### Phase 5 — Personal Dashboard
+
 - `/dashboard` route
 - Stats strip (completed, accuracy, time)
 - Recent activity list
 - Continue learning shortcut
 
 ### Phase 6 — Progress History (Future)
+
 - Per-lesson attempt history view
 - Simple improvement chart (no charting library — CSS bar chart)
 

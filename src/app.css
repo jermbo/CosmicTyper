@@ -54,3 +54,14 @@ body {
 		border-bottom-color: transparent;
 	}
 }
+
+/* Wrong-key feedback: brief red flash, "show and forgive". */
+@keyframes wrongFlash {
+	0% {
+		background-color: var(--color-cherry);
+		color: var(--color-white);
+	}
+	100% {
+		background-color: transparent;
+	}
+}

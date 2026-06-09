@@ -1,20 +1,20 @@
 <script lang="ts">
-	import type { WebLesson } from '$lib/types';
+	import type { WebLesson, LessonResult } from '$lib/types';
 	import Typer from './Typer.svelte';
 	import HTMLOutput from './HTMLOutput.svelte';
 	import CodeOutput from './CodeOutput.svelte';
 
 	interface Props {
 		lesson: WebLesson | null;
-		onsectionfinished?: (id: string) => void;
+		oncomplete?: (result: LessonResult) => void;
 	}
 
-	let { lesson, onsectionfinished }: Props = $props();
+	let { lesson, oncomplete }: Props = $props();
 </script>
 
 <div class="code-gui">
 	<div class="code-view">
-		<Typer {lesson} onendlesson={onsectionfinished} />
+		<Typer {lesson} {oncomplete} />
 	</div>
 	<div class="render-view">
 		<HTMLOutput />

@@ -1,19 +1,28 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
-	import type { TypingLesson } from '$lib/types';
+	import type { TypingLesson, LessonResult } from '$lib/types';
 
 	interface Props {
 		lesson: TypingLesson | null;
-		onsectionfinished?: (id: string) => void;
+		oncomplete?: (result: LessonResult) => void;
 	}
 
-	let { lesson, onsectionfinished }: Props = $props();
+	let { lesson, oncomplete }: Props = $props();
 
 	let currentStep = $state(0);
 	let currentChar = $state(0);
 
+	// Progress metrics for this run
+	let keystrokes = $state(0);
+	let mistakes = $state(0);
+	let startTime: number | null = null;
+
+	// Wrong-key flash ("show and forgive")
+	let wrong = $state(false);
+	let wrongTimer: ReturnType<typeof setTimeout> | null = null;
+
 	// Derived so it updates when currentStep advances without re-triggering the effect
-	let actionOutput = $derived(lesson ? lesson.steps[currentStep]?.split('') ?? [] : []);
+	let actionOutput = $derived(lesson ? (lesson.steps[currentStep]?.split('') ?? []) : []);
 
 	const modifiers = ['CapsLock', 'Shift', 'Control', 'Alt', 'Meta', 'Tab'];
 
@@ -24,8 +33,23 @@
 		untrack(() => {
 			currentStep = 0;
 			currentChar = 0;
+			keystrokes = 0;
+			mistakes = 0;
+			startTime = null;
+			clearFlash();
 		});
 	});
+
+	function clearFlash() {
+		if (wrongTimer) clearTimeout(wrongTimer);
+		wrong = false;
+	}
+
+	function flashWrong() {
+		wrong = true;
+		if (wrongTimer) clearTimeout(wrongTimer);
+		wrongTimer = setTimeout(() => (wrong = false), 300);
+	}
 
 	function handleKeydown(e: KeyboardEvent) {
 		if (!lesson || !actionOutput.length) return;
@@ -33,7 +57,15 @@
 		if (modifiers.includes(key)) return;
 		e.preventDefault();
 
-		if (key !== actionOutput[currentChar]) return;
+		if (startTime === null) startTime = Date.now();
+		keystrokes++;
+
+		// Wrong key: count it, flash, but don't advance.
+		if (key !== actionOutput[currentChar]) {
+			mistakes++;
+			flashWrong();
+			return;
+		}
 
 		currentChar++;
 
@@ -43,9 +75,15 @@
 
 			if (endOfLesson()) {
 				currentStep = 0;
-				onsectionfinished?.(lesson.id);
+				complete(lesson.id);
 			}
 		}
+	}
+
+	function complete(lessonId: string) {
+		const duration = startTime ? (Date.now() - startTime) / 1000 : 0;
+		const accuracy = keystrokes ? Math.round(((keystrokes - mistakes) / keystrokes) * 100) : 100;
+		oncomplete?.({ lessonId, duration, keystrokes, mistakes, accuracy });
 	}
 
 	function endOfStep(): boolean {
@@ -78,6 +116,7 @@
 						class="character"
 						class:correct={currentChar > index}
 						class:cursor={currentChar === index}
+						class:wrong={wrong && currentChar === index}
 					>
 						{char}
 					</span>
@@ -149,5 +188,10 @@
 	.cursor {
 		border-bottom: 3px solid;
 		animation: cursorBlink 1.25s ease infinite;
+	}
+
+	.wrong {
+		border-radius: 3px;
+		animation: wrongFlash 0.3s ease;
 	}
 </style>

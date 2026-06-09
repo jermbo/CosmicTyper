@@ -5,6 +5,7 @@ Welcome to the CosmicTyper documentation directory! This folder contains compreh
 ## 📚 Documentation Structure
 
 ### For Project Overview
+
 - **[PROJECT_ANALYSIS.md](./PROJECT_ANALYSIS.md)** - Current state assessment
   - What the project is and what it does
   - Current strengths and pain points
@@ -58,21 +59,25 @@ Welcome to the CosmicTyper documentation directory! This folder contains compreh
 ## 🎯 Quick Navigation
 
 **I'm new to the project**
+
 1. Read [PROJECT_ANALYSIS.md](./PROJECT_ANALYSIS.md) - 10 min overview
 2. Skim [ARCHITECTURE.md](./ARCHITECTURE.md) - understand the structure
 3. Follow [DEVELOPMENT.md](./DEVELOPMENT.md) - get it running locally
 
 **I'm about to contribute**
+
 1. Check [DEVELOPMENT.md](./DEVELOPMENT.md) - setup & workflow
 2. Review [CODE_STYLE.md](#) - follow conventions
 3. Look at existing components - copy the pattern
 
 **I'm modernizing the project**
+
 1. Read [PROJECT_ANALYSIS.md](./PROJECT_ANALYSIS.md) - know what we're starting with
 2. Study [MODERNIZATION_ROADMAP.md](./MODERNIZATION_ROADMAP.md) - understand the plan
 3. Work through phases in order
 
 **I'm deploying to production**
+
 1. Follow [DEPLOYMENT.md](./DEPLOYMENT.md) - step-by-step guide
 2. Review production checklist
 3. Monitor [post-deployment](#monitoring)
@@ -96,11 +101,13 @@ Welcome to the CosmicTyper documentation directory! This folder contains compreh
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js 16+
 - npm 7+
 - Git
 
 ### Quick Start
+
 ```bash
 git clone https://github.com/jermbo/CosmicTyper.git
 cd CosmicTyper
@@ -115,9 +122,11 @@ See [DEVELOPMENT.md](./DEVELOPMENT.md) for detailed setup instructions.
 ## 📖 Key Concepts
 
 ### What is CosmicTyper?
+
 An educational web application that helps students practice typing and learn web development fundamentals (HTML/CSS).
 
 ### Technology Stack
+
 - **Frontend Framework:** Svelte (3.31.2) → upgrading to 5.x
 - **Build Tool:** Rollup (considering SvelteKit)
 - **Styling:** Bulma CSS + SASS
@@ -126,6 +135,7 @@ An educational web application that helps students practice typing and learn web
 - **Icons:** FontAwesome
 
 ### Main Features
+
 1. **Web Lessons** - Interactive HTML/CSS typing practice with live preview
 2. **Typing Lessons** - General typing practice and speed training
 3. **Progress Tracking** - Persistent user progress via localStorage
@@ -134,6 +144,7 @@ An educational web application that helps students practice typing and learn web
 ## ✅ Checklist for Common Tasks
 
 ### Adding a New Feature
+
 - [ ] Create component in appropriate directory
 - [ ] Follow naming conventions (PascalCase for components)
 - [ ] Add TypeScript types
@@ -142,6 +153,7 @@ An educational web application that helps students practice typing and learn web
 - [ ] Document in DEVELOPMENT.md if non-obvious
 
 ### Updating Dependencies
+
 - [ ] Read package release notes
 - [ ] Test in development
 - [ ] Run full test suite
@@ -150,6 +162,7 @@ An educational web application that helps students practice typing and learn web
 - [ ] Update documentation
 
 ### Creating a Release
+
 - [ ] Update version in package.json
 - [ ] Update CHANGELOG.md
 - [ ] Create git tag
@@ -180,17 +193,22 @@ See [CONTRIBUTING.md](../CONTRIBUTING.md) for detailed guidelines.
 ## 🆘 Getting Help
 
 ### Common Questions
+
 See [DEVELOPMENT.md - Troubleshooting](./DEVELOPMENT.md#troubleshooting)
 
 ### Reporting Issues
+
 Use [GitHub Issues](https://github.com/jermbo/CosmicTyper/issues) with:
+
 - Clear title describing the problem
 - Steps to reproduce
 - Expected vs actual behavior
 - Environment details (browser, OS, Node version)
 
 ### Asking Questions
+
 Use [GitHub Discussions](https://github.com/jermbo/CosmicTyper/discussions) for:
+
 - How-to questions
 - Architecture questions
 - Feature ideas

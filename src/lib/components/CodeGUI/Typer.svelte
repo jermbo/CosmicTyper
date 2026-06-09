@@ -1,22 +1,31 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
-	import type { WebLesson } from '$lib/types';
+	import type { WebLesson, LessonResult } from '$lib/types';
 	import { codeData } from '$lib/stores/codeData.svelte';
 
 	interface Props {
 		lesson: WebLesson | null;
-		onendlesson?: (id: string) => void;
+		oncomplete?: (result: LessonResult) => void;
 	}
 
-	let { lesson, onendlesson }: Props = $props();
+	let { lesson, oncomplete }: Props = $props();
 
 	let currentStep = $state(0);
 	let currentRow = $state(0);
 	let currentChar = $state(0);
 
+	// Progress metrics for this run
+	let keystrokes = $state(0);
+	let mistakes = $state(0);
+	let startTime: number | null = null;
+
+	// Wrong-key flash ("show and forgive")
+	let wrong = $state(false);
+	let wrongTimer: ReturnType<typeof setTimeout> | null = null;
+
 	// Derived so it updates when currentStep advances without re-triggering the effect
 	let actionOutput = $derived(
-		lesson ? lesson.steps[currentStep]?.action.map((line) => line.split('')) ?? [] : []
+		lesson ? (lesson.steps[currentStep]?.action.map((line) => line.split('')) ?? []) : []
 	);
 
 	const modifiers = ['CapsLock', 'Shift', 'Control', 'Alt', 'Meta', 'Tab'];
@@ -28,9 +37,24 @@
 			currentStep = 0;
 			currentRow = 0;
 			currentChar = 0;
+			keystrokes = 0;
+			mistakes = 0;
+			startTime = null;
+			clearFlash();
 			codeData.reset();
 		});
 	});
+
+	function clearFlash() {
+		if (wrongTimer) clearTimeout(wrongTimer);
+		wrong = false;
+	}
+
+	function flashWrong() {
+		wrong = true;
+		if (wrongTimer) clearTimeout(wrongTimer);
+		wrongTimer = setTimeout(() => (wrong = false), 300);
+	}
 
 	function handleKeydown(e: KeyboardEvent) {
 		if (!lesson || !actionOutput.length) return;
@@ -38,7 +62,15 @@
 		if (modifiers.includes(key)) return;
 		e.preventDefault();
 
-		if (key !== actionOutput[currentRow][currentChar]) return;
+		if (startTime === null) startTime = Date.now();
+		keystrokes++;
+
+		// Wrong key: count it, flash, but don't advance.
+		if (key !== actionOutput[currentRow][currentChar]) {
+			mistakes++;
+			flashWrong();
+			return;
+		}
 
 		if (endOfRow()) {
 			currentRow++;
@@ -72,8 +104,14 @@
 		currentStep++;
 
 		if (endOfLesson()) {
-			onendlesson?.(lesson.id);
+			complete(lesson.id);
 		}
+	}
+
+	function complete(lessonId: string) {
+		const duration = startTime ? (Date.now() - startTime) / 1000 : 0;
+		const accuracy = keystrokes ? Math.round(((keystrokes - mistakes) / keystrokes) * 100) : 100;
+		oncomplete?.({ lessonId, duration, keystrokes, mistakes, accuracy });
 	}
 
 	function updateRenderView() {
@@ -106,6 +144,7 @@
 							class:complete={currentRow > rowIndex}
 							class:correct={currentRow === rowIndex && currentChar > charIndex}
 							class:cursor={currentRow === rowIndex && currentChar === charIndex}
+							class:wrong={wrong && currentRow === rowIndex && currentChar === charIndex}
 						>
 							{char}
 						</span>
@@ -116,7 +155,10 @@
 
 		<div class="code-lesson">
 			<div class="progress-track">
-				<div class="progress-fill" style="width: {(currentStep / lesson.steps.length) * 100}%"></div>
+				<div
+					class="progress-fill"
+					style="width: {(currentStep / lesson.steps.length) * 100}%"
+				></div>
 			</div>
 			<div class="progress-label">Step {currentStep + 1} / {lesson.steps.length}</div>
 			<h1 class="code-lesson__title">Lesson:</h1>
@@ -211,5 +253,10 @@
 	.cursor {
 		border-bottom: 3px solid;
 		animation: cursorBlink 1.25s ease infinite;
+	}
+
+	.wrong {
+		border-radius: 3px;
+		animation: wrongFlash 0.3s ease;
 	}
 </style>

@@ -1,13 +1,21 @@
 <script lang="ts">
 	import type { WebLesson, TypingLesson } from '$lib/types';
+	import { learnerStore } from '$lib/stores/learner.svelte';
+	import { attemptsStore } from '$lib/stores/attempts.svelte';
 
 	interface Props {
 		lessons: WebLesson[] | TypingLesson[];
 		baseURL: string;
-		oncompleted?: (id: string) => void;
 	}
 
-	let { lessons, baseURL, oncompleted }: Props = $props();
+	let { lessons, baseURL }: Props = $props();
+
+	// Completion is derived per active learner from their attempts.
+	let completedIds = $derived(
+		learnerStore.activeLearner
+			? attemptsStore.completedLessonIds(learnerStore.activeLearner.id)
+			: new Set<string>()
+	);
 
 	function slugify(name: string): string {
 		return name.toLowerCase().split(' ').join('_');
@@ -26,18 +34,17 @@
 		</thead>
 		<tbody>
 			{#each lessons as lesson}
-				<tr class:completed={lesson.hasCompleted}>
+				{@const isCompleted = completedIds.has(lesson.id)}
+				<tr class:completed={isCompleted}>
 					<td class="col-done">
-						{#if lesson.hasCompleted}
+						{#if isCompleted}
 							<span class="check">✓</span>
 						{/if}
 					</td>
 					<td class="col-title">{lesson.title}</td>
 					<td class="col-difficulty">{lesson.difficulty}</td>
 					<td class="col-action">
-						<a class="btn-start" href={`/${baseURL}/${slugify(lesson.title)}`}>
-							Start Lesson
-						</a>
+						<a class="btn-start" href={`/${baseURL}/${slugify(lesson.title)}`}> Start Lesson </a>
 					</td>
 				</tr>
 			{/each}

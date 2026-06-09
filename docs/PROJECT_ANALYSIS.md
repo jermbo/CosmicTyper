@@ -52,25 +52,25 @@ graph TB
         A["axios 0.21.1 → 1.15+<br/>Security & Features"]
         B["svelte 3.31.2 → 5.x<br/>Major version jump"]
     end
-    
+
     subgraph High["🟡 High Priority"]
         C["rollup 2.37.1 → 2.80+<br/>or migrate to Vite"]
         D["bulma 0.9.1 → 1.0+<br/>CSS Framework"]
         E["@fortawesome 5.15.2 → 6.x<br/>Icons library"]
     end
-    
+
     subgraph Medium["🟢 Medium Priority"]
         F["sass 1.32.5 → 1.7+<br/>CSS Preprocessor"]
         G["postcss 8.2.4 → 8.4+<br/>CSS Tool"]
         H["svelte-routing 1.5.0<br/>→ SvelteKit routing<br/>or maintained alternative"]
     end
-    
+
     I["✅ All Dependencies<br/>Updated & Tested"]
-    
+
     Critical --> I
     High --> I
     Medium --> I
-    
+
     style A fill:#ffcdd2
     style B fill:#ffcdd2
     style C fill:#ffe0b2
@@ -82,18 +82,19 @@ graph TB
     style I fill:#a5d6a7
 ```
 
-| Package | Current | Status | Notes |
-|---------|---------|--------|-------|
-| svelte | 3.31.2 | 🔴 Critical | Should upgrade to 5.x |
-| axios | 0.21.1 | 🔴 Critical | Security updates needed |
-| rollup | 2.37.1 | 🟡 High | Consider SvelteKit migration |
-| @fortawesome/* | 5.15.2 | 🟡 High | Update to v6+ |
-| bulma | 0.9.1 | 🟡 High | Current is 1.0+ |
-| svelte-routing | 1.5.0 | 🟡 High | Consider SvelteKit routing |
-| sass | 1.32.5 | 🟢 Medium | Significant updates available |
-| postcss | 8.2.4 | 🟢 Medium | Current is 8.4+ |
+| Package         | Current | Status      | Notes                         |
+| --------------- | ------- | ----------- | ----------------------------- |
+| svelte          | 3.31.2  | 🔴 Critical | Should upgrade to 5.x         |
+| axios           | 0.21.1  | 🔴 Critical | Security updates needed       |
+| rollup          | 2.37.1  | 🟡 High     | Consider SvelteKit migration  |
+| @fortawesome/\* | 5.15.2  | 🟡 High     | Update to v6+                 |
+| bulma           | 0.9.1   | 🟡 High     | Current is 1.0+               |
+| svelte-routing  | 1.5.0   | 🟡 High     | Consider SvelteKit routing    |
+| sass            | 1.32.5  | 🟢 Medium   | Significant updates available |
+| postcss         | 8.2.4   | 🟢 Medium   | Current is 8.4+               |
 
 **Critical Issues:**
+
 - Dependencies are not currently installed
 - No package-lock consistency checks
 - Build toolchain needs modernization
@@ -125,12 +126,14 @@ src/
 ## Key Findings
 
 ### Positive Aspects
+
 1. **Modular design** - Separation of concerns is clear
 2. **Store-based state** - Centralized data management
 3. **Progressive disclosure** - Good UX structure for learning
 4. **Persistent storage** - Smart offline-first approach
 
 ### Modernization Opportunities
+
 1. **TypeScript** - Add type safety across codebase
 2. **SvelteKit** - More modern framework with better DX
 3. **Component library** - Consider Skeleton or Shadcn/svelte
@@ -140,6 +143,7 @@ src/
 7. **DevOps** - Docker containerization and CI/CD
 
 ### Risk Areas
+
 1. **Breaking changes** - Svelte 3→5 migration requires careful testing
 2. **Routing migration** - svelte-routing → SvelteKit routing
 3. **Build configuration** - Rollup → Vite/SvelteKit
@@ -151,8 +155,8 @@ This analysis provides the foundation for a phased modernization approach:
 
 ```mermaid
 graph LR
-    Start["Current State<br/>Svelte 3 + Rollup"] 
-    
+    Start["Current State<br/>Svelte 3 + Rollup"]
+
     Start --> Phase1["Phase 1<br/>Foundation"]
     Phase1 --> Phase2["Phase 2<br/>TypeScript"]
     Phase2 --> Phase3["Phase 3<br/>Svelte 5"]
@@ -163,7 +167,7 @@ graph LR
     Phase5Yes --> Phase6B["Phase 6<br/>Production"]
     Phase6A --> End["✅ Modern<br/>Production Ready"]
     Phase6B --> End
-    
+
     style Start fill:#ffebee
     style Phase1 fill:#fff3e0
     style Phase2 fill:#f3e5f5

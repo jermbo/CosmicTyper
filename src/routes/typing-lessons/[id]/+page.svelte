@@ -3,10 +3,16 @@
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
 	import TypingGUI from '$lib/components/TypingGUI/TypingGUI.svelte';
+	import ResultsScreen from '$lib/components/ResultsScreen.svelte';
 	import { lessonsStore } from '$lib/stores/lessons.svelte';
-	import type { TypingLesson } from '$lib/types';
+	import { attemptsStore } from '$lib/stores/attempts.svelte';
+	import { learnerStore } from '$lib/stores/learner.svelte';
+	import type { TypingLesson, LessonResult, Attempt } from '$lib/types';
 
 	let lesson = $state<TypingLesson | null>(null);
+	let result = $state<LessonResult | null>(null);
+	let previous = $state<Attempt | null>(null);
+	let runKey = $state(0);
 
 	const id = $derived(page.params.id ?? '');
 
@@ -23,10 +29,45 @@
 		lesson = lessonsStore.typingLessons.find((l) => l.title.toLowerCase() === title) ?? null;
 	}
 
-	function markComplete(lessonId: string) {
-		lessonsStore.toggleTypingLesson(lessonId);
-		goto('/typing-lessons');
+	function handleComplete(res: LessonResult) {
+		const learner = learnerStore.activeLearner;
+		if (!learner) return;
+
+		// Capture the prior best-known attempt before recording this one.
+		previous = attemptsStore.latestFor(learner.id, res.lessonId);
+		attemptsStore.add({
+			learnerId: learner.id,
+			lessonId: res.lessonId,
+			lessonType: 'typing',
+			duration: res.duration,
+			keystrokes: res.keystrokes,
+			mistakes: res.mistakes,
+			accuracy: res.accuracy
+		});
+		result = res;
+	}
+
+	function tryAgain() {
+		result = null;
+		previous = null;
+		runKey++; // remount the typer for a fresh run
+	}
+
+	function done() {
+		goto('/dashboard');
 	}
 </script>
 
-<TypingGUI {lesson} onsectionfinished={markComplete} />
+{#key runKey}
+	<TypingGUI {lesson} oncomplete={handleComplete} />
+{/key}
+
+{#if result && lesson}
+	<ResultsScreen
+		lessonTitle={lesson.title}
+		{result}
+		{previous}
+		ontryagain={tryAgain}
+		ondone={done}
+	/>
+{/if}

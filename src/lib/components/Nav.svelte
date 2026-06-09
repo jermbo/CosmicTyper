@@ -1,16 +1,28 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { goto } from '$app/navigation';
+	import { learnerStore } from '$lib/stores/learner.svelte';
+	import LearnerAvatar from './LearnerAvatar.svelte';
 
 	let isOpen = $state(false);
 
+	let learner = $derived(learnerStore.activeLearner);
+	let brandHref = $derived(learner ? '/dashboard' : '/');
+
 	function isActive(path: string): boolean {
 		return page.url.pathname.startsWith(path);
+	}
+
+	function switchLearner() {
+		learnerStore.deactivate();
+		isOpen = false;
+		goto('/');
 	}
 </script>
 
 <nav aria-label="main navigation">
 	<div class="nav-brand">
-		<a href="/welcome" class="brand-link">
+		<a href={brandHref} class="brand-link">
 			<span class="brand-name">Student Typer</span>
 		</a>
 
@@ -27,14 +39,24 @@
 		</button>
 	</div>
 
-	<div class="nav-menu" class:is-open={isOpen}>
-		<a href="/web-lessons" class="nav-link" class:active={isActive('/web-lessons')}>
-			Web Lessons
-		</a>
-		<a href="/typing-lessons" class="nav-link" class:active={isActive('/typing-lessons')}>
-			Typing Lessons
-		</a>
-	</div>
+	{#if learner}
+		<div class="nav-menu" class:is-open={isOpen}>
+			<a href="/web-lessons" class="nav-link" class:active={isActive('/web-lessons')}>
+				Web Lessons
+			</a>
+			<a href="/typing-lessons" class="nav-link" class:active={isActive('/typing-lessons')}>
+				Typing Lessons
+			</a>
+		</div>
+
+		<div class="nav-learner">
+			<a href="/dashboard" class="learner-link" title={learner.name}>
+				<LearnerAvatar name={learner.name} color={learner.color} size={32} />
+				<span class="learner-name">{learner.name}</span>
+			</a>
+			<button class="switch-btn" onclick={switchLearner}>Switch</button>
+		</div>
+	{/if}
 </nav>
 
 <style>
@@ -76,6 +98,45 @@
 		display: flex;
 		align-items: stretch;
 		margin-left: 1rem;
+	}
+
+	.nav-learner {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		margin-left: auto;
+	}
+
+	.learner-link {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		text-decoration: none;
+		color: var(--color-dark);
+	}
+
+	.learner-name {
+		font-size: var(--size-6);
+		font-weight: 500;
+	}
+
+	.switch-btn {
+		font-family: inherit;
+		font-size: var(--size-7);
+		padding: 0.3rem 0.7rem;
+		border: 1px solid var(--color-grey-light);
+		border-radius: 4px;
+		background: var(--color-white);
+		color: var(--color-grey-dark);
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.switch-btn:hover {
+		border-color: var(--color-blue);
+		color: var(--color-blue);
 	}
 
 	.nav-link {
@@ -147,6 +208,14 @@
 			width: 100%;
 			margin-left: 0;
 			padding-bottom: 0.5rem;
+		}
+
+		.nav-learner {
+			width: 100%;
+			margin-left: 0;
+			justify-content: space-between;
+			padding: 0.5rem;
+			border-top: 1px solid var(--color-grey-lighter);
 		}
 
 		.nav-menu.is-open {

@@ -1,16 +1,17 @@
 import type { WebLesson, TypingLesson } from '$lib/types';
-import { getLsItem, setLsItem } from '$lib/utils/storage';
+import { getLsItem, setLsItem, removeLsItem } from '$lib/utils/storage';
 import { fetchWebLessons, fetchTypingLessons } from '$lib/utils/api';
 
-const WEB_KEY = 'web-lessons';
-const TYPING_KEY = 'typing-lessons';
+const WEB_KEY = 'ct_lessons_web';
+const TYPING_KEY = 'ct_lessons_typing';
+
+// Legacy keys (pre learner-profiles) that embedded completion state on the
+// lesson object. Completion is now derived per-learner from attemptsStore.
+const LEGACY_WEB_KEY = 'web-lessons';
+const LEGACY_TYPING_KEY = 'typing-lessons';
 
 function sortOnDifficulty<T extends { difficulty: string }>(lessons: T[]): T[] {
 	return [...lessons].sort((a, b) => a.difficulty.localeCompare(b.difficulty));
-}
-
-function addStatus<T>(lessons: T[]): (T & { hasCompleted: boolean; hasStarted: boolean })[] {
-	return lessons.map((l) => ({ ...l, hasCompleted: false, hasStarted: false }));
 }
 
 class LessonsStore {
@@ -18,41 +19,38 @@ class LessonsStore {
 	typingLessons = $state<TypingLesson[]>([]);
 
 	async loadWebLessons() {
+		removeLsItem(LEGACY_WEB_KEY);
 		const cached = getLsItem<WebLesson[]>(WEB_KEY);
 		if (cached) {
 			this.webLessons = cached;
 			return;
 		}
 		const data = await fetchWebLessons();
-		const processed = addStatus(sortOnDifficulty(data as WebLesson[]));
+		const processed = sortOnDifficulty(data as WebLesson[]);
 		setLsItem(WEB_KEY, processed);
 		this.webLessons = processed;
 	}
 
 	async loadTypingLessons() {
+		removeLsItem(LEGACY_TYPING_KEY);
 		const cached = getLsItem<TypingLesson[]>(TYPING_KEY);
 		if (cached) {
 			this.typingLessons = cached;
 			return;
 		}
 		const data = await fetchTypingLessons();
-		const processed = addStatus(sortOnDifficulty(data as TypingLesson[]));
+		const processed = sortOnDifficulty(data as TypingLesson[]);
 		setLsItem(TYPING_KEY, processed);
 		this.typingLessons = processed;
 	}
 
-	toggleWebLesson(id: string) {
-		const index = this.webLessons.findIndex((l) => l.id == id);
-		if (index === -1) return;
-		this.webLessons[index].hasCompleted = !this.webLessons[index].hasCompleted;
-		setLsItem(WEB_KEY, this.webLessons);
-	}
-
-	toggleTypingLesson(id: string) {
-		const index = this.typingLessons.findIndex((l) => l.id == id);
-		if (index === -1) return;
-		this.typingLessons[index].hasCompleted = !this.typingLessons[index].hasCompleted;
-		setLsItem(TYPING_KEY, this.typingLessons);
+	/** Lookup a lesson title across both lists (used for activity/results). */
+	titleFor(lessonId: string): string {
+		return (
+			this.webLessons.find((l) => l.id === lessonId)?.title ??
+			this.typingLessons.find((l) => l.id === lessonId)?.title ??
+			'Lesson'
+		);
 	}
 }
 
