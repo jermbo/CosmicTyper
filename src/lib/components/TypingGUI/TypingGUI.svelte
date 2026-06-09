@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { untrack } from 'svelte';
+	import { untrack, tick } from 'svelte';
 	import type { TypingLesson, LessonResult } from '$lib/types';
 
 	interface Props {
@@ -24,7 +24,22 @@
 	// Derived so it updates when currentStep advances without re-triggering the effect
 	let actionOutput = $derived(lesson ? (lesson.steps[currentStep]?.split('') ?? []) : []);
 
+	// All lines in the lesson, shown stacked as ghost lines (done / active / upcoming).
+	let lines = $derived(lesson?.steps ?? []);
+	let lineEls = $state<HTMLElement[]>([]);
+
 	const modifiers = ['CapsLock', 'Shift', 'Control', 'Alt', 'Meta', 'Tab'];
+
+	// Teleprompter: keep the active line pinned at the vertical center as the
+	// learner advances. tick() lets the DOM settle (e.g. after a lesson reset)
+	// before we measure and scroll.
+	$effect(() => {
+		const step = currentStep;
+		lesson;
+		tick().then(() => {
+			lineEls[step]?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+		});
+	});
 
 	// Only re-run when lesson itself changes; untrack prevents currentStep/currentChar
 	// from being tracked as dependencies here
@@ -110,16 +125,32 @@
 
 	<div class="typing-inner">
 		{#if lesson}
-			<div class="row">
-				{#each actionOutput as char, index}
-					<span
-						class="character"
-						class:correct={currentChar > index}
-						class:cursor={currentChar === index}
-						class:wrong={wrong && currentChar === index}
+			<div class="lines">
+				{#each lines as line, i (i)}
+					<div
+						class="line"
+						class:done={i < currentStep}
+						class:current={i === currentStep}
+						class:upcoming={i > currentStep}
+						bind:this={lineEls[i]}
 					>
-						{char}
-					</span>
+						{#if i === currentStep}
+							<div class="row">
+								{#each actionOutput as char, index}
+									<span
+										class="character"
+										class:correct={currentChar > index}
+										class:cursor={currentChar === index}
+										class:wrong={wrong && currentChar === index}
+									>
+										{char}
+									</span>
+								{/each}
+							</div>
+						{:else}
+							{line}
+						{/if}
+					</div>
 				{/each}
 			</div>
 		{/if}
@@ -160,15 +191,51 @@
 	.typing-inner {
 		flex: 1;
 		font-size: var(--size-4);
+		overflow: hidden;
+	}
+
+	.lines {
 		display: flex;
-		justify-content: center;
+		flex-direction: column;
 		align-items: center;
-		padding: 0 calc(var(--padding) * 4);
+		/* Room so the first and last lines can reach the vertical center. */
+		padding: 45vh calc(var(--padding) * 4);
+		gap: 0.4em;
+	}
+
+	.line {
+		max-width: 100%;
+		text-align: center;
+		white-space: pre-wrap;
+		transition:
+			opacity 0.3s ease,
+			color 0.3s ease;
+	}
+
+	/* Completed lines: solid black, de-emphasized. */
+	.line.done {
+		color: #000;
+		opacity: 0.45;
+	}
+
+	/* Upcoming lines: a faint gray preview of what's next. */
+	.line.upcoming {
+		color: var(--color-grey);
+		opacity: 0.5;
+	}
+
+	/* Active line: highlight band so the eye locks on instantly. */
+	.line.current {
+		color: var(--color-dark);
+		padding: 0.25em 0.75em;
+		border-radius: 8px;
+		background: var(--color-grey-lighter);
 	}
 
 	.row {
 		display: flex;
 		flex-wrap: wrap;
+		justify-content: center;
 		gap: 0;
 	}
 
@@ -177,16 +244,19 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		/* Always reserve the underline space so toggling correct/cursor
+		   never changes the box height and shifts the line. */
+		border-bottom: 3px solid transparent;
 	}
 
 	.correct {
 		color: var(--color-code-correct);
-		border-bottom: 1px solid var(--color-code-correct);
+		border-bottom-color: var(--color-code-correct);
 		font-weight: bold;
 	}
 
 	.cursor {
-		border-bottom: 3px solid;
+		border-bottom-color: currentColor;
 		animation: cursorBlink 1.25s ease infinite;
 	}
 

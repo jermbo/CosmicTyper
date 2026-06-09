@@ -241,17 +241,20 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		/* Always reserve the underline space so toggling correct/cursor
+		   never changes the box height and shifts the line. */
+		border-bottom: 3px solid transparent;
 	}
 
 	.complete,
 	.correct {
 		color: var(--color-code-correct);
-		border-bottom: 1px solid var(--color-code-correct);
+		border-bottom-color: var(--color-code-correct);
 		font-weight: bold;
 	}
 
 	.cursor {
-		border-bottom: 3px solid;
+		border-bottom-color: currentColor;
 		animation: cursorBlink 1.25s ease infinite;
 	}
 
