@@ -3,6 +3,7 @@
 	import Typer from './Typer.svelte';
 	import HTMLOutput from './HTMLOutput.svelte';
 	import CodeOutput from './CodeOutput.svelte';
+	import { buildLessonOutput } from '$lib/utils/lesson';
 
 	interface Props {
 		lesson: WebLesson | null;
@@ -10,6 +11,9 @@
 	}
 
 	let { lesson, oncomplete }: Props = $props();
+
+	// The finished output to show as the "Goal" the learner builds toward.
+	let target = $derived(buildLessonOutput(lesson));
 </script>
 
 <div class="code-gui">
@@ -17,7 +21,7 @@
 		<Typer {lesson} {oncomplete} />
 	</div>
 	<div class="render-view">
-		<HTMLOutput />
+		<HTMLOutput targetHtml={target.html} targetCss={target.css} />
 	</div>
 	<div class="mini-maps">
 		<CodeOutput />

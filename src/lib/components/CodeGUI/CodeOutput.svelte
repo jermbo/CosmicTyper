@@ -2,6 +2,11 @@
 	import { codeData } from '$lib/stores/codeData.svelte';
 
 	let tabFocus = $state<'html' | 'css'>('html');
+
+	// Reveal whichever pane just rendered, so the flashing lines are visible.
+	$effect(() => {
+		tabFocus = codeData.lastTouched;
+	});
 </script>
 
 <div class="code-display">
@@ -19,12 +24,13 @@
 	<div class="displays">
 		<pre class="display" class:focus={tabFocus === 'html'}>
 			{#each codeData.htmlCode as line, i}
-				<div class="display-line">{i + 1}: {line}</div>
+				<div class="display-line" class:flash={codeData.recentHtml.includes(i)}>{i +
+						1}: {line}</div>
 			{/each}
 		</pre>
 		<pre class="display" class:focus={tabFocus === 'css'}>
 			{#each codeData.cssCode as line, i}
-				<div class="display-line">{i + 1}: {line}</div>
+				<div class="display-line" class:flash={codeData.recentCss.includes(i)}>{i + 1}: {line}</div>
 			{/each}
 		</pre>
 	</div>
@@ -101,5 +107,19 @@
 
 	.display-line:nth-child(even) {
 		background: #e8e9ed;
+	}
+
+	/* Flash the lines that just rendered, tying typed code → output. */
+	.display-line.flash {
+		animation: lineFlash 1s ease;
+	}
+
+	@keyframes lineFlash {
+		0% {
+			background: var(--color-primary);
+		}
+		100% {
+			background: transparent;
+		}
 	}
 </style>
