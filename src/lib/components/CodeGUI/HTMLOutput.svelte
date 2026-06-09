@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { codeData } from '$lib/stores/codeData.svelte';
 	import PreviewPane from './PreviewPane.svelte';
+	import ResizableSplit from './ResizableSplit.svelte';
 
 	interface Props {
 		targetHtml: string[];
@@ -11,6 +12,10 @@
 
 	let goalCollapsed = $state(false);
 	let yoursCollapsed = $state(false);
+	// Divider position when both panes are open; preserved across collapses.
+	let fraction = $state(0.5);
+
+	let bothOpen = $derived(!goalCollapsed && !yoursCollapsed);
 
 	// Pulse the "Yours" pane whenever a step renders new output, so the learner
 	// feels the cause → effect of what they just typed.
@@ -27,37 +32,62 @@
 	});
 </script>
 
-<div class="render-pane">
-	<PreviewPane
-		title="🎯 Goal"
-		html={targetHtml}
-		css={targetCss}
-		side="left"
-		collapsed={goalCollapsed}
-		ontoggle={() => (goalCollapsed = !goalCollapsed)}
-	/>
-	<PreviewPane
-		title="✨ Yours"
-		html={codeData.htmlCode}
-		css={codeData.cssCode}
-		side="right"
-		collapsed={yoursCollapsed}
-		{pulse}
-		ontoggle={() => (yoursCollapsed = !yoursCollapsed)}
-	/>
-</div>
+{#if bothOpen}
+	<div class="render-pane">
+		<ResizableSplit direction="row" bind:fraction defaultFraction={0.5} min={120}>
+			{#snippet a()}
+				<PreviewPane
+					title="🎯 Goal"
+					html={targetHtml}
+					css={targetCss}
+					side="left"
+					collapsed={false}
+					ontoggle={() => (goalCollapsed = true)}
+				/>
+			{/snippet}
+			{#snippet b()}
+				<PreviewPane
+					title="✨ Yours"
+					html={codeData.htmlCode}
+					css={codeData.cssCode}
+					side="right"
+					collapsed={false}
+					{pulse}
+					ontoggle={() => (yoursCollapsed = true)}
+				/>
+			{/snippet}
+		</ResizableSplit>
+	</div>
+{:else}
+	<div class="render-pane stack">
+		<PreviewPane
+			title="🎯 Goal"
+			html={targetHtml}
+			css={targetCss}
+			side="left"
+			collapsed={goalCollapsed}
+			ontoggle={() => (goalCollapsed = !goalCollapsed)}
+		/>
+		<PreviewPane
+			title="✨ Yours"
+			html={codeData.htmlCode}
+			css={codeData.cssCode}
+			side="right"
+			collapsed={yoursCollapsed}
+			{pulse}
+			ontoggle={() => (yoursCollapsed = !yoursCollapsed)}
+		/>
+	</div>
+{/if}
 
 <style>
 	.render-pane {
-		display: flex;
 		height: 100%;
-		gap: 2px;
 		background: var(--color-code-bg);
 	}
 
-	@media (max-width: 768px) {
-		.render-pane {
-			flex-direction: column;
-		}
+	.render-pane.stack {
+		display: flex;
+		gap: 2px;
 	}
 </style>

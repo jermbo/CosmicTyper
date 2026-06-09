@@ -3,6 +3,7 @@
 	import Typer from './Typer.svelte';
 	import HTMLOutput from './HTMLOutput.svelte';
 	import CodeOutput from './CodeOutput.svelte';
+	import ResizableSplit from './ResizableSplit.svelte';
 	import { buildLessonOutput } from '$lib/utils/lesson';
 
 	interface Props {
@@ -17,25 +18,32 @@
 </script>
 
 <div class="code-gui">
-	<div class="code-view">
-		<Typer {lesson} {oncomplete} />
-	</div>
-	<div class="render-view">
-		<HTMLOutput targetHtml={target.html} targetCss={target.css} />
-	</div>
-	<div class="mini-maps">
-		<CodeOutput />
-	</div>
+	<ResizableSplit direction="row" fraction={0.46} defaultFraction={0.46} min={260}>
+		{#snippet a()}
+			<div class="fill">
+				<Typer {lesson} {oncomplete} />
+			</div>
+		{/snippet}
+
+		{#snippet b()}
+			<ResizableSplit direction="column" fraction={0.62} defaultFraction={0.62} min={120}>
+				{#snippet a()}
+					<div class="fill">
+						<HTMLOutput targetHtml={target.html} targetCss={target.css} />
+					</div>
+				{/snippet}
+				{#snippet b()}
+					<div class="fill">
+						<CodeOutput />
+					</div>
+				{/snippet}
+			</ResizableSplit>
+		{/snippet}
+	</ResizableSplit>
 </div>
 
 <style>
 	.code-gui {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		grid-template-rows: minmax(50vh, 80vh) minmax(15vh, 50vh);
-		grid-template-areas:
-			'code render render'
-			'code minimap minimap';
 		height: calc(100vh - var(--navbar-height));
 		width: 100vw;
 		position: fixed;
@@ -43,15 +51,9 @@
 		left: 0;
 	}
 
-	.code-view {
-		grid-area: code;
-	}
-
-	.render-view {
-		grid-area: render;
-	}
-
-	.mini-maps {
-		grid-area: minimap;
+	.fill {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
 	}
 </style>
