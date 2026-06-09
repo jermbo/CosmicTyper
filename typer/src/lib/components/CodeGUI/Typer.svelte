@@ -115,6 +115,10 @@
 		</div>
 
 		<div class="code-lesson">
+			<div class="progress-track">
+				<div class="progress-fill" style="width: {(currentStep / lesson.steps.length) * 100}%"></div>
+			</div>
+			<div class="progress-label">Step {currentStep + 1} / {lesson.steps.length}</div>
 			<h1 class="code-lesson__title">Lesson:</h1>
 			<p class="code-lesson__desc">{lesson.steps[currentStep].desc}</p>
 		</div>
@@ -145,8 +149,27 @@
 		border-top: 0;
 		border-bottom: 0;
 		background: var(--color-white);
-		padding: 1rem;
+		padding: 0 1rem 1rem;
 		overflow-y: auto;
+	}
+
+	.progress-track {
+		height: 4px;
+		background: var(--color-grey-light);
+		margin: 0 -1rem 0.5rem;
+	}
+
+	.progress-fill {
+		height: 100%;
+		background: var(--color-primary);
+		transition: width 0.3s ease;
+	}
+
+	.progress-label {
+		text-align: right;
+		font-size: var(--size-7);
+		color: var(--color-grey-dark);
+		margin-bottom: 0.5rem;
 	}
 
 	.code-lesson__title {

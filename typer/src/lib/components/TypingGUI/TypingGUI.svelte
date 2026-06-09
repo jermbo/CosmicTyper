@@ -61,6 +61,15 @@
 <svelte:window onkeydown={handleKeydown} />
 
 <div class="typing-wrapper">
+	{#if lesson}
+		<div class="progress-track">
+			<div class="progress-fill" style="width: {(currentStep / lesson.steps.length) * 100}%"></div>
+		</div>
+		<div class="progress-label">
+			Step {currentStep + 1} / {lesson.steps.length}
+		</div>
+	{/if}
+
 	<div class="typing-inner">
 		{#if lesson}
 			<div class="row">
@@ -80,9 +89,8 @@
 
 <style>
 	.typing-wrapper {
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-template-rows: 1fr;
+		display: flex;
+		flex-direction: column;
 		height: calc(100vh - var(--navbar-height));
 		width: 100vw;
 		position: fixed;
@@ -90,7 +98,28 @@
 		left: 0;
 	}
 
+	.progress-track {
+		height: 4px;
+		background: var(--color-grey-light);
+		flex-shrink: 0;
+	}
+
+	.progress-fill {
+		height: 100%;
+		background: var(--color-primary);
+		transition: width 0.3s ease;
+	}
+
+	.progress-label {
+		text-align: right;
+		padding: 0.25rem var(--padding);
+		font-size: var(--size-7);
+		color: var(--color-grey-dark);
+		flex-shrink: 0;
+	}
+
 	.typing-inner {
+		flex: 1;
 		font-size: var(--size-4);
 		display: flex;
 		justify-content: center;
