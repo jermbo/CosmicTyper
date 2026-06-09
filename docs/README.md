@@ -29,6 +29,12 @@ Welcome to the CosmicTyper documentation directory! This folder contains compreh
   - Debugging and troubleshooting
   - Code style conventions
 
+### Feature Specs
+
+- **[FEATURE_LEARNER_PROFILES.md](./FEATURE_LEARNER_PROFILES.md)** - Multi-learner profiles & progress tracking
+  - Learner selection screen, personal dashboard, results screen
+  - Local-first data model, localStorage schema, implementation phases
+
 ### For Modernization
 
 - **[MODERNIZATION_ROADMAP.md](./MODERNIZATION_ROADMAP.md)** - Detailed upgrade plan
