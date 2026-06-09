@@ -48,9 +48,9 @@ body {
 @keyframes cursorBlink {
 	0%,
 	100% {
-		opacity: 1;
+		border-bottom-color: currentColor;
 	}
 	50% {
-		opacity: 0;
+		border-bottom-color: transparent;
 	}
 }

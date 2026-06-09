@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { untrack } from 'svelte';
 	import type { WebLesson } from '$lib/types';
 	import { codeData } from '$lib/stores/codeData.svelte';
 
@@ -12,28 +13,24 @@
 	let currentStep = $state(0);
 	let currentRow = $state(0);
 	let currentChar = $state(0);
-	let actionOutput = $state<string[][]>([]);
+
+	// Derived so it updates when currentStep advances without re-triggering the effect
+	let actionOutput = $derived(
+		lesson ? lesson.steps[currentStep]?.action.map((line) => line.split('')) ?? [] : []
+	);
 
 	const modifiers = ['CapsLock', 'Shift', 'Control', 'Alt', 'Meta', 'Tab'];
 
+	// Only re-run when lesson itself changes
 	$effect(() => {
-		if (lesson) {
-			resetView();
-			loadStep();
-		}
+		lesson;
+		untrack(() => {
+			currentStep = 0;
+			currentRow = 0;
+			currentChar = 0;
+			codeData.reset();
+		});
 	});
-
-	function resetView() {
-		currentStep = 0;
-		currentRow = 0;
-		currentChar = 0;
-		codeData.reset();
-	}
-
-	function loadStep() {
-		if (!lesson) return;
-		actionOutput = lesson.steps[currentStep].action.map((line) => line.split(''));
-	}
 
 	function handleKeydown(e: KeyboardEvent) {
 		if (!lesson || !actionOutput.length) return;
@@ -75,10 +72,7 @@
 		currentStep++;
 
 		if (endOfLesson()) {
-			resetView();
 			onendlesson?.(lesson.id);
-		} else {
-			loadStep();
 		}
 	}
 
@@ -192,6 +186,7 @@
 	}
 
 	.cursor {
+		border-bottom: 3px solid;
 		animation: cursorBlink 1.25s ease infinite;
 	}
 </style>

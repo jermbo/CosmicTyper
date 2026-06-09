@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { untrack } from 'svelte';
 	import type { TypingLesson } from '$lib/types';
 
 	interface Props {
@@ -10,22 +11,21 @@
 
 	let currentStep = $state(0);
 	let currentChar = $state(0);
-	let actionOutput = $state<string[]>([]);
+
+	// Derived so it updates when currentStep advances without re-triggering the effect
+	let actionOutput = $derived(lesson ? lesson.steps[currentStep]?.split('') ?? [] : []);
 
 	const modifiers = ['CapsLock', 'Shift', 'Control', 'Alt', 'Meta', 'Tab'];
 
+	// Only re-run when lesson itself changes; untrack prevents currentStep/currentChar
+	// from being tracked as dependencies here
 	$effect(() => {
-		if (lesson) {
+		lesson;
+		untrack(() => {
 			currentStep = 0;
 			currentChar = 0;
-			loadStep();
-		}
+		});
 	});
-
-	function loadStep() {
-		if (!lesson) return;
-		actionOutput = lesson.steps[currentStep].split('');
-	}
 
 	function handleKeydown(e: KeyboardEvent) {
 		if (!lesson || !actionOutput.length) return;
@@ -44,8 +44,6 @@
 			if (endOfLesson()) {
 				currentStep = 0;
 				onsectionfinished?.(lesson.id);
-			} else {
-				loadStep();
 			}
 		}
 	}
@@ -120,6 +118,7 @@
 	}
 
 	.cursor {
+		border-bottom: 3px solid;
 		animation: cursorBlink 1.25s ease infinite;
 	}
 </style>
