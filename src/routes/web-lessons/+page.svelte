@@ -10,6 +10,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Web Lessons — Student Typer</title>
+</svelte:head>
+
 <section class="page">
 	<header class="page-header">
 		<h1>Web Lessons</h1>

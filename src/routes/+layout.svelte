@@ -32,15 +32,39 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Student Typer</title>
+</svelte:head>
+
+<a class="skip-link" href="#main-content">Skip to content</a>
+
 <Nav />
 
-<main>
+<main id="main-content">
 	{#if hydrated}
 		{@render children()}
 	{/if}
 </main>
 
 <style>
+	.skip-link {
+		position: absolute;
+		top: -100%;
+		left: 0;
+		padding: 0.5rem 1rem;
+		background: var(--color-dark);
+		color: var(--color-white);
+		z-index: 9999;
+		font-size: var(--size-6);
+		text-decoration: none;
+		border-radius: 0 0 4px 0;
+		transition: top 0.1s;
+	}
+
+	.skip-link:focus {
+		top: 0;
+	}
+
 	main {
 		padding-top: var(--navbar-height);
 	}

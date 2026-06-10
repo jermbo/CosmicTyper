@@ -16,13 +16,13 @@ CosmicTyper is local-first. All data lives in the browser's `localStorage`. Ther
 
 ## localStorage Keys
 
-| Key | Type | Owned by | Description |
-|-----|------|----------|-------------|
-| `ct_learners` | `Learner[]` | `learnerStore` | All learner profiles |
-| `ct_active_learner` | `string` | `learnerStore` | ID of the currently active learner |
-| `ct_attempts` | `Attempt[]` | `attemptsStore` | Every lesson attempt, all learners |
-| `ct_lessons_web` | `WebLesson[]` | `lessonsStore` | Cached web lessons from the API |
-| `ct_lessons_typing` | `TypingLesson[]` | `lessonsStore` | Cached typing lessons from the API |
+| Key                 | Type             | Owned by        | Description                        |
+| ------------------- | ---------------- | --------------- | ---------------------------------- |
+| `ct_learners`       | `Learner[]`      | `learnerStore`  | All learner profiles               |
+| `ct_active_learner` | `string`         | `learnerStore`  | ID of the currently active learner |
+| `ct_attempts`       | `Attempt[]`      | `attemptsStore` | Every lesson attempt, all learners |
+| `ct_lessons_web`    | `WebLesson[]`    | `lessonsStore`  | Cached web lessons from the API    |
+| `ct_lessons_typing` | `TypingLesson[]` | `lessonsStore`  | Cached typing lessons from the API |
 
 ---
 
@@ -30,23 +30,23 @@ CosmicTyper is local-first. All data lives in the browser's `localStorage`. Ther
 
 ```ts
 interface Learner {
-    id: string;           // crypto.randomUUID()
-    name: string;
-    color: string;        // hex from the fixed PALETTE
-    createdAt: string;    // ISO 8601
-    lastActiveAt: string; // ISO 8601
+	id: string; // crypto.randomUUID()
+	name: string;
+	color: string; // hex from the fixed PALETTE
+	createdAt: string; // ISO 8601
+	lastActiveAt: string; // ISO 8601
 }
 
 interface Attempt {
-    id: string;
-    learnerId: string;
-    lessonId: string;
-    lessonType: 'web' | 'typing';
-    completedAt: string;  // ISO 8601
-    duration: number;     // seconds
-    keystrokes: number;   // correct + incorrect
-    mistakes: number;     // wrong key presses
-    accuracy: number;     // 0–100
+	id: string;
+	learnerId: string;
+	lessonId: string;
+	lessonType: 'web' | 'typing';
+	completedAt: string; // ISO 8601
+	duration: number; // seconds
+	keystrokes: number; // correct + incorrect
+	mistakes: number; // wrong key presses
+	accuracy: number; // 0–100
 }
 ```
 
@@ -57,10 +57,10 @@ interface Attempt {
 All reads and writes go through `src/lib/utils/storage.ts` — never call `localStorage` directly in components or stores.
 
 ```ts
-getLsItem<T>(key)      // read + JSON.parse, returns null if missing
-setLsItem<T>(key, val) // JSON.stringify + write
-removeLsItem(key)      // delete a key
-clearAll()             // wipe everything (dev/debug use only)
+getLsItem<T>(key); // read + JSON.parse, returns null if missing
+setLsItem<T>(key, val); // JSON.stringify + write
+removeLsItem(key); // delete a key
+clearAll(); // wipe everything (dev/debug use only)
 ```
 
 ---

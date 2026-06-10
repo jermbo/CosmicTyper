@@ -32,14 +32,14 @@ flowchart TD
 
 ## Pages
 
-| Route | File | Purpose |
-|-------|------|---------|
-| `/` | `src/routes/+page.svelte` | Learner select / create — always the entry point |
-| `/dashboard` | `src/routes/dashboard/+page.svelte` | Personal dashboard for the active learner |
-| `/web-lessons` | `src/routes/web-lessons/+page.svelte` | Browse HTML/CSS lessons |
-| `/web-lessons/[id]` | `src/routes/web-lessons/[id]/+page.svelte` | Active web lesson with live preview |
-| `/typing-lessons` | `src/routes/typing-lessons/+page.svelte` | Browse typing lessons |
-| `/typing-lessons/[id]` | `src/routes/typing-lessons/[id]/+page.svelte` | Active typing lesson |
+| Route                  | File                                          | Purpose                                          |
+| ---------------------- | --------------------------------------------- | ------------------------------------------------ |
+| `/`                    | `src/routes/+page.svelte`                     | Learner select / create — always the entry point |
+| `/dashboard`           | `src/routes/dashboard/+page.svelte`           | Personal dashboard for the active learner        |
+| `/web-lessons`         | `src/routes/web-lessons/+page.svelte`         | Browse HTML/CSS lessons                          |
+| `/web-lessons/[id]`    | `src/routes/web-lessons/[id]/+page.svelte`    | Active web lesson with live preview              |
+| `/typing-lessons`      | `src/routes/typing-lessons/+page.svelte`      | Browse typing lessons                            |
+| `/typing-lessons/[id]` | `src/routes/typing-lessons/[id]/+page.svelte` | Active typing lesson                             |
 
 ---
 

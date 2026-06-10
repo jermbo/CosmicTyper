@@ -1,6 +1,13 @@
 export function getLsItem<T>(name: string): T | null {
 	const item = localStorage.getItem(name);
-	return item ? (JSON.parse(item) as T) : null;
+	if (!item) return null;
+	try {
+		return JSON.parse(item) as T;
+	} catch {
+		// Corrupt or tampered storage value — discard it so the app can recover.
+		localStorage.removeItem(name);
+		return null;
+	}
 }
 
 export function setLsItem<T>(name: string, value: T): T {
@@ -12,6 +19,10 @@ export function removeLsItem(name: string): void {
 	localStorage.removeItem(name);
 }
 
-export function clearAll(): void {
-	localStorage.clear();
+/** Remove all keys belonging to this app (ct_ prefix). */
+export function clearAppStorage(): void {
+	const keys = Object.keys(localStorage).filter((k) => k.startsWith('ct_'));
+	for (const key of keys) {
+		localStorage.removeItem(key);
+	}
 }

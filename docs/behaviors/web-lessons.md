@@ -49,6 +49,7 @@ The learner types into the whole window — there is no text input field. Every 
 ## Live Preview
 
 When a step with `render: true` is completed:
+
 - `dom` steps push their lines into the HTML output.
 - `style` steps push their lines into the CSS output.
 
@@ -61,12 +62,12 @@ The preview pane re-renders on every committed row, so the learner sees the page
 The web lesson screen has four panels arranged in a resizable two-column split:
 
 - **Left column**
-  - *Typer* — the active typing area (step description, expected lines, cursor)
-  - *CodeOutput* — a tabbed HTML/CSS minimap showing all committed lines; the lines added by the most recent step flash briefly so the learner can see exactly what they just contributed
+  - _Typer_ — the active typing area (step description, expected lines, cursor)
+  - _CodeOutput_ — a tabbed HTML/CSS minimap showing all committed lines; the lines added by the most recent step flash briefly so the learner can see exactly what they just contributed
 
 - **Right column**
-  - *Live preview* — updates as render steps complete
-  - *Goal preview* — shows the finished output the lesson builds toward, so learners always know what they're typing toward
+  - _Live preview_ — updates as render steps complete
+  - _Goal preview_ — shows the finished output the lesson builds toward, so learners always know what they're typing toward
 
 The divider between the columns is draggable. Each preview pane can also be collapsed to a thin strip, giving learners full screen for whichever view they prefer.
 

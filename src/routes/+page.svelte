@@ -28,6 +28,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Who's typing today? — Student Typer</title>
+</svelte:head>
+
 <section class="select-page">
 	{#if mode === 'create'}
 		<header class="page-header">
@@ -105,8 +109,9 @@
 		font-family: inherit;
 	}
 
-	.search:focus {
-		outline: none;
+	.search:focus-visible {
+		outline: 2px solid var(--color-blue);
+		outline-offset: 0;
 		border-color: var(--color-blue);
 	}
 

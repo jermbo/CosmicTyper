@@ -14,52 +14,78 @@
 	}
 </script>
 
-<div class="palette" role="radiogroup" aria-label="Avatar color">
+<fieldset class="palette">
+	<legend class="sr-only">Avatar color</legend>
 	{#each PALETTE as color (color.hex)}
-		<button
-			type="button"
-			class="swatch"
-			class:selected={value === color.hex}
-			style="--swatch: {color.hex}"
-			role="radio"
-			aria-checked={value === color.hex}
-			aria-label={color.name}
-			title={color.name}
-			onclick={() => select(color.hex)}
-		></button>
+		<label class="swatch-label" title={color.name}>
+			<input
+				type="radio"
+				name="avatar-color"
+				value={color.hex}
+				checked={value === color.hex}
+				aria-label={color.name}
+				onchange={() => select(color.hex)}
+			/>
+			<span class="swatch" style="--swatch: {color.hex}"></span>
+		</label>
 	{/each}
-</div>
+</fieldset>
 
 <style>
 	.palette {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.6rem;
+		border: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border-width: 0;
+	}
+
+	.swatch-label {
+		cursor: pointer;
+	}
+
+	.swatch-label input[type='radio'] {
+		position: absolute;
+		opacity: 0;
+		width: 0;
+		height: 0;
 	}
 
 	.swatch {
+		display: block;
 		width: 40px;
 		height: 40px;
 		border-radius: 50%;
 		background: var(--swatch);
 		border: 3px solid transparent;
-		cursor: pointer;
-		padding: 0;
 		transition:
 			transform 0.15s ease,
 			box-shadow 0.15s ease;
 	}
 
-	.swatch:hover {
+	.swatch-label:hover .swatch {
 		transform: scale(1.1);
 	}
 
-	.swatch.selected {
+	input[type='radio']:checked + .swatch {
 		border-color: var(--color-dark);
 		box-shadow: 0 0 0 2px var(--color-white) inset;
 	}
 
-	.swatch:focus-visible {
+	input[type='radio']:focus-visible + .swatch {
 		outline: 2px solid var(--color-dark);
 		outline-offset: 2px;
 	}

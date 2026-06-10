@@ -28,7 +28,7 @@
 		lesson ? (lesson.steps[currentStep]?.action.map((line) => line.split('')) ?? []) : []
 	);
 
-	const modifiers = ['CapsLock', 'Shift', 'Control', 'Alt', 'Meta', 'Tab'];
+	const modifiers = ['CapsLock', 'Shift', 'Control', 'Alt', 'Meta'];
 
 	// Only re-run when lesson itself changes
 	$effect(() => {
@@ -59,7 +59,7 @@
 	function handleKeydown(e: KeyboardEvent) {
 		if (!lesson || !actionOutput.length) return;
 		const key = e.key;
-		if (modifiers.includes(key)) return;
+		if (modifiers.includes(key) || key === 'Tab') return;
 		e.preventDefault();
 
 		if (startTime === null) startTime = Date.now();
@@ -157,15 +157,24 @@
 		</div>
 
 		<div class="code-lesson">
-			<div class="progress-track">
+			<div
+				class="progress-track"
+				role="progressbar"
+				aria-valuenow={currentStep}
+				aria-valuemin={0}
+				aria-valuemax={lesson.steps.length}
+				aria-label="Lesson progress"
+			>
 				<div
 					class="progress-fill"
 					style="width: {(currentStep / lesson.steps.length) * 100}%"
 				></div>
 			</div>
-			<div class="progress-label">Step {currentStep + 1} / {lesson.steps.length}</div>
+			<div class="progress-label" aria-hidden="true">
+				Step {currentStep + 1} / {lesson.steps.length}
+			</div>
 			<h1 class="code-lesson__title">Lesson:</h1>
-			<p class="code-lesson__desc">{lesson.steps[currentStep].desc}</p>
+			<p class="code-lesson__desc">{lesson.steps[currentStep]?.desc ?? ''}</p>
 		</div>
 	</div>
 {/if}

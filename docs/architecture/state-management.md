@@ -16,12 +16,12 @@ CosmicTyper uses Svelte 5 runes. Each concern has its own store class using `$st
 
 ## Stores
 
-| Store | File | Owns |
-|-------|------|------|
-| `learnerStore` | `src/lib/stores/learner.svelte.ts` | All learner profiles + the active learner |
-| `lessonsStore` | `src/lib/stores/lessons.svelte.ts` | Web and typing lesson lists |
-| `attemptsStore` | `src/lib/stores/attempts.svelte.ts` | Every lesson attempt ever made |
-| `codeData` | `src/lib/stores/codeData.svelte.ts` | In-progress code state during a web lesson (HTML lines, CSS lines, recently-rendered line indices for flash animation) |
+| Store           | File                                | Owns                                                                                                                   |
+| --------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `learnerStore`  | `src/lib/stores/learner.svelte.ts`  | All learner profiles + the active learner                                                                              |
+| `lessonsStore`  | `src/lib/stores/lessons.svelte.ts`  | Web and typing lesson lists                                                                                            |
+| `attemptsStore` | `src/lib/stores/attempts.svelte.ts` | Every lesson attempt ever made                                                                                         |
+| `codeData`      | `src/lib/stores/codeData.svelte.ts` | In-progress code state during a web lesson (HTML lines, CSS lines, recently-rendered line indices for flash animation) |
 
 ---
 

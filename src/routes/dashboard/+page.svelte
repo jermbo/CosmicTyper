@@ -5,6 +5,7 @@
 	import { attemptsStore } from '$lib/stores/attempts.svelte';
 	import { lessonsStore } from '$lib/stores/lessons.svelte';
 	import { formatPracticeTime, relativeDate } from '$lib/utils/format';
+	import { slugify } from '$lib/utils/lesson';
 
 	let learner = $derived(learnerStore.activeLearner);
 
@@ -35,16 +36,16 @@
 		return null;
 	});
 
-	function slugify(name: string): string {
-		return name.toLowerCase().split(' ').join('_');
-	}
-
 	onMount(() => {
 		// Lessons power the activity titles and the "continue learning" shortcut.
 		if (!lessonsStore.webLessons.length) lessonsStore.loadWebLessons();
 		if (!lessonsStore.typingLessons.length) lessonsStore.loadTypingLessons();
 	});
 </script>
+
+<svelte:head>
+	<title>Dashboard — Student Typer</title>
+</svelte:head>
 
 {#if learner}
 	<section class="dashboard">

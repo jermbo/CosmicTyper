@@ -3,11 +3,29 @@ import { getLsItem, setLsItem } from '$lib/utils/storage';
 
 const ATTEMPTS_KEY = 'ct_attempts';
 
+function isValidAttempt(item: unknown): item is Attempt {
+	if (!item || typeof item !== 'object') return false;
+	const a = item as Record<string, unknown>;
+	return (
+		typeof a.id === 'string' &&
+		typeof a.learnerId === 'string' &&
+		typeof a.lessonId === 'string' &&
+		typeof a.completedAt === 'string' &&
+		typeof a.duration === 'number' &&
+		typeof a.keystrokes === 'number' &&
+		typeof a.mistakes === 'number' &&
+		typeof a.accuracy === 'number' &&
+		a.accuracy >= 0 &&
+		a.accuracy <= 100
+	);
+}
+
 class AttemptsStore {
 	attempts = $state<Attempt[]>([]);
 
 	load() {
-		this.attempts = getLsItem<Attempt[]>(ATTEMPTS_KEY) ?? [];
+		const raw = getLsItem<Attempt[]>(ATTEMPTS_KEY);
+		this.attempts = Array.isArray(raw) ? raw.filter(isValidAttempt) : [];
 	}
 
 	add(data: Omit<Attempt, 'id' | 'completedAt'>): Attempt {
@@ -34,12 +52,6 @@ class AttemptsStore {
 		const list = this.forLesson(learnerId, lessonId);
 		if (!list.length) return null;
 		return list.reduce((latest, a) => (a.completedAt > latest.completedAt ? a : latest));
-	}
-
-	bestAccuracyFor(learnerId: string, lessonId: string): number | null {
-		const list = this.forLesson(learnerId, lessonId);
-		if (!list.length) return null;
-		return Math.max(...list.map((a) => a.accuracy));
 	}
 
 	/** Unique lesson ids the learner has completed at least once. */

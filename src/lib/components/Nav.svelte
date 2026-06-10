@@ -18,7 +18,15 @@
 		isOpen = false;
 		goto('/');
 	}
+
+	function handleKeydown(e: KeyboardEvent) {
+		if (e.key === 'Escape' && isOpen) {
+			isOpen = false;
+		}
+	}
 </script>
+
+<svelte:window onkeydown={handleKeydown} />
 
 <nav aria-label="main navigation">
 	<div class="nav-brand">
@@ -27,10 +35,12 @@
 		</a>
 
 		<button
+			type="button"
 			class="burger"
 			class:is-open={isOpen}
 			aria-label="menu"
 			aria-expanded={isOpen}
+			aria-controls="nav-menu"
 			onclick={() => (isOpen = !isOpen)}
 		>
 			<span></span>
@@ -40,7 +50,7 @@
 	</div>
 
 	{#if learner}
-		<div class="nav-menu" class:is-open={isOpen}>
+		<div id="nav-menu" class="nav-menu" class:is-open={isOpen}>
 			<a href="/web-lessons" class="nav-link" class:active={isActive('/web-lessons')}>
 				Web Lessons
 			</a>
@@ -54,7 +64,7 @@
 				<LearnerAvatar name={learner.name} color={learner.color} size={32} />
 				<span class="learner-name">{learner.name}</span>
 			</a>
-			<button class="switch-btn" onclick={switchLearner}>Switch</button>
+			<button type="button" class="switch-btn" onclick={switchLearner}>Switch</button>
 		</div>
 	{/if}
 </nav>

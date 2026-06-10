@@ -5,7 +5,7 @@
 <section class="not-found">
 	<h1>{page.status}</h1>
 	<p>{page.error?.message ?? 'Something went wrong.'}</p>
-	<a href="/welcome">Go home</a>
+	<a href="/">Go home</a>
 </section>
 
 <style>

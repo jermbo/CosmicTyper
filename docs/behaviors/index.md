@@ -16,13 +16,13 @@ The behaviors folder documents what CosmicTyper does — not how it's built. Eac
 
 ## Documents
 
-| Doc | What it covers |
-|-----|----------------|
-| [User Journey](user-journey.md) | End-to-end flow from opening the app to finishing a lesson |
-| [Learner System](learner-system.md) | Profiles, color identity, selection, and active learner session |
-| [Web Lessons](web-lessons.md) | How HTML/CSS typing lessons work — steps, live preview, keystroke mechanics |
-| [Typing Lessons](typing-lessons.md) | How general typing lessons work — teleprompter display, keystroke mechanics |
-| [Results and Progress](results-and-progress.md) | Results screen, accuracy calculation, dashboard stats |
+| Doc                                             | What it covers                                                              |
+| ----------------------------------------------- | --------------------------------------------------------------------------- |
+| [User Journey](user-journey.md)                 | End-to-end flow from opening the app to finishing a lesson                  |
+| [Learner System](learner-system.md)             | Profiles, color identity, selection, and active learner session             |
+| [Web Lessons](web-lessons.md)                   | How HTML/CSS typing lessons work — steps, live preview, keystroke mechanics |
+| [Typing Lessons](typing-lessons.md)             | How general typing lessons work — teleprompter display, keystroke mechanics |
+| [Results and Progress](results-and-progress.md) | Results screen, accuracy calculation, dashboard stats                       |
 
 ---
 

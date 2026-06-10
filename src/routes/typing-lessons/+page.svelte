@@ -10,6 +10,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Typing Lessons — Student Typer</title>
+</svelte:head>
+
 <section class="page">
 	<header class="page-header">
 		<h1>Typing Lessons</h1>

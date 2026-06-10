@@ -87,8 +87,9 @@
 		font-family: inherit;
 	}
 
-	.name-input:focus {
-		outline: none;
+	.name-input:focus-visible {
+		outline: 2px solid var(--color-blue);
+		outline-offset: 0;
 		border-color: var(--color-blue);
 	}
 

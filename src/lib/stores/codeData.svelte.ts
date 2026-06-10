@@ -2,9 +2,9 @@ class CodeDataStore {
 	htmlCode = $state<string[]>([]);
 	cssCode = $state<string[]>([]);
 
-	// Line indices added by the most recent push, so the minimap can flash
-	// exactly what just rendered. Replaced (not appended) on each push so only
-	// the newest lines highlight.
+	// Index range of lines added by the most recent push, so the minimap can
+	// flash exactly what just rendered. Replaced on each push so only the
+	// newest lines highlight.
 	recentHtml = $state<number[]>([]);
 	recentCss = $state<number[]>([]);
 	// Which pane changed most recently, so the minimap can reveal it.
@@ -20,7 +20,7 @@ class CodeDataStore {
 
 	pushHtml(lines: string[]) {
 		const start = this.htmlCode.length;
-		this.htmlCode = [...this.htmlCode, ...lines];
+		this.htmlCode.push(...lines);
 		this.recentHtml = lines.map((_, i) => start + i);
 		this.recentCss = [];
 		this.lastTouched = 'html';
@@ -28,7 +28,7 @@ class CodeDataStore {
 
 	pushCss(lines: string[]) {
 		const start = this.cssCode.length;
-		this.cssCode = [...this.cssCode, ...lines];
+		this.cssCode.push(...lines);
 		this.recentCss = lines.map((_, i) => start + i);
 		this.recentHtml = [];
 		this.lastTouched = 'css';

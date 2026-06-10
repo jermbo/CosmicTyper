@@ -7,32 +7,73 @@
 	$effect(() => {
 		tabFocus = codeData.lastTouched;
 	});
+
+	// Use Sets for O(1) flash lookups instead of Array.includes.
+	let recentHtmlSet = $derived(new Set(codeData.recentHtml));
+	let recentCssSet = $derived(new Set(codeData.recentCss));
 </script>
 
 <div class="code-display">
-	<div class="tabs">
+	<div class="tabs" role="tablist" aria-label="Code output">
 		<div class="tab-group">
-			<button class="tab" class:focus={tabFocus === 'html'} onclick={() => (tabFocus = 'html')}>
+			<button
+				type="button"
+				class="tab"
+				class:focus={tabFocus === 'html'}
+				role="tab"
+				aria-selected={tabFocus === 'html'}
+				aria-controls="code-panel-html"
+				id="tab-html"
+				onclick={() => (tabFocus = 'html')}
+			>
 				HTML
 			</button>
-			<button class="tab" class:focus={tabFocus === 'css'} onclick={() => (tabFocus = 'css')}>
+			<button
+				type="button"
+				class="tab"
+				class:focus={tabFocus === 'css'}
+				role="tab"
+				aria-selected={tabFocus === 'css'}
+				aria-controls="code-panel-css"
+				id="tab-css"
+				onclick={() => (tabFocus = 'css')}
+			>
 				CSS
 			</button>
 		</div>
 	</div>
 
 	<div class="displays">
-		<pre class="display" class:focus={tabFocus === 'html'}>
-			{#each codeData.htmlCode as line, i}
-				<div class="display-line" class:flash={codeData.recentHtml.includes(i)}>{i +
-						1}: {line}</div>
-			{/each}
-		</pre>
-		<pre class="display" class:focus={tabFocus === 'css'}>
-			{#each codeData.cssCode as line, i}
-				<div class="display-line" class:flash={codeData.recentCss.includes(i)}>{i + 1}: {line}</div>
-			{/each}
-		</pre>
+		<div
+			id="code-panel-html"
+			class="display"
+			class:focus={tabFocus === 'html'}
+			role="tabpanel"
+			aria-labelledby="tab-html"
+		>
+			<pre class="display-pre"><code
+					>{#each codeData.htmlCode as line, i}<span
+							class="display-line"
+							class:flash={recentHtmlSet.has(i)}
+							>{i + 1}: {line}
+</span>{/each}</code
+				></pre>
+		</div>
+		<div
+			id="code-panel-css"
+			class="display"
+			class:focus={tabFocus === 'css'}
+			role="tabpanel"
+			aria-labelledby="tab-css"
+		>
+			<pre class="display-pre"><code
+					>{#each codeData.cssCode as line, i}<span
+							class="display-line"
+							class:flash={recentCssSet.has(i)}
+							>{i + 1}: {line}
+</span>{/each}</code
+				></pre>
+		</div>
 	</div>
 </div>
 
@@ -72,8 +113,9 @@
 		border-top-color: var(--color-cherry);
 	}
 
-	.tab:focus {
-		outline: none;
+	.tab:focus-visible {
+		outline: 2px solid var(--color-blue);
+		outline-offset: -2px;
 	}
 
 	.displays {
@@ -97,11 +139,26 @@
 		background: #d4d4db;
 	}
 
+	.display-pre {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 100%;
+		overflow-x: auto;
+		background: transparent;
+	}
+
+	.display-pre code {
+		display: block;
+		font-family: inherit;
+	}
+
 	.display.focus {
 		opacity: 1;
 	}
 
 	.display-line {
+		display: block;
 		padding: 4px calc(var(--padding) / 2);
 	}
 

@@ -18,16 +18,16 @@ A learner is a named profile with a color. Profiles exist so multiple people can
 
 The learner picks a name (up to 30 characters) and one color from a fixed palette of eight:
 
-| Name | Color |
-|------|-------|
-| Cherry | `#e64c65` |
-| Ocean | `#35aadc` |
-| Lime | `#bada55` |
+| Name      | Color     |
+| --------- | --------- |
+| Cherry    | `#e64c65` |
+| Ocean     | `#35aadc` |
+| Lime      | `#bada55` |
 | Tangerine | `#fcb150` |
-| Lavender | `#a855f7` |
-| Mint | `#10b981` |
-| Slate | `#64748b` |
-| Coral | `#f97316` |
+| Lavender  | `#a855f7` |
+| Mint      | `#10b981` |
+| Slate     | `#64748b` |
+| Coral     | `#f97316` |
 
 The palette is fixed intentionally — no hex input, no confusion for beginners. The color becomes the learner's visual identity throughout the app (avatar, cards, accents).
 

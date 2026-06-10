@@ -13,6 +13,8 @@
 
 	let { lessonTitle, result, previous, ontryagain, ondone }: Props = $props();
 
+	let dialogEl = $state<HTMLDialogElement | null>(null);
+
 	// Comparison lines vs. the previous attempt.
 	let comparisons = $derived.by(() => {
 		if (!previous) return ['First time completing this lesson 🎉'];
@@ -31,9 +33,27 @@
 
 		return lines;
 	});
+
+	$effect(() => {
+		const el = dialogEl;
+		if (!el) return;
+		el.showModal();
+		return () => el.close();
+	});
+
+	// The native cancel event fires when the user presses Escape.
+	function handleCancel(e: Event) {
+		e.preventDefault();
+		ondone?.();
+	}
 </script>
 
-<div class="overlay" role="dialog" aria-modal="true" aria-label="Lesson results">
+<dialog
+	bind:this={dialogEl}
+	class="results-dialog"
+	oncancel={handleCancel}
+	aria-label="Lesson results"
+>
 	<div class="card">
 		<p class="eyebrow">Lesson complete</p>
 		<h2 class="title">{lessonTitle}</h2>
@@ -64,21 +84,23 @@
 		</ul>
 
 		<div class="actions">
-			<button class="btn btn-ghost" onclick={() => ontryagain?.()}>Try Again</button>
-			<button class="btn btn-primary" onclick={() => ondone?.()}>Done</button>
+			<button type="button" class="btn btn-ghost" onclick={() => ontryagain?.()}>Try Again</button>
+			<button type="button" class="btn btn-primary" onclick={() => ondone?.()}>Done</button>
 		</div>
 	</div>
-</div>
+</dialog>
 
 <style>
-	.overlay {
-		position: fixed;
-		inset: 0;
-		z-index: 200;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 1rem;
+	.results-dialog {
+		border: none;
+		border-radius: 14px;
+		padding: 0;
+		max-width: 520px;
+		width: calc(100% - 2rem);
+		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+	}
+
+	.results-dialog::backdrop {
 		background: rgba(54, 54, 54, 0.55);
 	}
 
@@ -86,10 +108,7 @@
 		background: var(--color-white);
 		border-radius: 14px;
 		padding: 2rem;
-		max-width: 520px;
-		width: 100%;
 		text-align: center;
-		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 	}
 
 	.eyebrow {

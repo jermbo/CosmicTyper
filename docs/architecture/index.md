@@ -44,13 +44,13 @@ graph TD
 
 ## Key Layers
 
-| Layer | What lives here |
-|-------|----------------|
-| **Routes** | Pages — each route owns its data-loading and layout |
-| **Stores** | Reactive state — `learnerStore`, `lessonsStore`, `attemptsStore`, `codeDataStore` |
-| **Components** | Reusable UI — `CodeGUI`, `TypingGUI`, `LearnerCard`, `ResultsScreen`, etc. |
-| **Utils** | Pure helpers — `storage.ts`, `api.ts`, `format.ts`, `lesson.ts` |
-| **Types** | Shared TypeScript interfaces — `Learner`, `Attempt`, `WebLesson`, `TypingLesson` |
+| Layer          | What lives here                                                                   |
+| -------------- | --------------------------------------------------------------------------------- |
+| **Routes**     | Pages — each route owns its data-loading and layout                               |
+| **Stores**     | Reactive state — `learnerStore`, `lessonsStore`, `attemptsStore`, `codeDataStore` |
+| **Components** | Reusable UI — `CodeGUI`, `TypingGUI`, `LearnerCard`, `ResultsScreen`, etc.        |
+| **Utils**      | Pure helpers — `storage.ts`, `api.ts`, `format.ts`, `lesson.ts`                   |
+| **Types**      | Shared TypeScript interfaces — `Learner`, `Attempt`, `WebLesson`, `TypingLesson`  |
 
 ---
 

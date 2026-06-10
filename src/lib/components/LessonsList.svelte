@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { WebLesson, TypingLesson } from '$lib/types';
+	import { slugify } from '$lib/utils/lesson';
 	import { learnerStore } from '$lib/stores/learner.svelte';
 	import { attemptsStore } from '$lib/stores/attempts.svelte';
 
@@ -16,10 +17,6 @@
 			? attemptsStore.completedLessonIds(learnerStore.activeLearner.id)
 			: new Set<string>()
 	);
-
-	function slugify(name: string): string {
-		return name.toLowerCase().split(' ').join('_');
-	}
 </script>
 
 <div class="lesson-table-wrapper">
@@ -33,12 +30,13 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each lessons as lesson}
+			{#each lessons as lesson (lesson.id)}
 				{@const isCompleted = completedIds.has(lesson.id)}
 				<tr class:completed={isCompleted}>
 					<td class="col-done">
 						{#if isCompleted}
-							<span class="check">✓</span>
+							<span class="check" aria-hidden="true">✓</span>
+							<span class="sr-only">Completed</span>
 						{/if}
 					</td>
 					<td class="col-title">{lesson.title}</td>
@@ -150,5 +148,17 @@
 
 	.btn-start:hover {
 		background: #2787b3;
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border-width: 0;
 	}
 </style>

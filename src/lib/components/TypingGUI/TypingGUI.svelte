@@ -28,7 +28,7 @@
 	let lines = $derived(lesson?.steps ?? []);
 	let lineEls = $state<HTMLElement[]>([]);
 
-	const modifiers = ['CapsLock', 'Shift', 'Control', 'Alt', 'Meta', 'Tab'];
+	const modifiers = ['CapsLock', 'Shift', 'Control', 'Alt', 'Meta'];
 
 	// Teleprompter: keep the active line pinned at the vertical center as the
 	// learner advances. tick() lets the DOM settle (e.g. after a lesson reset)
@@ -37,7 +37,8 @@
 		const step = currentStep;
 		lesson;
 		tick().then(() => {
-			lineEls[step]?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+			const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			lineEls[step]?.scrollIntoView({ block: 'center', behavior: reduced ? 'auto' : 'smooth' });
 		});
 	});
 
@@ -69,7 +70,7 @@
 	function handleKeydown(e: KeyboardEvent) {
 		if (!lesson || !actionOutput.length) return;
 		const key = e.key;
-		if (modifiers.includes(key)) return;
+		if (modifiers.includes(key) || key === 'Tab') return;
 		e.preventDefault();
 
 		if (startTime === null) startTime = Date.now();
@@ -115,10 +116,17 @@
 
 <div class="typing-wrapper">
 	{#if lesson}
-		<div class="progress-track">
+		<div
+			class="progress-track"
+			role="progressbar"
+			aria-valuenow={currentStep}
+			aria-valuemin={0}
+			aria-valuemax={lesson.steps.length}
+			aria-label="Lesson progress"
+		>
 			<div class="progress-fill" style="width: {(currentStep / lesson.steps.length) * 100}%"></div>
 		</div>
-		<div class="progress-label">
+		<div class="progress-label" aria-hidden="true">
 			Step {currentStep + 1} / {lesson.steps.length}
 		</div>
 	{/if}
