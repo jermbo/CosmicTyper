@@ -6,46 +6,47 @@
 		{
 			"type": "dom",
 			"desc": "Forms give you a way to let the user interact with your website. The most common input field is a text field.",
+			"render": true,
 			"action": [
 				"<input type=\"text\" placeholder=\"Favorite Ice Cream>\">"
-			],
-			"render": true
+			]
 		},
 		{
 			"type": "dom",
 			"desc": "Radio buttons allow the user to select one of many options.",
+			"render": true,
 			"action": [
 				"<label>Vanilla</label>",
 				"<input type=\"radio\" name=\"flavor\" value=\"vanilla\">",
 				"<label>Chocolate</label>",
 				"<input type=\"radio\" name=\"flavor\" value=\"chocolate\">",
 				""
-			],
-			"render": true
+			]
 		},
 		{
 			"type": "dom",
 			"desc": "Checkboxes allow the user to click more than one option.",
+			"render": true,
 			"action": [
 				"<label>Vanilla</label>",
 				"<input type=\"checkbox\" name=\"flavor\" value=\"vanilla\">",
 				"<label>Chocolate</label>",
 				"<input type=\"checkbox\" name=\"flavor\" value=\"chocolate\">",
 				""
-			],
-			"render": true
+			]
 		},
 		{
 			"type": "dom",
 			"desc": "Sometimes, the user has a lot to type. Thankfully, HTML has a text area that allows users to type as much as they need.",
+			"render": true,
 			"action": [
 				"<textarea name=\"special-info\" cols=\"20\" rows=\"20\"></textarea>"
-			],
-			"render": true
+			]
 		},
 		{
 			"type": "dom",
 			"desc": "The web is full of forms. All form elements should be wrapped inside a from tag to get the full benefit.",
+			"render": true,
 			"action": [
 				"<form>",
 				"  <label>Do you like Ice Cream?</label>",
@@ -53,16 +54,15 @@
 				"  <label>What flavor?</label>",
 				"  <input type=\"text\" placeholder=\"\">",
 				"</form>"
-			],
-			"render": true
+			]
 		},
 		{
 			"type": "dom",
 			"desc": "All forms need to be \"submitted\", so let's give every form a submit button",
+			"render": true,
 			"action": [
 				"<input type=\"submit\" value=\"Make Ice Cream\">"
-			],
-			"render": true
+			]
 		}
 	]
 }

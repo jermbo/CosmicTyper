@@ -6,18 +6,19 @@
 		{
 			"type": "dom",
 			"desc": "FlexBox is a tool that allows you to control the position of an items children tags. Let's add some html so we can start styling.",
+			"render": true,
 			"action": [
 				"<div class=\"item-container\">",
 				"  <div class=\"circle\"></div>",
 				"  <div class=\"square\"></div>",
 				"  <div class=\"circle\"></div>",
 				"</div>"
-			],
-			"render": true
+			]
 		},
 		{
 			"type": "style",
 			"desc": "Let's first take care of the circles and square, as we will see these over and over.",
+			"render": true,
 			"action": [
 				".square {",
 				"  background-color: goldenrod;",
@@ -30,152 +31,151 @@
 				"  width: 10vw;",
 				"  height: 10vw;",
 				"}"
-			],
-			"render": true
+			]
 		},
 		{
 			"type": "style",
 			"desc": "Now the shapes are done, let's make sure all the item containers get a couple of base styles.",
+			"render": true,
 			"action": [
 				".item-container { ",
 				"  display: flex;",
 				"  background-color: lightgray;",
 				"  margin-top: 1.5rem;",
 				"}"
-			],
-			"render": true
+			]
 		},
 		{
 			"type": "dom",
 			"desc": "Moving things to the right hand side is a very simple task. Let's add the markup, but give it a special class of end. ",
+			"render": true,
 			"action": [
 				"<div class=\"item-container end\">",
 				"  <div class=\"circle\"></div>",
 				"  <div class=\"square\"></div>",
 				"  <div class=\"circle\"></div>",
 				"</div>"
-			],
-			"render": true
+			]
 		},
 		{
 			"type": "style",
 			"desc": "To move things to the opposite end, we can simply justify the content to the flex end.",
+			"render": true,
 			"action": [
 				".end {",
 				"  justify-content: flex-end;",
 				"}"
-			],
-			"render": true
+			]
 		},
 		{
 			"type": "dom",
 			"desc": "Very often, we need to center things to exact middle of the container. Let's add the markup and add a special class to center.",
+			"render": true,
 			"action": [
 				"<div class=\"item-container center-main\">",
 				"  <div class=\"circle\"></div>",
 				"  <div class=\"square\"></div>",
 				"  <div class=\"circle\"></div>",
 				"</div>"
-			],
-			"render": true
+			]
 		},
 		{
 			"type": "style",
 			"desc": "With the special class of center main added, let's justify the content to the center. ",
+			"render": true,
 			"action": [
 				".center-main {",
 				"  justify-content: center;",
 				"}"
-			],
-			"render": true
+			]
 		},
 		{
 			"type": "dom",
 			"desc": "Things are getting a little cramped. Let's spread things out and create mark up with a special class. ",
+			"render": true,
 			"action": [
 				"<div class=\"item-container between\">",
 				"  <div class=\"circle\"></div>",
 				"  <div class=\"square\"></div>",
 				"  <div class=\"circle\"></div>",
 				"</div>"
-			],
-			"render": true
+			]
 		},
 		{
 			"type": "style",
 			"desc": "Setting the space between items is as simple as setting the justify content to space between.",
+			"render": true,
 			"action": [
 				".between {",
 				"  justify-content: space-between;",
 				"}"
-			],
-			"render": true
+			]
 		},
 		{
 			"type": "dom",
 			"desc": "There are times where touching edges in not the best look. Create some markup with a special class to address this.",
+			"render": true,
 			"action": [
 				"<div class=\"item-container around\">",
 				"  <div class=\"circle\"></div>",
 				"  <div class=\"square\"></div>",
 				"  <div class=\"circle\"></div>",
 				"</div>"
-			],
-			"render": true
+			]
 		},
 		{
 			"type": "style",
 			"desc": "We can space things evenly around each object by setting the space around value of justify content.",
+			"render": true,
 			"action": [
 				".around {",
 				"  justify-content: space-around;",
 				"}"
-			],
-			"render": true
+			]
 		},
 		{
 			"type": "dom",
 			"desc": "Vertical centering is super easy with FlexBox. Create the markup with a special class to center vertically and horizontally.",
+			"render": true,
 			"action": [
 				"<div class=\"item-container center-main center-cross\">",
 				"  <div class=\"circle\"></div>",
 				"  <div class=\"square\"></div>",
 				"  <div class=\"circle\"></div>",
 				"</div>"
-			],
-			"render": true
+			]
 		},
 		{
 			"type": "style",
 			"desc": "We have already added the center main, now let's add the center cross to get things centered vertically.",
+			"render": true,
 			"action": [
 				".center-cross {",
 				"  align-items: center;",
 				"}"
-			],
-			"render": true
+			]
 		},
 		{
 			"type": "dom",
 			"desc": "Changing the order of things is a powerful feature of FlexBox. Let's see how to make the square the first item visually. We need to first create the markup with a special class.",
+			"render": true,
 			"action": [
 				"<div class=\"item-container square-first\">",
 				"  <div class=\"circle\"></div>",
 				"  <div class=\"square\"></div>",
 				"  <div class=\"circle\"></div>",
 				"</div>"
-			],
-			"render": true
+			]
 		},
 		{
 			"type": "style",
 			"desc": "You can select children elements by setting the items in order from parent to child separated by a space.",
+			"render": true,
 			"action": [
 				".square-first .square {",
 				"  order: -1;",
 				"}"
-			],
-			"render": true
+			]
 		}
 	]
 }
