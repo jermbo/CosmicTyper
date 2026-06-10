@@ -23,7 +23,7 @@ Learners can see their accuracy trend over time per lesson — not just the last
 The lessons list should surface which lessons a learner has already completed and what their best accuracy was. Again, data exists — needs a UI pass.
 
 **Offline Support**
-Lessons are fetched from an external API and [cached in localStorage](architecture/data-persistence.md). A service worker would make the app fully offline-capable after the first load.
+Lessons are [bundled in the app](architecture/data-persistence.md). A service worker would make the app fully offline-capable after the first load.
 
 ---
 

@@ -16,13 +16,11 @@ CosmicTyper is local-first. All data lives in the browser's `localStorage`. Ther
 
 ## localStorage Keys
 
-| Key                 | Type             | Owned by        | Description                        |
-| ------------------- | ---------------- | --------------- | ---------------------------------- |
-| `ct_learners`       | `Learner[]`      | `learnerStore`  | All learner profiles               |
-| `ct_active_learner` | `string`         | `learnerStore`  | ID of the currently active learner |
-| `ct_attempts`       | `Attempt[]`      | `attemptsStore` | Every lesson attempt, all learners |
-| `ct_lessons_web`    | `WebLesson[]`    | `lessonsStore`  | Cached web lessons from the API    |
-| `ct_lessons_typing` | `TypingLesson[]` | `lessonsStore`  | Cached typing lessons from the API |
+| Key                 | Type        | Owned by        | Description                        |
+| ------------------- | ----------- | --------------- | ---------------------------------- |
+| `ct_learners`       | `Learner[]` | `learnerStore`  | All learner profiles               |
+| `ct_active_learner` | `string`    | `learnerStore`  | ID of the currently active learner |
+| `ct_attempts`       | `Attempt[]` | `attemptsStore` | Every lesson attempt, all learners |
 
 ---
 
@@ -65,9 +63,11 @@ clearAll(); // wipe everything (dev/debug use only)
 
 ---
 
-## Lesson Ordering
+## Lesson Content
 
-Lessons are sorted by `difficulty` (alphabetical: `easy` → `hard` → `medium`) immediately after fetching from the API and before being written to the cache. The sort is applied once at fetch time — the cached value is already sorted.
+Web and typing lessons live in `src/lib/data/web-lessons.json` and `src/lib/data/typing-lessons.json`. They are imported at build time — no network request, no localStorage cache. Edit those files to add or tweak lessons.
+
+Lessons are sorted by `difficulty` (alphabetical: `easy` → `hard` → `medium`) when `lessonsStore` loads.
 
 ---
 

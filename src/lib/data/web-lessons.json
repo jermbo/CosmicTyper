@@ -1,0 +1,567 @@
+[
+	{
+		"id": "_0v1xtqof5",
+		"title": "Getting to know HTML",
+		"difficulty": "easy",
+		"steps": [
+			{
+				"type": "dom",
+				"desc": "HTML is made up of tags. Different tags do different things, but they all follow the same rules. Let's look at some heading rules. Let's look at some header tags.",
+				"render": true,
+				"action": [
+					"<h1>Heading 1</h1>",
+					"<h2>Heading 2</h2>",
+					"<h3>Heading 3</h3>"
+				]
+			},
+			{
+				"type": "dom",
+				"desc": "Header tags go all the way up to 6.",
+				"action": [
+					"<h4>Heading 4</h4>",
+					"<h5>Heading 5</h5>",
+					"<h6>Heading 6</h6>"
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "HTML has different text tags.",
+				"action": [
+					"<p>This is a paragraph tag</p>",
+					"<p>We can <strong>bold</strong> some text</p>",
+					"<p>Or we can <em>emphasize</em> some text</p>"
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "We can list things with no particular order with unordered lists.",
+				"action": [
+					"<ul>",
+					"  <li>Apples</li>",
+					"  <li>Pears</li>",
+					"  <li>Grapes</li>",
+					"  <li>Oranges</li>",
+					"</ul>"
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "Or give them a very specific order with ordered lists.",
+				"action": [
+					"<ol>",
+					"  <li>Step 1</li>",
+					"  <li>Step 2</li>",
+					"  <li>Step 3</li>",
+					"  <li>Step 4</li>",
+					"</ol>"
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "HTML is a very structured language. We can group our code with div's, header's, main's and aside's.",
+				"action": [
+					"<div>Just a normal ol div</div>",
+					"<header>I go at the top</header>",
+					"<footer>I go at the bottom</footer>",
+					"<main>I hold important information</main>"
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "HTML can display images to! Remember to give it an alt attribute.",
+				"action": [
+					"<img src=\"https://placekitten.com/200/200\" alt=\"Purrrr purrrr\">"
+				],
+				"render": true
+			}
+		]
+	},
+	{
+		"id": "_2w9stzngk",
+		"title": "HTML Inputs",
+		"difficulty": "easy",
+		"steps": [
+			{
+				"type": "dom",
+				"desc": "Forms give you a way to let the user interact with your website. The most common input field is a text field.",
+				"action": [
+					"<input type=\"text\" placeholder=\"Favorite Ice Cream>\">"
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "Radio buttons allow the user to select one of many options.",
+				"action": [
+					"<label>Vanilla</label>",
+					"<input type=\"radio\" name=\"flavor\" value=\"vanilla\">",
+					"<label>Chocolate</label>",
+					"<input type=\"radio\" name=\"flavor\" value=\"chocolate\">",
+					""
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "Checkboxes allow the user to click more than one option.",
+				"action": [
+					"<label>Vanilla</label>",
+					"<input type=\"checkbox\" name=\"flavor\" value=\"vanilla\">",
+					"<label>Chocolate</label>",
+					"<input type=\"checkbox\" name=\"flavor\" value=\"chocolate\">",
+					""
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "Sometimes, the user has a lot to type. Thankfully, HTML has a text area that allows users to type as much as they need.",
+				"action": [
+					"<textarea name=\"special-info\" cols=\"20\" rows=\"20\"></textarea>"
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "The web is full of forms. All form elements should be wrapped inside a from tag to get the full benefit.",
+				"action": [
+					"<form>",
+					"  <label>Do you like Ice Cream?</label>",
+					"  <input type=\"checkbox\" value=\"yes\">",
+					"  <label>What flavor?</label>",
+					"  <input type=\"text\" placeholder=\"\">",
+					"</form>"
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "All forms need to be \"submitted\", so let's give every form a submit button",
+				"action": [
+					"<input type=\"submit\" value=\"Make Ice Cream\">"
+				],
+				"render": true
+			}
+		]
+	},
+	{
+		"id": "_y59oqyt6r",
+		"title": "HTML Attributes",
+		"difficulty": "easy",
+		"steps": [
+			{
+				"type": "dom",
+				"desc": "Some tags need special attributes to do something different. Let's look at an anchor tag and see how to link it to google.",
+				"action": [
+					"<a href=\"https://google.com\" target=\"_blank\">Google</a>"
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "Where else can an anchor go? Let's checkout YouTube.",
+				"action": [
+					"<a href=\"https://youtube.com\" target=\"_blank\">Youtube</a>"
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "Image tags display an image, what image it displays is determined by the src attribute.",
+				"action": [
+					"<img src=\"https://placekitten.com/300/300\" />"
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "It's a good idea to add an alt attribute to images to help with accessibility. ",
+				"action": [
+					"<img src=\"https://picsum.photos/id/237/200/300\" alt=\"Look at that puppy!\">"
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "Not all tags get the same attributes. The three main attributes that every tag does get are id, class, and data.",
+				"action": [
+					"<section id=\"article\">",
+					"  <img class=\"article-image\" src=\"https://picsum.photos/id/791/200/300.jpg\" alt=\"Balloons!\">",
+					"  <p class=\"article-text\">How would you like to ride in a hot air balloon?</p>",
+					"</section>"
+				],
+				"render": true
+			}
+		]
+	},
+	{
+		"id": "_hop9rzxbm",
+		"title": "CSS Basics",
+		"difficulty": "easy",
+		"steps": [
+			{
+				"type": "dom",
+				"desc": "Before we can style anything, we need something to style.",
+				"action": [
+					"<div class=\"box\">",
+					"  <p>Just some simple text</p>",
+					"  <p class=\"different\">This text will be different</p>",
+					"  <p class=\"different\">This will be the same as above</p>",
+					"  <p id=\"special\">No other text will be like this one</p>",
+					"</div>",
+					""
+				],
+				"render": true
+			},
+			{
+				"type": "style",
+				"desc": "Now that we have tags to style, let's start by styling the box.",
+				"action": [
+					".box {",
+					"  background: #e5e5e5;",
+					"  border: 5px solid #222;",
+					"  padding: 0 15px;",
+					"}"
+				],
+				"render": true
+			},
+			{
+				"type": "style",
+				"desc": "Why not make the paragraphs larger and bolder. ",
+				"action": [
+					"p {",
+					"  font-size: 25px;",
+					"  font-weight: bolder;",
+					"  font-family: Arial;",
+					"}"
+				],
+				"render": true
+			},
+			{
+				"type": "style",
+				"desc": "We added a couple of paragraphs with a class of \"different\". Let's make them different.",
+				"action": [
+					".different {",
+					"  color: goldenrod;",
+					"  font-family: cursive;",
+					"}"
+				],
+				"render": true
+			},
+			{
+				"type": "style",
+				"desc": "What about special? How can we make that one standout?",
+				"action": [
+					"#special {",
+					"  text-transform: uppercase;",
+					"  color: teal;",
+					"  text-align: center;",
+					"  font-size: 55px;",
+					"}"
+				],
+				"render": true
+			}
+		]
+	},
+	{
+		"id": "_pgyljpalu",
+		"title": "Button Styles",
+		"difficulty": "easy",
+		"steps": [
+			{
+				"type": "dom",
+				"desc": "Styling buttons is a very common task. Let's add some markup so we can style them later. ",
+				"action": [
+					"<div id=\"buttons\">",
+					"  <a href=\"#\" class=\"btn blue\">Blue Button</a>",
+					"  <a href=\"#\" class=\"btn green\">Green Button</a>",
+					"  <a href=\"#\" class=\"btn red\">Red Button</a>",
+					"  <a href=\"#\" class=\"btn purple\">Purple Button</a>",
+					"</div>"
+				],
+				"render": true
+			},
+			{
+				"type": "style",
+				"desc": "The parent div needs a bit of attention first. This is purely for demo purposes.",
+				"action": [
+					"#buttons {",
+					"  padding-top: 50px;",
+					"  text-align: center;",
+					"}"
+				],
+				"render": true
+			},
+			{
+				"type": "style",
+				"desc": "Utilizing a class, we can make all buttons have a base set of styles.",
+				"action": [
+					".btn {",
+					"  border-radius: 5px;",
+					"  padding: 15px 25px;",
+					"  font-size: 22px;",
+					"  text-decoration: none;",
+					"  margin: 20px;",
+					"  color: #fff;",
+					"  position: relative;",
+					"  display: inline-block;",
+					"}"
+				],
+				"render": true
+			},
+			{
+				"type": "style",
+				"desc": "You see the \"active\" state of a button. It's a pseudo class that represents a specific state a tag can be in.",
+				"action": [
+					".btn:active {",
+					"  transform: translate(0px, 5px);",
+					"  box-shadow: 0 1px 0 0;",
+					"}"
+				],
+				"render": true
+			},
+			{
+				"type": "style",
+				"desc": "Let's make the blue look good.",
+				"action": [
+					".blue {",
+					"  background-color: #55acee;",
+					"  box-shadow: 0px 5px 0px 0px #3C93D5;",
+					"}",
+					".blue:hover {",
+					"  background-color: #6FC6FF;",
+					"}"
+				],
+				"render": true
+			},
+			{
+				"type": "style",
+				"desc": "Next is the green button.",
+				"action": [
+					".green {",
+					"  background-color: #2ecc71;",
+					"  box-shadow: 0px 5px 0px 0px #15B358;",
+					"}",
+					".green:hover {",
+					"  background-color: #48E68B;",
+					"}"
+				],
+				"render": true
+			},
+			{
+				"type": "style",
+				"desc": "Red button is next in line. ",
+				"action": [
+					".red {",
+					"  background-color: #e74c3c;",
+					"  box-shadow: 0px 5px 0px 0px #CE3323;",
+					"}",
+					".red:hover {",
+					"  background-color: #FF6656;",
+					"}"
+				],
+				"render": true
+			},
+			{
+				"type": "style",
+				"desc": "Purple button needs a little bit of attention as well. ",
+				"action": [
+					".purple {",
+					"  background-color: #9b59b6;",
+					"  box-shadow: 0px 5px 0px 0px #82409D;",
+					"}",
+					".purple:hover {",
+					"  background-color: #B573D0;",
+					"}"
+				],
+				"render": true
+			}
+		]
+	},
+	{
+		"id": "_leafssh9s",
+		"title": "Intro to FlexBox",
+		"difficulty": "medium",
+		"steps": [
+			{
+				"type": "dom",
+				"desc": "FlexBox is a tool that allows you to control the position of an items children tags. Let's add some html so we can start styling.",
+				"action": [
+					"<div class=\"item-container\">",
+					"  <div class=\"circle\"></div>",
+					"  <div class=\"square\"></div>",
+					"  <div class=\"circle\"></div>",
+					"</div>"
+				],
+				"render": true
+			},
+			{
+				"type": "style",
+				"desc": "Let's first take care of the circles and square, as we will see these over and over.",
+				"action": [
+					".square {",
+					"  background-color: goldenrod;",
+					"  height: 15vw;",
+					"  width: 15vw;",
+					"}",
+					".circle {",
+					"  border-radius: 50%; ",
+					"  background-color: coral;",
+					"  width: 10vw;",
+					"  height: 10vw;",
+					"}"
+				],
+				"render": true
+			},
+			{
+				"type": "style",
+				"desc": "Now the shapes are done, let's make sure all the item containers get a couple of base styles.",
+				"action": [
+					".item-container { ",
+					"  display: flex;",
+					"  background-color: lightgray;",
+					"  margin-top: 1.5rem;",
+					"}"
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "Moving things to the right hand side is a very simple task. Let's add the markup, but give it a special class of end. ",
+				"action": [
+					"<div class=\"item-container end\">",
+					"  <div class=\"circle\"></div>",
+					"  <div class=\"square\"></div>",
+					"  <div class=\"circle\"></div>",
+					"</div>"
+				],
+				"render": true
+			},
+			{
+				"type": "style",
+				"desc": "To move things to the opposite end, we can simply justify the content to the flex end.",
+				"action": [
+					".end {",
+					"  justify-content: flex-end;",
+					"}"
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "Very often, we need to center things to exact middle of the container. Let's add the markup and add a special class to center.",
+				"action": [
+					"<div class=\"item-container center-main\">",
+					"  <div class=\"circle\"></div>",
+					"  <div class=\"square\"></div>",
+					"  <div class=\"circle\"></div>",
+					"</div>"
+				],
+				"render": true
+			},
+			{
+				"type": "style",
+				"desc": "With the special class of center main added, let's justify the content to the center. ",
+				"action": [
+					".center-main {",
+					"  justify-content: center;",
+					"}"
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "Things are getting a little cramped. Let's spread things out and create mark up with a special class. ",
+				"action": [
+					"<div class=\"item-container between\">",
+					"  <div class=\"circle\"></div>",
+					"  <div class=\"square\"></div>",
+					"  <div class=\"circle\"></div>",
+					"</div>"
+				],
+				"render": true
+			},
+			{
+				"type": "style",
+				"desc": "Setting the space between items is as simple as setting the justify content to space between.",
+				"action": [
+					".between {",
+					"  justify-content: space-between;",
+					"}"
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "There are times where touching edges in not the best look. Create some markup with a special class to address this.",
+				"action": [
+					"<div class=\"item-container around\">",
+					"  <div class=\"circle\"></div>",
+					"  <div class=\"square\"></div>",
+					"  <div class=\"circle\"></div>",
+					"</div>"
+				],
+				"render": true
+			},
+			{
+				"type": "style",
+				"desc": "We can space things evenly around each object by setting the space around value of justify content.",
+				"action": [
+					".around {",
+					"  justify-content: space-around;",
+					"}"
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "Vertical centering is super easy with FlexBox. Create the markup with a special class to center vertically and horizontally.",
+				"action": [
+					"<div class=\"item-container center-main center-cross\">",
+					"  <div class=\"circle\"></div>",
+					"  <div class=\"square\"></div>",
+					"  <div class=\"circle\"></div>",
+					"</div>"
+				],
+				"render": true
+			},
+			{
+				"type": "style",
+				"desc": "We have already added the center main, now let's add the center cross to get things centered vertically.",
+				"action": [
+					".center-cross {",
+					"  align-items: center;",
+					"}"
+				],
+				"render": true
+			},
+			{
+				"type": "dom",
+				"desc": "Changing the order of things is a powerful feature of FlexBox. Let's see how to make the square the first item visually. We need to first create the markup with a special class.",
+				"action": [
+					"<div class=\"item-container square-first\">",
+					"  <div class=\"circle\"></div>",
+					"  <div class=\"square\"></div>",
+					"  <div class=\"circle\"></div>",
+					"</div>"
+				],
+				"render": true
+			},
+			{
+				"type": "style",
+				"desc": "You can select children elements by setting the items in order from parent to child separated by a space.",
+				"action": [
+					".square-first .square {",
+					"  order: -1;",
+					"}"
+				],
+				"render": true
+			}
+		]
+	}
+]

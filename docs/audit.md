@@ -28,8 +28,8 @@ A `$effect` triggers `scrollIntoView({ behavior: 'smooth' })` on every `currentS
 **Missing `{#each}` keys in `LessonsList`**
 Lesson rows are iterated without a `(lesson.id)` key, which prevents Svelte from efficiently reconciling DOM when the list updates.
 
-**Lessons cached forever with no invalidation**
-Once fetched, lesson data is written to `localStorage` and never refreshed. There is no mechanism to pick up fixes or additions from the API short of manually clearing storage.
+**Lessons bundled at build time**
+Lesson content lives in `src/lib/data/*.json` and ships with the app. Edits require a rebuild/redeploy, but there is no stale localStorage cache or external API dependency.
 
 **Dashboard re-derives data repeatedly**
 `forLearner()`, `completedLessonIds()`, and sort operations run in multiple separate `$derived` blocks; `completedLessonIds()` is called again inside another `$derived.by`. This compounds as attempt history grows.
@@ -38,8 +38,8 @@ Once fetched, lesson data is written to `localStorage` and never refreshed. Ther
 
 ## Security
 
-**No runtime validation of API lesson payloads**
-API responses are cast directly to typed interfaces without schema validation. Malformed or unexpected data from the external API can crash the UI or produce corrupt entries in `localStorage`.
+**No runtime validation of bundled lesson payloads**
+Lesson JSON is cast directly to typed interfaces without schema validation. A malformed entry in `src/lib/data/` can crash the UI at load time.
 
 **`JSON.parse` without error handling**
 `src/lib/utils/storage.ts` parses stored JSON with no `try/catch`. A single corrupt or tampered storage entry can break app initialization entirely with no recovery path.
@@ -51,7 +51,7 @@ Persisted learner objects and attempt records are read from `localStorage` and u
 The learner `create()` function accepts any color string. `ColorPicker` restricts this in the UI, but `localStorage` can be edited directly to inject arbitrary CSS into `--avatar-color` (e.g. additional property values). Low-impact locally, but the sanitization gap is real.
 
 **Lesson HTML/CSS rendered without content sanitization**
-Web lesson content from the external API is composed into an `iframe` `srcdoc` directly. The `sandbox` attribute mitigates script execution and same-origin access, but CSS-based exfiltration (`@import`, `url()`), phishing UI, and style breakout attempts remain possible vectors.
+Web lesson content from bundled lesson data is composed into an `iframe` `srcdoc` directly. The `sandbox` attribute mitigates script execution and same-origin access, but CSS-based exfiltration (`@import`, `url()`), phishing UI, and style breakout attempts remain possible vectors.
 
 **No Content Security Policy**
 There are no security response headers, no `svelte.config.js` hooks, and no `hooks.server.ts`. If a future change introduces `{@html}` or inline scripts, there is no defense-in-depth layer.
