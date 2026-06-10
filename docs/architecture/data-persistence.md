@@ -65,9 +65,17 @@ clearAll(); // wipe everything (dev/debug use only)
 
 ## Lesson Content
 
-Web and typing lessons live in `src/lib/data/web-lessons.json` and `src/lib/data/typing-lessons.json`. They are imported at build time — no network request, no localStorage cache. Edit those files to add or tweak lessons.
+Lessons live on disk under `data/lessons/`:
 
-Lessons are sorted by `difficulty` (alphabetical: `easy` → `hard` → `medium`) when `lessonsStore` loads.
+| Type    | Path                                      | Format                                      |
+| ------- | ----------------------------------------- | ------------------------------------------- |
+| Web     | `data/lessons/web/{id}.json`              | Full lesson object                          |
+| Typing  | `data/lessons/typing/{id}/meta.json`      | `id`, `title`, `difficulty`                 |
+| Typing  | `data/lessons/typing/{id}/lines.txt`      | One line per row — what the learner types   |
+
+The learner app loads lessons via `/api/lessons/*`. Edit lessons in the browser at `/admin` (password from `ADMIN_PASSWORD` in `.env`) or by editing the files directly.
+
+Lessons are sorted by `difficulty` (alphabetical: `easy` → `hard` → `medium`) when loaded.
 
 ---
 

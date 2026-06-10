@@ -10,7 +10,7 @@ tags: [architecture, overview, system-design]
 
 # Architecture Overview
 
-CosmicTyper is a SvelteKit 2 single-page application running entirely in the browser. There is no backend. Learner profiles and attempt history live in localStorage. Lesson content is bundled in `src/lib/data/`.
+CosmicTyper is a SvelteKit 2 app. Learner profiles and attempt history live in localStorage. Lesson content lives in `data/lessons/` and is served by SvelteKit API routes. An optional `/admin` area edits lessons on disk.
 
 ---
 
@@ -18,10 +18,12 @@ CosmicTyper is a SvelteKit 2 single-page application running entirely in the bro
 
 ```mermaid
 graph TD
-    Data["src/lib/data/\nlesson JSON"]
+    Data["data/lessons/\nper-lesson files"]
+    API["/api/lessons/*"]
     LS["localStorage\nct_ keys"]
 
-    Data -->|import| LessonsStore
+    Data --> API
+    API -->|fetch| LessonsStore
     LS  <-->|hydrate / persist| LearnerStore
     LS  <-->|hydrate / persist| AttemptsStore
 
@@ -48,7 +50,7 @@ graph TD
 | **Routes**     | Pages — each route owns its data-loading and layout                               |
 | **Stores**     | Reactive state — `learnerStore`, `lessonsStore`, `attemptsStore`, `codeDataStore` |
 | **Components** | Reusable UI — `CodeGUI`, `TypingGUI`, `LearnerCard`, `ResultsScreen`, etc.        |
-| **Data**       | Bundled lesson content — `web-lessons.json`, `typing-lessons.json`                |
+| **Data**       | Lesson files — `data/lessons/web/`, `data/lessons/typing/`                          |
 | **Utils**      | Pure helpers — `storage.ts`, `format.ts`, `lesson.ts`                             |
 | **Types**      | Shared TypeScript interfaces — `Learner`, `Attempt`, `WebLesson`, `TypingLesson`  |
 

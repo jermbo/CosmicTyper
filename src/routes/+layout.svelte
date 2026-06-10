@@ -12,9 +12,9 @@
 
 	let hydrated = $state(false);
 
-	// The learner-selection screen is the only route reachable without an
-	// active learner.
-	const PUBLIC_ROUTES = ['/'];
+	// Routes reachable without an active learner.
+	const PUBLIC_ROUTES = ['/', '/admin/login'];
+	const isAdmin = $derived(page.url.pathname.startsWith('/admin'));
 
 	onMount(() => {
 		learnerStore.load();
@@ -26,7 +26,7 @@
 	$effect(() => {
 		if (!browser || !hydrated) return;
 		const path = page.url.pathname;
-		if (!learnerStore.activeLearner && !PUBLIC_ROUTES.includes(path)) {
+		if (!learnerStore.activeLearner && !PUBLIC_ROUTES.includes(path) && !path.startsWith('/admin')) {
 			goto('/');
 		}
 	});
@@ -38,9 +38,11 @@
 
 <a class="skip-link" href="#main-content">Skip to content</a>
 
-<Nav />
+{#if !isAdmin}
+	<Nav />
+{/if}
 
-<main id="main-content">
+<main id="main-content" class:admin-main={isAdmin}>
 	{#if hydrated}
 		{@render children()}
 	{/if}
@@ -67,5 +69,9 @@
 
 	main {
 		padding-top: var(--navbar-height);
+	}
+
+	main.admin-main {
+		padding-top: 0;
 	}
 </style>

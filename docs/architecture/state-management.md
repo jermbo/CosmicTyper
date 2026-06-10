@@ -49,7 +49,7 @@ sequenceDiagram
 
 **Derived completion** — `hasCompleted` is never stored on a lesson object. It is derived per-learner at read time from `attemptsStore.completedLessonIds(learnerId)`. This means completion is always accurate to the current learner without data migration.
 
-**Bundled lessons** — `lessonsStore` imports lesson JSON from `src/lib/data/`. Legacy lesson cache keys (`web-lessons`, `typing-lessons`, `ct_lessons_web`, `ct_lessons_typing`) are deleted on load.
+**Server-backed lessons** — `lessonsStore` fetches from `/api/lessons/*`, which reads `data/lessons/` on disk. Legacy lesson cache keys are deleted on load. Use `/admin` to edit lessons in the browser.
 
 **Active learner** — `learnerStore.activeLearner` is the single source of truth for who is logged in. It is set on learner selection and cleared on deactivation. No route guard exists — components check for `activeLearner` themselves. See [Learner System](../behaviors/learner-system.md) for the product-level view of how this works.
 
