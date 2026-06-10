@@ -39,7 +39,6 @@ The home screen (`/`) shows all learner profiles as large clickable cards. Selec
 
 - With **6 or fewer** learners: no search, just the grid.
 - With **7 or more** learners: a search input appears to filter by name.
-- The app supports up to 30 learners.
 
 ---
 

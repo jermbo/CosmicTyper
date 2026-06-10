@@ -17,13 +17,13 @@ CosmicTyper v3 is feature-complete for its core loop: select a learner, practice
 ## Near Term
 
 **Progress History**
-Learners can see their accuracy trend over time per lesson — not just the last attempt. The data is already being stored in `attemptsStore`; this is a display feature.
+Learners can see their accuracy trend over time per lesson — not just the last attempt. The data is already being stored in [`attemptsStore`](architecture/state-management.md); this is a display feature.
 
 **Lesson Completion Indicators**
 The lessons list should surface which lessons a learner has already completed and what their best accuracy was. Again, data exists — needs a UI pass.
 
 **Offline Support**
-Lessons are fetched from an external API and cached in localStorage. A service worker would make the app fully offline-capable after the first load.
+Lessons are fetched from an external API and [cached in localStorage](architecture/data-persistence.md). A service worker would make the app fully offline-capable after the first load.
 
 ---
 
@@ -48,5 +48,7 @@ The ability to create custom lessons, either in-app or via a simple data format,
 ## Further Reading
 
 - [Overview](overview.md) — the product's core principles
+- [User Journey](behaviors/user-journey.md) — the current end-to-end flow
+- [Results and Progress](behaviors/results-and-progress.md) — what the dashboard and results screen show today
 - [Data Persistence](architecture/data-persistence.md) — how attempts are stored today
 - [State Management](architecture/state-management.md) — how attemptsStore works

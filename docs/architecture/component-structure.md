@@ -32,13 +32,18 @@ graph TD
     CreateLearner --> ColorPicker
 
     Dashboard --> LearnerAvatar
-    Dashboard --> ResultsScreen
 
     WebLesson --> CodeGUI
+    WebLesson --> ResultsScreen
     CodeGUI --> ResizableSplit
     CodeGUI --> Typer["Typer (code input)"]
-    CodeGUI --> HTMLOutput
-    CodeGUI --> PreviewPane
+    CodeGUI --> CodeOutput["CodeOutput (code minimap)"]
+    CodeGUI --> PreviewPane["PreviewPane (live output)"]
+    CodeGUI --> PreviewPane2["PreviewPane (goal preview)"]
+    PreviewPane --> Preview
+    PreviewPane2 --> Preview
+
+    TypingLesson --> ResultsScreen
 
     TypingLesson --> TypingGUI
 
@@ -61,6 +66,9 @@ graph TD
 | `ResultsScreen` | `components/ResultsScreen.svelte` | Post-lesson stats display |
 | `CodeGUI` | `components/CodeGUI/CodeGUI.svelte` | Full web lesson editor + preview |
 | `Typer` | `components/CodeGUI/Typer.svelte` | Keystroke-by-keystroke input for code |
+| `CodeOutput` | `components/CodeGUI/CodeOutput.svelte` | Tabbed HTML/CSS code minimap; flashes lines that just rendered |
+| `PreviewPane` | `components/CodeGUI/PreviewPane.svelte` | Collapsible pane wrapper with header and pulse animation |
+| `Preview` | `components/CodeGUI/Preview.svelte` | Sandboxed `<iframe>` that renders the HTML/CSS output |
 | `HTMLOutput` | `components/CodeGUI/HTMLOutput.svelte` | Live HTML preview pane |
 | `ResizableSplit` | `components/CodeGUI/ResizableSplit.svelte` | Draggable two-pane layout |
 | `TypingGUI` | `components/TypingGUI/TypingGUI.svelte` | Full typing lesson input + feedback |
@@ -79,3 +87,5 @@ graph TD
 
 - [Routing](routing.md) — which route uses which components
 - [State Management](state-management.md) — how stores feed data into components
+- [Web Lessons](../behaviors/web-lessons.md) — what `CodeGUI` and its sub-components do at the product level
+- [Typing Lessons](../behaviors/typing-lessons.md) — what `TypingGUI` does at the product level

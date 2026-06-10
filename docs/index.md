@@ -23,7 +23,7 @@ Everything you need to understand, build, and extend CosmicTyper.
 
 ## Behaviors
 
-What the app does — the user-facing experience.
+What the app does — the user-facing experience. See also [Behaviors Overview](behaviors/index.md).
 
 | Doc | What it answers |
 |-----|----------------|

@@ -45,10 +45,10 @@ flowchart TD
 
 ## Navigation Rules
 
-- The learner select screen (`/`) is always accessible — it's how you switch between learners.
+- The [learner select screen](../behaviors/learner-system.md) (`/`) is always accessible — it's how you switch between learners.
 - The dashboard is only meaningful with an active learner set in `learnerStore`.
 - The `[id]` segments use slugified lesson titles, not database IDs.
-- The results screen is not a route — it renders inline after a lesson completes, then navigates back to the dashboard.
+- The [results screen](../behaviors/results-and-progress.md) is not a route — it renders inline after a lesson completes, then navigates back to the dashboard.
 
 ---
 
@@ -56,4 +56,4 @@ flowchart TD
 
 - [State Management](state-management.md) — how `learnerStore` holds the active learner across routes
 - [Component Structure](component-structure.md) — what each route renders
-- [Overview](../overview.md) — the user journey at a product level
+- [User Journey](../behaviors/user-journey.md) — the user-facing flow across these routes

@@ -38,7 +38,7 @@ The learner can **Try Again** (resets and replays the same lesson) or **Done** (
 
 ## How Attempts Are Saved
 
-Pressing **Done** saves an `Attempt` record to `attemptsStore`, which persists it in `localStorage` under `ct_attempts`. Every attempt is kept — not just the most recent. This enables comparison over time.
+Pressing **Done** saves an `Attempt` record to [`attemptsStore`](../architecture/state-management.md), which persists it in `localStorage` under [`ct_attempts`](../architecture/data-persistence.md). Every attempt is kept — not just the most recent. This enables comparison over time.
 
 ---
 

@@ -65,6 +65,12 @@ clearAll()             // wipe everything (dev/debug use only)
 
 ---
 
+## Lesson Ordering
+
+Lessons are sorted by `difficulty` (alphabetical: `easy` → `hard` → `medium`) immediately after fetching from the API and before being written to the cache. The sort is applied once at fetch time — the cached value is already sorted.
+
+---
+
 ## Legacy Keys
 
 Pre-v3 stored lessons under `web-lessons` and `typing-lessons` with a `hasCompleted` field embedded on each lesson. These keys are deleted automatically on first load. Completion is now derived per-learner from `attemptsStore` — see [State Management](state-management.md).
@@ -74,4 +80,6 @@ Pre-v3 stored lessons under `web-lessons` and `typing-lessons` with a `hasComple
 ## Further Reading
 
 - [State Management](state-management.md) — how stores hydrate from and write to these keys
+- [Learner System](../behaviors/learner-system.md) — what the `Learner` shape represents in the product
+- [Results and Progress](../behaviors/results-and-progress.md) — what the `Attempt` shape represents in the product
 - [Overview](../overview.md) — why local-first matters for this product

@@ -58,11 +58,17 @@ The preview pane re-renders on every committed row, so the learner sees the page
 
 ## Layout
 
-The web lesson screen is split into two resizable panes:
-- **Left** — the code editor (typed lines + step description + progress bar)
-- **Right** — the live HTML/CSS preview
+The web lesson screen has four panels arranged in a resizable two-column split:
 
-The divider is draggable so learners can adjust the split to their preference.
+- **Left column**
+  - *Typer* — the active typing area (step description, expected lines, cursor)
+  - *CodeOutput* — a tabbed HTML/CSS minimap showing all committed lines; the lines added by the most recent step flash briefly so the learner can see exactly what they just contributed
+
+- **Right column**
+  - *Live preview* — updates as render steps complete
+  - *Goal preview* — shows the finished output the lesson builds toward, so learners always know what they're typing toward
+
+The divider between the columns is draggable. Each preview pane can also be collapsed to a thin strip, giving learners full screen for whichever view they prefer.
 
 ---
 
@@ -70,4 +76,4 @@ The divider is draggable so learners can adjust the split to their preference.
 
 - [Typing Lessons](typing-lessons.md) — the simpler single-pane typing experience
 - [Results and Progress](results-and-progress.md) — what happens when the last step is complete
-- [Component Structure](../architecture/component-structure.md) — `CodeGUI`, `Typer`, `HTMLOutput`, `ResizableSplit`
+- [Component Structure](../architecture/component-structure.md) — `CodeGUI`, `Typer`, `CodeOutput`, `PreviewPane`, `Preview`, `ResizableSplit`

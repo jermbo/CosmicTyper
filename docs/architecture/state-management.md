@@ -21,7 +21,7 @@ CosmicTyper uses Svelte 5 runes. Each concern has its own store class using `$st
 | `learnerStore` | `src/lib/stores/learner.svelte.ts` | All learner profiles + the active learner |
 | `lessonsStore` | `src/lib/stores/lessons.svelte.ts` | Web and typing lesson lists |
 | `attemptsStore` | `src/lib/stores/attempts.svelte.ts` | Every lesson attempt ever made |
-| `codeDataStore` | `src/lib/stores/codeData.svelte.ts` | In-progress code state during a web lesson |
+| `codeData` | `src/lib/stores/codeData.svelte.ts` | In-progress code state during a web lesson (HTML lines, CSS lines, recently-rendered line indices for flash animation) |
 
 ---
 
@@ -51,7 +51,7 @@ sequenceDiagram
 
 **Load once, cache** — `lessonsStore` checks localStorage before hitting the API. The legacy keys (`web-lessons`, `typing-lessons`) are deleted on load to force re-cache under the new `ct_` prefix.
 
-**Active learner** — `learnerStore.activeLearner` is the single source of truth for who is logged in. It is set on learner selection and cleared on deactivation. No route guard exists — components check for `activeLearner` themselves.
+**Active learner** — `learnerStore.activeLearner` is the single source of truth for who is logged in. It is set on learner selection and cleared on deactivation. No route guard exists — components check for `activeLearner` themselves. See [Learner System](../behaviors/learner-system.md) for the product-level view of how this works.
 
 ---
 

@@ -24,18 +24,18 @@ Students and beginners who are not yet comfortable with computers. Multiple lear
 
 CosmicTyper has two learning modes:
 
-**Web Lessons** — The learner types real HTML and CSS. A live preview updates as they progress, making the connection between code and visual output immediate and tangible.
+**[Web Lessons](behaviors/web-lessons.md)** — The learner types real HTML and CSS. A live preview updates as they progress, making the connection between code and visual output immediate and tangible.
 
-**Typing Lessons** — General typing practice with structured, progressively harder content.
+**[Typing Lessons](behaviors/typing-lessons.md)** — General typing practice with structured, progressively harder content.
 
-After every lesson a results screen shows time, keystrokes, mistakes, and accuracy — with a comparison to the learner's previous attempt so improvement is always visible.
+After every lesson a [results screen](behaviors/results-and-progress.md) shows time, keystrokes, mistakes, and accuracy — with a comparison to the learner's previous attempt so improvement is always visible.
 
 ---
 
 ## Core Principles
 
 - **Local-first** — no accounts, no server, everything in the browser.
-- **Multi-learner** — each person has a profile so their progress never mixes with someone else's.
+- **[Multi-learner](behaviors/learner-system.md)** — each person has a profile so their progress never mixes with someone else's.
 - **Show and forgive** — wrong keystrokes are counted and flashed red, but the lesson doesn't stop. Learning should feel safe.
 - **Approachable UI** — big cards, named colors, no jargon. Designed for people who find computers uncomfortable.
 
@@ -43,6 +43,8 @@ After every lesson a results screen shows time, keystrokes, mistakes, and accura
 
 ## Further Reading
 
+- [User Journey](behaviors/user-journey.md) — end-to-end flow through the app
+- [Learner System](behaviors/learner-system.md) — how profiles and identity work
 - [Architecture Overview](architecture/index.md) — how the system is built
 - [State Management](architecture/state-management.md) — how learner and lesson data flows
 - [Roadmap](roadmap.md) — where CosmicTyper is going next
