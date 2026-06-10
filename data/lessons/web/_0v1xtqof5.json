@@ -1,0 +1,82 @@
+{
+	"id": "_0v1xtqof5",
+	"title": "Getting to know HTML",
+	"difficulty": "easy",
+	"steps": [
+		{
+			"type": "dom",
+			"desc": "HTML is made up of tags. Different tags do different things, but they all follow the same rules. Let's look at some heading rules. Let's look at some header tags.",
+			"render": true,
+			"action": [
+				"<h1>Heading 1</h1>",
+				"<h2>Heading 2</h2>",
+				"<h3>Heading 3</h3>"
+			]
+		},
+		{
+			"type": "dom",
+			"desc": "Header tags go all the way up to 6.",
+			"render": true,
+			"action": [
+				"<h4>Heading 4</h4>",
+				"<h5>Heading 5</h5>",
+				"<h6>Heading 6</h6>"
+			]
+		},
+		{
+			"type": "dom",
+			"desc": "HTML has different text tags.",
+			"render": true,
+			"action": [
+				"<p>This is a paragraph tag</p>",
+				"<p>We can <strong>bold</strong> some text</p>",
+				"<p>Or we can <em>emphasize</em> some text</p>"
+			]
+		},
+		{
+			"type": "dom",
+			"desc": "We can list things with no particular order with unordered lists.",
+			"render": true,
+			"action": [
+				"<ul>",
+				"  <li>Apples</li>",
+				"  <li>Pears</li>",
+				"  <li>Grapes</li>",
+				"  <li>Oranges</li>",
+				"</ul>"
+			]
+		},
+		{
+			"type": "dom",
+			"desc": "Or give them a very specific order with ordered lists.",
+			"render": true,
+			"action": [
+				"<ol>",
+				"  <li>Step 1</li>",
+				"  <li>Step 2</li>",
+				"  <li>Step 3</li>",
+				"  <li>Step 4</li>",
+				"</ol>"
+			]
+		},
+		{
+			"type": "dom",
+			"desc": "HTML is a very structured language. We can group our code with div's, header's, main's and aside's.",
+			"render": true,
+			"action": [
+				"<div>Just a normal ol div</div>",
+				"<header>I go at the top</header>",
+				"<footer>I go at the bottom</footer>",
+				"<main>I hold important information</main>"
+			]
+		},
+		{
+			"type": "dom",
+			"desc": "HTML can display images to! Remember to give it an alt attribute.",
+			"render": true,
+			"action": [
+				"<img src=\"https://picsum.photos/300/300\" alt=\"Purrrr purrrr\">"
+			]
+		}
+	]
+}

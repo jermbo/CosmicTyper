@@ -1,0 +1,115 @@
+{
+	"id": "_pgyljpalu",
+	"title": "Button Styles",
+	"difficulty": "easy",
+	"steps": [
+		{
+			"type": "dom",
+			"desc": "Styling buttons is a very common task. Let's add some markup so we can style them later. ",
+			"render": true,
+			"action": [
+				"<div id=\"buttons\">",
+				"  <a href=\"#\" class=\"btn blue\">Blue Button</a>",
+				"  <a href=\"#\" class=\"btn green\">Green Button</a>",
+				"  <a href=\"#\" class=\"btn red\">Red Button</a>",
+				"  <a href=\"#\" class=\"btn purple\">Purple Button</a>",
+				"</div>"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "The parent div needs a bit of attention first. This is purely for demo purposes.",
+			"render": true,
+			"action": [
+				"#buttons {",
+				"  padding-top: 50px;",
+				"  text-align: center;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "Utilizing a class, we can make all buttons have a base set of styles.",
+			"render": true,
+			"action": [
+				".btn {",
+				"  border-radius: 5px;",
+				"  padding: 15px 25px;",
+				"  font-size: 22px;",
+				"  text-decoration: none;",
+				"  margin: 20px;",
+				"  color: #fff;",
+				"  position: relative;",
+				"  display: inline-block;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "You see the \"active\" state of a button. It's a pseudo class that represents a specific state a tag can be in.",
+			"render": true,
+			"action": [
+				".btn:active {",
+				"  transform: translate(0px, 5px);",
+				"  box-shadow: 0 1px 0 0;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "Let's make the blue look good.",
+			"render": true,
+			"action": [
+				".blue {",
+				"  background-color: #55acee;",
+				"  box-shadow: 0px 5px 0px 0px #3C93D5;",
+				"}",
+				".blue:hover {",
+				"  background-color: #6FC6FF;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "Next is the green button.",
+			"render": true,
+			"action": [
+				".green {",
+				"  background-color: #2ecc71;",
+				"  box-shadow: 0px 5px 0px 0px #15B358;",
+				"}",
+				".green:hover {",
+				"  background-color: #48E68B;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "Red button is next in line. ",
+			"render": true,
+			"action": [
+				".red {",
+				"  background-color: #e74c3c;",
+				"  box-shadow: 0px 5px 0px 0px #CE3323;",
+				"}",
+				".red:hover {",
+				"  background-color: #FF6656;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "Purple button needs a little bit of attention as well. ",
+			"render": true,
+			"action": [
+				".purple {",
+				"  background-color: #9b59b6;",
+				"  box-shadow: 0px 5px 0px 0px #82409D;",
+				"}",
+				".purple:hover {",
+				"  background-color: #B573D0;",
+				"}"
+			]
+		}
+	]
+}
