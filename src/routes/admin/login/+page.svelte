@@ -1,4 +1,5 @@
 <script lang="ts">
+	import '$lib/components/admin/admin.css';
 	import type { ActionData } from './$types';
 
 	let { form }: { form: ActionData } = $props();
@@ -9,20 +10,20 @@
 </svelte:head>
 
 <div class="login">
-	<form method="POST" class="card">
-		<h1>Admin</h1>
-		<p class="hint">Enter the admin password to edit lessons.</p>
+	<form method="POST" class="admin-card login-card">
+		<h1>CosmicTyper Admin</h1>
+		<p class="hint">Sign in to edit lessons.</p>
 
 		{#if form?.error}
-			<p class="error" role="alert">{form.error}</p>
+			<p class="admin-flash error" role="alert">{form.error}</p>
 		{/if}
 
-		<label>
+		<label class="admin-field">
 			Password
 			<input type="password" name="password" required autocomplete="current-password" />
 		</label>
 
-		<button type="submit">Sign in</button>
+		<button type="submit" class="admin-btn primary">Sign in</button>
 	</form>
 </div>
 
@@ -35,13 +36,9 @@
 		padding: 2rem;
 	}
 
-	.card {
-		background: var(--color-white);
-		border-radius: 8px;
-		padding: 2rem;
+	.login-card {
 		width: 100%;
-		max-width: 360px;
-		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+		max-width: 380px;
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
@@ -58,47 +55,7 @@
 		font-size: var(--size-6);
 	}
 
-	label {
-		display: flex;
-		flex-direction: column;
-		gap: 0.35rem;
-		font-size: var(--size-6);
-		font-weight: 600;
-	}
-
-	input {
-		font: inherit;
-		padding: 0.6rem 0.75rem;
-		border: 2px solid var(--color-grey-light);
-		border-radius: 6px;
-	}
-
-	input:focus {
-		outline: none;
-		border-color: var(--color-blue);
-	}
-
-	button {
-		font: inherit;
-		font-weight: 600;
-		padding: 0.75rem 1rem;
-		border: none;
-		border-radius: 6px;
-		background: var(--color-dark);
-		color: var(--color-white);
-		cursor: pointer;
-	}
-
-	button:hover {
-		opacity: 0.9;
-	}
-
-	.error {
-		margin: 0;
-		padding: 0.6rem 0.75rem;
-		background: #fde8eb;
-		color: var(--color-cherry);
-		border-radius: 6px;
-		font-size: var(--size-6);
+	.login-card .admin-btn {
+		width: 100%;
 	}
 </style>

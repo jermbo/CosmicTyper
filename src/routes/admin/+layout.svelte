@@ -77,8 +77,8 @@
 	}
 
 	.admin-main {
-		max-width: 960px;
+		max-width: 1100px;
 		margin: 0 auto;
-		padding: 1.5rem;
+		padding: 1.5rem 1.75rem 3rem;
 	}
 </style>

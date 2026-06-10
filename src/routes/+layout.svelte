@@ -43,7 +43,7 @@
 {/if}
 
 <main id="main-content" class:admin-main={isAdmin}>
-	{#if hydrated}
+	{#if hydrated || isAdmin}
 		{@render children()}
 	{/if}
 </main>

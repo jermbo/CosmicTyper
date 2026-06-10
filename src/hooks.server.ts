@@ -5,6 +5,10 @@ import type { Handle } from '@sveltejs/kit';
 export const handle: Handle = async ({ event, resolve }) => {
 	const { pathname } = event.url;
 
+	if (pathname === '/favicon.ico') {
+		throw redirect(302, '/favicon.svg');
+	}
+
 	if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
 		const session = event.cookies.get(ADMIN_COOKIE);
 		if (!verifySessionToken(session)) {

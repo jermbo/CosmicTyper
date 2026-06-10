@@ -1,100 +1,139 @@
 <script lang="ts">
+	import '$lib/components/admin/admin.css';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
+
+	const difficultyClass = (d: string) => `pill pill-${d}`;
 </script>
 
 <svelte:head>
 	<title>Lessons — Admin</title>
 </svelte:head>
 
-<h1>Lessons</h1>
-<p class="intro">Edit lesson content stored in <code>data/lessons/</code>. Changes are live after save.</p>
+<header class="admin-page-head">
+	<h1>Lessons</h1>
+	<p class="sub">Edit content in <code>data/lessons/</code> — changes go live on save.</p>
+</header>
 
-<section>
-	<div class="section-head">
-		<h2>Web lessons</h2>
-		<form method="POST" action="?/newWeb">
-			<button type="submit">+ New web lesson</button>
+<details class="admin-card section" open>
+	<summary class="section-summary">
+		<span class="chevron" aria-hidden="true"></span>
+		<span class="summary-text">
+			<strong>Web lessons</strong>
+			<span class="section-count">{data.webLessons.length} lessons</span>
+		</span>
+	</summary>
+	<div class="section-body">
+		<form method="POST" action="?/newWeb" class="new-form">
+			<button type="submit" class="admin-btn primary">+ New web lesson</button>
 		</form>
+		<ul class="lesson-list">
+			{#each data.webLessons as lesson (lesson.id)}
+				<li>
+					<a href="/admin/web/{lesson.id}">
+						<span class="title">{lesson.title}</span>
+						<span class="meta">
+							<span class={difficultyClass(lesson.difficulty)}>{lesson.difficulty}</span>
+							<span class="count">{lesson.steps.length} steps</span>
+						</span>
+					</a>
+				</li>
+			{/each}
+		</ul>
 	</div>
-	<ul class="lesson-list">
-		{#each data.webLessons as lesson (lesson.id)}
-			<li>
-				<a href="/admin/web/{lesson.id}">
-					<span class="title">{lesson.title}</span>
-					<span class="meta">{lesson.difficulty} · {lesson.steps.length} steps</span>
-				</a>
-			</li>
-		{/each}
-	</ul>
-</section>
+</details>
 
-<section>
-	<div class="section-head">
-		<h2>Typing lessons</h2>
-		<form method="POST" action="?/newTyping">
-			<button type="submit">+ New typing lesson</button>
+<details class="admin-card section" open>
+	<summary class="section-summary">
+		<span class="chevron" aria-hidden="true"></span>
+		<span class="summary-text">
+			<strong>Typing lessons</strong>
+			<span class="section-count">{data.typingLessons.length} lessons</span>
+		</span>
+	</summary>
+	<div class="section-body">
+		<form method="POST" action="?/newTyping" class="new-form">
+			<button type="submit" class="admin-btn primary">+ New typing lesson</button>
 		</form>
+		<ul class="lesson-list">
+			{#each data.typingLessons as lesson (lesson.id)}
+				<li>
+					<a href="/admin/typing/{lesson.id}">
+						<span class="title">{lesson.title}</span>
+						<span class="meta">
+							<span class={difficultyClass(lesson.difficulty)}>{lesson.difficulty}</span>
+							<span class="count">{lesson.steps.length} lines</span>
+						</span>
+					</a>
+				</li>
+			{/each}
+		</ul>
 	</div>
-	<ul class="lesson-list">
-		{#each data.typingLessons as lesson (lesson.id)}
-			<li>
-				<a href="/admin/typing/{lesson.id}">
-					<span class="title">{lesson.title}</span>
-					<span class="meta">{lesson.difficulty} · {lesson.steps.length} lines</span>
-				</a>
-			</li>
-		{/each}
-	</ul>
-</section>
+</details>
 
 <style>
-	h1 {
-		margin: 0 0 0.5rem;
-		font-size: var(--size-2);
+	.section {
+		margin-bottom: 1.25rem;
 	}
 
-	.intro {
-		margin: 0 0 2rem;
-		color: var(--color-grey-dark);
-	}
-
-	section {
-		margin-bottom: 2.5rem;
-	}
-
-	.section-head {
+	.section-summary {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
-		margin-bottom: 0.75rem;
+		gap: 0.65rem;
+		padding-bottom: 0.75rem;
+		cursor: pointer;
+		list-style: none;
 	}
 
-	h2 {
-		margin: 0;
+	.section-summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.summary-text {
+		display: flex;
+		align-items: baseline;
+		gap: 0.6rem;
 		font-size: var(--size-4);
 	}
 
-	.section-head button {
-		font: inherit;
-		font-size: var(--size-6);
-		padding: 0.4rem 0.75rem;
-		border: none;
-		border-radius: 6px;
-		background: var(--color-blue);
-		color: var(--color-white);
-		cursor: pointer;
+	.chevron {
+		display: inline-block;
+		width: 0.5rem;
+		height: 0.5rem;
+		border-right: 2px solid var(--color-grey-dark);
+		border-bottom: 2px solid var(--color-grey-dark);
+		transform: rotate(45deg);
+		transition: transform 0.15s;
+		flex-shrink: 0;
+	}
+
+	details:not([open]) .chevron {
+		transform: rotate(-45deg);
+	}
+
+	.section-count {
+		font-size: var(--size-7);
+		font-weight: 400;
+		color: var(--color-grey-dark);
+	}
+
+	.section-body {
+		border-top: 1px solid var(--color-grey-lighter);
+		padding-top: 1rem;
+	}
+
+	.new-form {
+		margin: 0 0 0.85rem;
 	}
 
 	.lesson-list {
 		list-style: none;
 		margin: 0;
 		padding: 0;
-		background: var(--color-white);
+		border: 1px solid var(--color-grey-light);
 		border-radius: 8px;
 		overflow: hidden;
-		box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
 	}
 
 	.lesson-list li + li {
@@ -106,9 +145,10 @@
 		justify-content: space-between;
 		align-items: center;
 		gap: 1rem;
-		padding: 0.85rem 1rem;
+		padding: 0.9rem 1rem;
 		text-decoration: none;
 		color: inherit;
+		transition: background 0.12s;
 	}
 
 	.lesson-list a:hover {
@@ -120,8 +160,46 @@
 	}
 
 	.meta {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		flex-shrink: 0;
+	}
+
+	.pill {
+		font-size: var(--size-7);
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+		padding: 0.15rem 0.5rem;
+		border-radius: 4px;
+	}
+
+	.pill-easy {
+		background: #e8f8f0;
+		color: #1a7a42;
+	}
+
+	.pill-medium {
+		background: #fdf3e8;
+		color: #8a5a1a;
+	}
+
+	.pill-hard {
+		background: #fde8eb;
+		color: var(--color-cherry);
+	}
+
+	.count {
 		font-size: var(--size-7);
 		color: var(--color-grey-dark);
 		white-space: nowrap;
+	}
+
+	@media (max-width: 540px) {
+		.lesson-list a {
+			flex-direction: column;
+			align-items: flex-start;
+		}
 	}
 </style>
