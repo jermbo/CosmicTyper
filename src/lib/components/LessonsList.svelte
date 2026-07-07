@@ -11,6 +11,16 @@
 
 	let { lessons, baseURL }: Props = $props();
 
+	type Filter = 'all' | 'easy' | 'medium' | 'hard';
+	const filters: Filter[] = ['all', 'easy', 'medium', 'hard'];
+	let activeFilter = $state<Filter>('all');
+
+	let visibleLessons = $derived(
+		activeFilter === 'all'
+			? lessons
+			: lessons.filter((lesson) => lesson.difficulty === activeFilter)
+	);
+
 	// Completion is derived per active learner from their attempts.
 	let completedIds = $derived(
 		learnerStore.activeLearner
@@ -18,6 +28,20 @@
 			: new Set<string>()
 	);
 </script>
+
+<div class="filter-bar" role="group" aria-label="Filter lessons by difficulty">
+	{#each filters as filter (filter)}
+		<button
+			type="button"
+			class="filter-btn"
+			class:active={activeFilter === filter}
+			aria-pressed={activeFilter === filter}
+			onclick={() => (activeFilter = filter)}
+		>
+			{filter === 'all' ? 'All' : filter[0].toUpperCase() + filter.slice(1)}
+		</button>
+	{/each}
+</div>
 
 <div class="lesson-table-wrapper">
 	<table>
@@ -30,7 +54,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each lessons as lesson (lesson.id)}
+			{#each visibleLessons as lesson (lesson.id)}
 				{@const isCompleted = completedIds.has(lesson.id)}
 				<tr class:completed={isCompleted}>
 					<td class="col-done">
@@ -45,12 +69,53 @@
 						<a class="btn-start" href={`/${baseURL}/${slugify(lesson.title)}`}> Start Lesson </a>
 					</td>
 				</tr>
+			{:else}
+				<tr>
+					<td class="empty" colspan="4">No lessons match this difficulty.</td>
+				</tr>
 			{/each}
 		</tbody>
 	</table>
 </div>
 
 <style>
+	.filter-bar {
+		display: flex;
+		gap: 0.4rem;
+		margin-bottom: var(--size-6);
+		flex-wrap: wrap;
+	}
+
+	.filter-btn {
+		padding: 0.35rem 0.9rem;
+		border: 1px solid var(--color-grey-light);
+		border-radius: 999px;
+		background: var(--color-white);
+		color: var(--color-grey-dark);
+		font-size: var(--size-7);
+		cursor: pointer;
+		transition:
+			background 0.15s ease,
+			color 0.15s ease,
+			border-color 0.15s ease;
+	}
+
+	.filter-btn:hover {
+		background: var(--color-grey-lighter);
+	}
+
+	.filter-btn.active {
+		background: var(--color-blue);
+		border-color: var(--color-blue);
+		color: var(--color-white);
+	}
+
+	.empty {
+		text-align: center;
+		color: var(--color-grey-dark);
+		padding: 1.5rem;
+	}
+
 	.lesson-table-wrapper {
 		max-height: 75vh;
 		overflow-y: auto;
