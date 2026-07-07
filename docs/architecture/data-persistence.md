@@ -46,6 +46,7 @@ interface Attempt {
 	keystrokes: number; // correct + incorrect
 	mistakes: number; // wrong key presses
 	accuracy: number; // 0–100
+	keyMistakes?: Record<string, number>; // expected char → miss count; absent on older attempts
 }
 ```
 

@@ -25,18 +25,19 @@ The lessons list should surface which lessons a learner has already completed an
 **Offline Support**
 Lessons are [bundled in the app](architecture/data-persistence.md). A service worker would make the app fully offline-capable after the first load.
 
-**Keyboard Guide** — spec: [Keyboard Guide](features/keyboard-guide.md)
-An on-screen keyboard below the lesson that highlights the next key and shows which finger should press it. Standalone UI feature; ships in phases starting with typing lessons.
+---
 
-**Trouble-Key Capture** — spec: [Trouble-Key Drills](features/trouble-key-drills.md)
-Record *which* keys a learner misses on every attempt, not just how many mistakes. Ship the capture phase early so data accumulates before the drills UI lands.
+## Recently Shipped
+
+**Keyboard Guide** — [how to use it](behaviors/keyboard-guide.md) · [spec](features/keyboard-guide.md)
+An on-screen keyboard overlay that highlights the next key and shows which finger should press it. The auto-fade-out idea (hiding as accuracy grows) remains future work.
+
+**Warm-up Drills** — [how to use it](behaviors/warm-up-drills.md) · [spec](features/trouble-key-drills.md)
+Per-key mistake capture on every attempt, plus auto-generated warm-up drills on the dashboard targeting each learner's practice keys. Miss-*rate* weighting (vs. raw counts) remains a v2 idea.
 
 ---
 
 ## Medium Term
-
-**Trouble-Key Drills** — spec: [Trouble-Key Drills](features/trouble-key-drills.md)
-Auto-generated warm-up drills targeting each learner's weak keys, built from the captured per-key mistake data. Depends on Trouble-Key Capture having been live long enough to be meaningful.
 
 **Progress History View**
 A dedicated screen showing a learner's performance over time — accuracy charts, time spent, lessons completed per week.

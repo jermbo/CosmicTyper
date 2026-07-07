@@ -71,6 +71,7 @@ class LessonsStore {
 
 	/** Lookup a lesson title across both lists (used for activity/results). */
 	titleFor(lessonId: string): string {
+		if (lessonId.startsWith('drill:')) return 'Warm-up';
 		return (
 			this.webLessons.find((l) => l.id === lessonId)?.title ??
 			this.typingLessons.find((l) => l.id === lessonId)?.title ??

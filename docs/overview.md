@@ -30,6 +30,8 @@ CosmicTyper has two learning modes:
 
 After every lesson a [results screen](behaviors/results-and-progress.md) shows time, keystrokes, mistakes, and accuracy — with a comparison to the learner's previous attempt so improvement is always visible.
 
+Two practice aids support both modes: an on-screen [keyboard guide](behaviors/keyboard-guide.md) that highlights the next key and the finger that presses it, and personalized [warm-up drills](behaviors/warm-up-drills.md) on the dashboard targeting the keys each learner misses most.
+
 ---
 
 ## Core Principles

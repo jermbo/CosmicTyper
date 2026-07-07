@@ -32,6 +32,8 @@ What the app does — the user-facing experience. See also [Behaviors Overview](
 | [Web Lessons](behaviors/web-lessons.md)                   | How HTML/CSS lessons work — steps, live preview, keystroke mechanics |
 | [Typing Lessons](behaviors/typing-lessons.md)             | How typing lessons work — teleprompter display, keystroke mechanics  |
 | [Results and Progress](behaviors/results-and-progress.md) | Results screen, accuracy calculation, dashboard stats                |
+| [Keyboard Guide](behaviors/keyboard-guide.md)             | How to use the on-screen keyboard with finger hints                  |
+| [Warm-up Drills](behaviors/warm-up-drills.md)             | How to use personalized warm-up drills                               |
 
 ---
 
@@ -55,8 +57,8 @@ Planned and in-progress work. See also [Features Overview](features/index.md).
 
 | Doc                                                    | Status  | What it answers                                                    |
 | ------------------------------------------------------ | ------- | ------------------------------------------------------------------ |
-| [Trouble-Key Drills](features/trouble-key-drills.md)   | planned | How per-key mistake tracking and personalized warm-up drills work  |
-| [Keyboard Guide](features/keyboard-guide.md)           | shipped | How the on-screen keyboard with finger hints works                 |
+| [Trouble-Key Drills](features/trouble-key-drills.md)   | shipped | Design and implementation of per-key tracking and warm-up drills   |
+| [Keyboard Guide](features/keyboard-guide.md)           | shipped | Design and implementation of the on-screen keyboard                |
 
 ---
 

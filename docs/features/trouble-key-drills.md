@@ -1,7 +1,7 @@
 ---
 title: Trouble-Key Drills
 description: Per-key mistake tracking and auto-generated warm-up drills targeting each learner's weak keys
-status: planned
+status: shipped (v1 — all four phases; see open questions for v2 ideas)
 audience: architect, developer, pm
 tags: [features, drills, mistakes, personalization, typing-lessons]
 ---
@@ -84,10 +84,10 @@ generateDrill(keys: string[]): TypingLesson
 ```
 
 - **Shape** — returns a normal `TypingLesson` (`id`, `title`, `difficulty: 'easy'`, `steps: string[]`) so `TypingGUI` renders it with zero changes.
-- **Id scheme** — `drill:<learnerId>:<yyyy-mm-dd>`. The `drill:` prefix can never collide with real lesson ids, so `completedLessonIds` and lesson-completion UI are unaffected automatically.
+- **Id scheme** — `drill:<learnerId>:<yyyy-mm-dd>`. The `drill:` prefix can never collide with real lesson ids; `completedLessonIds` explicitly excludes it so warm-ups never inflate the "lessons completed" stat.
 - **Content** — ~8 lines mixing three patterns per trouble key:
   - *Rhythm lines*: the key alternated with home-row anchors — `fbf jbj bbb fjb`
-  - *Word lines*: real short words containing the key, drawn from a small bundled word list (`data/drill-words.txt`, one word per line, curated for beginner-friendliness)
+  - *Word lines*: real short words containing the key, drawn from a small bundled word list (`src/lib/data/drillWords.ts`, curated for beginner-friendliness)
   - *Mixed lines*: two trouble keys woven together in one line
 - **Non-letter keys** (space, `;`, `<`, `.`) use rhythm and mixed lines only — there's no word bank for `<`.
 - Lines stay short (≤ 30 chars) and lowercase unless the trouble key itself is shifted.

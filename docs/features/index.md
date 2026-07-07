@@ -18,10 +18,10 @@ The features folder holds specs for planned and in-progress work. Each document 
 
 | Doc                                           | Status  | What it covers                                                                |
 | --------------------------------------------- | ------- | ----------------------------------------------------------------------------- |
-| [Trouble-Key Drills](trouble-key-drills.md)   | planned | Per-key mistake tracking and auto-generated warm-up drills                    |
+| [Trouble-Key Drills](trouble-key-drills.md)   | shipped | Per-key mistake tracking and auto-generated warm-up drills                    |
 | [Keyboard Guide](keyboard-guide.md)           | shipped | On-screen keyboard highlighting the next key and the finger that presses it   |
 
-The two specs are companions: the keyboard guide teaches *where keys are*, the drills target *which keys need work*, and they share integration points in `TypingGUI` and `CodeGUI`. They can ship independently, but the drills spec's capture phase (per-key mistake data) should land early so data accumulates.
+The two specs are companions: the keyboard guide teaches *where keys are*, the drills target *which keys need work*. Both are shipped — their user-facing behavior is documented in [Keyboard Guide](../behaviors/keyboard-guide.md) and [Warm-up Drills](../behaviors/warm-up-drills.md); the specs remain the record of design decisions and open questions.
 
 ---
 
