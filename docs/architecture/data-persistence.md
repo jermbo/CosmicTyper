@@ -21,6 +21,7 @@ CosmicTyper is local-first. All data lives in the browser's `localStorage`. Ther
 | `ct_learners`       | `Learner[]` | `learnerStore`  | All learner profiles               |
 | `ct_active_learner` | `string`    | `learnerStore`  | ID of the currently active learner |
 | `ct_attempts`       | `Attempt[]` | `attemptsStore` | Every lesson attempt, all learners |
+| `ct_prefs`          | `Record<learnerId, { keyboardGuide?: boolean }>` | `prefsStore` | Per-learner UI preferences |
 
 ---
 

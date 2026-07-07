@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { untrack, tick } from 'svelte';
 	import type { TypingLesson, LessonResult } from '$lib/types';
+	import KeyboardDock from '$lib/components/KeyboardGuide/KeyboardDock.svelte';
 
 	interface Props {
 		lesson: TypingLesson | null;
@@ -26,6 +27,7 @@
 
 	// All lines in the lesson, shown stacked as ghost lines (done / active / upcoming).
 	let lines = $derived(lesson?.steps ?? []);
+	let nextChar = $derived(actionOutput[currentChar] ?? null);
 	let lineEls = $state<HTMLElement[]>([]);
 
 	const modifiers = ['CapsLock', 'Shift', 'Control', 'Alt', 'Meta'];
@@ -163,6 +165,10 @@
 			</div>
 		{/if}
 	</div>
+
+	{#if lesson}
+		<KeyboardDock {nextChar} />
+	{/if}
 </div>
 
 <style>

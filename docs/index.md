@@ -51,7 +51,12 @@ How the system is built right now.
 
 ## Features
 
-Planned and in-progress work, versioned by release. Nothing here yet — features folder is forward-looking.
+Planned and in-progress work. See also [Features Overview](features/index.md).
+
+| Doc                                                    | Status  | What it answers                                                    |
+| ------------------------------------------------------ | ------- | ------------------------------------------------------------------ |
+| [Trouble-Key Drills](features/trouble-key-drills.md)   | planned | How per-key mistake tracking and personalized warm-up drills work  |
+| [Keyboard Guide](features/keyboard-guide.md)           | shipped | How the on-screen keyboard with finger hints works                 |
 
 ---
 

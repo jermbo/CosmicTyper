@@ -2,6 +2,7 @@
 	import { untrack } from 'svelte';
 	import type { WebLesson, LessonResult } from '$lib/types';
 	import { codeData } from '$lib/stores/codeData.svelte';
+	import KeyboardDock from '$lib/components/KeyboardGuide/KeyboardDock.svelte';
 
 	interface Props {
 		lesson: WebLesson | null;
@@ -27,6 +28,7 @@
 	let actionOutput = $derived(
 		lesson ? (lesson.steps[currentStep]?.action.map((line) => line.split('')) ?? []) : []
 	);
+	let nextChar = $derived(actionOutput[currentRow]?.[currentChar] ?? null);
 
 	const modifiers = ['CapsLock', 'Shift', 'Control', 'Alt', 'Meta'];
 
@@ -177,6 +179,8 @@
 			<p class="code-lesson__desc">{lesson.steps[currentStep]?.desc ?? ''}</p>
 		</div>
 	</div>
+
+	<KeyboardDock {nextChar} />
 {/if}
 
 <style>

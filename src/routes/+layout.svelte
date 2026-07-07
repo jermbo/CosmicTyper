@@ -7,6 +7,7 @@
 	import Nav from '$lib/components/Nav.svelte';
 	import { learnerStore } from '$lib/stores/learner.svelte';
 	import { attemptsStore } from '$lib/stores/attempts.svelte';
+	import { prefsStore } from '$lib/stores/prefs.svelte';
 
 	let { children } = $props();
 
@@ -19,6 +20,7 @@
 	onMount(() => {
 		learnerStore.load();
 		attemptsStore.load();
+		prefsStore.load();
 		hydrated = true;
 	});
 
