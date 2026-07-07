@@ -50,7 +50,7 @@
 	$effect(() => {
 		lesson;
 		untrack(() => {
-			currentStep = 0;
+			currentStep = nextTypableStep(0);
 			currentChar = 0;
 			keystrokes = 0;
 			mistakes = 0;
@@ -59,6 +59,15 @@
 			clearFlash();
 		});
 	});
+
+	// Blank spacer lines (e.g. gaps between verses) can't be typed, so skip past
+	// them to the next line with content. Returns steps.length if none remain.
+	function nextTypableStep(from: number): number {
+		if (!lesson) return from;
+		let i = from;
+		while (i < lesson.steps.length && lesson.steps[i] === '') i++;
+		return i;
+	}
 
 	function clearFlash() {
 		if (wrongTimer) clearTimeout(wrongTimer);
@@ -94,7 +103,7 @@
 
 		if (endOfStep()) {
 			currentChar = 0;
-			currentStep++;
+			currentStep = nextTypableStep(currentStep + 1);
 
 			if (endOfLesson()) {
 				currentStep = 0;

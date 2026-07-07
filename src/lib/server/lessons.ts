@@ -68,6 +68,11 @@ export async function getTypingLesson(id: string): Promise<TypingLesson | null> 
 		const meta = JSON.parse(metaRaw) as { id: string; title: string; difficulty: Difficulty };
 		const linesRaw = await readFile(path.join(dir, 'lines.txt'), 'utf-8');
 		const steps = linesRaw.split('\n').map((line) => line.replace(/\r$/, ''));
+		// The file's final newline (and any blank lines after the last verse) would
+		// become empty, un-typeable steps that never trigger lesson completion. Drop them.
+		while (steps.length > 0 && steps[steps.length - 1] === '') {
+			steps.pop();
+		}
 		return { id: meta.id, title: meta.title, difficulty: meta.difficulty, steps };
 	} catch {
 		return null;
