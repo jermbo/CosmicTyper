@@ -46,7 +46,7 @@ The home screen (`/`) shows all learner profiles as large clickable cards. Selec
 
 Only one learner is active at a time. The active learner's ID is stored in `localStorage` under `ct_active_learner`. All progress tracking — attempts, stats, completion — is scoped to this ID.
 
-Returning to `/` lets anyone switch learners. There is no "logout" — selecting a different learner simply replaces the active one.
+The **Switch** button in the nav clears the active learner and returns to `/`, where anyone can pick a profile. There are no passwords — switching is one click by design.
 
 ---
 

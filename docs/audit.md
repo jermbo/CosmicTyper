@@ -1,4 +1,16 @@
+---
+title: Codebase Audit (archived)
+description: Historical point-in-time audit — many findings have since been fixed
+status: archived
+audience: developer
+tags: [audit, archive, tech-debt]
+---
+
+[Docs](index.md)
+
 # CosmicTyper — Codebase Audit
+
+> ⚠️ **Archived snapshot.** This audit predates the modernization branch and no longer reflects the code. Many findings are fixed: storage now catches corrupt JSON and `clearAll()` was replaced by a `ct_`-scoped `clearAppStorage()`; a skip link, per-route titles, progress-bar ARIA, keyed `{#each}` lists, and reduced-motion scrolling exist; the results screen uses a native `<dialog>` with Escape support; lesson detail pages load independently and show a "Lesson not found" state; the error page links home; a layout-level learner guard and `svelte.config.js` exist; loaded data is validated. Still open at last check: no automated tests, the near-duplicate typing engines (`TypingGUI` / `Typer`), and slug-by-title lesson routing. Verify against the code before acting on anything below.
 
 > Scope: all `src/` files, `package.json`, `vite.config.ts`, `eslint.config.js`, `tsconfig.json`, `src/app.html`, `src/app.css`.
 > App stack: SvelteKit 2 / Svelte 5, client-only, `localStorage` persistence, external lesson API.

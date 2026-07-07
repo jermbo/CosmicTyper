@@ -10,7 +10,7 @@ tags: [architecture, storage, localstorage, data]
 
 # Data Persistence
 
-CosmicTyper is local-first. All data lives in the browser's `localStorage`. There is no server, no database, no accounts. The `ct_` prefix namespaces every key to avoid collisions.
+CosmicTyper is local-first: all learner data — profiles, attempts, preferences — lives in the browser's `localStorage`, with no database and no accounts. The `ct_` prefix namespaces every key to avoid collisions. Lesson *content* is the exception: it lives on disk and is served by the app's own API routes (see below).
 
 ---
 
@@ -57,11 +57,13 @@ interface Attempt {
 All reads and writes go through `src/lib/utils/storage.ts` — never call `localStorage` directly in components or stores.
 
 ```ts
-getLsItem<T>(key); // read + JSON.parse, returns null if missing
+getLsItem<T>(key); // read + JSON.parse; corrupt values are removed and return null
 setLsItem<T>(key, val); // JSON.stringify + write
 removeLsItem(key); // delete a key
-clearAll(); // wipe everything (dev/debug use only)
+clearAppStorage(); // remove only ct_-prefixed keys (dev/debug use only)
 ```
+
+Stores also validate shapes on load: invalid attempts and learners are filtered out, and a learner color outside the palette falls back to the first palette color.
 
 ---
 
@@ -75,9 +77,11 @@ Lessons live on disk under `data/lessons/`:
 | Typing  | `data/lessons/typing/{id}/meta.json`      | `id`, `title`, `difficulty`                 |
 | Typing  | `data/lessons/typing/{id}/lines.txt`      | One line per row — what the learner types   |
 
-The learner app loads lessons via `/api/lessons/*`. Edit lessons in the browser at `/admin` (password from `ADMIN_PASSWORD` in `.env`) or by editing the files directly.
+The learner app loads lessons via `/api/lessons/*`. Edit lessons in the browser at [`/admin`](../behaviors/lesson-authoring.md) or by editing the files directly.
 
 Lessons are sorted by `difficulty` (alphabetical: `easy` → `hard` → `medium`) when loaded.
+
+One piece of state lives outside localStorage: the admin session is a signed, 24-hour `ct_admin_session` cookie issued by `src/lib/server/auth.ts`.
 
 ---
 

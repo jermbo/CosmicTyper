@@ -20,22 +20,27 @@ CosmicTyper is a SvelteKit 2 app. Learner profiles and attempt history live in l
 graph TD
     Data["data/lessons/\nper-lesson files"]
     API["/api/lessons/*"]
+    Admin["/admin\nlesson editor"]
     LS["localStorage\nct_ keys"]
 
+    Admin -->|read / write| Data
     Data --> API
     API -->|fetch| LessonsStore
     LS  <-->|hydrate / persist| LearnerStore
     LS  <-->|hydrate / persist| AttemptsStore
+    LS  <-->|hydrate / persist| PrefsStore
 
     LessonsStore --> Routes
     LearnerStore --> Routes
     AttemptsStore --> Routes
+    PrefsStore --> Routes
 
     subgraph Routes["SvelteKit Routes"]
         Home["/  Learner Select"]
         Dashboard["/dashboard"]
         WebLessons["/web-lessons/[id]"]
         TypingLessons["/typing-lessons/[id]"]
+        WarmUp["/warm-up"]
     end
 
     Routes --> Components["UI Components"]
@@ -48,10 +53,11 @@ graph TD
 | Layer          | What lives here                                                                   |
 | -------------- | --------------------------------------------------------------------------------- |
 | **Routes**     | Pages — each route owns its data-loading and layout                               |
-| **Stores**     | Reactive state — `learnerStore`, `lessonsStore`, `attemptsStore`, `codeDataStore` |
-| **Components** | Reusable UI — `CodeGUI`, `TypingGUI`, `LearnerCard`, `ResultsScreen`, etc.        |
-| **Data**       | Lesson files — `data/lessons/web/`, `data/lessons/typing/`                          |
-| **Utils**      | Pure helpers — `storage.ts`, `format.ts`, `lesson.ts`                             |
+| **Stores**     | Reactive state — `learnerStore`, `lessonsStore`, `attemptsStore`, `prefsStore`, `codeData` |
+| **Components** | Reusable UI — `CodeGUI`, `TypingGUI`, `KeyboardGuide`, `ResultsScreen`, etc.      |
+| **Data**       | Lesson files — `data/lessons/web/`, `data/lessons/typing/`                        |
+| **Server**     | `src/lib/server/` — lesson file I/O and admin session auth; `hooks.server.ts` guards `/admin` |
+| **Utils**      | Pure helpers — `storage.ts`, `format.ts`, `lesson.ts`, `drill.ts`                 |
 | **Types**      | Shared TypeScript interfaces — `Learner`, `Attempt`, `WebLesson`, `TypingLesson`  |
 
 ---

@@ -34,6 +34,7 @@ What the app does — the user-facing experience. See also [Behaviors Overview](
 | [Results and Progress](behaviors/results-and-progress.md) | Results screen, accuracy calculation, dashboard stats                |
 | [Keyboard Guide](behaviors/keyboard-guide.md)             | How to use the on-screen keyboard with finger hints                  |
 | [Warm-up Drills](behaviors/warm-up-drills.md)             | How to use personalized warm-up drills                               |
+| [Lesson Authoring (Admin)](behaviors/lesson-authoring.md) | How to create and edit lessons in the `/admin` editor                |
 
 ---
 
@@ -59,6 +60,14 @@ Planned and in-progress work. See also [Features Overview](features/index.md).
 | ------------------------------------------------------ | ------- | ------------------------------------------------------------------ |
 | [Trouble-Key Drills](features/trouble-key-drills.md)   | shipped | Design and implementation of per-key tracking and warm-up drills   |
 | [Keyboard Guide](features/keyboard-guide.md)           | shipped | Design and implementation of the on-screen keyboard                |
+
+---
+
+## Archive
+
+| Doc                        | Status   | What it is                                            |
+| -------------------------- | -------- | ----------------------------------------------------- |
+| [Codebase Audit](audit.md) | archived | Point-in-time audit; most findings fixed since        |
 
 ---
 

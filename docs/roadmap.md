@@ -19,11 +19,11 @@ CosmicTyper v3 is feature-complete for its core loop: select a learner, practice
 **Progress History**
 Learners can see their accuracy trend over time per lesson — not just the last attempt. The data is already being stored in [`attemptsStore`](architecture/state-management.md); this is a display feature.
 
-**Lesson Completion Indicators**
-The lessons list should surface which lessons a learner has already completed and what their best accuracy was. Again, data exists — needs a UI pass.
+**Best Accuracy on Lesson Lists**
+The lessons list now shows a completion checkmark per lesson, but not the learner's best accuracy. Data exists in [`attemptsStore`](architecture/state-management.md) — needs a UI pass.
 
 **Offline Support**
-Lessons are [bundled in the app](architecture/data-persistence.md). A service worker would make the app fully offline-capable after the first load.
+Lessons are [served from disk via API routes](architecture/data-persistence.md), and progress lives in localStorage. A service worker caching the app shell and lesson responses would make it fully offline-capable after the first load.
 
 ---
 
@@ -35,6 +35,9 @@ An on-screen keyboard overlay that highlights the next key and shows which finge
 **Warm-up Drills** — [how to use it](behaviors/warm-up-drills.md) · [spec](features/trouble-key-drills.md)
 Per-key mistake capture on every attempt, plus auto-generated warm-up drills on the dashboard targeting each learner's practice keys. Miss-*rate* weighting (vs. raw counts) remains a v2 idea.
 
+**Lesson Authoring (Admin)** — [how it works](behaviors/lesson-authoring.md)
+A password-protected `/admin` area for creating and editing lessons in the browser. Changes write straight to `data/lessons/` on disk and go live on save.
+
 ---
 
 ## Medium Term
@@ -42,8 +45,8 @@ Per-key mistake capture on every attempt, plus auto-generated warm-up drills on 
 **Progress History View**
 A dedicated screen showing a learner's performance over time — accuracy charts, time spent, lessons completed per week.
 
-**Lesson Authoring**
-The ability to create custom lessons, either in-app or via a simple data format, so teachers can tailor content to their students.
+**Guided Lesson Authoring**
+The `/admin` editor exists for whoever runs the app, but authoring is still developer-flavored (steps, `dom`/`style` types, render flags). A friendlier authoring flow — or shareable lesson packs — would let teachers tailor content without touching those concepts.
 
 ---
 

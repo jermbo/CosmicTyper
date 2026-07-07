@@ -25,6 +25,7 @@ The behaviors folder documents what CosmicTyper does — not how it's built. Eac
 | [Results and Progress](results-and-progress.md) | Results screen, accuracy calculation, dashboard stats                       |
 | [Keyboard Guide](keyboard-guide.md)             | The on-screen keyboard overlay — next-key highlighting and finger colors    |
 | [Warm-up Drills](warm-up-drills.md)             | Personalized practice targeting the keys a learner misses most             |
+| [Lesson Authoring (Admin)](lesson-authoring.md) | The password-protected `/admin` editor for lesson content                  |
 
 ---
 

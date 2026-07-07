@@ -48,28 +48,24 @@ The learner types into the whole window — there is no text input field. Every 
 
 ## Live Preview
 
-When a step with `render: true` is completed:
+During a step with `render: true`, each finished **line** is committed the moment its last character is typed:
 
-- `dom` steps push their lines into the HTML output.
-- `style` steps push their lines into the CSS output.
+- `dom` lines are appended to the HTML output.
+- `style` lines are appended to the CSS output.
 
-The preview pane re-renders on every committed row, so the learner sees the page build up in real time. Steps with `render: false` advance the code buffer without updating the visual output.
+The **Yours** preview re-renders on every committed line and pulses briefly, so the learner feels the cause-and-effect of what they just typed. Steps with `render: false` are typed for practice only — their lines never enter the output or the code minimap.
 
 ---
 
 ## Layout
 
-The web lesson screen has four panels arranged in a resizable two-column split:
+The web lesson screen has four panels arranged with draggable dividers:
 
-- **Left column**
-  - _Typer_ — the active typing area (step description, expected lines, cursor)
-  - _CodeOutput_ — a tabbed HTML/CSS minimap showing all committed lines; the lines added by the most recent step flash briefly so the learner can see exactly what they just contributed
+- **Left pane** — _Typer_: the code lines to type with the cursor, a step progress bar, and the current step's description.
+- **Right top** — two side-by-side previews: **🎯 Goal** (the finished output the lesson builds toward) and **✨ Yours** (everything rendered so far).
+- **Right bottom** — _CodeOutput_: a tabbed HTML/CSS minimap of all committed lines. The newest lines flash, and the tab auto-switches to whichever language just changed.
 
-- **Right column**
-  - _Live preview_ — updates as render steps complete
-  - _Goal preview_ — shows the finished output the lesson builds toward, so learners always know what they're typing toward
-
-The divider between the columns is draggable. Each preview pane can also be collapsed to a thin strip, giving learners full screen for whichever view they prefer.
+Every divider is draggable, and each preview can be collapsed to a thin strip, giving learners full width for whichever view they prefer. The [keyboard guide](keyboard-guide.md) floats over the bottom of the screen.
 
 ---
 
