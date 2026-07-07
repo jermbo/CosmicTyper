@@ -5,7 +5,7 @@
 	"steps": [
 		{
 			"type": "dom",
-			"desc": "HTML is made up of tags. Different tags do different things, but they all follow the same rules. Let's look at some heading rules. Let's look at some header tags.",
+			"desc": "HTML is made up of tags. Different tags do different things, but they all follow the same rules. Let's start with some header tags.",
 			"render": true,
 			"action": [
 				"<h1>Heading 1</h1>",
@@ -72,7 +72,7 @@
 		},
 		{
 			"type": "dom",
-			"desc": "HTML can display images to! Remember to give it an alt attribute.",
+			"desc": "HTML can display images too! Remember to give it an alt attribute.",
 			"render": true,
 			"action": [
 				"<img src=\"https://picsum.photos/300/300\" alt=\"Purrrr purrrr\">"

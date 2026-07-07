@@ -24,7 +24,7 @@
 			"desc": "Image tags display an image, what image it displays is determined by the src attribute.",
 			"render": true,
 			"action": [
-				"<img src=\"https://placekitten.com/300/300\" />"
+				"<img src=\"https://picsum.photos/id/1074/300/300\" />"
 			]
 		},
 		{

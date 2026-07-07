@@ -1,0 +1,72 @@
+{
+	"id": "_7zcwdbsx8",
+	"title": "Colors and Backgrounds",
+	"difficulty": "easy",
+	"steps": [
+		{
+			"type": "dom",
+			"desc": "Let's build a few boxes so we have something colorful to work with.",
+			"render": true,
+			"action": [
+				"<div class=\"swatch named\">named</div>",
+				"<div class=\"swatch hex\">hex</div>",
+				"<div class=\"swatch rgb\">rgb</div>",
+				"<div class=\"swatch gradient\">gradient</div>"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "First, give every swatch a shared size and some breathing room.",
+			"render": true,
+			"action": [
+				".swatch {",
+				"  width: 200px;",
+				"  padding: 30px;",
+				"  margin: 10px;",
+				"  color: white;",
+				"  font-family: Arial;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "CSS knows a lot of colors by name. Just type the word.",
+			"render": true,
+			"action": [
+				".named {",
+				"  background-color: tomato;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "A hex code starts with # and packs red, green, and blue into six characters.",
+			"render": true,
+			"action": [
+				".hex {",
+				"  background-color: #6b5b95;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "rgb() lets you mix red, green, and blue by number, from 0 to 255.",
+			"render": true,
+			"action": [
+				".rgb {",
+				"  background-color: rgb(46, 204, 113);",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "A gradient blends one color into another. Notice it goes in background, not background-color.",
+			"render": true,
+			"action": [
+				".gradient {",
+				"  background: linear-gradient(to right, #ff6a00, #ee0979);",
+				"}"
+			]
+		}
+	]
+}

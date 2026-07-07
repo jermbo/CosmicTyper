@@ -1,0 +1,82 @@
+{
+	"id": "_1d904gz3o",
+	"title": "Semantic Page Structure",
+	"difficulty": "easy",
+	"steps": [
+		{
+			"type": "dom",
+			"desc": "Every page needs a top. The header holds things like a logo or a page title.",
+			"render": true,
+			"action": [
+				"<header>",
+				"  <h1>Cosmic Bakery</h1>",
+				"</header>"
+			]
+		},
+		{
+			"type": "dom",
+			"desc": "A nav holds the links that move people around your site.",
+			"render": true,
+			"action": [
+				"<nav>",
+				"  <a href=\"#\">Home</a>",
+				"  <a href=\"#\">Menu</a>",
+				"  <a href=\"#\">About</a>",
+				"</nav>"
+			]
+		},
+		{
+			"type": "dom",
+			"desc": "The main tag wraps the most important content on the page. There should only be one per page.",
+			"render": true,
+			"action": [
+				"<main>",
+				"  <h2>Fresh every morning</h2>",
+				"  <p>We bake everything from scratch.</p>",
+				"</main>"
+			]
+		},
+		{
+			"type": "dom",
+			"desc": "A section groups related content together under a heading.",
+			"render": true,
+			"action": [
+				"<section>",
+				"  <h3>Our Menu</h3>",
+				"  <p>Cookies, cakes, and croissants.</p>",
+				"</section>"
+			]
+		},
+		{
+			"type": "dom",
+			"desc": "An article is a self-contained piece, like a blog post or a news story.",
+			"render": true,
+			"action": [
+				"<article>",
+				"  <h3>Baking Tips</h3>",
+				"  <p>Always measure your flour by weight.</p>",
+				"</article>"
+			]
+		},
+		{
+			"type": "dom",
+			"desc": "An aside holds side content that relates to the main content, like a tip or an ad.",
+			"render": true,
+			"action": [
+				"<aside>",
+				"  <p>Tip: warm cookies taste best!</p>",
+				"</aside>"
+			]
+		},
+		{
+			"type": "dom",
+			"desc": "Finally, the footer goes at the very bottom for copyright and contact info.",
+			"render": true,
+			"action": [
+				"<footer>",
+				"  <p>&copy; 2026 Cosmic Bakery</p>",
+				"</footer>"
+			]
+		}
+	]
+}

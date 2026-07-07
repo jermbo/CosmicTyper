@@ -1,0 +1,67 @@
+{
+	"id": "_iwwyno1k1",
+	"title": "The Box Model",
+	"difficulty": "medium",
+	"steps": [
+		{
+			"type": "dom",
+			"desc": "Every element on a page is a box. Let's make one so we can see its parts.",
+			"render": true,
+			"action": [
+				"<div class=\"box\">I am a box</div>"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "Start with the content area itself. Width and height set how big the inside is.",
+			"render": true,
+			"action": [
+				".box {",
+				"  width: 200px;",
+				"  height: 80px;",
+				"  background-color: #ffd166;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "Padding is the space inside the box, between the content and the edge.",
+			"render": true,
+			"action": [
+				".box {",
+				"  padding: 20px;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "The border wraps around the padding. You set its width, style, and color.",
+			"render": true,
+			"action": [
+				".box {",
+				"  border: 6px solid #073b4c;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "Margin is the space outside the border that pushes other boxes away.",
+			"render": true,
+			"action": [
+				".box {",
+				"  margin: 40px;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "By default, padding and border make a box bigger than its width. box-sizing: border-box keeps the width you asked for.",
+			"render": true,
+			"action": [
+				".box {",
+				"  box-sizing: border-box;",
+				"}"
+			]
+		}
+	]
+}
