@@ -39,7 +39,8 @@
 			duration: res.duration,
 			keystrokes: res.keystrokes,
 			mistakes: res.mistakes,
-			accuracy: res.accuracy
+			accuracy: res.accuracy,
+			keyMistakes: res.keyMistakes
 		});
 		result = res;
 	}

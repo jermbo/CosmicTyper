@@ -30,11 +30,15 @@ CosmicTyper has two learning modes:
 
 After every lesson a [results screen](behaviors/results-and-progress.md) shows time, keystrokes, mistakes, and accuracy — with a comparison to the learner's previous attempt so improvement is always visible.
 
+Two practice aids support both modes: an on-screen [keyboard guide](behaviors/keyboard-guide.md) that highlights the next key and the finger that presses it, and personalized [warm-up drills](behaviors/warm-up-drills.md) on the dashboard targeting the keys each learner misses most.
+
+For whoever runs the app, a password-protected [admin editor](behaviors/lesson-authoring.md) creates and edits lesson content in the browser.
+
 ---
 
 ## Core Principles
 
-- **Local-first** — no accounts, no server, everything in the browser.
+- **Local-first** — no accounts; every learner's progress stays in their browser. Lesson content is served by the app itself.
 - **[Multi-learner](behaviors/learner-system.md)** — each person has a profile so their progress never mixes with someone else's.
 - **Show and forgive** — wrong keystrokes are counted and flashed red, but the lesson doesn't stop. Learning should feel safe.
 - **Approachable UI** — big cards, named colors, no jargon. Designed for people who find computers uncomfortable.

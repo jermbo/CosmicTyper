@@ -8,7 +8,7 @@
 			"desc": "Forms give you a way to let the user interact with your website. The most common input field is a text field.",
 			"render": true,
 			"action": [
-				"<input type=\"text\" placeholder=\"Favorite Ice Cream>\">"
+				"<input type=\"text\" placeholder=\"Favorite Ice Cream\">"
 			]
 		},
 		{
@@ -45,7 +45,7 @@
 		},
 		{
 			"type": "dom",
-			"desc": "The web is full of forms. All form elements should be wrapped inside a from tag to get the full benefit.",
+			"desc": "The web is full of forms. All form elements should be wrapped inside a form tag to get the full benefit.",
 			"render": true,
 			"action": [
 				"<form>",

@@ -25,6 +25,9 @@
 		[...myAttempts].sort((a, b) => b.completedAt.localeCompare(a.completedAt)).slice(0, 5)
 	);
 
+	// Keys this learner has been missing lately — empty means a generic home-row warm-up.
+	let troubleKeys = $derived(learner ? attemptsStore.troubleKeys(learner.id) : []);
+
 	// Next uncompleted lesson across both lists, if any.
 	let continueLesson = $derived.by(() => {
 		if (!learner) return null;
@@ -81,6 +84,23 @@
 				<a class="btn btn-primary" href={continueLesson.href}>Resume</a>
 			</div>
 		{/if}
+
+		<div class="warmup">
+			<div>
+				<p class="warmup-eyebrow">Warm-up</p>
+				{#if troubleKeys.length}
+					<p class="warmup-desc">Keys to practice</p>
+					<div class="keycaps">
+						{#each troubleKeys as key (key)}
+							<span class="keycap">{key === ' ' ? 'space' : key}</span>
+						{/each}
+					</div>
+				{:else}
+					<p class="warmup-desc">A quick round on the home row</p>
+				{/if}
+			</div>
+			<a class="btn btn-primary" href="/warm-up">Warm up</a>
+		</div>
 
 		<section class="panel">
 			<h2>Recent activity</h2>
@@ -191,6 +211,52 @@
 		margin: 0.25rem 0 0;
 		font-size: var(--size-4);
 		font-weight: 600;
+	}
+
+	.warmup {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		background: var(--color-white);
+		border-radius: 10px;
+		padding: 1.25rem 1.5rem;
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+	}
+
+	.warmup-eyebrow {
+		margin: 0;
+		font-size: var(--size-7);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--color-grey-dark);
+	}
+
+	.warmup-desc {
+		margin: 0.25rem 0 0;
+		font-size: var(--size-5);
+		font-weight: 600;
+	}
+
+	.keycaps {
+		display: flex;
+		gap: 0.4rem;
+		margin-top: 0.6rem;
+	}
+
+	.keycap {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 2.1rem;
+		height: 2.1rem;
+		padding: 0 0.5rem;
+		border: 2px solid var(--color-grey-light);
+		border-bottom-width: 4px;
+		border-radius: 8px;
+		font-size: var(--size-5);
+		font-weight: 700;
+		background: var(--color-grey-lighter);
 	}
 
 	.panel {

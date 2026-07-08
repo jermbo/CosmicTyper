@@ -1,0 +1,79 @@
+{
+	"id": "_gsw6w2d06",
+	"title": "Build a Card with Hover Effects",
+	"difficulty": "hard",
+	"steps": [
+		{
+			"type": "dom",
+			"desc": "Cards are everywhere on the web. Let's build one with an image, a title, and some text.",
+			"render": true,
+			"action": [
+				"<div class=\"card\">",
+				"  <img src=\"https://picsum.photos/id/1043/400/240\" alt=\"A scenic view\">",
+				"  <div class=\"card-body\">",
+				"    <h3>Mountain Trip</h3>",
+				"    <p>A weekend in the clouds.</p>",
+				"  </div>",
+				"</div>"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "Give the card a fixed width, rounded corners, and hide anything that spills past the edges.",
+			"render": true,
+			"action": [
+				".card {",
+				"  width: 300px;",
+				"  border-radius: 12px;",
+				"  overflow: hidden;",
+				"  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);",
+				"  font-family: Arial;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "Make the image fill the width of the card without stretching out of shape.",
+			"render": true,
+			"action": [
+				".card img {",
+				"  width: 100%;",
+				"  height: 180px;",
+				"  object-fit: cover;",
+				"  display: block;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "Pad the text area so the words are not jammed against the edge.",
+			"render": true,
+			"action": [
+				".card-body {",
+				"  padding: 16px;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "A transition tells CSS to animate changes smoothly instead of snapping.",
+			"render": true,
+			"action": [
+				".card {",
+				"  transition: transform 0.2s, box-shadow 0.2s;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "Now lift the card on hover. Because of the transition, it glides up instead of jumping.",
+			"render": true,
+			"action": [
+				".card:hover {",
+				"  transform: translateY(-8px);",
+				"  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);",
+				"}"
+			]
+		}
+	]
+}

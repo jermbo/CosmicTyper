@@ -41,6 +41,7 @@ export interface Attempt {
 	keystrokes: number; // total correct + incorrect key presses
 	mistakes: number; // wrong key presses
 	accuracy: number; // 0–100
+	keyMistakes?: Record<string, number>; // expected char → miss count; absent on pre-drill attempts
 }
 
 /** Result emitted by a typing component when a lesson is completed. */
@@ -50,4 +51,5 @@ export interface LessonResult {
 	keystrokes: number;
 	mistakes: number;
 	accuracy: number;
+	keyMistakes: Record<string, number>; // expected char → miss count
 }

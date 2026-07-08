@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { untrack, tick } from 'svelte';
 	import type { TypingLesson, LessonResult } from '$lib/types';
+	import KeyboardDock from '$lib/components/KeyboardGuide/KeyboardDock.svelte';
 
 	interface Props {
 		lesson: TypingLesson | null;
@@ -15,6 +16,7 @@
 	// Progress metrics for this run
 	let keystrokes = $state(0);
 	let mistakes = $state(0);
+	let keyMistakes: Record<string, number> = {};
 	let startTime: number | null = null;
 
 	// Wrong-key flash ("show and forgive")
@@ -26,6 +28,7 @@
 
 	// All lines in the lesson, shown stacked as ghost lines (done / active / upcoming).
 	let lines = $derived(lesson?.steps ?? []);
+	let nextChar = $derived(actionOutput[currentChar] ?? null);
 	let lineEls = $state<HTMLElement[]>([]);
 
 	const modifiers = ['CapsLock', 'Shift', 'Control', 'Alt', 'Meta'];
@@ -47,14 +50,24 @@
 	$effect(() => {
 		lesson;
 		untrack(() => {
-			currentStep = 0;
+			currentStep = nextTypableStep(0);
 			currentChar = 0;
 			keystrokes = 0;
 			mistakes = 0;
+			keyMistakes = {};
 			startTime = null;
 			clearFlash();
 		});
 	});
+
+	// Blank spacer lines (e.g. gaps between verses) can't be typed, so skip past
+	// them to the next line with content. Returns steps.length if none remain.
+	function nextTypableStep(from: number): number {
+		if (!lesson) return from;
+		let i = from;
+		while (i < lesson.steps.length && lesson.steps[i] === '') i++;
+		return i;
+	}
 
 	function clearFlash() {
 		if (wrongTimer) clearTimeout(wrongTimer);
@@ -79,6 +92,9 @@
 		// Wrong key: count it, flash, but don't advance.
 		if (key !== actionOutput[currentChar]) {
 			mistakes++;
+			// The expected char is what needs practice, regardless of what was pressed.
+			const expected = actionOutput[currentChar];
+			keyMistakes[expected] = (keyMistakes[expected] ?? 0) + 1;
 			flashWrong();
 			return;
 		}
@@ -87,7 +103,7 @@
 
 		if (endOfStep()) {
 			currentChar = 0;
-			currentStep++;
+			currentStep = nextTypableStep(currentStep + 1);
 
 			if (endOfLesson()) {
 				currentStep = 0;
@@ -99,7 +115,7 @@
 	function complete(lessonId: string) {
 		const duration = startTime ? (Date.now() - startTime) / 1000 : 0;
 		const accuracy = keystrokes ? Math.round(((keystrokes - mistakes) / keystrokes) * 100) : 100;
-		oncomplete?.({ lessonId, duration, keystrokes, mistakes, accuracy });
+		oncomplete?.({ lessonId, duration, keystrokes, mistakes, accuracy, keyMistakes });
 	}
 
 	function endOfStep(): boolean {
@@ -163,6 +179,10 @@
 			</div>
 		{/if}
 	</div>
+
+	{#if lesson}
+		<KeyboardDock {nextChar} />
+	{/if}
 </div>
 
 <style>

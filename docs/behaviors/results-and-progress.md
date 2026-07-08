@@ -30,16 +30,17 @@ Below the stats, a comparison to the previous attempt is shown:
 - First time completing the lesson → "First time completing this lesson 🎉"
 - Accuracy improved → "Better than last time! ↑ N% accuracy"
 - Accuracy dropped → "↓ N% accuracy vs. last time"
+- Accuracy unchanged → "Same accuracy as last time"
 - Time improved → "Faster! ↓ Xm Xs vs. last time"
 - Time slower → "↑ Xm Xs slower than last time"
 
-The learner can **Try Again** (resets and replays the same lesson) or **Done** (saves the attempt and navigates to the dashboard).
+The learner can **Try Again** (resets and replays the same lesson) or **Done** (navigates to the dashboard). Pressing Escape acts as Done.
 
 ---
 
 ## How Attempts Are Saved
 
-Pressing **Done** saves an `Attempt` record to [`attemptsStore`](../architecture/state-management.md), which persists it in `localStorage` under [`ct_attempts`](../architecture/data-persistence.md). Every attempt is kept — not just the most recent. This enables comparison over time.
+The `Attempt` record is saved to [`attemptsStore`](../architecture/state-management.md) the moment the lesson completes — before the learner picks a button — and persisted in `localStorage` under [`ct_attempts`](../architecture/data-persistence.md). Trying again doesn't discard the finished run; it stays in history. Every attempt is kept — not just the most recent. This enables comparison over time.
 
 ---
 
@@ -49,8 +50,8 @@ The dashboard derives all its numbers from the learner's full attempt history at
 
 | Stat                  | Derived from                                                       |
 | --------------------- | ------------------------------------------------------------------ |
-| **Lessons completed** | Count of unique lesson IDs the learner has attempted at least once |
-| **Average accuracy**  | Mean accuracy across all attempts                                  |
+| **Lessons completed** | Count of unique lesson IDs the learner has completed at least once ([warm-up drills](warm-up-drills.md) don't count) |
+| **Average accuracy**  | Mean accuracy across all attempts, warm-ups included               |
 | **Time practiced**    | Sum of all attempt durations                                       |
 | **Recent activity**   | Last 5 attempts, sorted by completion date                         |
 | **Continue learning** | First uncompleted lesson — web lessons first, then typing lessons  |

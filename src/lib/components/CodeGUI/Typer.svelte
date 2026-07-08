@@ -2,6 +2,7 @@
 	import { untrack } from 'svelte';
 	import type { WebLesson, LessonResult } from '$lib/types';
 	import { codeData } from '$lib/stores/codeData.svelte';
+	import KeyboardDock from '$lib/components/KeyboardGuide/KeyboardDock.svelte';
 
 	interface Props {
 		lesson: WebLesson | null;
@@ -17,6 +18,7 @@
 	// Progress metrics for this run
 	let keystrokes = $state(0);
 	let mistakes = $state(0);
+	let keyMistakes: Record<string, number> = {};
 	let startTime: number | null = null;
 
 	// Wrong-key flash ("show and forgive")
@@ -27,6 +29,7 @@
 	let actionOutput = $derived(
 		lesson ? (lesson.steps[currentStep]?.action.map((line) => line.split('')) ?? []) : []
 	);
+	let nextChar = $derived(actionOutput[currentRow]?.[currentChar] ?? null);
 
 	const modifiers = ['CapsLock', 'Shift', 'Control', 'Alt', 'Meta'];
 
@@ -39,6 +42,7 @@
 			currentChar = 0;
 			keystrokes = 0;
 			mistakes = 0;
+			keyMistakes = {};
 			startTime = null;
 			clearFlash();
 			codeData.reset();
@@ -68,6 +72,9 @@
 		// Wrong key: count it, flash, but don't advance.
 		if (key !== actionOutput[currentRow][currentChar]) {
 			mistakes++;
+			// The expected char is what needs practice, regardless of what was pressed.
+			const expected = actionOutput[currentRow][currentChar];
+			keyMistakes[expected] = (keyMistakes[expected] ?? 0) + 1;
 			flashWrong();
 			return;
 		}
@@ -111,7 +118,7 @@
 	function complete(lessonId: string) {
 		const duration = startTime ? (Date.now() - startTime) / 1000 : 0;
 		const accuracy = keystrokes ? Math.round(((keystrokes - mistakes) / keystrokes) * 100) : 100;
-		oncomplete?.({ lessonId, duration, keystrokes, mistakes, accuracy });
+		oncomplete?.({ lessonId, duration, keystrokes, mistakes, accuracy, keyMistakes });
 	}
 
 	function commitRow(rowIndex: number) {
@@ -177,6 +184,8 @@
 			<p class="code-lesson__desc">{lesson.steps[currentStep]?.desc ?? ''}</p>
 		</div>
 	</div>
+
+	<KeyboardDock {nextChar} />
 {/if}
 
 <style>

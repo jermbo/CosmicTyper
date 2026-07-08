@@ -25,13 +25,15 @@ flowchart TD
 
     Dashboard -->|pick lesson type| WebList["/web-lessons"]
     Dashboard -->|pick lesson type| TypingList["/typing-lessons"]
-    Dashboard -->|continue shortcut| ActiveLesson["Most recent uncompleted lesson"]
+    Dashboard -->|continue shortcut| ActiveLesson["Next uncompleted lesson"]
+    Dashboard -->|Warm up| WarmUp["Warm-up drill — personalized keys"]
 
     WebList -->|pick a lesson| WebLesson["Web lesson — type HTML/CSS"]
     TypingList -->|pick a lesson| TypingLesson["Typing lesson — type text"]
 
     WebLesson -->|finish all steps| Results["Results screen"]
     TypingLesson -->|finish all steps| Results
+    WarmUp -->|finish all lines| Results
 
     Results -->|Try Again| WebLesson
     Results -->|Try Again| TypingLesson
@@ -44,7 +46,9 @@ flowchart TD
 
 **Learner selection** — the app shows all learner profiles as big cards. Search appears automatically once there are more than 6 learners. See [Learner System](learner-system.md).
 
-**Dashboard** — personalised to the active learner. Shows stats, a "continue learning" shortcut to the next uncompleted lesson, and quick links to both lesson types. See [Results and Progress](results-and-progress.md).
+**Dashboard** — personalised to the active learner. Shows stats, a "continue learning" shortcut to the next uncompleted lesson, a [warm-up card](warm-up-drills.md) targeting the keys they miss most, and quick links to both lesson types. See [Results and Progress](results-and-progress.md).
+
+**Switching learners** — the **Switch** button in the nav clears the active learner and returns to `/`. Visiting any lesson page without an active learner also bounces back to `/`.
 
 **During a lesson** — the learner types keystroke by keystroke. Wrong keys flash red but don't block progress. See [Web Lessons](web-lessons.md) and [Typing Lessons](typing-lessons.md).
 

@@ -1,0 +1,77 @@
+{
+	"id": "_k0yl33y13",
+	"title": "Intro to CSS Grid",
+	"difficulty": "medium",
+	"steps": [
+		{
+			"type": "dom",
+			"desc": "Grid lays elements out in rows and columns. Let's create a container with six cells.",
+			"render": true,
+			"action": [
+				"<div class=\"grid\">",
+				"  <div class=\"cell\">1</div>",
+				"  <div class=\"cell\">2</div>",
+				"  <div class=\"cell\">3</div>",
+				"  <div class=\"cell\">4</div>",
+				"  <div class=\"cell\">5</div>",
+				"  <div class=\"cell\">6</div>",
+				"</div>"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "Give the cells a look first so we can see the grid take shape.",
+			"render": true,
+			"action": [
+				".cell {",
+				"  background-color: #118ab2;",
+				"  color: white;",
+				"  padding: 30px;",
+				"  font-family: Arial;",
+				"  text-align: center;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "Turn the container into a grid. Nothing looks different yet, but it is ready.",
+			"render": true,
+			"action": [
+				".grid {",
+				"  display: grid;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "grid-template-columns sets how many columns there are and how wide each one is. Here we make three equal columns.",
+			"render": true,
+			"action": [
+				".grid {",
+				"  grid-template-columns: 1fr 1fr 1fr;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "gap adds space between every row and column at once.",
+			"render": true,
+			"action": [
+				".grid {",
+				"  gap: 12px;",
+				"}"
+			]
+		},
+		{
+			"type": "style",
+			"desc": "A single cell can span more than one column. Let's stretch the first one across two.",
+			"render": true,
+			"action": [
+				".cell:first-child {",
+				"  grid-column: span 2;",
+				"  background-color: #ef476f;",
+				"}"
+			]
+		}
+	]
+}
