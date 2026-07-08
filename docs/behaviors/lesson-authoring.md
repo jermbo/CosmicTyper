@@ -31,7 +31,7 @@ Every `/admin` request is checked server-side in `src/hooks.server.ts` — there
 - **Edit** a web lesson's steps (`WebStepEditor`) or a typing lesson's title, difficulty, and lines (`TypingLinesEditor`).
 - **Delete** a lesson, which removes its files from disk.
 
-Saving writes directly to `data/lessons/` — changes go live immediately because the learner app fetches lessons fresh from `/api/lessons/*`.
+Saving writes directly to `data/lessons/` on disk. **This only persists where the filesystem is writable — i.e. local development.** When running locally, changes go live immediately because the learner app fetches lessons fresh from `/api/lessons/*` and those routes read the folder back off disk.
 
 ```mermaid
 flowchart LR
@@ -39,6 +39,18 @@ flowchart LR
     Files --> API["/api/lessons/*"]
     API -->|fetch| App["Learner app"]
 ```
+
+### Persistence in production
+
+On the deployed app (Vercel serverless), the filesystem is **read-only and ephemeral**: admin saves and deletes do not persist and are lost on the next request/redeploy. Production serves the lesson content that was **bundled into the build** at deploy time — see [Data Persistence](../architecture/data-persistence.md#how-lessons-are-read-dev-vs-production).
+
+The intended authoring workflow is therefore:
+
+1. Run the app locally and edit lessons in `/admin` (or edit `data/lessons/` files directly).
+2. Commit the resulting `data/lessons/` changes to git.
+3. Redeploy — the new content is re-bundled and goes live.
+
+Live in-production editing would require moving lesson content to a database or external storage; the current design assumes lessons are authored locally and shipped via git.
 
 ---
 

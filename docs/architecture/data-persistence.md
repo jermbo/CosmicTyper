@@ -81,6 +81,17 @@ The learner app loads lessons via `/api/lessons/*`. Edit lessons in the browser 
 
 Lessons are sorted by `difficulty` (alphabetical: `easy` → `hard` → `medium`) when loaded.
 
+### How lessons are read (dev vs. production)
+
+`src/lib/server/lessons.ts` reads lesson content from **two sources**, and this matters for deployment:
+
+- **Bundled at build time.** Every file under `data/lessons/` is imported into the server build via `import.meta.glob`, so the content is embedded in the deployed serverless functions. This is what serves lessons in production.
+- **Disk reads (override).** The same functions also `readdir`/`readFile` the `data/lessons/` folder at runtime. When the folder exists (local dev), those results override the bundled copies so edits appear immediately. The disk reads are wrapped in `try/catch`; on a read-only host where the folder isn't present, they fail silently and the bundled content is used.
+
+This dual approach is required because CosmicTyper deploys to a **read-only, ephemeral serverless filesystem** (Vercel via `@sveltejs/adapter-vercel`). The `data/` folder is not present at runtime there, so without build-time bundling the `/api/lessons/*` routes would 500.
+
+**Consequence:** the on-disk `data/lessons/` folder is the source of truth, but production only ever sees the copy captured **at build time**. New or edited lessons go live only after a rebuild/redeploy — see [Lesson Authoring](../behaviors/lesson-authoring.md).
+
 One piece of state lives outside localStorage: the admin session is a signed, 24-hour `ct_admin_session` cookie issued by `src/lib/server/auth.ts`.
 
 ---
